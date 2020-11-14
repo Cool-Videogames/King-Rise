@@ -10,7 +10,8 @@ export default class Game extends Phaser.Scene {
 
   create() {
     this.add.text(10, 10, "Favicon moviendose!", { fontColor: 0xffff00 });
-    new MovingFavicon(this, 'favicon');
+    this.add.sprite(200,200,'favicon');
+    //new MovingFavicon(this, 'favicon');
   }
 
   update(time, delta) {}
