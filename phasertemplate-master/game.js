@@ -1,17 +1,11 @@
-import MovingFavicon from "./MovingFavicon";
-
 export default class Game extends Phaser.Scene {
   constructor() {
     super({ key: "main" });
   }
-  preload() {
-    this.load.image('favicon','phasertemplate-master/favicon.png');
-  }
+  preload() {}
 
   create() {
-    this.add.text(10, 10, "Favicon moviendose!", { fontColor: 0xffff00 });
-    this.add.sprite(200,200,'favicon');
-    //new MovingFavicon(this, 'favicon');
+    this.add.text(10, 10, "Ivan es tonto pero Aida Pablo y Yojhan son preciosos", { fontColor: 0xffff00 });
   }
 
   update(time, delta) {}
