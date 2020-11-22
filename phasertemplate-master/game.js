@@ -11,7 +11,6 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(10, 10, "Yojhan no sabe hacer tortitas", { fontColor: 0xffff00 });
 
     //PRIMERA FORMA DE HACERLO
     //this.add.sprite(600,400, 'favicon');
