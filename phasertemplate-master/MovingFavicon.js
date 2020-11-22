@@ -1,3 +1,5 @@
+import Game from "./game.js";
+
 export default class  MovingFavicon extends Phaser.GameObjects.Sprite{
     constructor(scene){
         let x = 600;
