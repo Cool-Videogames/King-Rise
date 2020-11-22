@@ -7,7 +7,7 @@ export default class Game extends Phaser.Scene {
   }
   preload() {
     this.load.image('favicon', "phasertemplate-master/favicon.png");
-    this.load.image('cesped', "phasertemplate-master/cespedMiniBlanco.png")
+    this.load.image('cesped', "phasertemplate-master/cespedMiniBlanco.png");
   }
 
   create() {
@@ -18,12 +18,18 @@ export default class Game extends Phaser.Scene {
     /*let sprite = new Phaser.GameObjects.Sprite(this,600,400,'favicon');
     this.add.existing(sprite);*/
 
-    //TERCERA FORMA DE HACERLO
-     new MovingFavicon(this);
-
      //INTENTO DE MAPA
-    new Mapa(this,16);
+    new Mapa(this,12);
+    
+    //TERCERA FORMA DE HACERLO
+    new MovingFavicon(this);
   }
-
-  update(time, delta) {}
+  //DETECTA MUCHOS CLICKS
+  update(time, delta) {
+    this.input.on('pointerdown', pointer => {
+      if (pointer.leftButtonDown()) {
+        console.log('Hola');
+      }
+    });
+  }
 }

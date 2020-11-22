@@ -1,4 +1,4 @@
-export default class Mapa {
+export default class Mapa{
     constructor(scene, size){
         let mapa = new Array(size);
         for(let i = 0;i<mapa.length;i++){
