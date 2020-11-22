@@ -1,3 +1,4 @@
+import Mapa from "./Mapa.js";
 import MovingFavicon from "./MovingFavicon.js";
 
 export default class Game extends Phaser.Scene {
@@ -5,12 +6,11 @@ export default class Game extends Phaser.Scene {
     super({ key: "main" });
   }
   preload() {
-    this.load.image('favicon', "phasertemplate-master/favicon.png" );
+    this.load.image('favicon', "phasertemplate-master/favicon.png");
+    this.load.image('cesped', "phasertemplate-master/cespedMini.png")
   }
 
   create() {
-    this.add.text(10, 10, "Favicon Movieeeendose", { fontColor: 0xffff00 });
-
     //PRIMERA FORMA DE HACERLO
     //this.add.sprite(600,400, 'favicon');
 
@@ -20,6 +20,9 @@ export default class Game extends Phaser.Scene {
 
     //TERCERA FORMA DE HACERLO
      new MovingFavicon(this);
+
+     //INTENTO DE MAPA
+    new Mapa(this,10);
   }
 
   update(time, delta) {}

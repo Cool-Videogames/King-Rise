@@ -1,7 +1,7 @@
 export default class  MovingFavicon extends Phaser.GameObjects.Sprite{
     constructor(scene){
         let x = 600;
-        let y = 400;
+        let y = 600;
         super(scene,x,y,'favicon');
         scene.add.existing(this);
     }
