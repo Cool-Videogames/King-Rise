@@ -7,11 +7,10 @@ export default class Game extends Phaser.Scene {
   }
   preload() {
     this.load.image('favicon', "phasertemplate-master/favicon.png");
-    this.load.image('cesped', "phasertemplate-master/cespedMini.png")
+    this.load.image('cesped', "phasertemplate-master/cespedMiniBlanco.png")
   }
 
   create() {
-
     //PRIMERA FORMA DE HACERLO
     //this.add.sprite(600,400, 'favicon');
 
@@ -23,7 +22,7 @@ export default class Game extends Phaser.Scene {
      new MovingFavicon(this);
 
      //INTENTO DE MAPA
-    new Mapa(this,10);
+    new Mapa(this,16);
   }
 
   update(time, delta) {}

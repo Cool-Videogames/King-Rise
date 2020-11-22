@@ -4,12 +4,15 @@ export default class Mapa {
         for(let i = 0;i<mapa.length;i++){
             mapa[i] = new Array(size);
         }
+
+        let indice = 0;
         for(let c = 0; c < size ;c++){
             for(let j = 0; j < size;j++){
-                mapa[c][j] = new Phaser.GameObjects.Sprite(scene,c*80, j*50,'cesped');
-                mapa[c][j].setOrigin(0,0);
-                //mapa[c][j] = new Phaser.GameObjects.Sprite(scene,(c*80)/2, (j*50)/2,'cesped');
-                scene.add.existing(mapa[c][j]);
+                mapa[j][c] = new Phaser.GameObjects.Sprite(scene,(c*80), (j*20),'cesped');
+                if(indice % 2 != 0) mapa[j][c] = new Phaser.GameObjects.Sprite(scene,(c*80)-40, (j*20),'cesped');
+                mapa[j][c].setOrigin(0,0);
+                indice++;
+                scene.add.existing(mapa[j][c]);
             }
         }
     }
