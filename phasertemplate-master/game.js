@@ -11,11 +11,8 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
-<<<<<<< Updated upstream
-=======
     this.add.text(10, 10, "Yojhan no sabe hacer tortitas", { fontColor: 0xffff00 });
 
->>>>>>> Stashed changes
     //PRIMERA FORMA DE HACERLO
     //this.add.sprite(600,400, 'favicon');
 
