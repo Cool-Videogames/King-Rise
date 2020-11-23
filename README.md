@@ -11,8 +11,7 @@
 
 ##
 
-1.
-### Descripción
+1.### Descripción
 2.
 ### Mecánicas
 
@@ -209,9 +208,6 @@ Años 40 en África, en un poblado de indígenas que son atacados por los france
 
 ### **5.-ARQUITECTURA**
 
-![](RackMultipart20201123-4-12w3t2n_html_4925a7021c87d01.png) ![](RackMultipart20201123-4-12w3t2n_html_2059df568ec1fe0b.png)
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/UML1.png "UML1")
 
-![](RackMultipart20201123-4-12w3t2n_html_81e119d7bc2fb255.png)
-
-![](RackMultipart20201123-4-12w3t2n_html_e5115c2288f0b21b.png)
- 
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/UML2.png "UML2")
