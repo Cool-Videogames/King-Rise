@@ -177,7 +177,7 @@ La estética general del juego estará hecha con pixelArt. La paleta de colores 
 
 - **HUD:**
 
-![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/UIKIngRise.png "UI")
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/UIKingRise.png "UI")
 
 En esta imagen se puede apreciar un boceto de lo que será la HUD del juego. Consta de varias partes todas ellas contenidas en una barra centrada en la parte inferior de la pantalla:
 
