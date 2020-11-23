@@ -3,7 +3,7 @@
 # https://cool-videogames.github.io/Paradox-Invasion/
 # Pivotal: https://www.pivotaltracker.com/n/projects/2468915
 # GDD: 
-**Game Design Document**![](RackMultipart20201123-4-12w3t2n_html_f44247642852f755.png)
+**Game Design Document**![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/KingRiseLogo.PNG "Logo")
 
 # _ **King Rise** _
 
@@ -11,37 +11,38 @@
 
 ##
 
-1.### Descripción
+1.
+### Descripción
 2.
 ### Mecánicas
 
-  1.
+  --1.
 #### Recursos
-  2.
+  --2.
 #### Acciones
-  3.
+  --3.
 #### Exploración
-  4.
+  -4.
 #### Construcción
-  5.
+  --5.
 #### Sistema de eventos
-  6.
+  --6.
 #### Sistema de movimientos
-  7.
+  --7.
 #### Sistema de casillas
-  8.
+  --8.
 #### Movimiento del jugador
-  9.
+  --9.
 #### Cámara
-  10.
+  --10.
 #### Defensa de la aldea
-  11.
+  --11.
 #### Ciclo de día y noche.
 3.
 ### Dinámicas
 
-  1. Objetivos
-  2. Recompensas y castigos
+  --1. Objetivos
+  --2. Recompensas y castigos
 4.
 ### Estética
 5.
