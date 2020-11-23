@@ -1,52 +1,44 @@
-# Paradox-Invasion
-# Cool-Videogames
-# https://cool-videogames.github.io/Paradox-Invasion/
-# Pivotal: https://www.pivotaltracker.com/n/projects/2468915
-# GDD: 
-**Game Design Document**![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/KingRiseLogo.PNG "Logo")
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/KingRiseLogo.PNG "Logo")
+## **Game Design Document** 
+# **_King Rise_**
 
-# _ **King Rise** _
+## Índice:
+  
+### 1.-Descripción
 
-## _Índice:_
+### 2.-Mecánicas
 
-##
+#### 1.-Recursos
+  
+#### 2.-Acciones
+  
+#### 3.-Exploración
+  
+#### 4.-Construcción
+  
+#### 5.-Sistema de eventos
+  
+#### 6.-Sistema de movimientos
+  
+#### 7.-Sistema de casillas
+  
+#### 8.-Movimiento del jugador
+  
+#### 9.-Cámara
+  
+#### 10.-Defensa de la aldea
+  
+#### 11.-Ciclo de día y noche.
 
-1.
-### Descripción
-2.
-### Mecánicas
+### 3.-Dinámicas
 
-  --1.
-#### Recursos
-  --2.
-#### Acciones
-  --3.
-#### Exploración
-  -4.
-#### Construcción
-  --5.
-#### Sistema de eventos
-  --6.
-#### Sistema de movimientos
-  --7.
-#### Sistema de casillas
-  --8.
-#### Movimiento del jugador
-  --9.
-#### Cámara
-  --10.
-#### Defensa de la aldea
-  --11.
-#### Ciclo de día y noche.
-3.
-### Dinámicas
+#### 1. Objetivos
 
-  --1. Objetivos
-  --2. Recompensas y castigos
-4.
-### Estética
-5.
-### Arquitectura
+#### 2. Recompensas y castigos
+
+### 4.-Estética
+
+### 5.-Arquitectura
 
 ### **1.-Descripción:**
 
@@ -66,7 +58,7 @@ Existen 4 recursos, cada uno tendrá sus utilidades:
 
 -Felicidad: a mayor felicidad mayor cantidad de recursos obtendrás de tus edificios debido a que los aldeanos trabajan de manera más eficaz.
 
-**2.2-Acciones**** :**
+**2.2-Acciones:**
 
 Un día en el juego durará un número determinado de acciones. Los franceses atacarán por la noche cada X acciones, siendo X un número constante. Dichos ataques estarán relacionados con el día y la noche. Entre ataque y ataque francés, también podrán atacar otras tribus, más débiles que los franceses pero más frecuentes. Cada X días ganarás un aldeano extra.
 
@@ -92,13 +84,10 @@ El espacio de la aldea será una cuadrícula limitada por el entorno. En las cas
 
 **Defensivos:**
 
-![](RackMultipart20201123-4-12w3t2n_html_33028457e8ce19d3.gif)
-
 - Trampa en el suelo
 
-Desaparecerán tras ser activadas
-
 - Trampa para osos
+(Tanto esta como la anterior, desaparecerá al ser activada)
 
 - Puesto de vigilancia: los exploradores estarán en este edificio entre las oleadas de franceses. Su visión será un cono e indicará si vendrán tropas por esa zona. Se podrán asignar 1 o 2 exploradores, aumentando el rango si son 2.
 
@@ -170,7 +159,7 @@ EL raton tambien valdra para moverse por los diferentes menús del juego y por l
 
 ### **3.-DINÁMICAS:**
 
-**3.1- Objetivos**** :**
+**3.1- Objetivos:**
 
 Para ganar el jugador debe aprender a gestionar su aldea para proteger a los ciudadanos de los ataques constantes de las tropas francesas y algunas tribus adyacentes que querrán hacerse con sus dominios. Cuando logre construir la catedral, el edificio más caro de todos, finalizará el juego y habrás ganado. Si en algunos de los ataques los franceses destruyen el trono/palacete donde se encuentra tu personaje, perderás la partida.
 
@@ -188,7 +177,7 @@ La estética general del juego estará hecha con pixelArt. La paleta de colores 
 
 - **HUD:**
 
-![](RackMultipart20201123-4-12w3t2n_html_1b6f38b0fb7f1153.png)
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/UIKIngRise.png "UI")
 
 En esta imagen se puede apreciar un boceto de lo que será la HUD del juego. Consta de varias partes todas ellas contenidas en una barra centrada en la parte inferior de la pantalla:
 
@@ -205,7 +194,7 @@ Habrá dos menús: un menú de inicio, al entrar al juego y uno de ajustes. Apar
 
 Años 40 en África, en un poblado de indígenas que son atacados por los franceses conquistadores. Toda la estética estará relacionada con esta temática. Así el mapa será una sabana o selva, y la flora del lugar será propia de estas zonas.
 
-![](RackMultipart20201123-4-12w3t2n_html_6b9cf6d1e95f658c.png)
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/AmbientacionAfrica.png "Ambientacion")
 
 ### **5.-ARQUITECTURA**
 
