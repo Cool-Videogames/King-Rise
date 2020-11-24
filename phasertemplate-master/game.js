@@ -11,25 +11,10 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
-    //PRIMERA FORMA DE HACERLO
-    //this.add.sprite(600,400, 'favicon');
-
-    //SEGUNDA FORMA DE HACERLO
-    /*let sprite = new Phaser.GameObjects.Sprite(this,600,400,'favicon');
-    this.add.existing(sprite);*/
-
-     //INTENTO DE MAPA
-    new Mapa(this,12);
     
-    //TERCERA FORMA DE HACERLO
-    new MovingFavicon(this);
+    let favicon = new MovingFavicon(this);
+    new Mapa(this,16,favicon);
   }
-  //DETECTA MUCHOS CLICKS
   update(time, delta) {
-    this.input.on('pointerdown', pointer => {
-      if (pointer.leftButtonDown()) {
-        console.log('Hola');
-      }
-    });
   }
 }
