@@ -1,3 +1,24 @@
-h1{
-  text-align: center;
+h1 a {
+  text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: rgb(170, 113, 43);
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    padding: 5px 15px;
+    font-size: 30px;
+}
+
+h1 a:hover {
+  background-color: #914735; /* Green */
+  color: white;
+  box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24), 0 6px 6px 0 rgba(0,0,0,0.19);
+}
+
+#pageLogo{
+  margin-left: 40px; 
+  margin-top: -20px;
+}
+
+body {
+  background-image: url("background.png");
 }

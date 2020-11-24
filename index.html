@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="./phasertemplate-master/KingRiseLogo.png" type="image/png" />
+    <link rel="shortcut icon" href="logo.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=2.0" />
     <link rel="stylesheet" href="game.css" />
     <script src="./phasertemplate-master/phaser.js"></script>
@@ -11,15 +11,20 @@
   </head>
 
   <body>
-    <h1>BIENVENIDO A KING RISE!</h1>
-    <h1>REALMENTE NO SABEMOS QUE ESTAMOS HACIENDO :)</h1>
+    <h1>
+      <img src="logo.png" alt="KingRise" id= "pageLogo">
+      <a href="index.html" class="button">GAME</a>
+      <a target="_blank" href="https://github.com/Cool-Videogames/Paradox-Invasion" class="button">GITHUB</a>
+      <a href="#" class="button">INFO</a>
+    </h1>
+
     <script type="module">
       import Game from "./phasertemplate-master/game.js";
 
       var config = {
         type: Phaser.AUTO,
-        width: 1600,
-        height: 800,
+        width:1280,
+        height:720,
         pixelArt: true,
         input: {
           gamepad: true,
