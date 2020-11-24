@@ -1,5 +1,5 @@
-import Mapa from "./Mapa.js";
-import MovingFavicon from "./MovingFavicon.js";
+import Mapa from "./js/Mapa.js";
+import MovingFavicon from "./js/MovingFavicon.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
