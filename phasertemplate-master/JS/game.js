@@ -6,8 +6,8 @@ export default class Game extends Phaser.Scene {
     super({ key: "main" });
   }
   preload() {
-    this.load.image('favicon', "phasertemplate-master/favicon.png");
-    this.load.image('cesped', "phasertemplate-master/cespedMiniBlanco.png");
+    this.load.image('favicon', "phasertemplate-master/images/favicon.png");
+    this.load.image('cesped', "phasertemplate-master/images/cespedMiniBlanco.png");
   }
 
   create() {
