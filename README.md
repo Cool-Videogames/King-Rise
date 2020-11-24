@@ -1,4 +1,4 @@
-![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/KingRiseLogo.PNG "Logo")
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/images/KingRiseLogo.PNG "Logo")
 ## **Game Design Document** 
 # **_King Rise_**
 
@@ -177,7 +177,7 @@ La estética general del juego estará hecha con pixelArt. La paleta de colores 
 
 - **HUD:**
 
-![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/UIKingRise.png "UI")
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/images/UIKingRise.png "UI")
 
 En esta imagen se puede apreciar un boceto de lo que será la HUD del juego. Consta de varias partes todas ellas contenidas en una barra centrada en la parte inferior de la pantalla:
 
@@ -194,10 +194,10 @@ Habrá dos menús: un menú de inicio, al entrar al juego y uno de ajustes. Apar
 
 Años 40 en África, en un poblado de indígenas que son atacados por los franceses conquistadores. Toda la estética estará relacionada con esta temática. Así el mapa será una sabana o selva, y la flora del lugar será propia de estas zonas.
 
-![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/AmbientacionAfrica.png "Ambientacion")
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/images/AmbientacionAfrica.png "Ambientacion")
 
 ### **5.-ARQUITECTURA**
 
-![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/UML1.png "UML1")
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/images/UML1.png "UML1")
 
-![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/Imagenes/UML2.png "UML2")
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/images/UML2.png "UML2")
