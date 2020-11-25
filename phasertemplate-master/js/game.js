@@ -1,5 +1,4 @@
 import Mapa from "./Mapa.js";
-import MovingFavicon from "./MovingFavicon.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -7,14 +6,11 @@ export default class Game extends Phaser.Scene {
   }
   preload() {
     this.load.image('favicon', "phasertemplate-master/images/favicon.png");
-    this.load.image('cesped', "phasertemplate-master/images/cespedMiniBlanco.png");
+    this.load.image('cesped', "phasertemplate-master/images/ground.png");
   }
 
   create() {
-    
-    let favicon = new MovingFavicon(this);
-    new Mapa(this,16,favicon);
+    new Mapa(this,10,10);
   }
-  update(time, delta) {
-  }
+  update(time, delta) {}
 }

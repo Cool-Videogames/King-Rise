@@ -5,7 +5,7 @@
     <link rel="shortcut icon" href="logo.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=2.0" />
     <link rel="stylesheet" href="game.css" />
-    <script src="./phasertemplate-master/phaser.js"></script>
+    <script src="./phasertemplate-master/js/phaser.js"></script>
 
     <title>¡King Rise!</title>
   </head>
@@ -13,7 +13,7 @@
   <body>
     <header>
       <div id= "pageLogo">
-        <img src="imagen logo.png" alt="KingRise">
+        <img src="/phasertemplate-master/images/imagen logo.png" alt="KingRise">
       </div>
 
       <div id= "headerButtons">
@@ -25,7 +25,8 @@
 
   
     <script type="module">
-      import Game from "./phasertemplate-master/game.js";
+      import Game from "./phasertemplate-master/js/game.js";
+      import Interfaz from "./phasertemplate-master/js/Interfaz.js";
 
       var config = {
         type: Phaser.AUTO,
@@ -39,7 +40,8 @@
           mode: Phaser.Scale.FIT,
           autoCenter: Phaser.Scale.CENTER_BOTH,
         },
-        scene: [Game],
+        //Solo se ejecuta la primera, mirar eso
+        scene: [Game, Interfaz],
         physics: {
           default: "arcade",
           arcade: { gravity: { y: 400 }, debug: false },
