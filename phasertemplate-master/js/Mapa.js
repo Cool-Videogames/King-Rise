@@ -1,5 +1,6 @@
 export default class Mapa{
     constructor(scene, x,y){
+        let jugador;
         let mapa = new Array(x);
         for(let i = 0;i<mapa.length;i++){
             mapa[i] = new Array(y);
@@ -24,6 +25,10 @@ export default class Mapa{
     inputOnSprite(sprite, j,c){
         sprite.on('pointerdown', pointer =>{
             console.log('x:'+j+' y:'+c);
+            this.jugador.MoveToPosition(c*80,j*50);
         })
+    }
+    setJugador(jug){
+        this.jugador = jug;
     }
 }
