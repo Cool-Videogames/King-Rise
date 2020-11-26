@@ -6,9 +6,9 @@ export default class Jugador extends Phaser.GameObjects.Sprite{
         this.setOrigin(0,0);
         scene.add.existing(this);
     }
-    preUpdate(t,dt){
+    /*preUpdate(t,dt){
         super.preUpdate(t,dt);
-    }
+    }*/
     MoveToPosition(x,y){
         this.x = x;
         this.y = y;

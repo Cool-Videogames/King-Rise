@@ -9,13 +9,12 @@ export default class Game extends Phaser.Scene {
     this.load.image('favicon', "phasertemplate-master/images/favicon.png");
     this.load.image('ground', "phasertemplate-master/images/ground.png");
     this.load.image('jugador', "phasertemplate-master/images/Personaje.png");
-
   }
   
   create() {
-    let mapa = new Mapa(this,10,10, 2);
-    let jug = new Jugador(this);
-    mapa.setJugador(jug);
+    let mapa = new Mapa(this,10,10, 5);
+    //let jug = new Jugador(this);
+    //mapa.setJugador(jug);
   }
   update(time, delta) {}
 }
