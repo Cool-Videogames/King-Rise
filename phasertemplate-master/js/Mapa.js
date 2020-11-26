@@ -6,21 +6,20 @@ export default class Mapa {
         for (let i = 0; i < x; i++) {
             mapa[i] = new Array(y);
         }
-        this.construyeMatriz(scene,x, y, mapa);
+        this.construyeMatriz(scene,x, y, mapa, sizeCasilla);
     }
-    construyeMatriz(scene,x, y, mapa) {
+    construyeMatriz(scene,x, y, mapa, sizeCasilla) {
         for (let c = 0; c < x; c++) {
             for (let j = 0; j < y; j++) {
-                mapa[c][j] = new Cell(scene, c*80, j*52);
-
-                this.inputOnSprite(mapa[c][j], c, j);
+                mapa[c][j] = new Cell(scene, c*sizeCasilla, j*sizeCasilla);
+                console.log(typeof(mapa[c][j].sprite));
+                this.inputOnSprite(mapa[c][j].sprite, c, j);
             }
         }
     }
-    inputOnSprite(sprite, j, c) {
-        sprite.on('pointerdown', pointer => {
-            console.log('x:' + j + ' y:' + c);
-            this.jugador.MoveToPosition(100, 100);
+    inputOnSprite(sprite, c, j) {
+         sprite.on('pointerdown', pointer => {
+            console.log('x:' + c + ' y:' + j);
         })
     }
     setJugador(jug) {
