@@ -2,6 +2,7 @@ export default class Vector2D {
     constructor(x, y, a = 1) {
         this.x = x * a;
         this.y = y * a;
+        
     }
     suma(v) {
         this.x += v.x;

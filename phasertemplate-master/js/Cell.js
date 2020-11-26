@@ -1,24 +1,22 @@
 import Vector2D from "./Vector2D.js";
 
-export default class Cell {
+export default class Cell extends Phaser.GameObjects.Sprite {
 
-    static size;
-    constructor(scene, x, y, sizeCasilla) {
-        //super(scene, x,y,'ground');
+    constructor(scene, xpos, ypos, sizeCasilla) {
+        let x = xpos;
+        let y = ypos;
+        let size = sizeCasilla;
+        let position = new Vector2D(x, y, size);
+        let estaOcupado = false;
 
-        this.x = x;
-        this.y = y;
-        this.size = sizeCasilla;
+        super(scene, position.x, position.y, 'ground');
 
-        this.sprite = new Phaser.GameObjects.Sprite(scene, 80, 52, 'ground');
-        // this.setOrigin(0,0);
-        scene.add.existing(this.sprite);
-
-        // this.position = new Vector2D(x,y, size);
-
-        // this.setInteractive();
-        // this.estaOcupado = false;
-
+        this.setOrigin(0, 0);
+        this.setInteractive();
+        scene.add.existing(this);
+    }
+    pos() {
+        return this.position;
     }
 
 }
