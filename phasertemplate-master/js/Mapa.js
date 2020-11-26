@@ -13,17 +13,14 @@ export default class Mapa {
             for (let j = 0; j < y; j++) {
                 mapa[c][j] = new Cell(scene, c*80, j*52);
 
-
-                console.log(typeof(mapa[c][j]));
-
-
-                //this.inputOnSprite(mapa[j][c].sprite, j, c);
+                this.inputOnSprite(mapa[c][j], c, j);
             }
         }
     }
     inputOnSprite(sprite, j, c) {
         sprite.on('pointerdown', pointer => {
             console.log('x:' + j + ' y:' + c);
+            this.jugador.MoveToPosition(100, 100);
         })
     }
     setJugador(jug) {
