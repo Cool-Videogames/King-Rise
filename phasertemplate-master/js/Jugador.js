@@ -1,4 +1,4 @@
-import Vector2D from "./Vector2D";
+import Vector2D from "./Vector2D.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite{
     constructor(scene, _x = 0, _y = 0){
