@@ -10,7 +10,7 @@ export default class Game extends Phaser.Scene {
     this.load.image('cesped', "phasertemplate-master/images/ground.png");
     this.load.image('jugador', "phasertemplate-master/images/Personaje.png");
   }
-
+  
   create() {
     let mapa = new Mapa(this,10,10);
     let jug = new Jugador(this);
