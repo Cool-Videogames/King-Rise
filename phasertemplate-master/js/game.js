@@ -12,10 +12,10 @@ export default class Game extends Phaser.Scene {
   }
   
   create() {
-    let sizeCasilla = 70;
-    let mapa = new Mapa(this,10,10, sizeCasilla);
-    let jug = new Jugador(this);
-    mapa.setJugador(jug);
+    let sizeCasilla = 80;
+    let mapa = new Mapa(this,3,3, sizeCasilla);
+    //let jug = new Jugador(this);
+    //mapa.setJugador(jug);
   }
   update(time, delta) {}
 }
