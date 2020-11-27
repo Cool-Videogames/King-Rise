@@ -14,10 +14,17 @@ export default class Game extends Phaser.Scene {
   
   create() {
     this.sizeCasilla = 32;
-    this.mapa = new Mapa(this,20,20, this.sizeCasilla);
+    this.xSize = 30;
+    this.ySize = 20;
+    this.mapa = new Mapa(this,this.xSize,this.ySize, this.sizeCasilla);
 
     this.jug = new Jugador(this, this.mapa);
     this.mapa.setJugador(this.jug);
+
+  }
+
+  hola(){
+    this.i++;
   }
   update(time, delta) {}
 }

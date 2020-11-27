@@ -16,7 +16,6 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.setOrigin(0.5, 1);
         scene.add.existing(this);
 
-        
     }
     /*preUpdate(t,dt){
         super.preUpdate(t,dt);
@@ -27,10 +26,6 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.position = v;
         this.x = v.x;
         this.y = v.y;
-
-
-        console.log(this.x);
-        console.log(this.y);
 
     }
 }
