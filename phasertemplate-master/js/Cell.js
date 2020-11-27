@@ -10,7 +10,7 @@ export default class Cell{
         this.estaOcupada = false
 
         //Un sprite como atributo de la clase
-        let spr = new Phaser.GameObjects.Sprite(scene, x,y,'suelo');
+        let spr = new Phaser.GameObjects.Sprite(scene, x,y,'sabana');
         this.sprite = spr;
         this.sprite.setOrigin(0,0);
         this.sprite.setInteractive();

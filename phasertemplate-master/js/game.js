@@ -9,7 +9,7 @@ export default class Game extends Phaser.Scene {
     this.load.image('favicon', "phasertemplate-master/images/favicon.png");
     this.load.image('ground', "phasertemplate-master/images/ground.png");
     this.load.image('jugador', "phasertemplate-master/images/Personaje.png");
-    this.load.image('suelo', "phasertemplate-master/images/sueloFinal.png" )
+    this.load.image('sabana', "phasertemplate-master/images/Sabana.png" )
   }
   
   create() {
