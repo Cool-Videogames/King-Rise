@@ -28,4 +28,10 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.y = v.y;
 
     }
+
+    Construir(edificio, posicion, tamanyo){
+        for(i = posicion.x; i<posicion.x+tamanyo;++i)
+            for(j = posicion.y;j<posicion.y+tamanyo;++j)mapa.mapa[y][j].ocupado = true;
+            //Dibujar edificio
+    }
 }

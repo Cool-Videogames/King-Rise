@@ -17,14 +17,20 @@ export default class Game extends Phaser.Scene {
     this.xSize = 30;
     this.ySize = 20;
     this.mapa = new Mapa(this,this.xSize,this.ySize, this.sizeCasilla);
-
     this.jug = new Jugador(this, this.mapa);
     this.mapa.setJugador(this.jug);
-
+    this.recursos={ 
+      oro:0, materiales: 0, comida:0, felicidad:0
+    }
+    this.proxAtaque = 20;
+    this.numEdificios =1;
+    this.isPaused= false;
   }
 
-  hola(){
-    this.i++;
+  Pause(pause){this.isPaused = pause;}
+  End() {
+    //Ni idea hulio
   }
+
   update(time, delta) {}
 }
