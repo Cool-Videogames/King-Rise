@@ -25,7 +25,7 @@ export default class Game extends Phaser.Scene {
     this.proxAtaque = 20;
     this.numEdificios =1;
     this.isPaused= false;
-    
+
   }
 
   Pause(pause){this.isPaused = pause;}
@@ -33,5 +33,5 @@ export default class Game extends Phaser.Scene {
     //Ni idea hulio
   }
 
-  update(time, delta) {print(jug.position)}
+  update(time, delta) {}
 }
