@@ -25,7 +25,7 @@ export default class Game extends Phaser.Scene {
     this.proxAtaque = 20;
     this.numEdificios =1;
     this.isPaused= false;
-
+    this.cameras.main.startFollow(this.jug);
   }
 
   Pause(pause){this.isPaused = pause;}
