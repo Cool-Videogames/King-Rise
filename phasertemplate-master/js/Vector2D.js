@@ -1,8 +1,4 @@
 export default class Vector2D {
-    /*constructor(x, y, a = 1) {
-        this.x = x * a;
-        this.y = y * a;
-    }*/
     constructor(x,y){
         this.x = x;
         this.y = y;

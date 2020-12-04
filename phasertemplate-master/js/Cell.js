@@ -1,3 +1,4 @@
+import Game from "./game.js";
 import Vector2D from "./Vector2D.js";
 
 export default class Cell{
