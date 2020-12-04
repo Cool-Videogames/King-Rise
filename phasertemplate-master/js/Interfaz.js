@@ -72,7 +72,7 @@ export default class Interfaz extends Phaser.Scene {
       })
     }
     cargaImagenes(){
-      this.load.image('ajustes',"phasertemplate-master/images/RuedaAjustes.png")
+      this.load.image('ajustes',"phasertemplate-master/images/RuedaAjustes.PNG")
       this.load.image('recursos', "phasertemplate-master/images/Recursos.png");
       this.load.image('proxAtaque', "phasertemplate-master/images/proxAtaque.png");
       this.load.image('desplegable', "phasertemplate-master/images/gestion.png");
