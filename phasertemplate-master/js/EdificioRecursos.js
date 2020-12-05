@@ -7,11 +7,11 @@ export default class EdificioRecursos extends Edificio{
     this.recursos = recursos;
     }
 
-    Generar(){
+    generar(){
         //game.recursos +=recursos;
     }
 
-    AsignarAldeanos(aldeanos){
+    asignarAldeanos(aldeanos){
         this.numAldeanos++;
     }
 }

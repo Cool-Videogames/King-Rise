@@ -1,8 +1,7 @@
-import Game from "./Game.js";
-import { Phaser } from "./phaser.js";
-import Vector2D from "./Vector2D.js";
+import Game from "./game.js";
+import Vector2D from "./vector2D.js";
 
-export default class Interfaz extends Phaser.GameObjects {
+export default class Interfaz {
    /*constructor() {
       super({ key: "interfaz" });
     }
@@ -70,7 +69,4 @@ export default class Interfaz extends Phaser.GameObjects {
         //funcionalidad del desplegable
       })
     }*/
-    constructor(){
-
-    }
 }

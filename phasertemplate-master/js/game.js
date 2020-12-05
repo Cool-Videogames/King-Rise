@@ -1,6 +1,7 @@
-import * as config from "./Config.js";
-import Jugador from "./Jugador.js";
-import Mapa from "./Mapa.js";
+import * as config from "./config.js";
+import Jugador from "./jugador.js";
+import Mapa from "./mapa.js";
+import Vector2D from "./vector2D.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -10,14 +11,15 @@ export default class Game extends Phaser.Scene {
   create() {
     this.setFuncionesGlobales();
 
-    this.jug = new Jugador(this, config.iniPos);
     this.mapa = new Mapa(this,config.columnas,config.filas, config.sizeCasilla);
+    let iniJugador = new Vector2D(config.columnas/2,config.filas/2);
+    this.jug = new Jugador(this,iniJugador);
 
     this.numEdificios =0;
     this.isPaused= false;
 
     this.cameras.main.centerOn(0,0)
-    this.SuperponerEscenas('interfaz');
+    //this.SuperponerEscenas('interfaz');
   }
 
   update(time, delta) {
@@ -25,13 +27,13 @@ export default class Game extends Phaser.Scene {
   }
 
 
-  Pause(pause){this.isPaused = pause;}
+  pause(pause){this.isPaused = pause;}
 
-  End() {
+  end() {
     //Metodo para pausar el juego
   }
 
-  SuperponerEscenas(key){
+  superponerEscenas(key){
     this.scene.launch(key);
   }
 
