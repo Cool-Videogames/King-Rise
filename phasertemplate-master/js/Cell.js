@@ -1,5 +1,3 @@
-import Vector2D from "./Vector2D.js";
-
 export default class Cell{
     constructor(scene, x, y,c,j) {
         this.x = x;

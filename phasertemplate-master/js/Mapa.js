@@ -40,11 +40,12 @@ export default class Mapa{
          
             this.game.jug.move(pos,nextCell);
             nextCell.setOcupada(!nextCell.estaOcupada);
-            console.clear();
-            this.printMapa();
+            //console.clear();
+            //this.printMapa();
         })
     }
 
+    //ALGORITMO BUSQUEDA DE CAMINOS
     algoritmoBusqueda() {
         let inicial = this.mapa.mapa[0][0];
         let final = this.mapa.mapa[3][10];
@@ -52,25 +53,16 @@ export default class Mapa{
         let a = [];
         a[this.xSize * this.ySize] = -1;
         this.addAdyancente(a, inicial);
-
-
-
     }
-
     addAdyancente(a, c) {
         if (x > 0 && !this.mapa[c.x - 1][c.y].estaOcupada) {
 
             this.i++;
         }
     }
-
     recursiva(a) {
-
-
     }
-
 }
-
 class Nodo {
     inicializar(posx, posy, rec, nodoAct, nodoDestino) {
         this.esFin = false; //bool
@@ -83,14 +75,11 @@ class Nodo {
         this.distanciaHastaElFinal = this.distanciaNodos(nodoDestino); //int
         this.valor = this.distanciaRecorrida + this.distanciaHastaElFinal; //int
     }
-
-    
     distanciaNodos(otro) {
         let diferenciaX = otro.x - this.x;
         let diferenciaY = otro.y - this.y;
         return Math.abs(diferenciaX) + Math.abs(diferenciaY);
     }
-
     areEqual(otro){
         return (this.x == otro.x && this.y == otro.y);
     }

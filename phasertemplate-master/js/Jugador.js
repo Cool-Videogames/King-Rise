@@ -1,5 +1,4 @@
 import * as config from "./Config.js";
-import Vector2D from "./Vector2D.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
     constructor(scene, casilla) {   
@@ -9,14 +8,12 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.setScale(1,0.75);
         this.setDepth(1);
         scene.add.existing(this);
-        //this.game = scene;
+        this.game = scene;
     }
-    
     /*preUpdate(t,dt){
         super.preUpdate(t,dt);
     }*/
-
-
+    
     move(pos,casilla){
         this.casilla = casilla;
         this.x= pos.x;
@@ -24,6 +21,5 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
       }
 
     Construir(edificio, pos, tamanyo){
-        
     };
 }

@@ -1,76 +1,58 @@
-import Game from "./Game.js";
-import { Phaser } from "./phaser.js";
+import * as config from "./Config.js";
 import Vector2D from "./Vector2D.js";
 
-export default class Interfaz extends Phaser.GameObjects {
-   /*constructor() {
-      super({ key: "interfaz" });
-    }
+export default class Interfaz extends Phaser.GameObjects.Sprite{
+  constructor(scene){
+    super(scene, 'interfaz');
+    this.game = scene;
 
-    create(){
-      this.SetPosiciones();
+    this.create();
+  }
+  create(){
+    this.SetPosiciones();
 
-      this.ajustes = Game.global.creaSprite(this.ajustesPosition.x,this.ajustesPosition.y,'ajustes', this);
-      this.recursos = Game.global.creaSprite(this.recursosPosition.x,this.recursosPosition.y,'recursos', this);
-      this.proxAtaque = Game.global.creaSprite(this.proxAtaquePosition.x,this.proxAtaquePosition.y,'proxAtaque', this);
-      this.desplegable = Game.global.creaSprite(this.desplegablePosition.x,this.desplegablePosition.y,'desplegable', this);
+    this.ajustes = this.game.creaSprite(this.ajPos.x, this.ajPos.y, 'ajustes', this.game);
+    this.recursos = this.game.creaSprite(this.recPos.x, this.recPos.y, 'recursos', this.game);
+    this.proxAtaque = this.game.creaSprite(this.pAPos.x, this.pAPos.y, 'proxAtaque', this.game);
+    this.desplegable = this.game.creaSprite(this.desPos.x, this.desPos.y, 'desplegable', this.game);
+    this.construccion = this.game.creaSprite(this.consPos.x, this.consPos.y, 'construccion', this.game);
 
-      this.clickEnAjustes(this.ajustes);
-      this.clickEnDesplegable(this.desplegable);
+    this.construccion.setVisible(false);
+    this.clickEnAjustes(this.ajustes);
+    this.clickEnDesplegable(this.desplegable);
 
-      this.SetTexts();
-    }
-    update(){
-      
-    }
+    this.SetTexts();
+  }
+  SetTexts(){
+    //TEXTO PARA INDICAR LOS RECURSOS (NUMEROS PROVISIONALES)
+    this.oroText = this.game.add.text(this.recPos.x+50, this.recPos.y,this.game.recursos.oro,config.fontColor);
+    this.comText = this.game.add.text(this.recPos.x+100, this.recPos.y,this.game.recursos.comida,config.fontColor);
+    this.matText = this.game.add.text(this.recPos.x+50, this.recPos.y+100,this.game.recursos.materiales,config.fontColor);
+    this.felText = this.game.add.text(this.recPos.x+100, this.recPos.y+100,this.game.recursos.felicidad,config.fontColor);
 
-    //FUNCIONALIDAD
+    //TEXTO PARA INDICAR EL PROXIMO ATAQUE
+    this.proxAtaqueText = this.game.add.text(this.pAPos.x+50, this.pAPos.y+50,this.game.proxAtaque,config.fontColor);
 
-    SetTexts(){
-      this.oroText = this.add.text(this.recursosPosition.x, this.recursosPosition.y,Game.global.recursos.oro,{fontColor: 0xffff00})
-      this.materialesText = this.add.text(this.recursosPosition.x+50, this.recursosPosition.y,Game.global.recursos.materiales,{fontColor: 0xffff00})
-      this.comidaText = this.add.text(this.recursosPosition.x, this.recursosPosition.y+50,Game.global.recursos.comida,{fontColor: 0xffff00})
-      this.felicidadText = this.add.text(this.recursosPosition.x+50, this.recursosPosition.y+50,Game.global.recursos.felicidad,{fontColor: 0xffff00})
+    //TEXTO PARA EL DESPLEGABLE
+    this.desplegableText = this.game.add.text(this.desPos.x, this.desPos.y+50,"CLICK PARA\n CONSTRUIR",config.fontColor);
+  }
+  SetPosiciones(){
+    //(NUMEROS PROVISIONALES)
+    this.ajPos = new Vector2D(200,200);
+    this.desPos = new Vector2D(50,200);
+    this.pAPos = new Vector2D(-100, 200);
+    this.recPos = new Vector2D(-250,200);
+    this.consPos = new Vector2D(50,50);
+  }
 
-      this.proxAtaqueText = this.add.text(this.proxAtaquePosition.x+50, this.proxAtaquePosition.y+50,Game.global.proximoAtaque,{fontColor: 0xffff00})
-    }
-    SetPosiciones(){
-      this.ajustesPosition = new Vector2D(850,600);
-      this.recursosPosition = new Vector2D(400,600);
-      this.proxAtaquePosition = new Vector2D(550, 600);
-      this.desplegablePosition = new Vector2D(700,600);
-    }
-    ActualizaRecursos(oro, comida, materiales, felicidad){
-      this.oroText.text = oro;
-      this.comidaText.text = comida;
-      this.materialesText.text = materiales;
-      this.felicidadText.text = felicidad;
-    }
-    ActualizaOro(oro){
-      this.oroText.text = oro;
-    }
-    ActualizaComida(comida){
-      this.comidaText.text = comida;
-    }
-    ActualizaMateriales(materiales){
-      this.materialesText.text = materiales;
-    }
-    ActualizaFelicidad(felicidad){
-      this.felicidadText.text = felicidad;
-    }
-  
-    clickEnAjustes(ajustesSprite){
-      ajustesSprite.on('pointerdown', pointer => {
-        this.scene.switch('settings');
-        this.scene.sleep('main'); //Pensar en algo para no dormir la escena, simplemente no recibir input en ella
-      })
-    }
-    clickEnDesplegable(desplegableSprite){
-      desplegableSprite.on('pointerdown', pointer => {
-        //funcionalidad del desplegable
-      })
-    }*/
-    constructor(){
-
-    }
+  clickEnAjustes(ajustesSprite){
+    ajustesSprite.on('pointerdown', pointer => {
+      this.game.scene.switch('settings');
+    })
+  }
+  clickEnDesplegable(desplegableSprite){
+    desplegableSprite.on('pointerdown', pointer => {
+      this.construccion.setVisible(!this.construccion.visible);
+    })
+  }
 }
