@@ -8,19 +8,19 @@ export default class Aldeano extends Persona{
         this.ocupado = false;
     }
 
-    Trabajar(){
+    trabajar(){
     this.ocupado = true;    
     }
 
-    ParaTrabajar(){
+    paraTrabajar(){
         this.ocupado = false;
     }
 
-    Explorar(){
+    explorar(){
 
     }
 
-    Especializarse(espec, rendimiento){
+    especializarse(espec, rendimiento){
         switch(espec){
             case "minero": {this.rendimientoMinero = rendimiento;this.rendimientoGeneral = 0;}
             break;

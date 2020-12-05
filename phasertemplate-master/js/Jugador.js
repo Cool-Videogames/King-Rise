@@ -1,31 +1,29 @@
+import * as config from "./Config.js";
 import Vector2D from "./Vector2D.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
-    constructor(scene, mapa) {
-        let x2 = 15;
-        let y2 = 10;
-
-        let pos = mapa.mapa[x2][y2].position;
-        super(scene, pos.x, pos.y, 'jugador');
-
-        this.position = pos;
-        this.x1 = x2;
-        this.y1 = y2;
-        this.setOrigin(0.5, 1);
+    constructor(scene, casilla) {   
+        super(scene, casilla.x + config.sizeCasilla/2, casilla.y + config.sizeCasilla/1.25, 'jugador');
+        this.casilla;
+        this.setOrigin(this.scaleX/2,this.scaleY);
+        this.setScale(1,0.75);
+        this.setDepth(1);
         scene.add.existing(this);
+        //this.game = scene;
     }
+    
     /*preUpdate(t,dt){
         super.preUpdate(t,dt);
     }*/
-    MovePosition(v) {
-        this.position = v;
-        this.x = v.x;
-        this.y = v.y;
 
-    }
-    Construir(edificio, posicion, tamanyo){
-        for(i = posicion.x; i<posicion.x+tamanyo;++i)
-            for(j = posicion.y;j<posicion.y+tamanyo;++j)mapa.mapa[y][j].ocupado = true;
-            //Dibujar edificio
-    }
+
+    move(pos,casilla){
+        this.casilla = casilla;
+        this.x= pos.x;
+        this.y = pos.y;
+      }
+
+    Construir(edificio, pos, tamanyo){
+        
+    };
 }

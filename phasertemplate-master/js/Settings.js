@@ -1,12 +1,10 @@
-import Game from "./game.js";
+import Game from "./Game.js";
 
 export default class Settings extends Phaser.Scene{
     constructor(){
         super({ key: "settings" });
     }
-    preload(){
-        this.cargaImagenes();
-    }
+
     create(){
       this.volver = Game.global.creaSprite(400,400, 'volveraljuego', this);
       this.volveraljuego(this.volver);
@@ -20,8 +18,5 @@ export default class Settings extends Phaser.Scene{
             this.scene.switch('interfaz');
             this.scene.wake('main');
         })
-    }
-    cargaImagenes(){
-        this.load.image('volveraljuego',"phasertemplate-master/images/gestion.png");
     }
 }

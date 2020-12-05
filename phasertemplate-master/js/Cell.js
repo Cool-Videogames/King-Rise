@@ -1,26 +1,25 @@
-import Game from "./game.js";
 import Vector2D from "./Vector2D.js";
 
 export default class Cell{
-    constructor(scene, x, y) {
+    constructor(scene, x, y,c,j) {
         this.x = x;
         this.y = y;
-        this.position = new Vector2D(x,y);
-        this.position.suma(new Vector2D(16, 16));
         
-        this.estaOcupada = false
+        this.ocupada = false;
 
         //Un sprite como atributo de la clase
-        let spr = new Phaser.GameObjects.Sprite(scene, x,y,'sabana');
-        this.sprite = spr;
+        this.sprite = new Phaser.GameObjects.Sprite(scene, x,y,'sabana');;
         this.sprite.setOrigin(0,0);
         this.sprite.setInteractive();
+        this.sprite.setDepth(0);
         scene.add.existing(this.sprite);
     }
+
     printCell(c,j){
-        console.log('x:' + c + ' y:' + j+ '   Esta ocupada: ' + this.estaOcupada);
+        console.log('x:' + c + ' y:' + j+ '   Esta ocupada: ' + this.ocupada);
     }
+
     setOcupada(ocup){
-        this.estaOcupada = ocup;
+        this.ocupada = ocup;
     }
 }

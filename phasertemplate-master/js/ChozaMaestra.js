@@ -1,4 +1,4 @@
-import Game from "./game.js";
+import Game from "./Game.js";
 
 export default class ChozaMaestra extends Phaser.GameObjects{
     constructor(scene,vida,coste,posicion,mapa){
@@ -8,11 +8,11 @@ export default class ChozaMaestra extends Phaser.GameObjects{
         this.posicion = posicion;
         this.mapa = mapa;
     }
-    Especializar(aldeanos, espec){
+    especializar(aldeanos, espec){
         aldeanos.Especializarse(espec);
     }
 
-    CrearAldeano(){
+    crearAldeano(){
         Game.aldeanos++;
     }
 }

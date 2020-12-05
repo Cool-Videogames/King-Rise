@@ -1,13 +1,12 @@
-import Game from "./game.js";
+import Game from "./Game.js";
+import { Phaser } from "./phaser.js";
 import Vector2D from "./Vector2D.js";
 
-export default class Interfaz extends Phaser.Scene {
-    constructor() {
+export default class Interfaz extends Phaser.GameObjects {
+   /*constructor() {
       super({ key: "interfaz" });
     }
-    preload(){
-      this.cargaImagenes();
-    }
+
     create(){
       this.SetPosiciones();
 
@@ -70,11 +69,8 @@ export default class Interfaz extends Phaser.Scene {
       desplegableSprite.on('pointerdown', pointer => {
         //funcionalidad del desplegable
       })
-    }
-    cargaImagenes(){
-      this.load.image('ajustes',"phasertemplate-master/images/RuedaAjustes.PNG")
-      this.load.image('recursos', "phasertemplate-master/images/Recursos.png");
-      this.load.image('proxAtaque', "phasertemplate-master/images/proxAtaque.png");
-      this.load.image('desplegable', "phasertemplate-master/images/gestion.png");
+    }*/
+    constructor(){
+
     }
 }

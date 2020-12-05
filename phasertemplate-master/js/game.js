@@ -1,51 +1,40 @@
+import * as config from "./Config.js";
 import Jugador from "./Jugador.js";
 import Mapa from "./Mapa.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
-    super({ key: "main" });
+    super({ key: "game" });
   }
-  preload() {
-    this.cargaImagenes();
-  }
-  
+
   create() {
     this.setFuncionesGlobales();
 
-    this.sizeCasilla = 32;
-    this.xSize = 30;
-    this.ySize = 20;
+    this.jug = new Jugador(this, config.iniPos);
+    this.mapa = new Mapa(this,config.columnas,config.filas, config.sizeCasilla);
 
-    this.mapa = new Mapa(this,this.xSize,this.ySize, this.sizeCasilla);
-    this.jug = new Jugador(this, this.mapa);
-    this.mapa.setJugador(this.jug);
-
-    this.numEdificios =1;
+    this.numEdificios =0;
     this.isPaused= false;
 
-    this.cameras.main.startFollow(this.jug);
+    this.cameras.main.centerOn(0,0)
     this.SuperponerEscenas('interfaz');
   }
-  testmethod(){
-    console.log('das');
-  }
 
-  Pause(pause){this.isPaused = pause;}
-  End() {
-    //Metodo para pausar el juego
-  }
   update(time, delta) {
 
   }
-  cargaImagenes(){
-    this.load.image('favicon', "phasertemplate-master/images/favicon.png");
-    this.load.image('ground', "phasertemplate-master/images/ground.png");
-    this.load.image('jugador', "phasertemplate-master/images/Personaje.png");
-    this.load.image('sabana', "phasertemplate-master/images/Sabana.png");
+
+
+  Pause(pause){this.isPaused = pause;}
+
+  End() {
+    //Metodo para pausar el juego
   }
+
   SuperponerEscenas(key){
     this.scene.launch(key);
   }
+
   //Lo mas parecido a un singleton que he encontrado
   setFuncionesGlobales(){
     Game.global= {
@@ -62,8 +51,7 @@ export default class Game extends Phaser.Scene {
       recursos: {
         oro:0, materiales: 0, comida:0, felicidad:0
       },
-      proximoAtaque: 20,
-      
+      proximoAtaque: 20,      
     }
   }
 }

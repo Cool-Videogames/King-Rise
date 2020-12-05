@@ -1,44 +1,48 @@
 import Cell from "./Cell.js";
 import Vector2D from "./Vector2D.js";
 
-export default class Mapa {
-    constructor(scene, x, y, sizeCasilla) {
-        this.x = x; this.y = y;
-        this.mapa = new Array(this.x);
-
-        this.position = new Vector2D(2, 2);
-        for (let i = 0; i < x; i++) {
-            this.mapa[i] = new Array(this.y);
+export default class Mapa{
+    constructor(scene, col, fil, sizeCasilla) {
+        this.col = col; this.fil = fil;
+        this.mapa = new Array(this.col);
+        for (let i = 0; i < col; i++) {
+            this.mapa[i] = new Array(this.fil);
         }
-
+        this.game = scene;
+        this.sizeCasilla=sizeCasilla;
         this.construyeMatriz(scene, sizeCasilla);
-
     }
+    
     construyeMatriz(scene, sizeCasilla) {
-        for (let c = 0; c < this.x; c++) {
-            for (let j = 0; j < this.y; j++) {
-                this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla);
-                this.inputOnSprite(this.mapa[c][j], this.mapa[c][j].sprite);
+        for (let c = 0; c < this.col; c++) {
+            for (let j = 0; j < this.fil; j++) {
+                this.mapa[c][j] = new Cell(scene, (c-this.col/2) * sizeCasilla, (j-this.fil/2) * sizeCasilla);
+                this.movePlayer(this.mapa[c][j], this.mapa[c][j].sprite);
             }
         }
     }
+    
     printMapa() {
-        for (let c = 0; c < this.x; c++) {
-            for (let j = 0; j < this.y; j++) {
+        for (let c = 0; c < this.col; c++) {
+            for (let j = 0; j < this.fil; j++) {
                 this.mapa[c][j].printCell(c, j);
             }
         }
     }
-    inputOnSprite(cell, sprite) {
-        sprite.on('pointerdown', pointer => {
 
-            this.jugador.MovePosition(cell.position);
-            cell.setOcupada(!cell.estaOcupada);
-            //console.clear();
+    //POSTERIORMENTE HAY QUE CAMBIARLO Y DAR UNA FUNCIÓN COMO PARÁMETRO (EJ: PARA CONSTRUIR AL PULSAR Y QUE NO MUEVA AL JUGADOR)
+    movePlayer(nextCell, sprite) {
+        sprite.on('pointerdown', () => {
+            let pos = new Vector2D(nextCell.x + this.sizeCasilla/2, nextCell.y + this.sizeCasilla/1.25);
+
+            if(this.game.jug.casilla !== undefined)
+            this.game.jug.casilla.setOcupada(false);
+         
+            this.game.jug.move(pos,nextCell);
+            nextCell.setOcupada(!nextCell.estaOcupada);
+            console.clear();
+            this.printMapa();
         })
-    }
-    setJugador(jug) {
-        this.jugador = jug;
     }
 
     algoritmoBusqueda() {
@@ -66,6 +70,7 @@ export default class Mapa {
     }
 
 }
+
 class Nodo {
     inicializar(posx, posy, rec, nodoAct, nodoDestino) {
         this.esFin = false; //bool
