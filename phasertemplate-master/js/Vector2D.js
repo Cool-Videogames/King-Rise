@@ -12,10 +12,12 @@ export default class Vector2D {
         this.x -= v.x;
         this.y -= v.y; 
     }
+    
     multiplicacion(a){
         this.x *= a;
         this.y *= a;
     }
+
     print() {
         console.log('(' + this.x + ", " + this.y + ")");
     }

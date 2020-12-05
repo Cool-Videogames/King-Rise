@@ -1,4 +1,4 @@
-import Game from "./Game.js";
+import Game from "./game.js";
 
 export default class ChozaMaestra extends Phaser.GameObjects{
     constructor(scene,vida,coste,posicion,mapa){

@@ -4,11 +4,11 @@ export default class EdificioSocial extends Edificio{
     this.recursos = recursos;
     }
 
-    Generar(){
+    generar(){
         //game.recursos +=recursos;
     }
 
-    AsignarAldeanos(aldeanos){
+    asignarAldeanos(aldeanos){
         this.numAldeanos++;
     }
 }

@@ -1,5 +1,6 @@
-import Cell from "./Cell.js";
-import Vector2D from "./Vector2D.js";
+import * as config from"./config.js"
+import Cell from "./cell.js";
+import Vector2D from "./vector2D.js";
 
 export default class Mapa{
     constructor(scene, col, fil, sizeCasilla) {
@@ -9,6 +10,7 @@ export default class Mapa{
             this.mapa[i] = new Array(this.fil);
         }
         this.game = scene;
+        
         this.sizeCasilla=sizeCasilla;
         this.construyeMatriz(scene, sizeCasilla);
     }
@@ -34,14 +36,13 @@ export default class Mapa{
     movePlayer(nextCell, sprite) {
         sprite.on('pointerdown', () => {
             let pos = new Vector2D(nextCell.x + this.sizeCasilla/2, nextCell.y + this.sizeCasilla/1.25);
-
-            if(this.game.jug.casilla !== undefined)
+ 
             this.game.jug.casilla.setOcupada(false);
-         
+
+            if(!nextCell.ocupada){
             this.game.jug.move(pos,nextCell);
-            nextCell.setOcupada(!nextCell.estaOcupada);
-            //console.clear();
-            //this.printMapa();
+            nextCell.setOcupada(true);
+            }
         })
     }
 

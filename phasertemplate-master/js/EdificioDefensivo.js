@@ -6,11 +6,11 @@ export default class EdificioDefensivo extends Edificio{
     this.numAldeanos= 0;
     }
 
-    Atacar(objetivo, dmg){
+    atacar(objetivo, dmg){
         objetivo.vida -= dmg;
     }
 
-    AsignarTropas(aldeanos){
+    asignarTropas(aldeanos){
         this.numAldeanos++;
     }
 }

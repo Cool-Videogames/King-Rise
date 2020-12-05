@@ -7,11 +7,11 @@ export default class Persona extends Phaser.GameObjects{
         
     }
 
-    Mover(){
+    mover(){
         //No pongo nada porque dijimos que sería algo estético el que correteen por la aldea
     }
 
-    Atacar(objetivo, dmg){
+    atacar(objetivo, dmg){
         objetivo.vida -= dmg;
     }
 }

@@ -1,5 +1,4 @@
 //CLASE HECHA UNICAMENTE PARA TESTEAR LA INTERFAZ, SE PUEDE PARTIR DE ESTO PARA HACER LOS AJUSTES
-
 export default class Settings extends Phaser.Scene{
     constructor(){
         super({ key: "settings" });
