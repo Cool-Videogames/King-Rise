@@ -11,7 +11,7 @@ export default class Cell{
         this.sprite.setScale(config.sizeCasilla/32,config.sizeCasilla/32);
         this.sprite.setOrigin(0,0);
         this.sprite.setInteractive();
-        this.sprite.setDepth(0);
+        this.sprite.setDepth(config.mapDepth);
         scene.add.existing(this.sprite);
     }
 

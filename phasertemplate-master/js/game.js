@@ -16,6 +16,9 @@ export default class Game extends Phaser.Scene {
     this.proxAtaque = 20;
     this.numEdificios =0;
     this.isPaused= false;
+
+    this.xSize = 1280;
+    this.ySize = 720;
   }
 
   create() {
@@ -28,7 +31,12 @@ export default class Game extends Phaser.Scene {
     this.cursors = this.input.keyboard.addKeys({up: 'W',down:'S',left:'A',right:'D'});
   }
 
-  
+  getxSize(){
+    return this.xSize;
+  }
+  getySize(){
+    return this.ySize;
+  }
   //ESTA FUNCION SE PUEDE USAR EN CUALQUIER PARTE, NO SE SI SU LUGAR ES EL GAME
   //(PLANTEAR UN JS CON FUNCIONES EXTERNAS)
   creaSprite(x,y,key,scene){
