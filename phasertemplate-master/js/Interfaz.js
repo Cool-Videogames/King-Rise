@@ -1,4 +1,4 @@
-import * as config from "./Config.js";
+import * as config from "./config.js";
 import Vector2D from "./Vector2D.js";
 
 export default class Interfaz extends Phaser.GameObjects.Sprite{

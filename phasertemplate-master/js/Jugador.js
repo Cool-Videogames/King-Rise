@@ -10,7 +10,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.casilla.setOcupada(true);
 
         this.setOrigin(this.scaleX/2,this.scaleY);
-        this.setScale(1,0.75);
+        this.setScale(1*config.sizeCasilla/32,0.75*config.sizeCasilla/32);
         this.setDepth(1);
         scene.add.existing(this);
         this.game = scene;

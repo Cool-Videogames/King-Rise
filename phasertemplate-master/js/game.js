@@ -23,7 +23,14 @@ export default class Game extends Phaser.Scene {
     let iniJugador = new Vector2D(config.columnas/2,config.filas/2);
     this.jug = new Jugador(this,iniJugador);
     this.interfaz = new Interfaz(this);
-    this.cameras.main.centerOn(0,0);
+
+    this.configCamera();
+    this.cursors = this.input.keyboard.addKeys({up: 'W',down:'S',left:'A',right:'D'});
+  }
+
+  configCamera(){
+    this.cameras.main.width = config.sizeCasilla *config.columnas;
+    this.cameras.main.height = config.sizeCasilla *config.filas;
   }
   
   //ESTA FUNCION SE PUEDE USAR EN CUALQUIER PARTE, NO SE SI SU LUGAR ES EL GAME
@@ -34,9 +41,26 @@ export default class Game extends Phaser.Scene {
     sprite.setInteractive();
     scene.add.existing(sprite);
     return sprite;
-
   }
+  
+  comportamientoCamara(){
+    if (this.cursors.up.isDown){
+      this.cameras.main.y +=  config.cameraSpeed;
+    }
+    if (this.cursors.down.isDown) {
+      this.cameras.main.y -= config.cameraSpeed;
+    }
+    if (this.cursors.left.isDown) {
+      this.cameras.main.x += config.cameraSpeed;
+
+    }
+    if(this.cursors.right.isDown){
+      this.cameras.main.x -= config.cameraSpeed;
+    }
+  }
+
   update(time, delta) {
+   this.comportamientoCamara();
   }
 
   pause(pause){this.isPaused = pause;}

@@ -18,7 +18,7 @@ export default class Mapa{
     construyeMatriz(scene, sizeCasilla) {
         for (let c = 0; c < this.col; c++) {
             for (let j = 0; j < this.fil; j++) {
-                this.mapa[c][j] = new Cell(scene, (c-this.col/2) * sizeCasilla, (j-this.fil/2) * sizeCasilla);
+                this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla);
                 this.movePlayer(this.mapa[c][j], this.mapa[c][j].sprite);
             }
         }
