@@ -3,5 +3,6 @@ export let columnas = 32;
 export let sizeCasilla = 64;
 
 export let cameraSpeed = 10;
+export let cameraLimit = 200;
 
 export let fontColor = 0xffff00;

@@ -24,14 +24,10 @@ export default class Game extends Phaser.Scene {
     this.jug = new Jugador(this,iniJugador);
     this.interfaz = new Interfaz(this);
 
-    this.configCamera();
+    this.cameras.main.centerOn(this.jug.x,this.jug.y);
     this.cursors = this.input.keyboard.addKeys({up: 'W',down:'S',left:'A',right:'D'});
   }
 
-  configCamera(){
-    this.cameras.main.width = config.sizeCasilla *config.columnas;
-    this.cameras.main.height = config.sizeCasilla *config.filas;
-  }
   
   //ESTA FUNCION SE PUEDE USAR EN CUALQUIER PARTE, NO SE SI SU LUGAR ES EL GAME
   //(PLANTEAR UN JS CON FUNCIONES EXTERNAS)
@@ -44,18 +40,19 @@ export default class Game extends Phaser.Scene {
   }
   
   comportamientoCamara(){
-    if (this.cursors.up.isDown){
-      this.cameras.main.y +=  config.cameraSpeed;
+    
+    if (this.cursors.up.isDown && this.cameras.main.scrollY > -config.cameraLimit){
+      this.cameras.main.scrollY -=  config.cameraSpeed;
     }
-    if (this.cursors.down.isDown) {
-      this.cameras.main.y -= config.cameraSpeed;
+    if (this.cursors.down.isDown && this.cameras.main.scrollY + this.cameras.main.height  < config.sizeCasilla* config.filas +config.cameraLimit) {
+      this.cameras.main.scrollY += config.cameraSpeed;
     }
-    if (this.cursors.left.isDown) {
-      this.cameras.main.x += config.cameraSpeed;
+    if (this.cursors.left.isDown && this.cameras.main.scrollX > -config.cameraLimit){
+      this.cameras.main.scrollX -= config.cameraSpeed;
 
     }
-    if(this.cursors.right.isDown){
-      this.cameras.main.x -= config.cameraSpeed;
+    if(this.cursors.right.isDown && this.cameras.main.scrollX + this.cameras.main.width  < config.sizeCasilla* config.columnas +config.cameraLimit){
+      this.cameras.main.scrollX += config.cameraSpeed;
     }
   }
 
