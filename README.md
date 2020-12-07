@@ -2,7 +2,7 @@
 # https://cool-videogames.github.io/Paradox-Invasion/
 # Pivotal: https://www.pivotaltracker.com/n/projects/2468915
 
-![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/logo.png "Logo")
+![alt text](https://github.com/Cool-Videogames/KingRise/blob/main/logo.png "Logo")
 ## **Game Design Document** 
 # **_King Rise_**
 
