@@ -1,5 +1,5 @@
 import * as config from "./config.js";
-import Vector2D from "./Vector2D.js";
+import Vector2D from "./vector2D.js";
 
 export default class Interfaz{
   constructor(scene){

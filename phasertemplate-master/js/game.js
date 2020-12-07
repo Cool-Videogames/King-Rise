@@ -1,5 +1,5 @@
 import * as config from "./config.js";
-import Interfaz from "./Interfaz.js";
+import Interfaz from "./interfaz.js";
 import Jugador from "./jugador.js";
 import Mapa from "./mapa.js";
 import Vector2D from "./vector2D.js";
