@@ -67,44 +67,52 @@ export default class Mapa {
         let inicial = this.nodos[1][1];
 
         let final = this.nodos[3][10];
-        final.esFin = true;
+
 
         for (let i = 0; i < this.col; i++) {
             for (let c = 0; c < this.fil; c++) {
-                this.nodos[i, c].cambiarDestino(final);
+                this.nodos[i][c].cambiarDestino(final);
             }
         }
+
+        inicial.inicializar();
+        final.esFin = true;
 
         let lista = [];
         this.addAdyancente(lista, inicial);
 
         let resultado = this.recursiva(lista);
+
     }
     addAdyancente(lista, nodoAct) {
         if (nodoAct.x > 0) {
-            this.addNodo(lista, this.nodos[nodoAct.x - 1][nodoAct.y]);
+            this.addNodo(lista, this.nodos[nodoAct.x - 1][nodoAct.y], nodoAct);
         }
         if (nodoAct.x < this.col - 1) {
-            this.addNodo(lista, this.nodos[nodoAct.x + 1][nodoAct.y]);
+            this.addNodo(lista, this.nodos[nodoAct.x + 1][nodoAct.y], nodoAct);
         }
         if (nodoAct.y > 0) {
-            this.addNodo(lista, this.nodos[nodoAct.x][nodoAct.y - 1]);
+            this.addNodo(lista, this.nodos[nodoAct.x][nodoAct.y - 1], nodoAct);
         }
         if (nodoAct.y < this.fil - 1) {
-            this.addNodo(lista, this.nodos[nodoAct.x][nodoAct.y + 1]);
+            this.addNodo(lista, this.nodos[nodoAct.x][nodoAct.y + 1], nodoAct);
         }
 
     }
-    addNodo(lista, nodo) {
+    addNodo(lista, nodo, nodoAct) {
         if (!nodo.visitada && !nodo.cellAct.ocupada) {
             nodo.inicializar(nodoAct)
             lista.push(nodo);
         }
     }
 
-    recursiva(lista) {
+    recursiva(lista, numVueltas = 0) {
         if (lista.length <= 0) return null;
 
+        if(numVueltas > 100){
+            console.log("Grande");
+            return null;
+        }
         let indice = 0;
         let nodoAct = lista[0];
         for (let i = 0; i < lista.length; i++) {
@@ -117,10 +125,10 @@ export default class Mapa {
         if (nodoAct.esFin) return nodoAct;
         nodoAct.visitada = true;
         lista.splice(indice, 1);
-
+        console.log(lista.length);
         this.addAdyancente(lista, nodoAct);
 
-        return this.recursiva(lista);
+        return this.recursiva(lista, ++numVueltas);
     }
 }
 class Nodo {
@@ -142,9 +150,14 @@ class Nodo {
     cambiarDestino(nodoDestino) {
         this.visitada = false;
         this.distanciaHastaElFinal = this.distanciaNodos(nodoDestino);
+        this.distanciaRecorrida = 0;
         this.valor = this.distanciaRecorrida + this.distanciaHastaElFinal;
     }
     inicializar(nodoAnterior = null) {
+
+        this.esFin = false;
+        this.visitada = false;
+
         if (nodoAnterior != null) {
             this.distanciaRecorrida = nodoAnterior.distanciaRecorrida; //int
         }
@@ -153,6 +166,7 @@ class Nodo {
         }
         this.valor = this.distanciaRecorrida + this.distanciaHastaElFinal; //int
         this.anterior = nodoAnterior;
+        this.siguiente = null;
     }
     distanciaNodos(otro) {
         let diferenciaX = otro.x - this.x;
