@@ -65,24 +65,21 @@ export default class Mapa {
     //ALGORITMO BUSQUEDA DE CAMINOS
     algoritmoBusqueda() {
         let inicial = this.nodos[1][1];
-
-        let final = this.nodos[3][10];
-
+        let final = this.nodos[2][1];
 
         for (let i = 0; i < this.col; i++) {
             for (let c = 0; c < this.fil; c++) {
-                this.nodos[i][c].cambiarDestino(final);
+                this.nodos[i][c].resetear(final);
             }
         }
-
-        inicial.inicializar();
         final.esFin = true;
+        final.valor = 0;
 
         let lista = [];
         this.addAdyancente(lista, inicial);
-
         let resultado = this.recursiva(lista);
 
+        console.log(resultado);
     }
     addAdyancente(lista, nodoAct) {
         if (nodoAct.x > 0) {
@@ -101,7 +98,7 @@ export default class Mapa {
     }
     addNodo(lista, nodo, nodoAct) {
         if (!nodo.visitada && !nodo.cellAct.ocupada) {
-            nodo.inicializar(nodoAct)
+            nodo.recalcularValor(nodoAct);
             lista.push(nodo);
         }
     }
@@ -109,23 +106,23 @@ export default class Mapa {
     recursiva(lista, numVueltas = 0) {
         if (lista.length <= 0) return null;
 
-        if(numVueltas > 100){
-            console.log("Grande");
-            return null;
+
+        if(numVueltas === 1){
+
         }
         let indice = 0;
         let nodoAct = lista[0];
         for (let i = 0; i < lista.length; i++) {
-            if (nodoAct.valor < lista[i].valor) {
+            if (nodoAct.valor > lista[i].valor) {
                 nodoAct = lista[i];
                 indice = i;
+                
             }
         }
 
         if (nodoAct.esFin) return nodoAct;
         nodoAct.visitada = true;
         lista.splice(indice, 1);
-        console.log(lista.length);
         this.addAdyancente(lista, nodoAct);
 
         return this.recursiva(lista, ++numVueltas);
@@ -147,26 +144,20 @@ class Nodo {
         this.siguiente = null; //Nodo
         this.anterior = null; //Nodo
     }
-    cambiarDestino(nodoDestino) {
-        this.visitada = false;
-        this.distanciaHastaElFinal = this.distanciaNodos(nodoDestino);
-        this.distanciaRecorrida = 0;
+    recalcularValor(nodoAnt) {
+        this.distanciaRecorrida = nodoAnt.distanciaRecorrida + 1;
         this.valor = this.distanciaRecorrida + this.distanciaHastaElFinal;
     }
-    inicializar(nodoAnterior = null) {
-
-        this.esFin = false;
+    resetear(destino) {
         this.visitada = false;
+        this.esFin = false;
 
-        if (nodoAnterior != null) {
-            this.distanciaRecorrida = nodoAnterior.distanciaRecorrida; //int
-        }
-        else {
-            this.distanciaRecorrida = 0;
-        }
-        this.valor = this.distanciaRecorrida + this.distanciaHastaElFinal; //int
-        this.anterior = nodoAnterior;
+        this.distanciaRecorrida = 0;
+        this.distanciaHastaElFinal = this.distanciaNodos(destino);
+        this.valor = this.distanciaHastaElFinal;
+
         this.siguiente = null;
+        this.anterior = null;
     }
     distanciaNodos(otro) {
         let diferenciaX = otro.x - this.x;
