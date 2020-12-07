@@ -97,8 +97,8 @@ class Nodo {
         this.esPrincipio = false; //bool
         this.visitada = false; //bool
         this.cellAct = celda; //celda
-        this.x = celda.x; //int
-        this.y = celda.y; //int
+        this.x = celda.indiceX; //int
+        this.y = celda.indiceY; //int
         this.distanciaRecorrida = 0; //int
         this.distanciaHastaElFinal = 0; //int
         this.valor = 0; //int
