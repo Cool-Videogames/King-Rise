@@ -71,24 +71,28 @@ export default class Mapa {
         final.esFin = true;
         let lista = [];
         this.addAdyancente(lista, inicial);
+
     }
-    addAdyancente(lista, celda) {
-        if (celda.x > 0 && !this.nodos[celda.indiceX - 1][celda.indiceY].visitada) {
-            lista.push(this.nodos[celda.indiceX - 1][celda.indiceY]);
+    addAdyancente(lista, nodoDestino) {
+        if (nodoDestino.x > 0 && !this.nodos[nodoDestino.x - 1][nodoDestino.y].visitada) {
+            lista.push(this.nodos[nodoDestino.x - 1][nodoDestino.y]);
         }
-        if (celda.x < this.col - 1 && !this.nodos[celda.indiceX + 1][celda.indiceY].visitada) {
-            lista.push(this.nodos[celda.indiceX + 1][celda.y]);
+        if (nodoDestino.x < this.col - 1 && !this.nodos[nodoDestino.x + 1][nodoDestino.y].visitada) {
+            lista.push(this.nodos[nodoDestino.x + 1][nodoDestino.y]);
         }
 
-        if (celda.y > 0 && !this.nodos[celda.indiceX][celda.indiceY - 1].visitada) {
-            lista.push(this.nodos[celda.indiceX][celda.indiceY - 1]);
+        if (nodoDestino.y > 0 && !this.nodos[nodoDestino.x][nodoDestino.y - 1].visitada) {
+            lista.push(this.nodos[nodoDestino.x][nodoDestino.y - 1]);
         }
-        if (celda.y < this.fil - 1 && !this.nodos[celda.indiceX][celda.indiceY + 1].visitada) {
-            lista.push(this.nodos[celda.indiceX][celda.indiceY + 1]);
+        if (nodoDestino.y < this.fil - 1 && !this.nodos[nodoDestino.x][nodoDestino.y + 1].visitada) {
+            lista.push(this.nodos[nodoDestino.x][nodoDestino.y + 1]);
         }
     }
 
-    recursiva(a) {
+    recursiva(lista, nodoAct) {
+
+
+
     }
 }
 class Nodo {
@@ -97,19 +101,26 @@ class Nodo {
         this.esPrincipio = false; //bool
         this.visitada = false; //bool
         this.cellAct = celda; //celda
+
         this.x = celda.indiceX; //int
         this.y = celda.indiceY; //int
+
         this.distanciaRecorrida = 0; //int
         this.distanciaHastaElFinal = 0; //int
         this.valor = 0; //int
+
+        this.siguiente = null; //Nodo
+        this.anterior = null; //Nodo
     }
-    inicializar(posx, posy, rec, nodoDestino) {
+    inicializar(posx, posy, rec, nodoDestino, nodoAnterior = null) {
         this.visitada = true; //bool
         this.x = posx; //int
         this.y = posy; //int
         this.distanciaRecorrida = rec; //int
         this.distanciaHastaElFinal = this.distanciaNodos(nodoDestino); //int
         this.valor = this.distanciaRecorrida + this.distanciaHastaElFinal; //int
+
+        this.anterior = nodoAnterior;
     }
     distanciaNodos(otro) {
         let diferenciaX = otro.x - this.x;
