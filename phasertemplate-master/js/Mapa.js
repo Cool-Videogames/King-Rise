@@ -9,12 +9,26 @@ export default class Mapa{
         for (let i = 0; i < col; i++) {
             this.mapa[i] = new Array(this.fil);
         }
+
+        this.nodos = new Array(this.col);
+        for (let i = 0; i < col; i++) {
+            this.nodos[i] = new Array(this.fil);
+        }
+
         this.game = scene;
         
         this.sizeCasilla=sizeCasilla;
         this.construyeMatriz(scene, sizeCasilla);
+        this.construyeNodos();
     }
-    
+    construyeNodos(){
+        for(let c = 0; c < this.col; c++){
+            for(let j = 0; j < this.fil; j++){
+                this.nodos[c][j] = new Nodo(this.mapa[c][j]);
+            }
+        }
+    }
+
     construyeMatriz(scene, sizeCasilla) {
         for (let c = 0; c < this.col; c++) {
             for (let j = 0; j < this.fil; j++) {
@@ -48,28 +62,46 @@ export default class Mapa{
 
     //ALGORITMO BUSQUEDA DE CAMINOS
     algoritmoBusqueda() {
-        let inicial = this.mapa.mapa[0][0];
-        let final = this.mapa.mapa[3][10];
-        this.i = 0;
-        let a = [];
-        a[this.xSize * this.ySize] = -1;
-        this.addAdyancente(a, inicial);
+        let inicial = this.nodos[0][0];
+        let final = this.nodos[3][10];
+        inicial.esPrincipio = true;
+        final.esFin = true;
+        let lista = [];
+        this.addAdyancente(lista, inicial);
     }
-    addAdyancente(a, c) {
-        if (x > 0 && !this.mapa[c.x - 1][c.y].estaOcupada) {
+    addAdyancente(lista, celda) {
+        if (x > 0 && !this.nodos[celda.x - 1][celda.y].visitada) {
+            lista.push(this.nodos[celda.x - 1][celda.y]);
+        }
+        if(x < this.col - 1 && !this.nodos[celda.x + 1][celda.y].visitada){
+            lista.push(this.nodos[celda.x + 1][celda.y]);
+        }
 
-            this.i++;
+        if (y > 0 && !this.nodos[celda.x][celda.y - 1].visitada) {
+            lista.push(this.nodos[celda.x][celda.y - 1]);
+        }
+        if(y < this.fil - 1 && !this.nodos[celda.x][celda.y + 1].visitada){
+            lista.push(this.nodos[celda.x][celda.y + 1]);
         }
     }
+
     recursiva(a) {
     }
 }
 class Nodo {
-    inicializar(posx, posy, rec, nodoAct, nodoDestino) {
+    constructor(celda){
         this.esFin = false; //bool
         this.esPrincipio = false; //bool
         this.visitada = false; //bool
-        this.cellAct = cellAct; //celda
+        this.cellAct = celda; //celda
+        this.x = celda.x; //int
+        this.y = celda.y; //int
+        this.distanciaRecorrida = 0; //int
+        this.distanciaHastaElFinal = 0; //int
+        this.valor = 0; //int
+    }
+    inicializar(posx, posy, rec, nodoDestino) {
+        this.visitada = true; //bool
         this.x = posx; //int
         this.y = posy; //int
         this.distanciaRecorrida = rec; //int
