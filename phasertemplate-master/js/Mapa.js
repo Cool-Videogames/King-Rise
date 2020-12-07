@@ -21,6 +21,7 @@ export default class Mapa{
         this.construyeMatriz(scene, sizeCasilla);
         this.construyeNodos();
     }
+
     construyeNodos(){
         for(let c = 0; c < this.col; c++){
             for(let j = 0; j < this.fil; j++){
@@ -48,14 +49,14 @@ export default class Mapa{
 
     //POSTERIORMENTE HAY QUE CAMBIARLO Y DAR UNA FUNCIÓN COMO PARÁMETRO (EJ: PARA CONSTRUIR AL PULSAR Y QUE NO MUEVA AL JUGADOR)
     movePlayer(nextCell, sprite) {
-        sprite.on('pointerdown', () => {
+        sprite.on('pointerup', () => {
             let pos = new Vector2D(nextCell.x + this.sizeCasilla/2, nextCell.y + this.sizeCasilla/1.25);
  
             this.game.jug.casilla.setOcupada(false);
 
-            if(!nextCell.ocupada){
-            this.game.jug.move(pos,nextCell);
-            nextCell.setOcupada(true);
+            if(!nextCell.ocupada && !this.game.jug.isMoving){
+                this.game.jug.move(pos,nextCell);
+                nextCell.setOcupada(true);
             }
         })
     }

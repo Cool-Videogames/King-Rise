@@ -28,7 +28,14 @@ export default class Game extends Phaser.Scene {
     this.interfaz = new Interfaz(this);
 
     this.cameras.main.centerOn(this.jug.x,this.jug.y);
-    this.cursors = this.input.keyboard.addKeys({up: 'W',down:'S',left:'A',right:'D',space:'space'});
+    this.cursors = this.input.keyboard.addKeys({
+      up:Phaser.Input.Keyboard.KeyCodes.W,
+      down:Phaser.Input.Keyboard.KeyCodes.S,
+      left:Phaser.Input.Keyboard.KeyCodes.A,
+      right:Phaser.Input.Keyboard.KeyCodes.D,
+      space:Phaser.Input.Keyboard.KeyCodes.SPACE});
+    
+    this.input.mouse.disableContextMenu();
   }
 
   getxSize(){
@@ -67,7 +74,7 @@ export default class Game extends Phaser.Scene {
     }
 
     //Reposicionamiento
-    if(this.cursors.space.isDown){;
+    if(Phaser.Input.Keyboard.JustDown(this.cursors.space)){;
       if(this.jug.y - camera.height/2 < -config.cameraLimit)
         camera.scrollY = -config.cameraLimit;
       else if(this.jug.y - camera.height/2 > config.sizeCasilla* config.filas + config.cameraLimit - camera.height)
@@ -83,7 +90,7 @@ export default class Game extends Phaser.Scene {
   }
 
   update(time, delta) {
-   this.comportamientoCamara();
+    this.comportamientoCamara();
   }
 
   pause(pause){this.isPaused = pause;}
