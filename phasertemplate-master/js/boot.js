@@ -4,8 +4,7 @@ export default class Boot extends Phaser.Scene {
   }
   preload() {
     //Juego
-    this.load.image('ground', "phasertemplate-master/images/ground.png");
-    this.load.image('jugador', "phasertemplate-master/images/Personaje.png");
+    this.load.image('jugador', "phasertemplate-master/images/Rey/ReyFrente.png");
     this.load.image('sabana', "phasertemplate-master/images/Sabana.png");
 
     this.load.image('ajustes',"phasertemplate-master/images/RuedaAjustes.PNG")

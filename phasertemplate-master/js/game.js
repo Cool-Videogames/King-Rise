@@ -28,7 +28,7 @@ export default class Game extends Phaser.Scene {
     this.interfaz = new Interfaz(this);
 
     this.cameras.main.centerOn(this.jug.x,this.jug.y);
-    this.cursors = this.input.keyboard.addKeys({up: 'W',down:'S',left:'A',right:'D'});
+    this.cursors = this.input.keyboard.addKeys({up: 'W',down:'S',left:'A',right:'D',space:'space'});
   }
 
   getxSize(){
@@ -37,6 +37,7 @@ export default class Game extends Phaser.Scene {
   getySize(){
     return this.ySize;
   }
+
   //ESTA FUNCION SE PUEDE USAR EN CUALQUIER PARTE, NO SE SI SU LUGAR ES EL GAME
   //(PLANTEAR UN JS CON FUNCIONES EXTERNAS)
   creaSprite(x,y,key,scene){
@@ -48,19 +49,36 @@ export default class Game extends Phaser.Scene {
   }
   
   comportamientoCamara(){
-    
-    if (this.cursors.up.isDown && this.cameras.main.scrollY > -config.cameraLimit){
-      this.cameras.main.scrollY -=  config.cameraSpeed;
+    let camera =  this.cameras.main;
+
+    //Movimiento
+    if (this.cursors.up.isDown && camera.scrollY > -config.cameraLimit){
+      camera.scrollY -=  config.cameraSpeed;
     }
-    if (this.cursors.down.isDown && this.cameras.main.scrollY + this.cameras.main.height  < config.sizeCasilla* config.filas +config.cameraLimit) {
-      this.cameras.main.scrollY += config.cameraSpeed;
+    if (this.cursors.down.isDown && camera.scrollY + camera.height  < config.sizeCasilla* config.filas +config.cameraLimit) {
+      camera.scrollY += config.cameraSpeed;
     }
-    if (this.cursors.left.isDown && this.cameras.main.scrollX > -config.cameraLimit){
-      this.cameras.main.scrollX -= config.cameraSpeed;
+    if (this.cursors.left.isDown && camera.scrollX > -config.cameraLimit){
+      camera.scrollX -= config.cameraSpeed;
 
     }
-    if(this.cursors.right.isDown && this.cameras.main.scrollX + this.cameras.main.width  < config.sizeCasilla* config.columnas +config.cameraLimit){
-      this.cameras.main.scrollX += config.cameraSpeed;
+    if(this.cursors.right.isDown && camera.scrollX + camera.width  < config.sizeCasilla* config.columnas +config.cameraLimit){
+      camera.scrollX += config.cameraSpeed;
+    }
+
+    //Reposicionamiento
+    if(this.cursors.space.isDown){;
+      if(this.jug.y - camera.height/2 < -config.cameraLimit)
+        camera.scrollY = -config.cameraLimit;
+      else if(this.jug.y - camera.height/2 > config.sizeCasilla* config.filas + config.cameraLimit - camera.height)
+        camera.scrollY = config.sizeCasilla* config.filas + config.cameraLimit - camera.height;
+      else camera.scrollY = this.jug.y - camera.height/2
+
+      if(this.jug.x - camera.width/2 < -config.cameraLimit) 
+        camera.scrollX =  -config.cameraLimit;
+      else if(this.jug.x - camera.width/2 >config.sizeCasilla* config.columnas+ config.cameraLimit - camera.width)
+        camera.scrollX = config.sizeCasilla* config.columnas + config.cameraLimit - camera.width;
+      else camera.scrollX = this.jug.x - camera.width/2
     }
   }
 
