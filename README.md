@@ -1,4 +1,3 @@
-# Paradox-Invasion
 # Cool-Videogames
 # https://cool-videogames.github.io/Paradox-Invasion/
 # Pivotal: https://www.pivotaltracker.com/n/projects/2468915
