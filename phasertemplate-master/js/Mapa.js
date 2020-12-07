@@ -20,6 +20,8 @@ export default class Mapa{
         this.sizeCasilla=sizeCasilla;
         this.construyeMatriz(scene, sizeCasilla);
         this.construyeNodos();
+
+        this.algoritmoBusqueda();
     }
     construyeNodos(){
         for(let c = 0; c < this.col; c++){
@@ -62,25 +64,29 @@ export default class Mapa{
 
     //ALGORITMO BUSQUEDA DE CAMINOS
     algoritmoBusqueda() {
-        let inicial = this.nodos[0][0];
+        let inicial = this.nodos[1][1];
+        console.log(inicial.x);
+
         let final = this.nodos[3][10];
         inicial.esPrincipio = true;
         final.esFin = true;
         let lista = [];
         this.addAdyancente(lista, inicial);
+        console.log(lista);
     }
     addAdyancente(lista, celda) {
-        if (x > 0 && !this.nodos[celda.x - 1][celda.y].visitada) {
+        return;
+        if (celda.x > 0 && !this.nodos[celda.x - 1][celda.y].visitada) {
             lista.push(this.nodos[celda.x - 1][celda.y]);
         }
-        if(x < this.col - 1 && !this.nodos[celda.x + 1][celda.y].visitada){
+        if(celda.x < this.col - 1 && !this.nodos[celda.x + 1][celda.y].visitada){
             lista.push(this.nodos[celda.x + 1][celda.y]);
         }
 
-        if (y > 0 && !this.nodos[celda.x][celda.y - 1].visitada) {
+        if (celda.y > 0 && !this.nodos[celda.x][celda.y - 1].visitada) {
             lista.push(this.nodos[celda.x][celda.y - 1]);
         }
-        if(y < this.fil - 1 && !this.nodos[celda.x][celda.y + 1].visitada){
+        if(celda.y < this.fil - 1 && !this.nodos[celda.x][celda.y + 1].visitada){
             lista.push(this.nodos[celda.x][celda.y + 1]);
         }
     }
