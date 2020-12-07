@@ -1,9 +1,12 @@
 import * as config from "./config.js"
 export default class Cell{
-    constructor(scene, x, y) {
+    constructor(scene, x, y, indiceX, indiceY) {
         this.x = x;
         this.y = y;
         
+        this.indiceX = indiceX;
+        this.indiceY = indiceY;
+
         this.ocupada = false;
 
         //Un sprite como atributo de la clase
