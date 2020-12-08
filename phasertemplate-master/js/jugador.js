@@ -58,7 +58,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
     movimientoCasillas(siguienteNodo){
         this.nodoDestino = siguienteNodo;
         this.target = this.desfasePosicion(this.nodoDestino.cellAct);
-
+        this.casilla = this.nodoDestino.cellAct;
         this.isMoving = true;
         this.game.physics.moveTo(this,this.target.x,this.target.y,this.speed);
     }

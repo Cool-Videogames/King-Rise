@@ -59,8 +59,13 @@ export default class Mapa {
             // }
 
             if(!nextCell.ocupada && !this.game.jug.isMoving){
-                this.game.jug.movimientoCasillas(this.algoritmoBusqueda(this.game.jug.casilla, nextCell));
+                let nodoInicial = this.algoritmoBusqueda(this.game.jug.casilla, nextCell);
+                if(nodoInicial != null){
+                this.game.jug.movimientoCasillas(nodoInicial);
+                nextCell.setOcupada(true);
+                this.game.jug.casilla.setOcupada(false);
             }
+        }
             
         })
     }
@@ -126,7 +131,6 @@ export default class Mapa {
         }
 
         if (nodoAct.esFin) {
-            console.log(numVueltas);
             return true;
         }
 
@@ -173,6 +177,7 @@ export default class Mapa {
             }
             nodoAct = nodoAct.anterior;
         }
+
     }
 
 }
@@ -180,8 +185,8 @@ class Nodo {
     constructor(celda) {
         this.esFin = false; //bool
         this.visitada = false; //bool
-        this.cellAct = celda; //celda
 
+        this.cellAct = celda; //celda
         this.x = celda.indiceX; //int
         this.y = celda.indiceY; //int
 
