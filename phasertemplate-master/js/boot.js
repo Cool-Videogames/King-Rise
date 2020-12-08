@@ -14,6 +14,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('construccion', "./phasertemplate-master/images/gestion.png");
 
     this.load.image('volveraljuego',"./phasertemplate-master/images/gestion.png");
+
+    //IGNORAR, SOLO DE PRUEBA
+    this.load.image('edificio',"./phasertemplate-master/images/favicon.png");
   }
 
   create() {
