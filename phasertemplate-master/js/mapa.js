@@ -16,6 +16,7 @@ export default class Mapa {
         }
 
         this.game = scene;
+        this.isBuilding = false;
 
         this.sizeCasilla = sizeCasilla;
         this.construyeMatriz(scene, sizeCasilla);
@@ -36,7 +37,7 @@ export default class Mapa {
         for (let c = 0; c < this.col; c++) {
             for (let j = 0; j < this.fil; j++) {
                 this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j);
-                this.movePlayer(this.mapa[c][j], this.mapa[c][j].sprite);
+                this.onClick(this.mapa[c][j], this.mapa[c][j].sprite);
             }
         }
     }
@@ -50,13 +51,11 @@ export default class Mapa {
     }
 
     //POSTERIORMENTE HAY QUE CAMBIARLO Y DAR UNA FUNCIÓN COMO PARÁMETRO (EJ: PARA CONSTRUIR AL PULSAR Y QUE NO MUEVA AL JUGADOR)
-    movePlayer(nextCell, sprite) {
+    onClick(nextCell, sprite) {
         sprite.on('pointerup', () => {
-            let pos = new Vector2D(nextCell.x + this.sizeCasilla/2, nextCell.y + this.sizeCasilla/1.25);
- 
-            this.game.jug.casilla.setOcupada(false);
-
             if(!nextCell.ocupada && !this.game.jug.isMoving){
+                let pos = new Vector2D(nextCell.x + this.sizeCasilla/2, nextCell.y + this.sizeCasilla/1.25);
+                this.game.jug.casilla.setOcupada(false);
                 this.game.jug.move(pos,nextCell);
                 nextCell.setOcupada(true);
             }
@@ -80,7 +79,6 @@ export default class Mapa {
         this.addAdyancente(lista, inicial);
         let resultado = this.recursiva(lista);
 
-        console.log(resultado);
     }
     addAdyancente(lista, nodoAct) {
         if (nodoAct.x > 0) {

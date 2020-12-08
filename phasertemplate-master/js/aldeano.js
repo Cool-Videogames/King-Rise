@@ -1,10 +1,14 @@
+import * as config from "./config.js"
+
 export default class Aldeano extends Persona{
-    constructor(scene,vida, velocidad, fuerza, rendimientoGeneral,posicion){
+    constructor(scene,vida, velocidad, fuerza,posicion){
         super(scene,vida, velocidad, fuerza);
-        this.rendimientoGeneral = rendimientoGeneral;
-        this.rendimientoCantero = 0;
-        this.rendimientoGanadero =0;
-        this.rendimientoMinero = 0;
+        this.rendimiento = {
+            rendGeneral: config.rendimientoGeneral,
+            rendMateriales: 0,
+            rendComida: 0,
+            renOro: 0,
+        }
         this.ocupado = false;
     }
 

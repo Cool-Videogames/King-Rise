@@ -1,4 +1,5 @@
 import * as config from "./config.js";
+import EdificioRecursos from "./edificioRecursos.js";
 import Interfaz from "./interfaz.js";
 import Jugador from "./jugador.js";
 import Mapa from "./mapa.js";
@@ -35,7 +36,11 @@ export default class Game extends Phaser.Scene {
       right:Phaser.Input.Keyboard.KeyCodes.D,
       space:Phaser.Input.Keyboard.KeyCodes.SPACE});
     
-    this.input.mouse.disableContextMenu();
+    //this.input.mouse.disableContextMenu();
+
+    //PROBANDO QUE LOS EDIFICIOS DE RECURSOS FUNCAN
+    new EdificioRecursos(this,0,0,this.mapa.mapa[iniJugador.x-1][iniJugador.y-1],10,'oro');
+    new EdificioRecursos(this,0,0,this.mapa.mapa[iniJugador.x-2][iniJugador.y-2],10,'comida');
   }
 
   getxSize(){
@@ -89,7 +94,7 @@ export default class Game extends Phaser.Scene {
     }
   }
 
-  update(time, delta) {
+  update(t, dt) {
     this.comportamientoCamara();
   }
 

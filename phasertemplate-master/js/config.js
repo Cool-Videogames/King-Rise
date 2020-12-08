@@ -3,6 +3,9 @@ export let columnas =32;
 export let sizeCasilla = 64;
 export let playerSpeed=100;
 
+export let cantidadRecursosPorDefecto = 5;
+export let rendimientoGeneral = 5;
+
 export let cameraSpeed = 10;
 export let cameraLimit = 200;
 
