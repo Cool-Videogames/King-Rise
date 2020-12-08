@@ -66,7 +66,7 @@ export default class Mapa {
     //ALGORITMO BUSQUEDA DE CAMINOS
     algoritmoBusqueda() {
         let inicial = this.nodos[1][1];
-        let final = this.nodos[2][1];
+        let final = this.nodos[10][10];
 
         for (let i = 0; i < this.col; i++) {
             for (let c = 0; c < this.fil; c++) {
@@ -77,10 +77,17 @@ export default class Mapa {
         final.valor = 0;
 
         let lista = [];
-        this.addAdyancente(lista, inicial);
-        let resultado = this.recursiva(lista);
-
-        console.log(resultado);
+        lista.push(inicial);
+        inicial.visitada = true;
+        
+        if(this.recursiva(lista)){ //camino encontrado
+            this.recorrerInversa(final);
+            return inicial;
+        }else{ //camino no disponible
+            console.log("Camino no disponible");
+            return null;
+        }
+        //let resultado = this.iterativa(lista);
     }
     addAdyancente(lista, nodoAct) {
         if (nodoAct.x > 0) {
@@ -95,39 +102,77 @@ export default class Mapa {
         if (nodoAct.y < this.fil - 1) {
             this.addNodo(lista, this.nodos[nodoAct.x][nodoAct.y + 1], nodoAct);
         }
-
     }
     addNodo(lista, nodo, nodoAct) {
         if (!nodo.visitada && !nodo.cellAct.ocupada) {
             nodo.recalcularValor(nodoAct);
+            nodo.visitada = true;
             lista.push(nodo);
         }
     }
 
     recursiva(lista, numVueltas = 0) {
-        if (lista.length <= 0) return null;
+        if (lista.length <= 0) return false;
 
-
-        if(numVueltas === 1){
-
-        }
         let indice = 0;
         let nodoAct = lista[0];
         for (let i = 0; i < lista.length; i++) {
             if (nodoAct.valor > lista[i].valor) {
                 nodoAct = lista[i];
                 indice = i;
-                
             }
         }
 
-        if (nodoAct.esFin) return nodoAct;
-        nodoAct.visitada = true;
+        if (nodoAct.esFin) {
+            console.log(numVueltas);
+            return true;
+        }
+
         lista.splice(indice, 1);
         this.addAdyancente(lista, nodoAct);
 
         return this.recursiva(lista, ++numVueltas);
     }
+
+
+    iterativa(lista){
+        let numVueltas = 0;
+        while(true){
+            if(lista.length <= 0) return null;
+            let indice = 0;
+            let nodoAct = lista[0];
+
+            for(let i = 0; i < lista.length; i++){
+                if(nodoAct.valor > lista[i].valor){
+                    nodoAct = lista[i];
+                    indice = i;
+                }
+            }
+
+            if(nodoAct.esFin){ 
+                console.log(numVueltas);
+                return nodoAct;
+            }
+
+            lista.splice(indice, 1);
+            this.addAdyancente(lista, nodoAct);
+
+            numVueltas++;
+        }
+    }
+
+
+    recorrerInversa(nodoFinal){
+        let nodoAct = nodoFinal;
+        while(nodoAct != null){
+
+            if(nodoAct.anterior != null){
+                nodoAct.anterior.siguiente = nodoAct;
+            }
+            nodoAct = nodoAct.anterior;
+        }
+    }
+
 }
 class Nodo {
     constructor(celda) {
@@ -146,6 +191,7 @@ class Nodo {
         this.anterior = null; //Nodo
     }
     recalcularValor(nodoAnt) {
+        this.anterior = nodoAnt;
         this.distanciaRecorrida = nodoAnt.distanciaRecorrida + 1;
         this.valor = this.distanciaRecorrida + this.distanciaHastaElFinal;
     }
