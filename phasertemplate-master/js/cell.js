@@ -1,4 +1,5 @@
 import * as config from "./config.js"
+
 export default class Cell{
     constructor(scene, x, y, indiceX, indiceY) {
         this.x = x;
@@ -16,6 +17,8 @@ export default class Cell{
         this.sprite.setInteractive();
         this.sprite.setDepth(config.mapDepth);
         scene.add.existing(this.sprite);
+
+
     }
 
     printCell(c,j){

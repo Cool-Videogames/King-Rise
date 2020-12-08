@@ -1,4 +1,5 @@
 import * as config from "./config.js";
+import Vector2D from "./vector2D.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
     constructor(scene, casilla) {   
@@ -20,6 +21,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.isMoving = false;
         this.target = iniCasilla;
         this.dir = 'none';
+
+        this.nodoDestino = null;
     }
     preUpdate(t,dt){
         this.compruebaPosicion();
@@ -30,6 +33,10 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
       if(this.x > this.target.x-1 && this.x < this.target.x+1 &&this.y > this.target.y-1 && this.y < this.target.y+1){
           this.body.reset(this.target.x,this.target.y);
           this.isMoving=false;
+
+          if(this.nodoDestino != null && this.nodoDestino.siguiente != null){
+              this.movimientoCasillas(this.nodoDestino.siguiente);
+          }
       }
     }
 
@@ -43,6 +50,20 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         //}
       }
 
+    desfasePosicion(cell){ //Devuelve un vector2 con la posicion centrada del jugador
+        return new Vector2D(cell.x + config.sizeCasilla / 2,
+            cell.y + config.sizeCasilla/1.25);
+    }
+    
+    movimientoCasillas(siguienteNodo){
+        this.nodoDestino = siguienteNodo;
+        this.target = this.desfasePosicion(this.nodoDestino.cellAct);
+        this.casilla.setOcupada(false);
+        this.casilla = this.nodoDestino.cellAct;
+        this.casilla.setOcupada(true);
+        this.isMoving = true;
+        this.game.physics.moveTo(this,this.target.x,this.target.y,this.speed);
+    }
     Construir(edificio, pos, tamanyo){
     };
 }
