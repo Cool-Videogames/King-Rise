@@ -24,6 +24,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
 
         this.nodoDestino = null;
     }
+    
     preUpdate(t,dt){
         this.compruebaPosicion();
         super.preUpdate(t,dt);
