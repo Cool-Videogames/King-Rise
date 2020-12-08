@@ -21,9 +21,8 @@ export default class Mapa {
         this.construyeMatriz(scene, sizeCasilla);
         this.construyeNodos();
 
-        this.algoritmoBusqueda();
     }
-    
+
     construyeNodos() {
         for (let c = 0; c < this.col; c++) {
             for (let j = 0; j < this.fil; j++) {
@@ -52,21 +51,24 @@ export default class Mapa {
     //POSTERIORMENTE HAY QUE CAMBIARLO Y DAR UNA FUNCIÓN COMO PARÁMETRO (EJ: PARA CONSTRUIR AL PULSAR Y QUE NO MUEVA AL JUGADOR)
     movePlayer(nextCell, sprite) {
         sprite.on('pointerup', () => {
-            let pos = new Vector2D(nextCell.x + this.sizeCasilla/2, nextCell.y + this.sizeCasilla/1.25);
- 
-            this.game.jug.casilla.setOcupada(false);
+            // if (!nextCell.ocupada && !this.game.jug.isMoving) {
+            // let pos = new Vector2D(nextCell.x + this.sizeCasilla / 2, nextCell.y + this.sizeCasilla / 1.25);
+            //     this.game.jug.move(pos, nextCell);
+            //     this.game.jug.casilla.setOcupada(false);
+            //     nextCell.setOcupada(true);
+            // }
 
             if(!nextCell.ocupada && !this.game.jug.isMoving){
-                this.game.jug.move(pos,nextCell);
-                nextCell.setOcupada(true);
+                this.game.jug.movimientoCasillas(this.algoritmoBusqueda(this.game.jug.casilla, nextCell));
             }
+            
         })
     }
 
     //ALGORITMO BUSQUEDA DE CAMINOS
-    algoritmoBusqueda() {
-        let inicial = this.nodos[1][1];
-        let final = this.nodos[10][10];
+    algoritmoBusqueda(celdaInicial, celdaFinal) {
+        let inicial = this.nodos[celdaInicial.indiceX][celdaInicial.indiceY];
+        let final = this.nodos[celdaFinal.indiceX][celdaFinal.indiceY]
 
         for (let i = 0; i < this.col; i++) {
             for (let c = 0; c < this.fil; c++) {
@@ -79,11 +81,11 @@ export default class Mapa {
         let lista = [];
         lista.push(inicial);
         inicial.visitada = true;
-        
-        if(this.recursiva(lista)){ //camino encontrado
+
+        if (this.recursiva(lista)) { //camino encontrado
             this.recorrerInversa(final);
             return inicial;
-        }else{ //camino no disponible
+        } else { //camino no disponible
             console.log("Camino no disponible");
             return null;
         }
@@ -135,21 +137,21 @@ export default class Mapa {
     }
 
 
-    iterativa(lista){
+    iterativa(lista) {
         let numVueltas = 0;
-        while(true){
-            if(lista.length <= 0) return null;
+        while (true) {
+            if (lista.length <= 0) return null;
             let indice = 0;
             let nodoAct = lista[0];
 
-            for(let i = 0; i < lista.length; i++){
-                if(nodoAct.valor > lista[i].valor){
+            for (let i = 0; i < lista.length; i++) {
+                if (nodoAct.valor > lista[i].valor) {
                     nodoAct = lista[i];
                     indice = i;
                 }
             }
 
-            if(nodoAct.esFin){ 
+            if (nodoAct.esFin) {
                 console.log(numVueltas);
                 return nodoAct;
             }
@@ -162,11 +164,11 @@ export default class Mapa {
     }
 
 
-    recorrerInversa(nodoFinal){
+    recorrerInversa(nodoFinal) {
         let nodoAct = nodoFinal;
-        while(nodoAct != null){
+        while (nodoAct != null) {
 
-            if(nodoAct.anterior != null){
+            if (nodoAct.anterior != null) {
                 nodoAct.anterior.siguiente = nodoAct;
             }
             nodoAct = nodoAct.anterior;
