@@ -62,6 +62,7 @@ export default class Interfaz{
   clickEnAjustes(ajustesSprite){
     ajustesSprite.on('pointerdown', pointer => {
       this.game.scene.switch('settings');
+      this.game.pauseGame();
     })
   }
   clickEnDesplegable(desplegableSprite){

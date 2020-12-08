@@ -16,7 +16,6 @@ export default class Game extends Phaser.Scene {
     }
     this.proxAtaque = 20;
     this.numEdificios =0;
-    this.isPaused= false;
 
     this.xSize = 1280;
     this.ySize = 720;
@@ -98,7 +97,9 @@ export default class Game extends Phaser.Scene {
     this.comportamientoCamara();
   }
 
-  pause(pause){this.isPaused = pause;}
+  pauseGame(){
+    this.scene.pause();
+  }
 
   end() {
     //Metodo para pausar el juego
