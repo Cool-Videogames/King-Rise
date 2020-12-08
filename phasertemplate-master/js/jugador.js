@@ -60,8 +60,13 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.nodoDestino = siguienteNodo;
         this.target = this.desfasePosicion(this.nodoDestino.cellAct);
         this.casilla.setOcupada(false);
+        this.casilla.sprite.clearTint();
+
         this.casilla = this.nodoDestino.cellAct;
         this.casilla.setOcupada(true);
+
+        if(this.casilla.sprite.isTinted)this.casilla.sprite.tint = 0xEE4141;
+
         this.isMoving = true;
         this.game.physics.moveTo(this,this.target.x,this.target.y,this.speed);
     }

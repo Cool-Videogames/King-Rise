@@ -22,6 +22,7 @@ export default class Mapa {
         this.construyeMatriz(scene, sizeCasilla);
         this.construyeNodos();
 
+        this.checkTint = false;
     }
 
     construyeNodos() {
@@ -36,7 +37,8 @@ export default class Mapa {
         for (let c = 0; c < this.col; c++) {
             for (let j = 0; j < this.fil; j++) {
                 this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j);
-                this.onClick(this.mapa[c][j], this.mapa[c][j].sprite);
+                this.onClick(this.mapa[c][j]);
+                this.changeColor(this.mapa[c][j]);
             }
         }
     }
@@ -50,8 +52,8 @@ export default class Mapa {
     }
 
     //POSTERIORMENTE HAY QUE CAMBIARLO Y DAR UNA FUNCIÓN COMO PARÁMETRO (EJ: PARA CONSTRUIR AL PULSAR Y QUE NO MUEVA AL JUGADOR)
-    onClick(nextCell, sprite) {
-        sprite.on('pointerup', () => {
+    onClick(nextCell) {
+        nextCell.sprite.on('pointerup', () => {
             // if (!nextCell.ocupada && !this.game.jug.isMoving) {
             // let pos = new Vector2D(nextCell.x + this.sizeCasilla / 2, nextCell.y + this.sizeCasilla / 1.25);
             //     this.game.jug.move(pos, nextCell);
@@ -65,6 +67,17 @@ export default class Mapa {
                     this.game.jug.movimientoCasillas(nodoInicial);
                 }
             }
+        })
+    }
+
+    changeColor(cell){ 
+        cell.sprite.on('pointerover', () => {
+            if(!cell.ocupada)
+                cell.sprite.tint = 0x41EE7B;
+            else cell.sprite.tint = 0xEE4141;
+        })
+        cell.sprite.on('pointerout', () => {
+            cell.sprite.clearTint();
         })
     }
 
