@@ -58,15 +58,13 @@ export default class Mapa {
             //     nextCell.setOcupada(true);
             // }
 
-            if(!nextCell.ocupada && !this.game.jug.isMoving){
+            if (!nextCell.ocupada && !this.game.jug.isMoving) {
                 let nodoInicial = this.algoritmoBusqueda(this.game.jug.casilla, nextCell);
-                if(nodoInicial != null){
-                this.game.jug.movimientoCasillas(nodoInicial);
-                nextCell.setOcupada(true);
-                this.game.jug.casilla.setOcupada(false);
+                if (nodoInicial != null) {
+                    this.game.jug.movimientoCasillas(nodoInicial);
+                }
             }
-        }
-            
+
         })
     }
 
