@@ -65,7 +65,7 @@ export default class Mapa {
                     this.game.jug.movimientoCasillas(nodoInicial);
                 }
             }
-
+dkf
         })
     }
 
