@@ -12,6 +12,8 @@ export default class Camera {
             left:Phaser.Input.Keyboard.KeyCodes.A,
             right:Phaser.Input.Keyboard.KeyCodes.D,
             space:Phaser.Input.Keyboard.KeyCodes.SPACE});
+            
+        this.game =scene;
     }
 
     comportamientoCamara(){
@@ -34,17 +36,17 @@ export default class Camera {
     
         //Reposicionamiento
         if(Phaser.Input.Keyboard.JustDown(this.cursors.space)){;
-          if(this.jug.y - camera.height/2 < -config.cameraLimit)
+          if(this.game.jug.y - camera.height/2 < -config.cameraLimit)
             camera.scrollY = -config.cameraLimit;
-          else if(this.jug.y - camera.height/2 > config.sizeCasilla* config.filas + config.cameraLimit - camera.height)
+          else if(this.game.jug.y - camera.height/2 > config.sizeCasilla* config.filas + config.cameraLimit - camera.height)
             camera.scrollY = config.sizeCasilla* config.filas + config.cameraLimit - camera.height;
-          else camera.scrollY = this.jug.y - camera.height/2
+          else camera.scrollY = this.game.jug.y - camera.height/2
     
-          if(this.jug.x - camera.width/2 < -config.cameraLimit) 
+          if(this.game.jug.x - camera.width/2 < -config.cameraLimit) 
             camera.scrollX =  -config.cameraLimit;
-          else if(this.jug.x - camera.width/2 >config.sizeCasilla* config.columnas+ config.cameraLimit - camera.width)
+          else if(this.game.jug.x - camera.width/2 >config.sizeCasilla* config.columnas+ config.cameraLimit - camera.width)
             camera.scrollX = config.sizeCasilla* config.columnas + config.cameraLimit - camera.width;
-          else camera.scrollX = this.jug.x - camera.width/2
+          else camera.scrollX = this.game.jug.x - camera.width/2
         }
       }
 }
