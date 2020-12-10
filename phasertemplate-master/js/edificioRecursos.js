@@ -2,8 +2,8 @@ import Edificio from "./edificio.js";
 import * as config from "./config.js"
 
 export default class EdificioRecursos extends Edificio{
-    constructor(scene,vida,coste,posicion,aldeanosMax,especialidad){
-    super(scene,vida,coste,posicion);
+    constructor(scene,vida,coste,posicion,aldeanosMax,especialidad, key){
+    super(scene,vida,coste,posicion, key);
     this.aldeanosMax =aldeanosMax;
     this.numAldeanos= 0;
     this.rendimientoAldeanos = 0;

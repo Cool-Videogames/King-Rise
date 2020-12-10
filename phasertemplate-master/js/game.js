@@ -1,3 +1,4 @@
+import ChozaMaestra from "./chozaMaestra.js";
 import * as config from "./config.js";
 import EdificioRecursos from "./edificioRecursos.js";
 import Interfaz from "./interfaz.js";
@@ -36,10 +37,11 @@ export default class Game extends Phaser.Scene {
       space:Phaser.Input.Keyboard.KeyCodes.SPACE});
     
     //this.input.mouse.disableContextMenu();
+    this.chozaMaestra = new ChozaMaestra(this,0,0,new Vector2D(100,100), 'chozaMaestra');
 
     //PROBANDO QUE LOS EDIFICIOS DE RECURSOS FUNCAN
-    new EdificioRecursos(this,0,0,this.mapa.mapa[iniJugador.x-1][iniJugador.y-1],10,'oro');
-    new EdificioRecursos(this,0,0,this.mapa.mapa[iniJugador.x-2][iniJugador.y-2],10,'comida');
+    new EdificioRecursos(this,0,0,this.mapa.mapa[iniJugador.x-1][iniJugador.y-1],10,'oro', 'edificio');
+    new EdificioRecursos(this,0,0,this.mapa.mapa[iniJugador.x-2][iniJugador.y-2],10,'comida', 'edificio');
   }
 
   getxSize(){
@@ -51,10 +53,11 @@ export default class Game extends Phaser.Scene {
 
   //ESTA FUNCION SE PUEDE USAR EN CUALQUIER PARTE, NO SE SI SU LUGAR ES EL GAME
   //(PLANTEAR UN JS CON FUNCIONES EXTERNAS)
-  creaSprite(x,y,key,scene){
+  creaSprite(x,y,key,scene, depth){
     let sprite = new Phaser.GameObjects.Sprite(scene, x, y, key);
     sprite.setOrigin(0,0);
     sprite.setInteractive();
+    sprite.setDepth(depth);
     scene.add.existing(sprite);
     return sprite;
   }
