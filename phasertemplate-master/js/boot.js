@@ -5,6 +5,7 @@ export default class Boot extends Phaser.Scene {
   preload() {
     //Juego
     this.load.image('jugador', "./phasertemplate-master/images/Rey/ReyFrente.png");
+    this.load.image('aldeano', "./phasertemplate-master/images/Aldeano/AldeanoFrente.png");
     this.load.image('sabana', "./phasertemplate-master/images/Sabana.png");
 
     //Interfaz

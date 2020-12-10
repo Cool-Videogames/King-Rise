@@ -4,6 +4,9 @@ import Interfaz from "./interfaz.js";
 import Jugador from "./jugador.js";
 import Mapa from "./mapa.js";
 import Vector2D from "./vector2D.js";
+import Camera from "./camera.js";
+import EdificioSocial from "./edificioSocial.js"
+import EdificioRecursos from "./edificioRecursos.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {

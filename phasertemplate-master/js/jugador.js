@@ -41,16 +41,6 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
       }
     }
 
-    move(pos,casilla){
-        this.casilla = casilla;
-        this.target = pos;
-
-        //if(this.dir !=='none'){
-            this.isMoving=true;
-            this.game.physics.moveTo(this,pos.x,pos.y,this.speed);
-        //}
-      }
-
     desfasePosicion(cell){ //Devuelve un vector2 con la posicion centrada del jugador
         return new Vector2D(cell.x + config.sizeCasilla / 2,
             cell.y + config.sizeCasilla/1.25);

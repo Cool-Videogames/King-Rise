@@ -1,17 +1,12 @@
-export default class Persona extends Phaser.GameObjects{
-    constructor(scene,vida, velocidad, fuerza){
-        super(scene,"persona");
+export default class Persona extends Phaser.GameObjects.Sprite{
+    constructor(scene,pos,vida, velocidad, fuerza,tipo){
+        super(scene,pos.x,pos.y,tipo);
         this.vida = vida;
         this.velocidad= velocidad;
         this.fuerza = fuerza;
-        
     }
 
-    mover(){
-        //No pongo nada porque dijimos que sería algo estético el que correteen por la aldea
-    }
-
-    atacar(objetivo, dmg){
+    attacak(objetivo, dmg){
         objetivo.vida -= dmg;
     }
 }

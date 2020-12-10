@@ -1,8 +1,9 @@
 import * as config from "./config.js"
+import Persona from "./persona.js"
 
 export default class Aldeano extends Persona{
-    constructor(scene,vida, velocidad, fuerza,posicion){
-        super(scene,vida, velocidad, fuerza);
+    constructor(scene,pos,vida, velocidad, fuerza){
+        super(scene,pos,vida, velocidad, fuerza, 'aldeano');
         this.rendimiento = {
             rendGeneral: config.rendimientoGeneral,
             rendMateriales: 0,
@@ -12,19 +13,23 @@ export default class Aldeano extends Persona{
         this.ocupado = false;
     }
 
-    trabajar(){
+    move(){
+
+    }
+
+    work(){
     this.ocupado = true;    
     }
 
-    paraTrabajar(){
+    stopWorking(){
         this.ocupado = false;
     }
 
-    explorar(){
+    explore(){
 
     }
 
-    especializarse(espec, rendimiento){
+    especialice(espec, rendimiento){
         switch(espec){
             case "minero": {this.rendimientoMinero = rendimiento;this.rendimientoGeneral = 0;}
             break;
