@@ -12,7 +12,7 @@ export default class Interfaz{
     this.nombres = new Array(config.numHUDSprites);
     this.posiciones = new Array(config.numHUDSprites);
 
-    this.alturaInterfaz = this.game.getySize()-this.game.getySize()/6;
+    this.alturaInterfaz = this.game.getYSize()-this.game.getYSize()/6;
     this.horizontalInterfaz = 1.5;
     this.crea();
   }
@@ -53,7 +53,7 @@ export default class Interfaz{
   initArrayPosiciones(){
     let x = 0; let offSet = 150;
     for(let i = 0;i<config.numHUDSprites-1;i++){
-      this.posiciones[i] = new Vector2D(this.game.getxSize()/this.horizontalInterfaz-x, this.alturaInterfaz);
+      this.posiciones[i] = new Vector2D(this.game.getXSize()/this.horizontalInterfaz-x, this.alturaInterfaz);
       x+=offSet;
     }
     this.posiciones[this.namesEnum.construccion] = new Vector2D(this.posiciones[this.namesEnum.desplegable].x, this.alturaInterfaz-offSet)
