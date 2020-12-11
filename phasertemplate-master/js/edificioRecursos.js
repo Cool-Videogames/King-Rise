@@ -11,8 +11,11 @@ export default class EdificioRecursos extends Edificio{
     this.cantidad= config.cantidadRecursosPorDefecto;
     this.game = scene;
 
+    this.isBuilt = false;
+
     //ESTO SE CAMBIARA DE TIEMPO A ACCIONES CUANDO ESTÉ IMPLEMENTADO
     this.timer = 5000;
+    console.log(' hola');
     }
 
     preUpdate(t,dt){
@@ -23,6 +26,11 @@ export default class EdificioRecursos extends Edificio{
         }
 
         super.preUpdate(t,dt);
+    }
+
+    setPosition(pos){
+        this.x = pos.x;
+        this.y = pos.y;
     }
 
     generar(){
