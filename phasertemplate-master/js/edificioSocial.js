@@ -5,6 +5,9 @@ export default class EdificioSocial extends Edificio{
         super(scene,vida,coste,posicion, key);
         this.cantidad= felicidad;
         this.game = scene;
+
+        scene.physics.add.existing(this);
+        scene.physics.arcade.moveToPointer(this, 400);
     
     //ESTO SE CAMBIARA DE TIEMPO A ACCIONES CUANDO ESTÉ IMPLEMENTADO
         this.timer = 5000;
