@@ -12,6 +12,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('ajustes',"./phasertemplate-master/images/Interfaz/RuedaAjustes.png");
     this.load.image('hud', "./phasertemplate-master/images/Interfaz/HUDGeneral.png");
     this.load.image('desplegable', "./phasertemplate-master/images/Interfaz/desplegable.png");
+    this.load.image('infoAldeanos', "./phasertemplate-master/images/Interfaz/InfoAldeanos.png");
+    this.load.image('construir', "./phasertemplate-master/images/Interfaz/Construir.png");
+    this.load.image('menuDesplegable', "./phasertemplate-master/images/Interfaz/MenuDesplegable.png");
 
     //Ajustes
     this.load.image('volveraljuego',"./phasertemplate-master/images/gestion.png");
@@ -24,7 +27,6 @@ export default class Boot extends Phaser.Scene {
     this.load.image('opCanteros',"./phasertemplate-master/images/gestion.png");
     this.load.image('opExploradores',"./phasertemplate-master/images/gestion.png");
     
-
     //IGNORAR, SOLO DE PRUEBA
     this.load.image('edificio',"./phasertemplate-master/images/favicon.png");
   }
