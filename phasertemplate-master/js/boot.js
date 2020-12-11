@@ -15,6 +15,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('infoAldeanos', "./phasertemplate-master/images/Interfaz/InfoAldeanos.png");
     this.load.image('construir', "./phasertemplate-master/images/Interfaz/Construir.png");
     this.load.image('menuDesplegable', "./phasertemplate-master/images/Interfaz/MenuDesplegable.png");
+    this.load.image('info', "./phasertemplate-master/images/Interfaz/Info.png")
 
     //Ajustes
     this.load.image('volveraljuego',"./phasertemplate-master/images/gestion.png");

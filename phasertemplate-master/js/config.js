@@ -18,7 +18,7 @@ export let stroke = '#B9723E';
 export let font = 'Arial Black'
 export let fillColor = '#F9B258';
 export let fontSize = 30;
-export let numHUDSprites = 6;
+export let numHUDSprites = 7;
 export let numHUDTexts = 5;
 export let alturaHUD = 572;
 
