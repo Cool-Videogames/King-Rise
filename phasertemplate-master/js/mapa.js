@@ -92,7 +92,7 @@ export default class Mapa {
         inicial.visitada = true;
 
         if (this.pathFindingAux(recorrido)) { //camino encontrado
-            this.recorrerInversa(destino);
+            this.crearCamino(destino);
             return inicial;
         } else { //camino no disponible
             return null;
@@ -171,7 +171,7 @@ export default class Mapa {
     }
 
 
-    recorrerInversa(nodoFinal) {
+    crearCamino(nodoFinal) {
         let nodoAct = nodoFinal;
         let camino = new Nodo(nodoAct, null);
         while (nodoAct !== null) {
