@@ -173,16 +173,31 @@ export default class Mapa {
 
     recorrerInversa(nodoFinal) {
         let nodoAct = nodoFinal;
-        while (nodoAct != null) {
+        let camino = new Nodo(nodoAct, null);
+        while (nodoAct !== null) {
 
-            if (nodoAct.anterior != null) {
+            if (nodoAct.anterior !== null) {
                 nodoAct.anterior.siguiente = nodoAct;
+
+                if (nodoAct.siguiente !== null) {
+                    camino.anterior = new Camino(nodoAct, camino);
+                    camino = camino.anterior;
+                }else{
+                    camino.cell = nodoAct.cell;
+                }
             }
             nodoAct = nodoAct.anterior;
         }
-
+        return camino;
     }
 
+}
+
+class Camino {
+    constructor(nodo, caminoSiguiente = null) {
+        this.siguiente = caminoSiguiente;
+        this.cell = nodo.cell;
+    }
 }
 class Nodo {
     constructor(celda) {
