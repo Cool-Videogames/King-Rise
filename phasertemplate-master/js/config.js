@@ -12,9 +12,11 @@ export let cameraLimit = 200;
 export let fontColor = 0xffff00;
 
 export let numEspecialidades = 4;
+
 //Interfaz
-export let numHUDSprites = 5;
-export let numHUDTexts = 6;
+export let numHUDSprites = 3;
+export let numHUDTexts = 5;
+export let alturaHUD = 520;
 
 //Profundidad de los sprites
 export let mapDepth = 0;
