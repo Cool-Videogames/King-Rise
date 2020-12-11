@@ -5,15 +5,17 @@ import Jugador from "./jugador.js";
 import Mapa from "./mapa.js";
 import Vector2D from "./vector2D.js";
 import Camera from "./camera.js";
-import EdificioSocial from "./edificioSocial.js"
-import EdificioRecursos from "./edificioRecursos.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
     super({ key: 'game' });
 
-    //SE NECESITAN AQUI ESTOS ATRIBUTOS PARA PODER ACCEDER DESDE FUERA
-    //NO ESTOY SEGURO SI ES LA MEJOR OPCION
+    this.aldeanosBasicos = [];
+    this.mineros = [];
+    this.ganaderos = [];
+    this.canteros = [];
+    this.exploradores = [];
+
     this.recursos = {
       oro: 0, comida: 0, materiales: 0, felicidad: 0
     }

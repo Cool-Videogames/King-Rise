@@ -20,7 +20,7 @@ export default class Interfaz{
     this.initArrayNombres(); this.initArrayPosiciones(); this.initArrayTexts(); //inicia los arrays de informacion
 
     for(let i = 0;i<config.numHUDSprites;i++){
-      this.sprites[i] = this.game.creaSprite(this.posiciones[i].x, this.posiciones[i].y, this.nombres[i], this.game, console.hudDepth);
+      this.sprites[i] = this.game.creaSprite(this.posiciones[i].x, this.posiciones[i].y, this.nombres[i], this.game, config.hudDepth);
       this.sprites[i].setScrollFactor(0);
     }
     //Logica de la interfaz

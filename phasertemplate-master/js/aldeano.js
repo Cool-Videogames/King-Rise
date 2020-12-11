@@ -2,8 +2,8 @@ import * as config from "./config.js"
 import Persona from "./persona.js"
 
 export default class Aldeano extends Persona{
-    constructor(scene,pos,vida, velocidad, fuerza){
-        super(scene,pos,vida, velocidad, fuerza, 'aldeano');
+    constructor(scene,pos,vida, velocidad, fuerza, key){
+        super(scene,pos,vida, velocidad, fuerza, key);
         this.rendimiento = {
             rendGeneral: config.rendimientoGeneral,
             rendMateriales: 0,
