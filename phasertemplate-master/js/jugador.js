@@ -3,10 +3,11 @@ import Vector2D from "./vector2D.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
     constructor(scene, casilla) {   
-        let offSetX = config.sizeCasilla /2;
-        let offSetY =config.sizeCasilla/1.25;
+        super(scene, 0,0, 'jugador');
         let iniCasilla =scene.mapa.mapa[casilla.x][casilla.y];
-        super(scene, iniCasilla.x + offSetX ,iniCasilla.y +offSetY, 'jugador');
+        let pos = this.posicionCentrada(iniCasilla);
+        this.x = pos.x; this.y = pos.y;
+
         this.casilla = iniCasilla;
         this.casilla.setOcupada(true);
         this.speed= config.playerSpeed;
@@ -19,7 +20,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.game = scene;
 
         this.isMoving = false;
-        this.target = iniCasilla;
+        this.posDestino = iniCasilla;
         this.dir = 'none';
 
         this.nodoDestino = null;
@@ -31,35 +32,36 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
     }
     
     compruebaPosicion(){
-      if(this.x > this.target.x-1 && this.x < this.target.x+1 &&this.y > this.target.y-1 && this.y < this.target.y+1){
-          this.body.reset(this.target.x,this.target.y);
+      if(this.x > this.posDestino.x-1 && this.x < this.posDestino.x+1 &&this.y > this.posDestino.y-1 && this.y < this.posDestino.y+1){
+          this.body.reset(this.posDestino.x,this.posDestino.y);
           this.isMoving=false;
 
-          if(this.nodoDestino != null && this.nodoDestino.siguiente != null){
-              this.movimientoCasillas(this.nodoDestino.siguiente);
+          if(this.nodoDestino.siguiente !== null){
+              this.movimientoPathFinding(this.nodoDestino.siguiente);
           }
       }
     }
 
-    desfasePosicion(cell){ //Devuelve un vector2 con la posicion centrada del jugador
+    posicionCentrada(cell){ //Devuelve un vector2 con la posicion centrada del jugador
         return new Vector2D(cell.x + config.sizeCasilla / 2,
             cell.y + config.sizeCasilla/1.25);
     }
     
-    movimientoCasillas(siguienteNodo){
+    movimientoPathFinding(siguienteNodo){
         this.nodoDestino = siguienteNodo;
-        this.target = this.desfasePosicion(this.nodoDestino.cellAct);
+        this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
         this.casilla.setOcupada(false);
         this.casilla.sprite.clearTint();
 
-        this.casilla = this.nodoDestino.cellAct;
+        this.casilla = this.nodoDestino.cell;
         this.casilla.setOcupada(true);
 
         if(this.casilla.sprite.isTinted)this.casilla.sprite.tint = 0xEE4141;
 
         this.isMoving = true;
-        this.game.physics.moveTo(this,this.target.x,this.target.y,this.speed);
+        this.game.physics.moveTo(this,this.posDestino.x,this.posDestino.y,this.speed);
     }
+    
     Construir(edificio, pos, tamanyo){
     };
 }

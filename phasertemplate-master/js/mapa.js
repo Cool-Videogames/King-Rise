@@ -54,17 +54,10 @@ export default class Mapa {
     //POSTERIORMENTE HAY QUE CAMBIARLO Y DAR UNA FUNCIÓN COMO PARÁMETRO (EJ: PARA CONSTRUIR AL PULSAR Y QUE NO MUEVA AL JUGADOR)
     onClick(nextCell) {
         nextCell.sprite.on('pointerup', () => {
-            // if (!nextCell.ocupada && !this.game.jug.isMoving) {
-            // let pos = new Vector2D(nextCell.x + this.sizeCasilla / 2, nextCell.y + this.sizeCasilla / 1.25);
-            //     this.game.jug.move(pos, nextCell);
-            //     this.game.jug.casilla.setOcupada(false);
-            //     nextCell.setOcupada(true);
-            // }
-
             if (!nextCell.ocupada && !this.game.jug.isMoving) {
-                let nodoInicial = this.algoritmoBusqueda(this.game.jug.casilla, nextCell);
+                let nodoInicial = this.pathFinding(this.game.jug.casilla, nextCell);
                 if (nodoInicial != null) {
-                    this.game.jug.movimientoCasillas(nodoInicial);
+                    this.game.jug.movimientoPathFinding(nodoInicial);
                 }
             }
         })
@@ -72,7 +65,7 @@ export default class Mapa {
 
     changeColor(cell){ 
         cell.sprite.on('pointerover', () => {
-            if(!cell.ocupada)
+            if(!cell.ocupada )
                 cell.sprite.tint = 0x41EE7B;
             else cell.sprite.tint = 0xEE4141;
         })
@@ -80,63 +73,63 @@ export default class Mapa {
             cell.sprite.clearTint();
         })
     }
-
+    
     //ALGORITMO BUSQUEDA DE CAMINOS
-    algoritmoBusqueda(celdaInicial, celdaFinal) {
+    pathFinding(celdaInicial, celdaFinal) {
         let inicial = this.nodos[celdaInicial.indiceX][celdaInicial.indiceY];
-        let final = this.nodos[celdaFinal.indiceX][celdaFinal.indiceY]
+        let destino = this.nodos[celdaFinal.indiceX][celdaFinal.indiceY]
 
         for (let i = 0; i < this.col; i++) {
             for (let c = 0; c < this.fil; c++) {
-                this.nodos[i][c].resetear(final);
+                this.nodos[i][c].resetear(destino);
             }
         }
-        final.esFin = true;
-        final.valor = 0;
 
-        let lista = [];
-        lista.push(inicial);
+        destino.esFin = true;
+        destino.valor = 0;
+
+        let recorrido = [];
+        recorrido.push(inicial);
         inicial.visitada = true;
 
-        if (this.recursiva(lista)) { //camino encontrado
-            this.recorrerInversa(final);
+        if (this.pathFindingAux(recorrido)) { //camino encontrado
+            this.recorrerInversa(destino);
             return inicial;
         } else { //camino no disponible
-            console.log("Camino no disponible");
             return null;
         }
-        //let resultado = this.iterativa(lista);
     }
-    addAdyancente(lista, nodoAct) {
+
+    addAdyancente(recorrido, nodoAct) {
         if (nodoAct.x > 0) {
-            this.addNodo(lista, this.nodos[nodoAct.x - 1][nodoAct.y], nodoAct);
+            this.addNodo(recorrido, this.nodos[nodoAct.x - 1][nodoAct.y], nodoAct);
         }
         if (nodoAct.x < this.col - 1) {
-            this.addNodo(lista, this.nodos[nodoAct.x + 1][nodoAct.y], nodoAct);
+            this.addNodo(recorrido, this.nodos[nodoAct.x + 1][nodoAct.y], nodoAct);
         }
         if (nodoAct.y > 0) {
-            this.addNodo(lista, this.nodos[nodoAct.x][nodoAct.y - 1], nodoAct);
+            this.addNodo(recorrido, this.nodos[nodoAct.x][nodoAct.y - 1], nodoAct);
         }
         if (nodoAct.y < this.fil - 1) {
-            this.addNodo(lista, this.nodos[nodoAct.x][nodoAct.y + 1], nodoAct);
+            this.addNodo(recorrido, this.nodos[nodoAct.x][nodoAct.y + 1], nodoAct);
         }
     }
-    addNodo(lista, nodo, nodoAct) {
-        if (!nodo.visitada && !nodo.cellAct.ocupada) {
-            nodo.recalcularValor(nodoAct);
-            nodo.visitada = true;
-            lista.push(nodo);
+    addNodo(recorrido, nodoAddyacente, nodoAct) {
+        if (!nodoAddyacente.visitada && !nodoAddyacente.cell.ocupada) {
+            nodoAddyacente.recalcularValor(nodoAct);
+            nodoAddyacente.visitada = true;
+            recorrido.push(nodoAddyacente);
         }
     }
 
-    recursiva(lista, numVueltas = 0) {
-        if (lista.length <= 0) return false;
+    pathFindingAux(recorrido) {
+        if (recorrido.length <= 0) return false;
 
         let indice = 0;
-        let nodoAct = lista[0];
-        for (let i = 0; i < lista.length; i++) {
-            if (nodoAct.valor > lista[i].valor) {
-                nodoAct = lista[i];
+        let nodoAct = recorrido[0];
+        for (let i = 0; i < recorrido.length; i++) {
+            if (nodoAct.valor > recorrido[i].valor) {
+                nodoAct = recorrido[i];
                 indice = i;
             }
         }
@@ -145,10 +138,10 @@ export default class Mapa {
             return true;
         }
 
-        lista.splice(indice, 1);
-        this.addAdyancente(lista, nodoAct);
+        recorrido.splice(indice, 1);
+        this.addAdyancente(recorrido, nodoAct);
 
-        return this.recursiva(lista, ++numVueltas);
+        return this.pathFindingAux(recorrido);
     }
 
 
@@ -197,7 +190,7 @@ class Nodo {
         this.esFin = false; //bool
         this.visitada = false; //bool
 
-        this.cellAct = celda; //celda
+        this.cell = celda; //celda
         this.x = celda.indiceX; //int
         this.y = celda.indiceY; //int
 
@@ -229,6 +222,7 @@ class Nodo {
         let diferenciaY = otro.y - this.y;
         return Math.abs(diferenciaX) + Math.abs(diferenciaY);
     }
+
     areEqual(otro) {
         return (this.x == otro.x && this.y == otro.y);
     }
