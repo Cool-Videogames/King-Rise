@@ -6,57 +6,56 @@ export default class Interfaz{
     this.game = scene;
     
     //Arrays con la informacion
-    this.namesEnum = { ajustes: 0, desplegable: 1, proxAtaque: 2, recursos: 3, construccion: 4}
+    this.namesEnum = { ajustes: 0, desplegable: 1, hudGeneral: 2};
+    this.textsEnum = { oro: 0, comida : 1, materiales: 2, felicidad: 3, proxAtaque: 4};
     this.sprites = new Array(config.numHUDSprites);
     this.texts = new Array(config.numHUDTexts);
     this.nombres = new Array(config.numHUDSprites);
     this.posiciones = new Array(config.numHUDSprites);
 
-    this.alturaInterfaz = this.game.getYSize()-this.game.getYSize()/6;
-    this.horizontalInterfaz = 1.5;
     this.crea();
   }
   crea(){
     this.initArrayNombres(); this.initArrayPosiciones(); this.initArrayTexts(); //inicia los arrays de informacion
 
     for(let i = 0;i<config.numHUDSprites;i++){
-      this.sprites[i] = this.game.creaSprite(this.posiciones[i].x, this.posiciones[i].y, this.nombres[i], this.game, config.hudDepth);
+      this.sprites[i] = this.game.creaSprite(this.posiciones[i].x, this.posiciones[i].y, this.nombres[i], this.game, config.hudDepth+1);
+      this.sprites[i].setScale(this.sprites[i].scaleX/1.5 ,this.sprites[i].scaleY/1.5);
       this.sprites[i].setScrollFactor(0);
     }
-    //Logica de la interfaz
-    this.sprites[this.namesEnum.construccion].setVisible(false);
+
+    this.sprites[this.namesEnum.hudGeneral].setDepth(config.hudDepth);
     this.clickEnAjustes(this.sprites[this.namesEnum.ajustes]);
     this.clickEnDesplegable(this.sprites[this.namesEnum.desplegable]);
   }
   initArrayNombres(){
-    this.nombres[this.namesEnum.ajustes] = 'ajustes'; this.nombres[this.namesEnum.recursos] = 'recursos'; 
-    this.nombres[this.namesEnum.proxAtaque] = 'proxAtaque'; this.nombres[this.namesEnum.desplegable] = 'desplegable';
-    this.nombres[this.namesEnum.construccion] = 'construccion';
+    this.nombres[this.namesEnum.ajustes] = 'ajustes'; this.nombres[this.namesEnum.desplegable] = 'desplegable'; 
+    this.nombres[this.namesEnum.hudGeneral] = 'hud';
   }
   initArrayTexts(){
-    //Variables locales para acortar el codigo
-    let a = this.game; let b = this.texts; let c = this.namesEnum; let d = this.posiciones;
+    let posRec = this.posiciones[this.namesEnum.hudGeneral];
+    let a = this.textsEnum;
 
-    //TEXTO PARA INDICAR LOS RECURSOS
-    b[0] = a.add.text(d[c.recursos].x + 50, d[c.recursos].y, a.recursos.oro,config.fontColor); 
-    b[1] = a.add.text(d[c.recursos].x + 100, d[c.recursos].y, a.recursos.comida,config.fontColor); 
-    b[2] = a.add.text(d[c.recursos].x + 50, d[c.recursos].y + 100, a.recursos.materiales,config.fontColor);
-    b[3] = a.add.text(d[c.recursos].x + 100, d[c.recursos].y + 100, a.recursos.felicidad,config.fontColor); 
-    b[4] = a.add.text(d[c.proxAtaque].x + 50,d[c.proxAtaque].y + 50, a.proxAtaque,config.fontColor); 
-    b[5] = a.add.text(d[c.desplegable].x, d[c.desplegable].y + 50,"CLICK PARA\n CONSTRUIR",config.fontColor);
+    this.texts[a.oro] = this.game.add.text(posRec.x+160,posRec.y+150,this.game.recursos.oro, this.game);
+    this.texts[a.comida] = this.game.add.text(posRec.x+260,posRec.y+150,this.game.recursos.comida, this.game);
+    this.texts[a.materiales] = this.game.add.text(posRec.x+160,posRec.y+85,this.game.recursos.materiales, this.game);
+    this.texts[a.felicidad] = this.game.add.text(posRec.x+260,posRec.y+85,this.game.recursos.felicidad, this.game);
+    this.texts[a.proxAtaque] = this.game.add.text(posRec.x+440,posRec.y+110,this.game.proxAtaque, this.game);
 
-    //Profundidad del texto
-    for(let i = 0;i<config.numHUDTexts;i++) {
-      b[i].setDepth(config.hudDepth+1); b[i].setScrollFactor(0);
+    for(let i of this.texts){
+      i.setFont('Arial Black');
+      i.setStroke('#000000', 5);
+      i.setFill('#F9B258');
+      i.setFontSize(50);
+      i.setScrollFactor(0);
+      i.setDepth(config.hudDepth+1);
     }
   }
   initArrayPosiciones(){
-    let x = 0; let offSet = 150;
-    for(let i = 0;i<config.numHUDSprites-1;i++){
-      this.posiciones[i] = new Vector2D(this.game.getXSize()/this.horizontalInterfaz-x, this.alturaInterfaz);
-      x+=offSet;
-    }
-    this.posiciones[this.namesEnum.construccion] = new Vector2D(this.posiciones[this.namesEnum.desplegable].x, this.alturaInterfaz-offSet)
+    let yOffSet = 70; let xOffSet = 126;
+    this.posiciones[this.namesEnum.ajustes] = new Vector2D(this.game.xSize/2+xOffSet*2,config.alturaHUD+yOffSet);
+    this.posiciones[this.namesEnum.desplegable] = new Vector2D(this.game.xSize/2+xOffSet,config.alturaHUD+yOffSet);
+    this.posiciones[this.namesEnum.hudGeneral] = new Vector2D(this.game.xSize/6,config.alturaHUD);
   }
   clickEnAjustes(ajustesSprite){
     ajustesSprite.on('pointerdown', pointer => {
@@ -66,7 +65,22 @@ export default class Interfaz{
   }
   clickEnDesplegable(desplegableSprite){
     desplegableSprite.on('pointerdown', pointer => {
-      this.sprites[this.namesEnum.construccion].setVisible(!this.sprites[this.namesEnum.construccion].visible);
+      //this.sprites[this.namesEnum.construccion].setVisible(!this.sprites[this.namesEnum.construccion].visible);
     })
+  }
+  actualizaOro(oro){
+    this.texts[this.textsEnum.oro].text = oro;
+  }
+  actualizaComida(comida){
+    this.texts[this.textsEnum.comida].text = comida;
+  }
+  actualizaMateriales(materiales){
+    this.texts[this.textsEnum.materiales].text = materiales;
+  }
+  actualizaFelicidad(felicidad){
+    this.texts[this.textsEnum.felicidad].text = felicidad;
+  }
+  actualizaProxAtaque(pA){
+    this.texts[this.textsEnum.proxAtaque].text = pA;
   }
 }
