@@ -14,9 +14,13 @@ export let fontColor = 0xffff00;
 export let numEspecialidades = 4;
 
 //Interfaz
-export let numHUDSprites = 3;
+export let stroke = '#B9723E';
+export let font = 'Arial Black'
+export let fillColor = '#F9B258';
+export let fontSize = 30;
+export let numHUDSprites = 6;
 export let numHUDTexts = 5;
-export let alturaHUD = 520;
+export let alturaHUD = 572;
 
 //Profundidad de los sprites
 export let mapDepth = 0;
