@@ -24,7 +24,7 @@ export default class Aldeano extends Persona{
         this.ocupado = false;
 
         this.casillaRandom();
-        //this.movimientoPathFinding();
+        this.movimientoPathFinding(this.nodoInicial);
     }
 
     preUpdate(t,dt){
@@ -40,37 +40,39 @@ export default class Aldeano extends Persona{
                 this.movimientoPathFinding(this.nodoDestino.siguiente);
             }
             else{
+                
                 this.casillaRandom();
-                this.movimientoPathFinding();
+                this.movimientoPathFinding(this.nodoInicial);
             }
         }
       }
 
     casillaRandom(){
         let nextCell;
+        let nodoInicial;
         do{
             let columna = Math.floor(Math.random() * config.columnas);
             let fila = Math.floor(Math.random() * config.filas);
             nextCell = this.game.mapa.mapa[columna][fila];
+            nodoInicial  = this.game.mapa.pathFinding(this.casilla, nextCell);
         }
-        while(nextCell.ocupada);
-        this.nodoInicial = this.game.mapa.pathFinding(this.casilla, nextCell);
+        while(nextCell.ocupada || nodoInicial === null);
+        this.nodoInicial = nodoInicial;
     }
     
-    movimientoPathFinding(){
-        if (this.nodoInicial != null) {
-            this.nodoDestino = this.nodoInicial
-            this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
-            this.casilla.setOcupada(false);
-            this.casilla.sprite.clearTint();
-    
-            this.casilla = this.nodoDestino.cell;
-            this.casilla.setOcupada(true);
-    
-            if(this.casilla.sprite.isTinted)this.casilla.sprite.tint = 0xEE4141;
-    
-            this.game.physics.moveTo(this,this.posDestino.x,this.posDestino.y,this.speed);
-        }
+    movimientoPathFinding(camino){
+        this.nodoDestino = camino;
+        this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
+        this.casilla.setOcupada(false);
+        this.casilla.sprite.clearTint();
+
+        this.casilla = this.nodoDestino.cell;
+        this.casilla.setOcupada(true);
+
+        if(this.casilla.sprite.isTinted)this.casilla.sprite.tint = 0xEE4141;
+
+        this.isMoving = true;
+        this.game.physics.moveTo(this,this.posDestino.x,this.posDestino.y,this.speed);
     }
 
     posicionCentrada(cell){ //Devuelve un vector2 con la posicion centrada del jugador

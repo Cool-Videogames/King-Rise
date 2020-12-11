@@ -54,9 +54,9 @@ export default class Mapa {
     onClick(nextCell) {
         nextCell.sprite.on('pointerup', () => {
             if (!nextCell.ocupada && !this.game.jug.isMoving) {
-                let nodoInicial = this.pathFinding(this.game.jug.casilla, nextCell);
-                if (nodoInicial != null) {
-                    this.game.jug.movimientoPathFinding(nodoInicial);
+                let camino = this.pathFinding(this.game.jug.casilla, nextCell);
+                if (camino != null) {
+                    this.game.jug.movimientoPathFinding(camino);
                 }
             }
         })
@@ -112,11 +112,11 @@ export default class Mapa {
             this.addNodo(recorrido, this.nodos[nodoAct.x][nodoAct.y + 1], nodoAct);
         }
     }
-    addNodo(recorrido, nodoAddyacente, nodoAct) {
-        if (!nodoAddyacente.visitada && !nodoAddyacente.cell.ocupada) {
-            nodoAddyacente.recalcularValor(nodoAct);
-            nodoAddyacente.visitada = true;
-            recorrido.push(nodoAddyacente);
+    addNodo(recorrido, nodoAdyacente, nodoAct) {
+        if (!nodoAdyacente.visitada && !nodoAdyacente.cell.ocupada) {
+            nodoAdyacente.recalcularValor(nodoAct);
+            nodoAdyacente.visitada = true;
+            recorrido.push(nodoAdyacente);
         }
     }
 
@@ -142,34 +142,6 @@ export default class Mapa {
         return this.pathFindingAux(recorrido);
     }
 
-
-    iterativa(lista) {
-        let numVueltas = 0;
-        while (true) {
-            if (lista.length <= 0) return null;
-            let indice = 0;
-            let nodoAct = lista[0];
-
-            for (let i = 0; i < lista.length; i++) {
-                if (nodoAct.valor > lista[i].valor) {
-                    nodoAct = lista[i];
-                    indice = i;
-                }
-            }
-
-            if (nodoAct.esFin) {
-                console.log(numVueltas);
-                return nodoAct;
-            }
-
-            lista.splice(indice, 1);
-            this.addAdyancente(lista, nodoAct);
-
-            numVueltas++;
-        }
-    }
-
-
     crearCamino(nodoFinal) {
         let nodoAct = nodoFinal;
         let camino = new Nodo(nodoAct, null);
@@ -189,7 +161,6 @@ export default class Mapa {
         }
         return camino;
     }
-
 }
 
 class Camino {
