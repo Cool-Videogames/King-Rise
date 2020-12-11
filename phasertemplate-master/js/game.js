@@ -5,6 +5,7 @@ import Jugador from "./jugador.js";
 import Mapa from "./mapa.js";
 import Vector2D from "./vector2D.js";
 import Camera from "./camera.js";
+import Aldeano from "./aldeano.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -35,8 +36,15 @@ export default class Game extends Phaser.Scene {
 
     //this.input.mouse.disableContextMenu();
     this.chozaMaestra = new ChozaMaestra(this,0,0,new Vector2D(100,100), 'chozaMaestra');
-
-    //PROBANDO QUE LOS EDIFICIOS DE RECURSOS FUNCAN
+    
+    let nextCell;
+    do{
+        let columna = Math.floor(Math.random() * config.columnas);
+        let fila = Math.floor(Math.random() * config.filas)
+        nextCell = this.mapa.mapa[columna][fila];
+    }
+    while(nextCell.ocupada);
+    new Aldeano(this,nextCell,0,0);
   }
 
   getXSize(){

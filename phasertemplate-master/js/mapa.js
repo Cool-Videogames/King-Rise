@@ -1,6 +1,5 @@
 import * as config from "./config.js"
 import Cell from "./cell.js";
-import Vector2D from "./vector2D.js";
 
 export default class Mapa {
     constructor(scene, col, fil, sizeCasilla) {

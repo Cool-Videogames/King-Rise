@@ -1,10 +1,11 @@
 import * as config from "./config.js"
 import Persona from "./persona.js"
+import Vector2D from "./vector2D.js";
 
 export default class Aldeano extends Persona{
-    constructor(scene,casilla,vida,velocidad, fuerza){
+    constructor(scene,casilla,vida, fuerza){
         let pos = {x: 0, y:0};
-        super(scene,pos,vida, velocidad, fuerza, 'aldeano');
+        super(scene,pos,vida, fuerza, 'aldeano');
         pos = this.posicionCentrada(casilla);
         this.x = pos.x; 
         this.y = pos.y;
@@ -15,20 +16,32 @@ export default class Aldeano extends Persona{
             rendComida: 0,
             renOro: 0,
         }
+
         this.casilla = casilla
-        this.casilla.setOcupada(true);        
+        this.casilla.setOcupada(true);      
 
         this.game = scene;
         this.ocupado = false;
+
+        this.casillaRandom();
+        //this.movimientoPathFinding();
     }
 
+    preUpdate(t,dt){
+        this.compruebaPosicion();
+        super.preUpdate(t,dt);
+    }
+    
     compruebaPosicion(){
         if(this.x > this.posDestino.x-1 && this.x < this.posDestino.x+1 &&this.y > this.posDestino.y-1 && this.y < this.posDestino.y+1){
             this.body.reset(this.posDestino.x,this.posDestino.y);
-            this.isMoving=false;
   
             if(this.nodoDestino.siguiente !== null){
                 this.movimientoPathFinding(this.nodoDestino.siguiente);
+            }
+            else{
+                this.casillaRandom();
+                this.movimientoPathFinding();
             }
         }
       }
@@ -36,8 +49,8 @@ export default class Aldeano extends Persona{
     casillaRandom(){
         let nextCell;
         do{
-            let columna = Math.floor(Math.random() * config.filas);
-            let fila = Math.floor(Math.random() * config.columnas)
+            let columna = Math.floor(Math.random() * config.columnas);
+            let fila = Math.floor(Math.random() * config.filas);
             nextCell = this.game.mapa.mapa[columna][fila];
         }
         while(nextCell.ocupada);
@@ -46,7 +59,7 @@ export default class Aldeano extends Persona{
     
     movimientoPathFinding(){
         if (this.nodoInicial != null) {
-            this.nodoDestino = nodoInicial
+            this.nodoDestino = this.nodoInicial
             this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
             this.casilla.setOcupada(false);
             this.casilla.sprite.clearTint();
@@ -56,7 +69,6 @@ export default class Aldeano extends Persona{
     
             if(this.casilla.sprite.isTinted)this.casilla.sprite.tint = 0xEE4141;
     
-            this.isMoving = true;
             this.game.physics.moveTo(this,this.posDestino.x,this.posDestino.y,this.speed);
         }
     }
