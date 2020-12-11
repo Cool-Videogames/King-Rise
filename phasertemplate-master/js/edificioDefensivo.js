@@ -1,5 +1,7 @@
+import Edificio from "./edificio.js";
+
 export default class EdificioDefensivo extends Edificio{
-    constructor(scene,vida,coste,posicion,mapa,aldeanosMax,rango){
+    constructor(scene,vida,coste,posicion,aldeanosMax,rango){
     super(scene,vida,coste,posicion,mapa);
     this.rango = rango;
     this.aldeanosMax =aldeanosMax;

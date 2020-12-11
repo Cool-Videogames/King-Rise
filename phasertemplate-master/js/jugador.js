@@ -1,4 +1,7 @@
+import ChozaMaestra from "./chozaMaestra.js";
 import * as config from "./config.js";
+import EdificioRecursos from "./edificioRecursos.js";
+import EdificioDefensivo from "./edificioDefensivo.js";
 import Vector2D from "./vector2D.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
@@ -19,14 +22,28 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         scene.physics.add.existing(this)
         this.game = scene;
 
+        this.isBuilding = false;
+        this.edificio;
+        
         this.isMoving = false;
         this.posDestino = iniCasilla;
+        this.nodoDestino = null;
         this.dir = 'none';
 
-        this.nodoDestino = null;
+        
+        this.keys = scene.input.keyboard.addKeys({build:Phaser.Input.Keyboard.KeyCodes.C});
+        this.casillaPuntero;
     }
 
     preUpdate(t, dt) {
+        if(Phaser.Input.Keyboard.JustDown(this.keys.build)){
+            console.log('hola');
+            this.isBuilding = true;
+            this.edificio = this.construir('recursos','oro',this.casillaPuntero,2);
+        } 
+        if(this.isBuilding){
+            this.edificio.setPosition(this.posicionCentrada(this.casillaPuntero));
+        }     
         this.compruebaPosicion();
         super.preUpdate(t, dt);
     }
@@ -64,6 +81,21 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.game.physics.moveTo(this, this.posDestino.x, this.posDestino.y, this.speed);
     }
 
-    Construir(edificio, pos, tamanyo) {
+    construir(tipo, especialidad, pos, tamanyo) {
+        let edificio;
+        if(tipo === 'recursos'){
+            //scene,vida,coste,posicion,aldeanosMax,especialidad, key
+            edificio = new EdificioRecursos(this.game,0,0,pos,5,especialidad, 'edificio'); 
+        }else if(tipo === 'social'){
+            //scene,vida,coste,posicion,felicidad, key
+            edificio = new EdificioSocial(this.game,0,0, pos,10,'edificio');
+        }else if(tipo === 'chozaMaestra'){
+            //scene,vida,coste,posicion, key
+            edificio = new ChozaMaestra(this.game, 0, 0, pos, 'tipo');
+        }else if(tipo === 'defensivo'){
+            //scene,vida,coste,posicion,aldeanosMax,rango
+            edificio = new EdificioDefensivo(this.game, 0, 0, pos, 2, 0);
+        }
+        return edificio;
     };
 }

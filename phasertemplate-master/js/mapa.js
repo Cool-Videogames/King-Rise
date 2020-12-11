@@ -53,17 +53,21 @@ export default class Mapa {
     //POSTERIORMENTE HAY QUE CAMBIARLO Y DAR UNA FUNCIÓN COMO PARÁMETRO (EJ: PARA CONSTRUIR AL PULSAR Y QUE NO MUEVA AL JUGADOR)
     onClick(nextCell) {
         nextCell.sprite.on('pointerup', () => {
-            if (!nextCell.ocupada) {
+            if (!nextCell.ocupada && !this.game.jug.isBuilding) {
                 let camino = this.pathFinding(this.game.jug.casilla, nextCell);
                 if (camino != null) {
                     this.game.jug.movimientoPathFinding(camino);
                 }
+            }
+            else {
+                
             }
         })
     }
 
     changeColor(cell){ 
         cell.sprite.on('pointerover', () => {
+            this.game.jug.casillaPuntero = cell;
             if(!cell.ocupada )
                 cell.sprite.tint = 0x41EE7B;
             else cell.sprite.tint = 0xEE4141;
