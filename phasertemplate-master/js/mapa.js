@@ -92,8 +92,7 @@ export default class Mapa {
         inicial.visitada = true;
 
         if (this.pathFindingAux(recorrido)) { //camino encontrado
-            this.crearCamino(destino);
-            return inicial;
+            return this.crearCamino(destino);
         } else { //camino no disponible
             return null;
         }
