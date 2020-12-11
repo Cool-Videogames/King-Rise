@@ -32,7 +32,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
     }
 
     compruebaPosicion() {
-        if (!this.isMoving) {
+        if (this.isMoving) {
             if (this.x > this.posDestino.x - 1 && this.x < this.posDestino.x + 1 && this.y > this.posDestino.y - 1 && this.y < this.posDestino.y + 1) {
                 this.body.reset(this.posDestino.x, this.posDestino.y);
                 this.isMoving = false;
