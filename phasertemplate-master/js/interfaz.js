@@ -6,7 +6,8 @@ export default class Interfaz{
     this.game = scene;
     
     //Arrays y enums con la informacion
-    this.namesEnum = { ajustes: 0, desplegable: 1, hudGeneral: 2, infoAldeanos: 3, construir: 4, menuDesp: 5, info: 6};
+    this.namesEnum = { ajustes: 0, desplegable: 1, hudGeneral: 2, infoAldeanos: 3, construir: 4, menuDesp: 5, info: 6, flecha1: 7,
+    botonConstruir: 8, flecha2: 9};
     this.textsEnum = { oro: 0, comida : 1, materiales: 2, felicidad: 3, proxAtaque: 4};
     this.sprites = new Array(config.numHUDSprites);
     this.texts = new Array(config.numHUDTexts);
@@ -25,9 +26,13 @@ export default class Interfaz{
     }
     //Sprite comienza no visibles
     this.sprites[this.namesEnum.info].setVisible(false);
+    this.sprites[this.namesEnum.botonConstruir].setVisible(false);
     this.sprites[this.namesEnum.menuDesp].setVisible(false);
     this.sprites[this.namesEnum.infoAldeanos].setVisible(false);
     this.sprites[this.namesEnum.construir].setVisible(false);
+    this.sprites[this.namesEnum.flecha1].setVisible(false);
+    this.sprites[this.namesEnum.flecha2].setVisible(false);
+    this.sprites[this.namesEnum.flecha2].setFlip(false,true);
 
     this.sprites[this.namesEnum.hudGeneral].setDepth(config.hudDepth);
 
@@ -35,6 +40,9 @@ export default class Interfaz{
     this.clickEnAjustes(this.sprites[this.namesEnum.ajustes]);
     this.clickEnDesplegable(this.sprites[this.namesEnum.desplegable]);
     this.clickEnInfo(this.sprites[this.namesEnum.info]);
+    this.clickEnConstruccion(this.sprites[this.namesEnum.botonConstruir]);
+    this.clickFlechaAbajo(this.sprites[this.namesEnum.flecha1]);
+    this.clickFlechaArriba(this.sprites[this.namesEnum.flecha2]);
   }
 
   //ARRAYS CON LA INFORMACION
@@ -43,7 +51,8 @@ export default class Interfaz{
     this.nombres[this.namesEnum.ajustes] = 'ajustes'; this.nombres[this.namesEnum.desplegable] = 'desplegable'; 
     this.nombres[this.namesEnum.hudGeneral] = 'hud'; this.nombres[this.namesEnum.infoAldeanos] = 'infoAldeanos';
     this.nombres[this.namesEnum.construir] = 'construir'; this.nombres[this.namesEnum.menuDesp] = 'menuDesplegable';
-    this.nombres[this.namesEnum.info] = 'info';
+    this.nombres[this.namesEnum.info] = 'info'; this.nombres[this.namesEnum.flecha1] = 'flecha';
+    this.nombres[this.namesEnum.botonConstruir] = 'info'; this.nombres[this.namesEnum.flecha2] = 'flecha';
   }
 
   //TEXTOS DE LA INTERFAZ (PENSAR ALGO PARA LOS NUMEROS SUELTOS)
@@ -76,10 +85,13 @@ export default class Interfaz{
     this.posiciones[nE.hudGeneral] = new Vector2D(this.game.xSize/4.5,config.alturaHUD);
 
     //Desplegable
-    this.posiciones[nE.infoAldeanos] = new Vector2D(this.game.xSize/1.4-11,config.alturaHUD-100);
-    this.posiciones[nE.construir] = new Vector2D(this.game.xSize/2, config.alturaHUD-200);
+    this.posiciones[nE.infoAldeanos] = new Vector2D(this.game.xSize/1.4-11,config.alturaHUD-98);
+    this.posiciones[nE.construir] = new Vector2D(this.game.xSize/2+270, config.alturaHUD-300);
     this.posiciones[nE.info] = new Vector2D(this.posiciones[nE.desplegable].x+25, this.posiciones[nE.desplegable].y-105);
+    this.posiciones[nE.botonConstruir] = new Vector2D(this.posiciones[nE.desplegable].x+25, this.posiciones[nE.desplegable].y-225);
     this.posiciones[nE.menuDesp] = new Vector2D(this.posiciones[nE.desplegable].x-23, this.posiciones[nE.desplegable].y-247);
+    this.posiciones[nE.flecha1] = new Vector2D(this.posiciones[nE.desplegable].x+200, this.posiciones[nE.desplegable].y-90);
+    this.posiciones[nE.flecha2] = new Vector2D(this.posiciones[nE.desplegable].x+200, this.posiciones[nE.desplegable].y-340);
 
   }
 
@@ -93,20 +105,45 @@ export default class Interfaz{
   clickEnDesplegable(desplegableSprite){
     desplegableSprite.on('pointerdown', pointer => {
       if(!this.sprites[this.namesEnum.menuDesp].visible){
-        console.log('Hola');
         this.sprites[this.namesEnum.menuDesp].setVisible(true);
         this.sprites[this.namesEnum.info].setVisible(true);
+        this.sprites[this.namesEnum.botonConstruir].setVisible(true);
       }
       else{
         this.sprites[this.namesEnum.menuDesp].setVisible(false);
         this.sprites[this.namesEnum.info].setVisible(false);
         this.sprites[this.namesEnum.infoAldeanos].setVisible(false);
+        this.sprites[this.namesEnum.botonConstruir].setVisible(false);
+        this.sprites[this.namesEnum.construir].setVisible(false);
+        this.sprites[this.namesEnum.flecha1].setVisible(false);
+        this.sprites[this.namesEnum.flecha2].setVisible(false);
       }
     })
   }
   clickEnInfo(infoAl){
     infoAl.on('pointerdown', pointer => {
       this.sprites[this.namesEnum.infoAldeanos].setVisible(!this.sprites[this.namesEnum.infoAldeanos].visible);
+      this.sprites[this.namesEnum.construir].setVisible(false);
+      this.sprites[this.namesEnum.flecha1].setVisible(false);
+      this.sprites[this.namesEnum.flecha2].setVisible(false);
+    })
+  }
+  clickEnConstruccion(construccion){
+    construccion.on('pointerdown', pointer =>{
+      this.sprites[this.namesEnum.construir].setVisible(!this.sprites[this.namesEnum.construir].visible);
+      this.sprites[this.namesEnum.flecha1].setVisible(!this.sprites[this.namesEnum.flecha1].visible);
+      this.sprites[this.namesEnum.flecha2].setVisible(!this.sprites[this.namesEnum.flecha2].visible);
+      this.sprites[this.namesEnum.infoAldeanos].setVisible(false);
+    })
+  }
+  clickFlechaArriba(flecha2){
+    flecha2.on('pointerdown', pointer =>{
+      console.log("ARRIBA");
+    })
+  }
+  clickFlechaAbajo(flecha1){
+    flecha1.on('pointerdown', pointer =>{
+      console.log("ABAJO");
     })
   }
 
