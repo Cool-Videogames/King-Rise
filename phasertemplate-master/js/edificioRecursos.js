@@ -28,11 +28,6 @@ export default class EdificioRecursos extends Edificio{
         super.preUpdate(t,dt);
     }
 
-    setPosition(pos){
-        this.x = pos.x;
-        this.y = pos.y;
-    }
-
     generar(){
         if(this.especialidad === 'oro'){
            this.game.recursos.oro += this.cantidad + this.rendimientoAldeanos;

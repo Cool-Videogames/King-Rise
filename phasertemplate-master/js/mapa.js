@@ -53,16 +53,25 @@ export default class Mapa {
     //POSTERIORMENTE HAY QUE CAMBIARLO Y DAR UNA FUNCIÓN COMO PARÁMETRO (EJ: PARA CONSTRUIR AL PULSAR Y QUE NO MUEVA AL JUGADOR)
     onClick(nextCell) {
         nextCell.sprite.on('pointerup', () => {
-            if (!nextCell.ocupada && !this.game.jug.isBuilding) {
-                let camino = this.pathFinding(this.game.jug.casilla, nextCell);
-                if (camino != null) {
+            if(!nextCell.ocupada){
+            
+                if (!this.game.jug.isBuilding) {
+                    let camino = this.pathFinding(this.game.jug.casilla, nextCell);
+                    if (camino != null) {
                     this.game.jug.movimientoPathFinding(camino);
-                }
-            }
-            else {
+                    }
+                }else if(this.game.jug.isBuilding){
+                    let camino = this.pathFinding(this.game.jug.casilla, nextCell);
+                    if (camino != null) {
+                        this.game.jug.movimientoPathFinding(camino);
+                        }
+                        //cambiar la casilla que entra en el pathfinding 
+                } //al construir??
                 
             }
+        
         })
+    
     }
 
     changeColor(cell){ 
