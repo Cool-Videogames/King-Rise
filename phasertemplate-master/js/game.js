@@ -11,17 +11,16 @@ export default class Game extends Phaser.Scene {
   constructor() {
     super({ key: 'game' });
 
+    //LISTAS DE ALDEANOS
     this.aldeanosBasicos = [];
     this.mineros = [];
     this.ganaderos = [];
     this.canteros = [];
     this.exploradores = [];
 
-    this.recursos = {
-      oro: 0, comida: 0, materiales: 0, felicidad: 0
-    }
+    this.recursos = { oro: 0, comida: 0, materiales: 0, felicidad: 0 }
     this.proxAtaque = 20;
-    this.numEdificios =0;
+    this.numEdificios = 0;
 
     this.xSize = 1280;
     this.ySize = 720;
@@ -29,8 +28,7 @@ export default class Game extends Phaser.Scene {
 
   create() {
     this.mapa = new Mapa(this,config.columnas,config.filas, config.sizeCasilla);
-    let iniJugador = new Vector2D(config.columnas/2,config.filas/2);
-    this.jug = new Jugador(this,iniJugador);
+    this.jug = new Jugador(this, new Vector2D(config.columnas/2,config.filas/2));
     this.interfaz = new Interfaz(this);
     this.camera = new Camera(this,this.cameras.main);
 
@@ -47,15 +45,6 @@ export default class Game extends Phaser.Scene {
     new Aldeano(this,nextCell,0,0);
   }
 
-  getXSize(){
-    return this.xSize;
-  }
-  getYSize(){
-    return this.ySize;
-  }
-
-  //ESTA FUNCION SE PUEDE USAR EN CUALQUIER PARTE, NO SE SI SU LUGAR ES EL GAME
-  //(PLANTEAR UN JS CON FUNCIONES EXTERNAS)
   creaSprite(x,y,key,scene, depth){
     let sprite = new Phaser.GameObjects.Sprite(scene, x, y, key);
     sprite.setOrigin(0,0);
@@ -64,7 +53,6 @@ export default class Game extends Phaser.Scene {
     scene.add.existing(sprite);
     return sprite;
   }
-  
 
   update(t, dt) {
     this.camera.comportamientoCamara();
@@ -72,9 +60,5 @@ export default class Game extends Phaser.Scene {
 
   pauseGame(){
     this.scene.pause();
-  }
-
-  end() {
-    //Metodo para pausar el juego
   }
 }
