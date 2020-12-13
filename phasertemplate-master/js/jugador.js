@@ -32,17 +32,21 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
 
         
         this.keys = scene.input.keyboard.addKeys({build:Phaser.Input.Keyboard.KeyCodes.C});
+        this.keyStopBuild = scene.input.keyboard.addKey('J'); //tecla para dejar de construir
         this.casillaPuntero;
     }
 
     preUpdate(t, dt) {
         if(Phaser.Input.Keyboard.JustDown(this.keys.build)){
-            console.log('hola');
+            //console.log('hola');
             this.isBuilding = true;
             this.edificio = this.construir('recursos','oro',this.casillaPuntero,2);
         } 
+        
         if(this.isBuilding){
-            this.edificio.setPosition(this.posicionCentrada(this.casillaPuntero));
+            if(this.keyStopBuild.isDown){//salir del modo construir
+                this.isBuilding = false;
+            }else{ this.edificio.setPosition(this.posicionCentrada(this.casillaPuntero));}
         }     
         this.compruebaPosicion();
         super.preUpdate(t, dt);
@@ -50,7 +54,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
 
     compruebaPosicion() {
         if (this.isMoving) {
-            if (this.x > this.posDestino.x - 1 && this.x < this.posDestino.x + 1 && this.y > this.posDestino.y - 1 && this.y < this.posDestino.y + 1) {
+            if (this.x > this.posDestino.x - 1 && this.x < this.posDestino.x + 1 
+                && this.y > this.posDestino.y - 1 && this.y < this.posDestino.y + 1) {
                 this.body.reset(this.posDestino.x, this.posDestino.y);
                 this.isMoving = false;
 
