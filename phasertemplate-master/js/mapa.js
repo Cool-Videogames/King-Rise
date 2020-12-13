@@ -54,19 +54,19 @@ export default class Mapa {
     onClick(nextCell) {
         nextCell.sprite.on('pointerup', () => {
             if(!nextCell.ocupada){
-                let camino = this.pathFinding(this.game.jug.casilla, nextCell);
             
                 if (!this.game.jug.isBuilding) {
-                    
+                    let camino = this.pathFinding(this.game.jug.casilla, nextCell);
                     if (camino != null) {
                     this.game.jug.movimientoPathFinding(camino);
                     }
                 }else if(this.game.jug.isBuilding){
+                    let camino = this.pathFinding(this.game.jug.casilla, nextCell);
                     if (camino != null) {
                         this.game.jug.movimientoPathFinding(camino);
                         }
-
-                } //al contruir??
+                        //cambiar la casilla que entra en el pathfinding 
+                } //al construir??
                 
             }
         

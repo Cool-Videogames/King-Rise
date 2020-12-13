@@ -17,9 +17,7 @@ export default class Cell{
         this.sprite.setInteractive();
         this.sprite.setDepth(config.mapDepth);
         scene.add.existing(this.sprite);
-
-
-    }
+  }
 
     printCell(c,j){
         console.log('x:' + c + ' y:' + j+ '   Esta ocupada: ' + this.ocupada);
