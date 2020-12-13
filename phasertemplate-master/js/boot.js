@@ -16,6 +16,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('construir', "./phasertemplate-master/images/Interfaz/Construir.png");
     this.load.image('menuDesplegable', "./phasertemplate-master/images/Interfaz/MenuDesplegable.png");
     this.load.image('info', "./phasertemplate-master/images/Interfaz/Info.png")
+    this.load.image('botonConstruir', "./phasertemplate-master/images/Interfaz/BotonConstruir.png")
     this.load.image('flecha', "./phasertemplate-master/images/Interfaz/Flecha.png")
 
     //Ajustes
