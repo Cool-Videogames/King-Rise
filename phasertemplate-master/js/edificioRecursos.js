@@ -15,7 +15,6 @@ export default class EdificioRecursos extends Edificio{
 
     //ESTO SE CAMBIARA DE TIEMPO A ACCIONES CUANDO ESTÉ IMPLEMENTADO
     this.timer = 5000;
-    console.log(' hola');
     }
 
     preUpdate(t,dt){

@@ -3,6 +3,10 @@ export let columnas =32;
 export let sizeCasilla = 64;
 export let playerSpeed=100;
 
+export let numObstaculos = 16;
+export let zonaColumnas = 8;
+export let zonaFilas = 4;
+
 export let cantidadRecursosPorDefecto = 5;
 export let rendimientoGeneral = 5;
 

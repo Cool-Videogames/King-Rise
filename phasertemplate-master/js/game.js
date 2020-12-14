@@ -6,6 +6,7 @@ import Mapa from "./mapa.js";
 import Vector2D from "./vector2D.js";
 import Camera from "./camera.js";
 import Aldeano from "./aldeano.js";
+import Obstaculo from "./obstaculo.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -24,30 +25,53 @@ export default class Game extends Phaser.Scene {
 
     this.xSize = 1280;
     this.ySize = 720;
+
   }
 
   create() {
-    this.mapa = new Mapa(this,config.columnas,config.filas, config.sizeCasilla);
-    this.jug = new Jugador(this, new Vector2D(config.columnas/2,config.filas/2));
+    this.mapa = new Mapa(this, config.columnas, config.filas, config.sizeCasilla);
+    this.jug = new Jugador(this, new Vector2D(config.columnas / 2, config.filas / 2));
     this.interfaz = new Interfaz(this);
-    this.camera = new Camera(this,this.cameras.main);
+    this.camera = new Camera(this, this.cameras.main);
 
     //this.input.mouse.disableContextMenu();
-    this.chozaMaestra = new ChozaMaestra(this,0,0,new Vector2D(100,100), 'chozaMaestra');
-    
+    this.chozaMaestra = new ChozaMaestra(this, 0, 0, new Vector2D(100, 100), 'chozaMaestra');
+
     let nextCell;
-    do{
-        let columna = Math.floor(Math.random() * config.columnas);
-        let fila = Math.floor(Math.random() * config.filas)
-        nextCell = this.mapa.mapa[columna][fila];
+    do {
+      let columna = Math.floor(Math.random() * config.columnas);
+      let fila = Math.floor(Math.random() * config.filas)
+      nextCell = this.mapa.mapa[columna][fila];
     }
-    while(nextCell.ocupada);
-    new Aldeano(this,nextCell,0,0);
+    while (nextCell.ocupada);
+    new Aldeano(this, nextCell, 0, 0);
+
+    this.creaObstaculos();
   }
 
-  creaSprite(x,y,key,scene, depth){
+  creaObstaculos(){
+    let visitadas = [];
+    let zona;
+    let check = function(z1,z2) {return z1.zonaColumna == z2.zonaColumna && z1.zonaFila == z2.zonaFila};
+    for (let i = 0; i < config.numObstaculos; ++i) {
+      if (visitadas.length >= config.zonaColumnas * config.zonaFilas) { visitadas = []; console.log('sech') }
+      do {
+        zona = {
+          zonaColumna: (config.columnas / config.zonaColumnas) * Math.floor(Math.random() * config.zonaColumnas),
+          zonaFila: (config.filas / config.zonaFilas) * Math.floor(Math.random() * config.zonaFilas)
+        }
+      }
+      while (visitadas.some(item => check(item,zona)));
+      let fila = zona.zonaFila + Math.floor(Math.random() * (config.filas / 4));
+      let columna = zona.zonaColumna + Math.floor(Math.random() * (config.columnas / 8));
+      new Obstaculo(this, 0, this.mapa.mapa[columna][fila]);
+      visitadas.push(zona);
+    }
+  }
+
+  creaSprite(x, y, key, scene, depth) {
     let sprite = new Phaser.GameObjects.Sprite(scene, x, y, key);
-    sprite.setOrigin(0,0);
+    sprite.setOrigin(0, 0);
     sprite.setInteractive();
     sprite.setDepth(depth);
     scene.add.existing(sprite);
@@ -58,7 +82,7 @@ export default class Game extends Phaser.Scene {
     this.camera.comportamientoCamara();
   }
 
-  pauseGame(){
+  pauseGame() {
     this.scene.pause();
   }
 }
