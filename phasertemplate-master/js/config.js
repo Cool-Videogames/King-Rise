@@ -27,9 +27,10 @@ export let hudScale = 1.5;
     export let fontSize = 30;
 
     //Sprites
-    export let hudSprites = 10;
-    export let numTexts = 5;
-    export let alturaHUD = 572;
+    export let edificiosConstruibles = 10;
+    export let hudSprites = 15;
+    export let numTexts = 10;
+    export let alturaHUD = 570;
 
 //Profundidad de los sprites
 export let mapDepth = 0;

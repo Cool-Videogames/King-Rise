@@ -6,11 +6,13 @@ export default class Interfaz{
     
     //Arrays y enums con la informacion
     this.names = { ajustes: 0, desplegable: 1, hudGeneral: 2, infoAldeanos: 3, construir: 4, menuDesp: 5, info: 6, flechaAb: 7,
-    botonConstruir: 8, flechaAr: 9};
-    this.tnames = { oro: 0, comida : 1, materiales: 2, felicidad: 3, proxAtaque: 4};
-    this.inDesp = 3;
+    botonConstruir: 8, flechaAr: 9, aldeanoB: 10, minero: 11, ganadero: 12, cantero:13, explorador: 14};
+    this.tnames = { oro: 0, comida : 1, materiales: 2, felicidad: 3, proxAtaque: 4, aldeanoBText: 5, mineroText:6, ganaderoText:7,
+    canteroText: 8, exploradorText: 9};
+    this.inDesp = 3; this.inIA = 10; this.inAT = 5;
 
     this.sprites = new Array(config.hudSprites);
+    this.edificiosConstruibles = new Array(config.edificiosConstruibles);
 
     this.texts = new Array(config.nuTexts);
     this.nombres = new Array(config.hudSprites);
@@ -24,7 +26,7 @@ export default class Interfaz{
     for(let i = 0; i< config.hudSprites; i++){
       this.sprites[i] = this.game.creaSprite(0, 0, this.nombres[i], this.game, config.hudDepth+1);
       this.sprites[i].setScale(this.sprites[i].scaleX/config.hudScale ,this.sprites[i].scaleY/config.hudScale);
-      this.sprites[i].setOrigin(0.5,0.5);   this.sprites[i].setScrollFactor(0);
+      this.sprites[i].setOrigin(0.5,0.5); this.sprites[i].setScrollFactor(0);
     }
     this.setPos(); this.creaTexts(); this.setTextsPos();
     this.visibilidad();
@@ -37,17 +39,27 @@ export default class Interfaz{
     this.nombres[this.names.construir] = 'construir'; this.nombres[this.names.menuDesp] = 'menuDesplegable';
     this.nombres[this.names.info] = 'info'; this.nombres[this.names.flechaAb] = 'flecha';
     this.nombres[this.names.botonConstruir] = 'botonConstruir'; this.nombres[this.names.flechaAr] = 'flecha';
+    this.nombres[this.names.aldeanoB] = 'aldeano'; this.nombres[this.names.minero] = 'aldeano';
+    this.nombres[this.names.ganadero] = 'aldeano'; this.nombres[this.names.cantero] = 'aldeano';
+    this.nombres[this.names.explorador] = 'aldeano';
   }
 
-  //TEXTOS DE LA INTERFAZ (PENSAR ALGO PARA LOS NUMEROS SUELTOS)
   creaTexts(){
     let a = this.tnames; 
 
+    //Recursos y proximo ataque
     this.texts[a.oro] = this.game.add.text(0, 0, this.game.recursos.oro, this.game);
     this.texts[a.comida] = this.game.add.text(0, 0, this.game.recursos.comida, this.game);
     this.texts[a.materiales] = this.game.add.text(0, 0, this.game.recursos.materiales, this.game);
     this.texts[a.felicidad] = this.game.add.text(0, 0, this.game.recursos.felicidad, this.game);
     this.texts[a.proxAtaque] = this.game.add.text(0, 0, this.game.proxAtaque, this.game);
+
+    //Info de aldeanos
+    this.texts[a.aldeanoBText] = this.game.add.text(0,0, this.game.aldeanosBasicos.length, this.game);
+    this.texts[a.mineroText] = this.game.add.text(0,0, this.game.mineros.length, this.game);
+    this.texts[a.ganaderoText] = this.game.add.text(0,0, this.game.ganaderos.length, this.game);
+    this.texts[a.canteroText] = this.game.add.text(0,0, this.game.canteros.length, this.game);
+    this.texts[a.exploradorText] = this.game.add.text(0,0, this.game.exploradores.length, this.game);
 
     for(let i of this.texts){
       i.setOrigin(0.5,0.5);
@@ -64,20 +76,31 @@ export default class Interfaz{
     let a = this.tnames; let nE = this.names; let pI = this.sprites[nE.hudGeneral];
     let xOS = 20; let yOS = 10;
 
+    //Recursos y proximo ataque
     this.sp(this.texts[a.proxAtaque], this.game.xSize/2+xOS, pI.y+yOS);
     this.sp(this.texts[a.oro],pI.x-pI.width/4+xOS, pI.y+pI.height/5);
     this.sp(this.texts[a.comida], pI.x-pI.width/6+xOS, pI.y+pI.height/5);
     this.sp(this.texts[a.materiales], pI.x-pI.width/4+xOS, pI.y-yOS);
     this.sp(this.texts[a.felicidad], pI.x-pI.width/6+xOS, pI.y-yOS);
+
+    //Informacion aldeanos
+    let b = this.sprites; let xoffSet = 35;
+    this.sp(this.texts[a.aldeanoBText], b[nE.aldeanoB].x+xoffSet, b[nE.aldeanoB].y);
+    this.sp(this.texts[a.mineroText], b[nE.minero].x+xoffSet, b[nE.minero].y);
+    this.sp(this.texts[a.ganaderoText], b[nE.ganadero].x+xoffSet, b[nE.ganadero].y);
+    this.sp(this.texts[a.canteroText], b[nE.cantero].x+xoffSet, b[nE.cantero].y);
+    this.sp(this.texts[a.exploradorText], b[nE.explorador].x+xoffSet, b[nE.explorador].y);
   }
 
   setPos(){  //TODAS LAS POSICIONES DEPENDEN DE LA INTERFAZ
-    let nE = this.names; let xoffSet = 172; let yOffSet = 20;
+    let nE = this.names; let xoffSet = 172; let yOffSet = 20; let i = 1.77;
 
     this.sp(this.sprites[nE.hudGeneral],this.game.xSize/2,this.game.ySize-this.sprites[nE.hudGeneral].height/3);
     let pI = this.sprites[nE.hudGeneral];
     this.sp(this.sprites[nE.desplegable], pI.x+xoffSet, pI.y+yOffSet);
-    this.sp(this.sprites[nE.ajustes],pI.x+xoffSet*1.77, pI.y+yOffSet);
+    this.sp(this.sprites[nE.ajustes],pI.x+xoffSet*i, pI.y+yOffSet);
+
+    //Desplegable
     this.sp(this.sprites[nE.menuDesp],pI.x+xoffSet,pI.y-this.sprites[nE.menuDesp].height/2+yOffSet);
     this.sp(this.sprites[nE.info],pI.x+xoffSet, pI.y-pI.height/2);
     this.sp(this.sprites[nE.botonConstruir],pI.x+xoffSet, pI.y-pI.height);
@@ -85,6 +108,17 @@ export default class Interfaz{
     this.sp(this.sprites[nE.construir], pI.x+xoffSet*1.93,pI.y-pI.height);
     this.sp(this.sprites[nE.flechaAb], pI.x+xoffSet*1.93,pI.y-pI.height/2+yOffSet);
     this.sp(this.sprites[nE.flechaAr], pI.x+xoffSet*1.93,pI.y-pI.height-this.sprites[nE.flechaAr].height-yOffSet);
+
+    //Info de Aldeanos
+    this.sp(this.sprites[nE.aldeanoB], pI.x+xoffSet*i-25, pI.y-pI.height/2);
+    this.sp(this.sprites[nE.minero], pI.x+xoffSet*i + 40, pI.y-pI.height/2);
+    this.sp(this.sprites[nE.ganadero], pI.x+xoffSet*i + 115, pI.y-pI.height/2);
+    this.sp(this.sprites[nE.cantero], pI.x+xoffSet*i + 185, pI.y-pI.height/2);
+    this.sp(this.sprites[nE.explorador], pI.x+xoffSet*i +255, pI.y-pI.height/2);
+    for(let i = this.inIA;i<config.hudSprites;++i) this.sprites[i].setScale(1.3,1.3);
+
+    //Edificios construibles
+    
   }
   sp(sprite,x,y){
     sprite.setPosition(x,y);
@@ -107,6 +141,7 @@ export default class Interfaz{
       else{
         for(let a = this.inDesp; a<config.hudSprites; a++){
           this.sprites[a].setVisible(false);
+          for(let i = this.inAT;i<config.numTexts;++i) this.texts[i].setVisible(false);
         }
       }
     })
@@ -114,6 +149,8 @@ export default class Interfaz{
   clickEnInfo(infoAl){
     infoAl.on('pointerdown', pointer => {
       this.sprites[this.names.infoAldeanos].setVisible(!this.sprites[this.names.infoAldeanos].visible);
+      for(let i = this.inIA;i<config.hudSprites;++i) this.sprites[i].setVisible(!this.sprites[i].visible);
+      for(let i = this.inAT;i<config.numTexts;++i) this.texts[i].setVisible(!this.texts[i].visible);
       this.sprites[this.names.construir].setVisible(false);
       this.sprites[this.names.flechaAb].setVisible(false);
       this.sprites[this.names.flechaAr].setVisible(false);
@@ -125,6 +162,8 @@ export default class Interfaz{
       this.sprites[this.names.flechaAb].setVisible(!this.sprites[this.names.flechaAb].visible);
       this.sprites[this.names.flechaAr].setVisible(!this.sprites[this.names.flechaAr].visible);
       this.sprites[this.names.infoAldeanos].setVisible(false);
+      for(let i = this.inIA;i<config.hudSprites;++i) this.sprites[i].setVisible(false);
+      for(let i = this.inAT;i<config.numTexts;++i) this.texts[i].setVisible(false);
     })
   }
   clickFlechaArriba(flechaAr){
@@ -139,20 +178,20 @@ export default class Interfaz{
   }
 
   //ACTUALIZAR TEXTOS
-  actualizaOro(oro){
-    this.texts[this.tnames.oro].text = oro;
-  }
-  actualizaComida(comida){
-    this.texts[this.tnames.comida].text = comida;
-  }
-  actualizaMateriales(materiales){
-    this.texts[this.tnames.materiales].text = materiales;
-  }
-  actualizaFelicidad(felicidad){
-    this.texts[this.tnames.felicidad].text = felicidad;
-  }
-  actualizaProxAtaque(pA){
-    this.texts[this.tnames.proxAtaque].text = pA;
+  actualizaInterfaz(){
+    //Recursos y proximo ataque
+    this.texts[this.tnames.oro].text = this.game.recursos.oro;
+    this.texts[this.tnames.comida].text = this.game.recursos.comida;
+    this.texts[this.tnames.materiales].text = this.game.recursos.materiales;
+    this.texts[this.tnames.felicidad].text = this.game.recursos.felicidad;
+    this.texts[this.tnames.proxAtaque].text = this.game.proxAtaque;
+
+    //Informacion de aldeanos
+    this.texts[this.tnames.aldeanoBText].text = this.game.aldeanosBasicos.length;
+    this.texts[this.tnames.mineroText].text = this.game.mineros.length;
+    this.texts[this.tnames.canteroText].text = this.game.canteros.length;
+    this.texts[this.tnames.ganaderoText].text = this.game.ganaderos.length;
+    this.texts[this.tnames.exploradorText].text = this.game.exploradores.length;
   }
 
   inputs(){
@@ -169,6 +208,7 @@ export default class Interfaz{
     for(let a = this.inDesp; a<config.hudSprites; a++){
       this.sprites[a].setVisible(false);
     }
+    for(let i = this.inAT;i<config.numTexts;++i) this.texts[i].setVisible(false);
     //Flip de un sprite y depth del sprite de la interfaz para colocarse por debajo de los demas
     this.sprites[this.names.flechaAr].setFlip(false,true);
     this.sprites[this.names.hudGeneral].setDepth(config.hudDepth);

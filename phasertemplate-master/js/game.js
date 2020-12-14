@@ -44,7 +44,7 @@ export default class Game extends Phaser.Scene {
       nextCell = this.mapa.mapa[columna][fila];
     }
     while (nextCell.ocupada);
-    new Aldeano(this, nextCell, 0, 0);
+    this.aldeanosBasicos.push(new Aldeano(this, nextCell, 0, 0));
 
     this.creaObstaculos();
   }
