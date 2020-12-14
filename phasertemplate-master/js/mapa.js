@@ -61,7 +61,8 @@ export default class Mapa {
                         this.game.jug.movimientoPathFinding(camino);
                     }
                 } else if (this.game.jug.isBuilding) {
-                    //OCUPAR CASILLAS
+                    this.game.jug.celdasEdificio(this.game.jug.edificio).forEach(elem => elem.sprite.clearTint());
+                    this.game.jug.casillaPuntero.sprite.tint = 0x41EE7B;
                     this.game.jug.isBuilding = false;
                 }
 
@@ -72,15 +73,24 @@ export default class Mapa {
     }
 
     changeColor(cell) {
+
         cell.sprite.on('pointerover', () => {
             this.game.jug.casillaPuntero = cell;
-            if (!cell.ocupada)
-                cell.sprite.tint = 0x41EE7B;
-            else cell.sprite.tint = 0xEE4141;
+            if (this.game.jug.isBuilding) {
+                this.game.jug.celdasEdificio(this.game.jug.edificio).forEach(elem => elem.sprite.tint = 0x41EE7B);
+            }
+            else {
+                if (!cell.ocupada)
+                    cell.sprite.tint = 0x41EE7B;
+                else cell.sprite.tint = 0xEE4141;
+            }
         })
 
         cell.sprite.on('pointerout', () => {
-            cell.sprite.clearTint();
+            if (this.game.jug.isBuilding) {
+                this.game.jug.celdasEdificio(this.game.jug.edificio).forEach(elem => elem.sprite.clearTint());
+            }
+            else cell.sprite.clearTint();
         })
     }
 

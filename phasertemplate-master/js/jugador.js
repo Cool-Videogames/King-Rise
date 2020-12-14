@@ -38,15 +38,17 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
 
     preUpdate(t, dt) {
         if (Phaser.Input.Keyboard.JustDown(this.stopBuild) && this.isBuilding) {
+            this.celdasEdificio(this.edificio).forEach(elem => elem.sprite.clearTint());
+            this.casillaPuntero.sprite.tint = 0x41EE7B;
             this.isBuilding = false;
             this.edificio.destroy();
             this.edificio = null;
         }
 
         if (Phaser.Input.Keyboard.JustDown(this.build) && !this.isMoving && !this.isBuilding) {
-            //console.log('hola');
             this.isBuilding = true;
-            this.edificio = this.construir('recursos', 'oro', this.casillaPuntero,1,1);
+            this.edificio = this.construir('recursos', 'oro', this.casillaPuntero, 3, 2);
+            this.celdasEdificio(this.edificio).forEach(elem => elem.sprite.tint =0x41EE7B);
         }
 
         if (this.isBuilding) {
@@ -54,6 +56,16 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         }
         this.compruebaPosicion();
         super.preUpdate(t, dt);
+    }
+
+    celdasEdificio(edificio) {
+        let espacioEdificio = [];
+        for (let i = 0; i < edificio.ancho; ++i) {
+            for (let j = 0; j < edificio.alto; ++j) {
+                espacioEdificio.push(this.game.mapa.mapa[this.casillaPuntero.x / config.sizeCasilla + i][this.casillaPuntero.y / config.sizeCasilla + j]);
+            }
+        }
+        return espacioEdificio;
     }
 
     posicionaEdificio(edificio) {
@@ -97,11 +109,11 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.game.physics.moveTo(this, this.posDestino.x, this.posDestino.y, this.speed);
     }
 
-    construir(tipo, especialidad, pos,ancho,alto) {
+    construir(tipo, especialidad, pos, ancho, alto) {
         let edificio;
         if (tipo === 'recursos') {
             //scene,vida,coste,posicion,aldeanosMax,especialidad, key
-            edificio = new EdificioRecursos(this.game, 0, 0, pos,ancho,alto, 5, especialidad, 'edificio');
+            edificio = new EdificioRecursos(this.game, 0, 0, pos, ancho, alto, 5, especialidad, 'edificio');
         } else if (tipo === 'social') {
             //scene,vida,coste,posicion,felicidad, key
             edificio = new EdificioSocial(this.game, 0, 0, pos, 10, 'edificio');
