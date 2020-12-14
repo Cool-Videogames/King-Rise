@@ -53,39 +53,37 @@ export default class Mapa {
     //POSTERIORMENTE HAY QUE CAMBIARLO Y DAR UNA FUNCIÓN COMO PARÁMETRO (EJ: PARA CONSTRUIR AL PULSAR Y QUE NO MUEVA AL JUGADOR)
     onClick(nextCell) {
         nextCell.sprite.on('pointerup', () => {
-            if(!nextCell.ocupada){
-            
+            if (!nextCell.ocupada) {
+
                 if (!this.game.jug.isBuilding) {
                     let camino = this.pathFinding(this.game.jug.casilla, nextCell);
                     if (camino != null) {
-                    this.game.jug.movimientoPathFinding(camino);
-                    }
-                }else if(this.game.jug.isBuilding){
-                    let camino = this.pathFinding(this.game.jug.casilla, nextCell);
-                    if (camino != null) {
                         this.game.jug.movimientoPathFinding(camino);
-                        }
-                        //cambiar la casilla que entra en el pathfinding 
-                } //al construir??
-                
+                    }
+                } else if (this.game.jug.isBuilding) {
+                    //OCUPAR CASILLAS
+                    this.game.jug.isBuilding = false;
+                }
+
             }
-        
+
         })
-    
+
     }
 
-    changeColor(cell){ 
+    changeColor(cell) {
         cell.sprite.on('pointerover', () => {
             this.game.jug.casillaPuntero = cell;
-            if(!cell.ocupada )
+            if (!cell.ocupada)
                 cell.sprite.tint = 0x41EE7B;
             else cell.sprite.tint = 0xEE4141;
         })
+
         cell.sprite.on('pointerout', () => {
             cell.sprite.clearTint();
         })
     }
-    
+
     //ALGORITMO BUSQUEDA DE CAMINOS
     pathFinding(celdaInicial, celdaFinal) {
         let inicial = this.nodos[celdaInicial.indiceX][celdaInicial.indiceY];
@@ -166,7 +164,7 @@ export default class Mapa {
                 if (nodoAct.siguiente !== null) {
                     camino.anterior = new Camino(nodoAct, camino);
                     camino = camino.anterior;
-                }else{
+                } else {
                     camino.cell = nodoAct.cell;
                 }
             }

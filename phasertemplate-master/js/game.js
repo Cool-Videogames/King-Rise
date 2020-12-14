@@ -49,22 +49,23 @@ export default class Game extends Phaser.Scene {
     this.creaObstaculos();
   }
 
-  creaObstaculos(){
+  creaObstaculos() {
     let visitadas = [];
     let zona;
-    let check = function(z1,z2) {return z1.zonaColumna == z2.zonaColumna && z1.zonaFila == z2.zonaFila};
+    let check = function (z1, z2) { return z1.zonaColumna == z2.zonaColumna && z1.zonaFila == z2.zonaFila };
     for (let i = 0; i < config.numObstaculos; ++i) {
       if (visitadas.length >= config.zonaColumnas * config.zonaFilas) { visitadas = []; console.log('sech') }
       do {
         zona = {
-          zonaColumna: (config.columnas / config.zonaColumnas) * Math.floor(Math.random() * config.zonaColumnas),
-          zonaFila: (config.filas / config.zonaFilas) * Math.floor(Math.random() * config.zonaFilas)
+          zonaColumna: (config.columnas / config.zonaColumnas) * (Math.floor(Math.random() * (config.zonaColumnas - 1)) + 1),
+          zonaFila: (config.filas / config.zonaFilas) * (Math.floor(Math.random() * (config.zonaFilas - 1)) + 1)
         }
       }
-      while (visitadas.some(item => check(item,zona)));
+      while (visitadas.some(item => check(item, zona)));
       let fila = zona.zonaFila + Math.floor(Math.random() * (config.filas / 4));
       let columna = zona.zonaColumna + Math.floor(Math.random() * (config.columnas / 8));
       new Obstaculo(this, 0, this.mapa.mapa[columna][fila]);
+      this.mapa.mapa[columna][fila].ocupada = true;
       visitadas.push(zona);
     }
   }
