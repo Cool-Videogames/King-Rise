@@ -48,7 +48,10 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         if (Phaser.Input.Keyboard.JustDown(this.build) && !this.isMoving && !this.isBuilding) {
             this.isBuilding = true;
             this.edificio = this.construir('recursos', 'oro', this.casillaPuntero, 3, 2);
-            this.celdasEdificio(this.edificio).forEach(elem => elem.sprite.tint =0x41EE7B);
+            let celdas = this.celdasEdificio(this.edificio);
+            if (this.celdasEdificioOcupadas(celdas))
+                celdas.forEach(elem => elem.sprite.tint = 0xEE4141)
+            else celdas.forEach(elem => elem.sprite.tint = 0x41EE7B);
         }
 
         if (this.isBuilding) {
@@ -62,10 +65,24 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         let espacioEdificio = [];
         for (let i = 0; i < edificio.ancho; ++i) {
             for (let j = 0; j < edificio.alto; ++j) {
-                espacioEdificio.push(this.game.mapa.mapa[this.casillaPuntero.x / config.sizeCasilla + i][this.casillaPuntero.y / config.sizeCasilla + j]);
+                let col = this.casillaPuntero.x / config.sizeCasilla + i;
+                let fil = this.casillaPuntero.y / config.sizeCasilla + j;
+                if (fil >= 0 && fil < config.filas && col >= 0 && col < config.columnas)
+                    espacioEdificio.push(this.game.mapa.mapa[col][fil]);
             }
         }
         return espacioEdificio;
+    }
+
+    celdasEdificioOcupadas(celdasEdificio) {
+        let i = 0;
+        let ocupada = false;
+        if(celdasEdificio.length !== this.game.jug.edificio.ancho * this.game.jug.edificio.alto) return true;
+        while (i < celdasEdificio.length && !ocupada) {
+            if (celdasEdificio[i].ocupada === true ) ocupada = true;
+            else ++i;
+        }
+        return ocupada;
     }
 
     posicionaEdificio(edificio) {

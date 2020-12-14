@@ -61,9 +61,12 @@ export default class Mapa {
                         this.game.jug.movimientoPathFinding(camino);
                     }
                 } else if (this.game.jug.isBuilding) {
-                    this.game.jug.celdasEdificio(this.game.jug.edificio).forEach(elem => elem.sprite.clearTint());
-                    this.game.jug.casillaPuntero.sprite.tint = 0x41EE7B;
-                    this.game.jug.isBuilding = false;
+                    let celdas = this.game.jug.celdasEdificio(this.game.jug.edificio);
+                    if (!this.game.jug.celdasEdificioOcupadas(celdas)) {
+                        celdas.forEach(elem => { elem.sprite.clearTint(); elem.ocupada = true; });
+                        this.game.jug.casillaPuntero.sprite.tint = 0xEE4141;
+                        this.game.jug.isBuilding = false;
+                    }
                 }
 
             }
@@ -77,7 +80,10 @@ export default class Mapa {
         cell.sprite.on('pointerover', () => {
             this.game.jug.casillaPuntero = cell;
             if (this.game.jug.isBuilding) {
-                this.game.jug.celdasEdificio(this.game.jug.edificio).forEach(elem => elem.sprite.tint = 0x41EE7B);
+                let celdas = this.game.jug.celdasEdificio(this.game.jug.edificio);
+                if (this.game.jug.celdasEdificioOcupadas(celdas))
+                    celdas.forEach(elem => elem.sprite.tint = 0xEE4141);
+                else celdas.forEach(elem => elem.sprite.tint = 0x41EE7B);
             }
             else {
                 if (!cell.ocupada)

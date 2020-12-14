@@ -79,12 +79,9 @@ export default class Aldeano extends Persona {
         this.nodoDestino = camino;
         this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
         this.casilla.setOcupada(false);
-        this.casilla.sprite.clearTint();
 
         this.casilla = this.nodoDestino.cell;
         this.casilla.setOcupada(true);
-
-        if (this.casilla.sprite.isTinted) this.casilla.sprite.tint = 0xEE4141;
 
         this.isMoving = true;
         this.game.physics.moveTo(this, this.posDestino.x, this.posDestino.y, this.speed);
