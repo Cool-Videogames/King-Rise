@@ -19,13 +19,12 @@ export default class Game extends Phaser.Scene {
     this.canteros = [];
     this.exploradores = [];
 
-    this.recursos = { oro: 0, comida: 0, materiales: 0, felicidad: 0 }
+    this.recursos = { oro: 80, comida: 0, materiales: 0, felicidad: 0 }
     this.proxAtaque = 20;
     this.numEdificios = 0;
 
     this.xSize = 1280;
     this.ySize = 720;
-
   }
 
   create() {
@@ -35,7 +34,7 @@ export default class Game extends Phaser.Scene {
     this.camera = new Camera(this, this.cameras.main);
 
     //this.input.mouse.disableContextMenu();
-    this.chozaMaestra = new ChozaMaestra(this, 0, 0, new Vector2D(100, 100), 'chozaMaestra');
+    this.chozaMaestra = new ChozaMaestra(this, 0, 0, new Vector2D(700, 300), 0, 0, 'chozaMaestra');
 
     let nextCell;
     do {
@@ -68,15 +67,6 @@ export default class Game extends Phaser.Scene {
       this.mapa.mapa[columna][fila].ocupada = true;
       visitadas.push(zona);
     }
-  }
-
-  creaSprite(x, y, key, scene, depth) {
-    let sprite = new Phaser.GameObjects.Sprite(scene, x, y, key);
-    sprite.setOrigin(0, 0);
-    sprite.setInteractive();
-    sprite.setDepth(depth);
-    scene.add.existing(sprite);
-    return sprite;
   }
 
   update(t, dt) {

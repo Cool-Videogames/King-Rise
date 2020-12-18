@@ -23,12 +23,12 @@ export default class Boot extends Phaser.Scene {
     this.load.image('volveraljuego',"./phasertemplate-master/images/gestion.png");
 
     //Choza Maestra
-    this.load.image('chozaMaestra',"./phasertemplate-master/images/Estructuras/ChozaMaestra.png");
-    this.load.image('marco', "./phasertemplate-master/images/gestion.png")
-    this.load.image('opMineros',"./phasertemplate-master/images/gestion.png");
-    this.load.image('opGanaderos',"./phasertemplate-master/images/gestion.png");
-    this.load.image('opCanteros',"./phasertemplate-master/images/gestion.png");
-    this.load.image('opExploradores',"./phasertemplate-master/images/gestion.png");
+    this.load.image('chozaMaestra',"./phasertemplate-master/images/Estructuras/ChozaMaestra/ChozaMaestra.png");
+    this.load.image('marco', "./phasertemplate-master/images/Estructuras/ChozaMaestra/marco.png");
+    this.load.image('done', "./phasertemplate-master/images/Estructuras/ChozaMaestra/Done.png");
+    this.load.image('mas',"./phasertemplate-master/images/Estructuras/ChozaMaestra/Mas.png");
+    this.load.image('menos',"./phasertemplate-master/images/Estructuras/ChozaMaestra/Menos.png");
+    this.load.image('moneda',"./phasertemplate-master/images/Estructuras/ChozaMaestra/MonedaOro.png");
     
     //IGNORAR, SOLO DE PRUEBA
     this.load.image('edificio',"./phasertemplate-master/images/favicon.png");

@@ -1,4 +1,5 @@
 import * as config from "./config.js";
+import * as functions from "./functions.js";
 
 export default class Interfaz{
   constructor(scene){
@@ -23,8 +24,8 @@ export default class Interfaz{
   creaInterfaz(){
     this.intiNames();
 
-    for(let i = 0; i< config.hudSprites; i++){
-      this.sprites[i] = this.game.creaSprite(0, 0, this.nombres[i], this.game, config.hudDepth+1);
+    for(let i = 0; i < config.hudSprites; i++){
+      this.sprites[i] = functions.creaSprite(0, 0, this.nombres[i], this.game, config.hudDepth+1);
       this.sprites[i].setScale(this.sprites[i].scaleX/config.hudScale ,this.sprites[i].scaleY/config.hudScale);
       this.sprites[i].setOrigin(0.5,0.5); this.sprites[i].setScrollFactor(0);
     }
@@ -48,28 +49,20 @@ export default class Interfaz{
     let a = this.tnames; 
 
     //Recursos y proximo ataque
-    this.texts[a.oro] = this.game.add.text(0, 0, this.game.recursos.oro, this.game);
-    this.texts[a.comida] = this.game.add.text(0, 0, this.game.recursos.comida, this.game);
-    this.texts[a.materiales] = this.game.add.text(0, 0, this.game.recursos.materiales, this.game);
-    this.texts[a.felicidad] = this.game.add.text(0, 0, this.game.recursos.felicidad, this.game);
-    this.texts[a.proxAtaque] = this.game.add.text(0, 0, this.game.proxAtaque, this.game);
+    this.texts[a.oro] = functions.creaTexto(0, 0, this.game.recursos.oro, this.game);
+    this.texts[a.comida] = functions.creaTexto(0, 0, this.game.recursos.comida, this.game);
+    this.texts[a.materiales] = functions.creaTexto(0, 0, this.game.recursos.materiales, this.game);
+    this.texts[a.felicidad] = functions.creaTexto(0, 0, this.game.recursos.felicidad, this.game);
+    this.texts[a.proxAtaque] = functions.creaTexto(0, 0, this.game.proxAtaque, this.game);
 
     //Info de aldeanos
-    this.texts[a.aldeanoBText] = this.game.add.text(0,0, this.game.aldeanosBasicos.length, this.game);
-    this.texts[a.mineroText] = this.game.add.text(0,0, this.game.mineros.length, this.game);
-    this.texts[a.ganaderoText] = this.game.add.text(0,0, this.game.ganaderos.length, this.game);
-    this.texts[a.canteroText] = this.game.add.text(0,0, this.game.canteros.length, this.game);
-    this.texts[a.exploradorText] = this.game.add.text(0,0, this.game.exploradores.length, this.game);
+    this.texts[a.aldeanoBText] = functions.creaTexto(0,0, this.game.aldeanosBasicos.length, this.game);
+    this.texts[a.mineroText] = functions.creaTexto(0,0, this.game.mineros.length, this.game);
+    this.texts[a.ganaderoText] = functions.creaTexto(0,0, this.game.ganaderos.length, this.game);
+    this.texts[a.canteroText] = functions.creaTexto(0,0, this.game.canteros.length, this.game);
+    this.texts[a.exploradorText] = functions.creaTexto(0,0, this.game.exploradores.length, this.game);
 
-    for(let i of this.texts){
-      i.setOrigin(0.5,0.5);
-      i.setFont(config.font);
-      i.setStroke(config.stroke, 5);
-      i.setFill(config.fillColor);
-      i.setFontSize(config.fontSize);
-      i.setScrollFactor(0);
-      i.setDepth(config.hudDepth+1);
-    }
+    for(let i of this.texts) {i.setScrollFactor(0); i.setDepth(config.hudDepth+1)};
     this.texts[a.proxAtaque].setFontSize(config.fontSize+40);
   }
   setTextsPos(){
