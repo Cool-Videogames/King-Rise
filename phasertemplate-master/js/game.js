@@ -7,6 +7,7 @@ import Vector2D from "./vector2D.js";
 import Camera from "./camera.js";
 import Aldeano from "./aldeano.js";
 import Obstaculo from "./obstaculo.js";
+import Acciones from "./acciones.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -28,10 +29,12 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
+    this.acciones = new Acciones(this,config.numeroAccionesIniciales);
     this.mapa = new Mapa(this, config.columnas, config.filas, config.sizeCasilla);
     this.jug = new Jugador(this, new Vector2D(config.columnas / 2, config.filas / 2));
     this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
+    
 
     //this.input.mouse.disableContextMenu();
     this.chozaMaestra = new ChozaMaestra(this, 0, 0, new Vector2D(700, 300), 0, 0, 'chozaMaestra');

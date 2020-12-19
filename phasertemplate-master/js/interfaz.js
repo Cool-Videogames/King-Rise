@@ -53,7 +53,7 @@ export default class Interfaz{
     this.texts[a.comida] = functions.creaTexto(0, 0, this.game.recursos.comida, this.game);
     this.texts[a.materiales] = functions.creaTexto(0, 0, this.game.recursos.materiales, this.game);
     this.texts[a.felicidad] = functions.creaTexto(0, 0, this.game.recursos.felicidad, this.game);
-    this.texts[a.proxAtaque] = functions.creaTexto(0, 0, this.game.proxAtaque, this.game);
+    this.texts[a.proxAtaque] = functions.creaTexto(0, 0, this.game.acciones.numeroAccionesRestantes, this.game);
 
     //Info de aldeanos
     this.texts[a.aldeanoBText] = functions.creaTexto(0,0, this.game.aldeanosBasicos.length, this.game);
@@ -177,7 +177,7 @@ export default class Interfaz{
     this.texts[this.tnames.comida].text = this.game.recursos.comida;
     this.texts[this.tnames.materiales].text = this.game.recursos.materiales;
     this.texts[this.tnames.felicidad].text = this.game.recursos.felicidad;
-    this.texts[this.tnames.proxAtaque].text = this.game.proxAtaque;
+    this.texts[this.tnames.proxAtaque].text = this.game.acciones.numeroAccionesRestantes;
 
     //Informacion de aldeanos
     this.texts[this.tnames.aldeanoBText].text = this.game.aldeanosBasicos.length;
@@ -206,5 +206,4 @@ export default class Interfaz{
     this.sprites[this.names.flechaAr].setFlip(false,true);
     this.sprites[this.names.hudGeneral].setDepth(config.hudDepth);
   }
-
 }

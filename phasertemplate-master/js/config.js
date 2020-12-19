@@ -36,3 +36,11 @@ export let hudScale = 1.5;
 export let mapDepth = 0;
 export let playerDepth = 1;
 export let hudDepth = 2;
+
+
+//Acciones
+export let numeroAccionesIniciales = 20;
+export let costeAcciones = 1;
+export let relacionAcciones = 0.8; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
+export let numeroAccionesMinimo = 5;
+

@@ -112,6 +112,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
     }
 
     movimientoPathFinding(camino) {
+        this.game.acciones.movimiento();
         this.nodoDestino = camino;
         this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
         this.casilla.setOcupada(false);
