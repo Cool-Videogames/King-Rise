@@ -44,3 +44,10 @@ export let costeAcciones = 1;
 export let relacionAcciones = 0.8; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
 export let numeroAccionesMinimo = 5;
 
+
+//Exploracion
+export let costeBaseExploracion = 20;
+export let costePorExplorador = 5;
+export let probabilidadExitoBase = 0.20;
+export let probabilidadExitoPorExploradorAdicional = 0.05;
+export let maximoRecursosPorRonda = 10;
