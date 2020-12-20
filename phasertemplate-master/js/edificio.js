@@ -1,7 +1,7 @@
 import * as config from "./config.js"
 
 export default class Edificio extends Phaser.GameObjects.Sprite{
-    constructor(scene,vida,coste,posicion,ancho,alto, key){
+    constructor(scene, vida, coste, posicion, ancho, alto, key){
         let offSetX = config.sizeCasilla /2;
         let offSetY =config.sizeCasilla/1.25;
        
@@ -10,6 +10,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite{
         this.coste= coste;
         this.posicion = posicion;
         this.destruible = true;
+        this.key = key;
 
         this.ancho = ancho;
         this.alto = alto;

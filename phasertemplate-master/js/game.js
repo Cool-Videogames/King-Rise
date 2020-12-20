@@ -1,4 +1,3 @@
-import ChozaMaestra from "./chozaMaestra.js";
 import * as config from "./config.js";
 import Interfaz from "./interfaz.js";
 import Jugador from "./jugador.js";
@@ -34,10 +33,6 @@ export default class Game extends Phaser.Scene {
     this.jug = new Jugador(this, new Vector2D(config.columnas / 2, config.filas / 2));
     this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
-
-
-    //this.input.mouse.disableContextMenu();
-    //this.chozaMaestra = new ChozaMaestra(this, 0, 0, new Vector2D(700, 300), 0, 0, 'chozaMaestra');
 
     let nextCell;
     do {

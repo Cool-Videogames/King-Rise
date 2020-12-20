@@ -18,10 +18,11 @@ export default class ChozaMaestra extends Edificio{
 
         this.nMin = 0; this.nGan = 0; this.nCant = 0; this.nExp = 0; this.costeTotal = 0;
         this.costeMin = 20; this.costeGan = 20; this.costeCant = 20; this.costeExp = 0;
-
+    }
+    setMenu(){
         this.initMarco(); this.createMasMenos();
-        this.clickEnChoza(this); this.setMasMenosPos();
-        this.clickEnDone(this.done); this.creaText();
+        this.creaText(); this.setMasMenosPos();
+        this.clickEnChoza(this); this.clickEnDone(this.done);
     }
     initMarco(){
         //MARCO DEL MENU
@@ -43,7 +44,6 @@ export default class ChozaMaestra extends Edificio{
         this.names[1] = 'menos';
     }
     createMasMenos(){
-        //MAS Y MENOS
         let j = 0;
         for(let i = 0;i<this.ops.length;i++){
             this.ops[i] = functions.creaSprite(0, 0, this.names[j], this.game, config.hudDepth);
@@ -106,7 +106,9 @@ export default class ChozaMaestra extends Edificio{
     }
     clickEnChoza(chozaSprite){
         chozaSprite.on('pointerup', pointer => {
-            if(!this.game.jug.isBuilding) this.muestraOpciones();
+            if(!this.game.jug.isBuilding) {
+                this.muestraOpciones();
+            }
         })
       }
     clickEnDone(done){
@@ -165,7 +167,7 @@ export default class ChozaMaestra extends Edificio{
     }
     menosEx(menosexploradores){
         menosexploradores.on('pointerdown', pointer => {
-            if(this.nExp>0)this.nExp--;
+            if(this.nExp > 0) this.nExp--;
             this.texts[this.opEnum.exploradores].text = this.nExp;
             this.actualizaCosteTotal();
         })

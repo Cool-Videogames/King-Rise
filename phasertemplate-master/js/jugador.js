@@ -23,15 +23,14 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.game = scene;
 
         this.isBuilding = false;
-        this.edificio = null;
+        //Edificio que se este construyendo en el momento
+        this.edificio = null; 
 
         this.isMoving = false;
         this.posDestino = iniCasilla;
         this.nodoDestino = null;
         this.dir = 'none';
 
-
-        this.build = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
         this.stopBuild = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); //tecla para dejar de construir
         this.casillaPuntero;
     }
@@ -53,11 +52,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
     }
     inputConstruir(spritename){
         this.isBuilding = true;
-        this.edificio = this.construir(spritename, 'oro', this.casillaPuntero, 3, 2);
-        let celdas = this.celdasEdificio(this.edificio);
-        /*if (this.celdasEdificioOcupadas(celdas))
-            celdas.forEach(elem => elem.sprite.tint = 0xEE4141)
-        else celdas.forEach(elem => elem.sprite.tint = 0x41EE7B);*/
+        this.edificio = this.construir(spritename, '', this.casillaPuntero, 3, 2);
+        this.celdasEdificio(this.edificio);
     }
 
     celdasEdificio(edificio) {

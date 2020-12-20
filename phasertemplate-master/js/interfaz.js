@@ -134,12 +134,7 @@ export default class Interfaz{
         this.sprites[this.names.info].setVisible(true);
         this.sprites[this.names.botonConstruir].setVisible(true);
       }
-      else{
-        for(let a = this.inDesp; a<config.hudSprites; a++){
-          this.sprites[a].setVisible(false);
-          for(let i = this.inAT;i<config.numTexts;++i) this.texts[i].setVisible(false);
-        }
-      }
+      else this.ocultaDesplegable();
     })
   }
   ocultaDesplegable(){

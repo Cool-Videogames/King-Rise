@@ -1,4 +1,3 @@
-import * as config from "./config.js"
 import Cell from "./cell.js";
 
 export default class Mapa {
@@ -63,6 +62,9 @@ export default class Mapa {
                 } else if (this.game.jug.isBuilding) {
                     let celdas = this.game.jug.celdasEdificio(this.game.jug.edificio);
                     this.game.jug.edificio.setInteractive();
+                    this.game.jug.edificio.posicion = this.game.jug.casillaPuntero;
+                    if(this.game.jug.edificio.key === 'chozaMaestra')this.game.jug.edificio.setMenu();
+
                     if (!this.game.jug.celdasEdificioOcupadas(celdas)) {
                         celdas.forEach(elem => { elem.sprite.clearTint(); elem.ocupada = true; });
                         this.game.jug.casillaPuntero.sprite.tint = 0xEE4141;
