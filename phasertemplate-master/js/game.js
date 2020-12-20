@@ -29,12 +29,12 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
-    this.acciones = new Acciones(this,config.numeroAccionesIniciales);
+    this.acciones = new Acciones(this, config.numeroAccionesIniciales);
     this.mapa = new Mapa(this, config.columnas, config.filas, config.sizeCasilla);
     this.jug = new Jugador(this, new Vector2D(config.columnas / 2, config.filas / 2));
     this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
-    
+
 
     //this.input.mouse.disableContextMenu();
     this.chozaMaestra = new ChozaMaestra(this, 0, 0, new Vector2D(700, 300), 0, 0, 'chozaMaestra');
@@ -56,7 +56,7 @@ export default class Game extends Phaser.Scene {
     let zona;
     let check = function (z1, z2) { return z1.zonaColumna == z2.zonaColumna && z1.zonaFila == z2.zonaFila };
     for (let i = 0; i < config.numObstaculos; ++i) {
-      if (visitadas.length >= config.zonaColumnas * config.zonaFilas) { visitadas = [];}
+      if (visitadas.length >= config.zonaColumnas * config.zonaFilas) { visitadas = []; }
       do {
         zona = {
           zonaColumna: (config.columnas / config.zonaColumnas) * (Math.floor(Math.random() * (config.zonaColumnas - 1)) + 1),
@@ -64,8 +64,16 @@ export default class Game extends Phaser.Scene {
         }
       }
       while (visitadas.some(item => check(item, zona)));
-      let fila = zona.zonaFila + Math.floor(Math.random() * (config.filas / 4));
-      let columna = zona.zonaColumna + Math.floor(Math.random() * (config.columnas / 8));
+
+      let fila;
+      let columna;
+
+      do {
+        fila = zona.zonaFila + Math.floor(Math.random() * (config.filas / 4));
+        columna = zona.zonaColumna + Math.floor(Math.random() * (config.columnas / 8))
+      }
+      while (this.mapa.mapa[columna][fila].ocupada);
+
       new Obstaculo(this, 0, this.mapa.mapa[columna][fila]);
       this.mapa.mapa[columna][fila].ocupada = true;
       visitadas.push(zona);
