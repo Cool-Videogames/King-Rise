@@ -28,7 +28,7 @@ export let hudScale = 1.5;
 
     //Sprites
     export let edificiosConstruibles = 10;
-    export let hudSprites = 15;
+    export let hudSprites = 17;
     export let numTexts = 10;
     export let alturaHUD = 570;
 

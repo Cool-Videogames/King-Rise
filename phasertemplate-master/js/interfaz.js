@@ -7,7 +7,7 @@ export default class Interfaz{
     
     //Arrays y enums con la informacion
     this.names = { ajustes: 0, desplegable: 1, hudGeneral: 2, infoAldeanos: 3, construir: 4, menuDesp: 5, info: 6, flechaAb: 7,
-    botonConstruir: 8, flechaAr: 9, aldeanoB: 10, minero: 11, ganadero: 12, cantero:13, explorador: 14};
+    botonConstruir: 8, flechaAr: 9, aldeanoB: 10, minero: 11, ganadero: 12, cantero:13, explorador: 14, chozaMaestra: 15, mina: 16};
     this.tnames = { oro: 0, comida : 1, materiales: 2, felicidad: 3, proxAtaque: 4, aldeanoBText: 5, mineroText:6, ganaderoText:7,
     canteroText: 8, exploradorText: 9};
     this.inDesp = 3; this.inIA = 10; this.inAT = 5;
@@ -42,7 +42,8 @@ export default class Interfaz{
     this.nombres[this.names.botonConstruir] = 'botonConstruir'; this.nombres[this.names.flechaAr] = 'flecha';
     this.nombres[this.names.aldeanoB] = 'aldeano'; this.nombres[this.names.minero] = 'aldeano';
     this.nombres[this.names.ganadero] = 'aldeano'; this.nombres[this.names.cantero] = 'aldeano';
-    this.nombres[this.names.explorador] = 'aldeano';
+    this.nombres[this.names.explorador] = 'aldeano'; this.nombres[this.names.chozaMaestra] = 'chozaMaestra';
+    this.nombres[this.names.mina] = 'mina';
   }
 
   creaTexts(){
@@ -111,6 +112,9 @@ export default class Interfaz{
     for(let i = this.inIA;i<config.hudSprites;++i) this.sprites[i].setScale(1.3,1.3);
 
     //Edificios construibles
+    /*this.sp(this.sprites[nE.mina], 900,100);
+    this.sprites[nE.mina].setScale(this.sprites[nE.mina].scaleX*config.hudScale ,this.sprites[nE.mina].scaleY*config.hudScale);
+    this.sprites[nE.mina].setVisible(true);*/
     
   }
   sp(sprite,x,y){
