@@ -56,7 +56,7 @@ export default class Game extends Phaser.Scene {
     let zona;
     let check = function (z1, z2) { return z1.zonaColumna == z2.zonaColumna && z1.zonaFila == z2.zonaFila };
     for (let i = 0; i < config.numObstaculos; ++i) {
-      if (visitadas.length >= config.zonaColumnas * config.zonaFilas) { visitadas = []; console.log('sech') }
+      if (visitadas.length >= config.zonaColumnas * config.zonaFilas) { visitadas = [];}
       do {
         zona = {
           zonaColumna: (config.columnas / config.zonaColumnas) * (Math.floor(Math.random() * (config.zonaColumnas - 1)) + 1),

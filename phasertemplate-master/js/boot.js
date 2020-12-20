@@ -31,6 +31,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('moneda',"./phasertemplate-master/images/Estructuras/ChozaMaestra/MonedaOro.png");
     
     //IGNORAR, SOLO DE PRUEBA
+    this.load.image('obstaculo',"./phasertemplate-master/images/Obstaculo.png");
     this.load.image('edificio',"./phasertemplate-master/images/favicon.png");
   }
 
