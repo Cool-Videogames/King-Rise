@@ -45,20 +45,19 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             this.edificio = null;
         }
 
-        if (Phaser.Input.Keyboard.JustDown(this.build) && !this.isMoving && !this.isBuilding) {
-            this.isBuilding = true;
-            this.edificio = this.construir('recursos', 'oro', this.casillaPuntero, 3, 2);
-            let celdas = this.celdasEdificio(this.edificio);
-            if (this.celdasEdificioOcupadas(celdas))
-                celdas.forEach(elem => elem.sprite.tint = 0xEE4141)
-            else celdas.forEach(elem => elem.sprite.tint = 0x41EE7B);
-        }
-
         if (this.isBuilding) {
             this.posicionaEdificio(this.edificio);
         }
         this.compruebaPosicion();
         super.preUpdate(t, dt);
+    }
+    inputConstruir(spritename){
+        this.isBuilding = true;
+        this.edificio = this.construir(spritename, 'oro', this.casillaPuntero, 3, 2);
+        let celdas = this.celdasEdificio(this.edificio);
+        /*if (this.celdasEdificioOcupadas(celdas))
+            celdas.forEach(elem => elem.sprite.tint = 0xEE4141)
+        else celdas.forEach(elem => elem.sprite.tint = 0x41EE7B);*/
     }
 
     celdasEdificio(edificio) {
@@ -87,8 +86,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
 
     posicionaEdificio(edificio) {
         let pos = { x: 0, y: 0 };
-        pos.x = this.casillaPuntero.x + (config.sizeCasilla * edificio.ancho) / 2;
-        pos.y = this.casillaPuntero.y + (config.sizeCasilla * edificio.alto) / 1.25;
+        pos.x = this.casillaPuntero.x;
+        pos.y = this.casillaPuntero.y;
         edificio.setPosition(pos);
     }
 
@@ -132,13 +131,16 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         if (tipo === 'recursos') {
             //scene,vida,coste,posicion,aldeanosMax,especialidad, key
             edificio = new EdificioRecursos(this.game, 0, 0, pos, ancho, alto, 5, especialidad, 'edificio');
-        } else if (tipo === 'social') {
+        }
+         else if (tipo === 'social') {
             //scene,vida,coste,posicion,felicidad, key
             edificio = new EdificioSocial(this.game, 0, 0, pos, 10, 'edificio');
-        } else if (tipo === 'chozaMaestra') {
+        } 
+        else if (tipo === 'chozaMaestra') {
             //scene,vida,coste,posicion, key
-            edificio = new ChozaMaestra(this.game, 0, 0, pos, 'tipo');
-        } else if (tipo === 'defensivo') {
+            edificio = new ChozaMaestra(this.game, 0, 0, pos,3,3, tipo);
+        } 
+        else if (tipo === 'defensivo') {
             //scene,vida,coste,posicion,aldeanosMax,rango
             edificio = new EdificioDefensivo(this.game, 0, 0, pos, 2, 0);
         }

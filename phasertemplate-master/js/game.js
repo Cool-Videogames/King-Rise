@@ -37,7 +37,7 @@ export default class Game extends Phaser.Scene {
 
 
     //this.input.mouse.disableContextMenu();
-    this.chozaMaestra = new ChozaMaestra(this, 0, 0, new Vector2D(700, 300), 0, 0, 'chozaMaestra');
+    //this.chozaMaestra = new ChozaMaestra(this, 0, 0, new Vector2D(700, 300), 0, 0, 'chozaMaestra');
 
     let nextCell;
     do {

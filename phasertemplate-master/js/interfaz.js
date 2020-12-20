@@ -10,7 +10,7 @@ export default class Interfaz{
     botonConstruir: 8, flechaAr: 9, aldeanoB: 10, minero: 11, ganadero: 12, cantero:13, explorador: 14, chozaMaestra: 15, mina: 16};
     this.tnames = { oro: 0, comida : 1, materiales: 2, felicidad: 3, proxAtaque: 4, aldeanoBText: 5, mineroText:6, ganaderoText:7,
     canteroText: 8, exploradorText: 9};
-    this.inDesp = 3; this.inIA = 10; this.inAT = 5;
+    this.inDesp = 3; this.inIA = 10; this.inAT = 5; this.inEd = 15;
 
     this.sprites = new Array(config.hudSprites);
     this.edificiosConstruibles = new Array(config.edificiosConstruibles);
@@ -109,13 +109,12 @@ export default class Interfaz{
     this.sp(this.sprites[nE.ganadero], pI.x+xoffSet*i + 115, pI.y-pI.height/2);
     this.sp(this.sprites[nE.cantero], pI.x+xoffSet*i + 185, pI.y-pI.height/2);
     this.sp(this.sprites[nE.explorador], pI.x+xoffSet*i +255, pI.y-pI.height/2);
-    for(let i = this.inIA;i<config.hudSprites;++i) this.sprites[i].setScale(1.3,1.3);
+    for(let i = this.inIA;i<this.inEd;++i) this.sprites[i].setScale(1.3,1.3);
 
     //Edificios construibles
-    /*this.sp(this.sprites[nE.mina], 900,100);
-    this.sprites[nE.mina].setScale(this.sprites[nE.mina].scaleX*config.hudScale ,this.sprites[nE.mina].scaleY*config.hudScale);
-    this.sprites[nE.mina].setVisible(true);*/
-    
+    this.sp(this.sprites[nE.chozaMaestra], pI.x+xoffSet*1.93,480);
+    this.sp(this.sprites[nE.mina], pI.x+xoffSet*1.93, 380);
+    this.sprites[nE.mina].setScale(0.4,0.4);
   }
   sp(sprite,x,y){
     sprite.setPosition(x,y);
@@ -143,11 +142,19 @@ export default class Interfaz{
       }
     })
   }
+  ocultaDesplegable(){
+    for(let a = this.inDesp; a<config.hudSprites; a++){
+      this.sprites[a].setVisible(false);
+      for(let i = this.inAT;i<config.numTexts;++i) this.texts[i].setVisible(false);
+    }
+  }
   clickEnInfo(infoAl){
     infoAl.on('pointerdown', pointer => {
       this.sprites[this.names.infoAldeanos].setVisible(!this.sprites[this.names.infoAldeanos].visible);
-      for(let i = this.inIA;i<config.hudSprites;++i) this.sprites[i].setVisible(!this.sprites[i].visible);
+      for(let i = this.inIA;i<this.inEd;++i) this.sprites[i].setVisible(!this.sprites[i].visible);
       for(let i = this.inAT;i<config.numTexts;++i) this.texts[i].setVisible(!this.texts[i].visible);
+
+      for(let i = this.inEd;i<config.hudSprites;++i) this.sprites[i].setVisible(false);
       this.sprites[this.names.construir].setVisible(false);
       this.sprites[this.names.flechaAb].setVisible(false);
       this.sprites[this.names.flechaAr].setVisible(false);
@@ -155,11 +162,14 @@ export default class Interfaz{
   }
   clickEnConstruccion(construccion){
     construccion.on('pointerdown', pointer =>{
+      this.sprites[this.names.chozaMaestra].setVisible(!this.sprites[this.names.chozaMaestra].visible);
+      this.sprites[this.names.mina].setVisible(!this.sprites[this.names.mina].visible);
+
       this.sprites[this.names.construir].setVisible(!this.sprites[this.names.construir].visible);
       this.sprites[this.names.flechaAb].setVisible(!this.sprites[this.names.flechaAb].visible);
       this.sprites[this.names.flechaAr].setVisible(!this.sprites[this.names.flechaAr].visible);
       this.sprites[this.names.infoAldeanos].setVisible(false);
-      for(let i = this.inIA;i<config.hudSprites;++i) this.sprites[i].setVisible(false);
+      for(let i = this.inIA;i<this.inEd;++i) this.sprites[i].setVisible(false);
       for(let i = this.inAT;i<config.numTexts;++i) this.texts[i].setVisible(false);
     })
   }
@@ -171,6 +181,12 @@ export default class Interfaz{
   clickFlechaAbajo(flechaAb){
     flechaAb.on('pointerdown', pointer =>{
       console.log("ABAJO");
+    })
+  }
+  clickEnChoza(chozaMaestra){
+    chozaMaestra.on('pointerup', pointer=>{
+      this.game.jug.inputConstruir('chozaMaestra');
+      this.ocultaDesplegable();
     })
   }
 
@@ -199,6 +215,7 @@ export default class Interfaz{
     this.clickEnConstruccion(this.sprites[this.names.botonConstruir]);
     this.clickFlechaAbajo(this.sprites[this.names.flechaAb]);
     this.clickFlechaArriba(this.sprites[this.names.flechaAr]);
+    this.clickEnChoza(this.sprites[this.names.chozaMaestra]);
   }
   visibilidad(){
     //Sprites del desplgable comienzan no visibles

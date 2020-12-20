@@ -9,7 +9,6 @@ export default class ChozaMaestra extends Edificio{
 
         this.game = scene;
         this.setOrigin(0,0);
-        this.setInteractive();
 
         this.opEnum = { mineros: 0, canteros: 1, ganaderos: 2, exploradores: 3};
         this.names = new Array(2);  this.initNames();
@@ -107,7 +106,7 @@ export default class ChozaMaestra extends Edificio{
     }
     clickEnChoza(chozaSprite){
         chozaSprite.on('pointerup', pointer => {
-            this.muestraOpciones();
+            if(!this.game.jug.isBuilding) this.muestraOpciones();
         })
       }
     clickEnDone(done){

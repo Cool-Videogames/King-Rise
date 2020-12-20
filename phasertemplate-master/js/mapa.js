@@ -62,6 +62,7 @@ export default class Mapa {
                     }
                 } else if (this.game.jug.isBuilding) {
                     let celdas = this.game.jug.celdasEdificio(this.game.jug.edificio);
+                    this.game.jug.edificio.setInteractive();
                     if (!this.game.jug.celdasEdificioOcupadas(celdas)) {
                         celdas.forEach(elem => { elem.sprite.clearTint(); elem.ocupada = true; });
                         this.game.jug.casillaPuntero.sprite.tint = 0xEE4141;
