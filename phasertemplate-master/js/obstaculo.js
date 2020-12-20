@@ -5,7 +5,7 @@ export default class Obstaculo extends Phaser.GameObjects.Sprite{
         let offSetX = config.sizeCasilla /2;
         let offSetY =config.sizeCasilla/1.25;
        
-        super(scene, posicion.x + offSetX ,posicion.y + offSetY, 'edificio');
+        super(scene, posicion.x + offSetX ,posicion.y + offSetY, 'obstaculo');
         this.coste= coste;
         this.posicion = posicion;
         this.destruible = true;
