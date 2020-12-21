@@ -1,9 +1,9 @@
 import * as config from "./config.js";
 
 
-export default class Acciones{
+export default class Acciones {
 
-    constructor(scene, accionesSiguienteAtaque){
+    constructor(scene, accionesSiguienteAtaque) {
         this.game = scene;
 
         this.index = 0;
@@ -12,16 +12,18 @@ export default class Acciones{
         this.accionesSiguienteAtaque = accionesSiguienteAtaque;
         this.numeroAccionesRestantes = accionesSiguienteAtaque;
 
-        this.costeMovimiento = config.costeAcciones;
+
+        this.casillasParaTurno = config.numeroCasillasRecorridasParaConsumirUnaAccion;
+        this.casillasAvanzadas = 0;
     }
 
-    
-    ataque(){
+
+    ataque() {
         //Se llamará a este método una vez empiece el ataque
         console.log("Ataque iniciado");
     }
 
-    nuevaOleada(){  //Cuando el ataque finalice y volvamos al modo aldea
+    nuevaOleada() {  //Cuando el ataque finalice y volvamos al modo aldea
         this.index = 0;
         this.numeroAtaque++;
         this.accionesSiguienteAtaque = Math.floor(this.accionesSiguienteAtaque * config.relacionAcciones);
@@ -30,18 +32,23 @@ export default class Acciones{
     }
 
 
-    actualizarIndice(aumento){
+    actualizarIndice(aumento) {
         this.index += aumento;
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque - this.index;
 
         this.game.interfaz.actualizaInterfaz();
 
-        if(this.numeroAccionesRestantes<= 0){
+        if (this.numeroAccionesRestantes <= 0) {
             this.ataque();
+            this.actualizarIndice(0);
         }
     }
 
-    movimiento(){
-        this.actualizarIndice(this.costeMovimiento);
+    movimiento() {
+        this.casillasAvanzadas++;
+        if (this.casillasAvanzadas >= this.casillasParaTurno) {
+            this.actualizarIndice(1);
+            this.casillasAvanzadas = 0
+        }
     }
 }

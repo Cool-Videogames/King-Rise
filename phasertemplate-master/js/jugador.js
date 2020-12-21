@@ -33,6 +33,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
 
         this.stopBuild = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); //tecla para dejar de construir
         this.casillaPuntero;
+
+        
     }
 
     preUpdate(t, dt) {
