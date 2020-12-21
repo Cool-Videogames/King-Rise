@@ -112,8 +112,8 @@ export default class Interfaz{
     for(let i = this.inIA;i<this.inEd;++i) this.sprites[i].setScale(1.3,1.3);
 
     //Edificios construibles
-    this.sp(this.sprites[nE.chozaMaestra], pI.x+xoffSet*1.93,480);
-    this.sp(this.sprites[nE.mina], pI.x+xoffSet*1.93, 380);
+    this.sp(this.sprites[nE.chozaMaestra], pI.x+xoffSet*1.93,pI.y-pI.height/2-60);
+    this.sp(this.sprites[nE.mina], pI.x+xoffSet*1.93, pI.y-pI.height-55);
     this.sprites[nE.mina].setScale(0.4,0.4);
   }
   sp(sprite,x,y){
