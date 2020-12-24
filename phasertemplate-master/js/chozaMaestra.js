@@ -8,7 +8,6 @@ export default class ChozaMaestra extends Edificio{
         super(scene, vida, coste, posicion, alto, ancho, key);
 
         this.game = scene;
-        this.setOrigin(0,0);
 
         this.opEnum = { mineros: 0, canteros: 1, ganaderos: 2, exploradores: 3};
         this.names = new Array(2);  this.initNames();

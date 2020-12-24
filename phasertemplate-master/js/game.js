@@ -34,6 +34,8 @@ export default class Game extends Phaser.Scene {
     this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
 
+    this.creaObstaculos();
+
     let nextCell;
     do {
       let columna = Math.floor(Math.random() * config.columnas);
@@ -41,9 +43,8 @@ export default class Game extends Phaser.Scene {
       nextCell = this.mapa.mapa[columna][fila];
     }
     while (nextCell.ocupada);
+    nextCell.ocupada = true;
     this.aldeanosBasicos.push(new Aldeano(this, nextCell, 0, 0));
-
-    this.creaObstaculos();
   }
 
   creaObstaculos() {
@@ -70,6 +71,8 @@ export default class Game extends Phaser.Scene {
       while (this.mapa.mapa[columna][fila].ocupada);
 
       new Obstaculo(this, 0, this.mapa.mapa[columna][fila]);
+      this.mapa.mapa[columna][fila].tint = 0xE2A41F;
+      this.mapa.mapa[columna][fila].sprite.tint = 0xE2A41F;
       this.mapa.mapa[columna][fila].ocupada = true;
       visitadas.push(zona);
     }

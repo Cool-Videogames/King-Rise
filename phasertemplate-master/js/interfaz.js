@@ -21,6 +21,7 @@ export default class Interfaz{
 
     this.creaInterfaz();
   }
+  
   creaInterfaz(){
     this.intiNames();
 

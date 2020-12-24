@@ -12,7 +12,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.x = pos.x; this.y = pos.y;
 
         this.casilla = iniCasilla;
-        this.casilla.setOcupada(true);
+        this.casilla.ocupada = true;
         this.speed = config.playerSpeed;
 
         this.setOrigin(this.scaleX / 2, this.scaleY);
@@ -52,9 +52,10 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.compruebaPosicion();
         super.preUpdate(t, dt);
     }
+    
     inputConstruir(spritename){
         this.isBuilding = true;
-        this.edificio = this.construir(spritename, '', this.casillaPuntero, 3, 2);
+        this.edificio = this.construir(spritename, '', this.casillaPuntero, 3, 3);
         this.celdasEdificio(this.edificio);
     }
 
@@ -112,13 +113,10 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.game.acciones.movimiento();
         this.nodoDestino = camino;
         this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
-        this.casilla.setOcupada(false);
-        this.casilla.sprite.clearTint();
+        this.casilla.ocupada = false;
 
         this.casilla = this.nodoDestino.cell;
-        this.casilla.setOcupada(true);
-
-        if (this.casilla.sprite.isTinted) this.casilla.sprite.tint = 0xEE4141;
+        this.casilla.ocupada = true;
 
         this.isMoving = true;
         this.game.physics.moveTo(this, this.posDestino.x, this.posDestino.y, this.speed);
@@ -136,7 +134,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         } 
         else if (tipo === 'chozaMaestra') {
             //scene,vida,coste,posicion, key
-            edificio = new ChozaMaestra(this.game, 0, 0, pos,3,3, tipo);
+            edificio = new ChozaMaestra(this.game, 0, 0, pos,ancho,alto, tipo);
         } 
         else if (tipo === 'defensivo') {
             //scene,vida,coste,posicion,aldeanosMax,rango

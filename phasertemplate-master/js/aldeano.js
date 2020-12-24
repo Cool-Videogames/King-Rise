@@ -18,7 +18,7 @@ export default class Aldeano extends Persona {
         }
 
         this.casilla = casilla
-        this.casilla.setOcupada(true);
+        this.casilla.ocupada= true;
 
         this.game = scene;
         this.ocupado = false;
@@ -78,10 +78,10 @@ export default class Aldeano extends Persona {
     movimientoPathFinding(camino) {
         this.nodoDestino = camino;
         this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
-        this.casilla.setOcupada(false);
+        this.casilla.ocupada = false;
 
         this.casilla = this.nodoDestino.cell;
-        this.casilla.setOcupada(true);
+        this.casilla.ocupada = true;
 
         this.isMoving = true;
         this.game.physics.moveTo(this, this.posDestino.x, this.posDestino.y, this.speed);

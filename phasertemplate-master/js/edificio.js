@@ -14,9 +14,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite{
 
         this.ancho = ancho;
         this.alto = alto;
-
-        this.setPosition(posicion);
-
         this.setOrigin(this.scaleX/2,this.scaleY);
         this.setScale(1*config.sizeCasilla/32,1*config.sizeCasilla/32);
         this.setDepth(config.playerDepth);
@@ -24,8 +21,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite{
     }
 
     setPosition(pos){
-        this.x = pos.x;
-        this.y = pos.y;
+        this.x = pos.x + this.ancho/2 * config.sizeCasilla;
+        this.y = pos.y + this.alto*config.sizeCasilla;
     }
 
     construir( ){

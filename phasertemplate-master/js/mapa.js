@@ -35,8 +35,8 @@ export default class Mapa {
         for (let c = 0; c < this.col; c++) {
             for (let j = 0; j < this.fil; j++) {
                 this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j);
-                this.onClick(this.mapa[c][j]);
-                this.changeColor(this.mapa[c][j]);
+                this.mapa[c][j].onClick(this.mapa[c][j]);
+                this.mapa[c][j].changeColor(this.mapa[c][j]);
             }
         }
     }
@@ -49,59 +49,6 @@ export default class Mapa {
         }
     }
 
-    //POSTERIORMENTE HAY QUE CAMBIARLO Y DAR UNA FUNCIÓN COMO PARÁMETRO (EJ: PARA CONSTRUIR AL PULSAR Y QUE NO MUEVA AL JUGADOR)
-    onClick(nextCell) {
-        nextCell.sprite.on('pointerup', () => {
-            if (!nextCell.ocupada) {
-
-                if (!this.game.jug.isBuilding) {
-                    let camino = this.pathFinding(this.game.jug.casilla, nextCell);
-                    if (camino != null) {
-                        this.game.jug.movimientoPathFinding(camino);
-                    }
-                } else if (this.game.jug.isBuilding) {
-                    let celdas = this.game.jug.celdasEdificio(this.game.jug.edificio);
-                    this.game.jug.edificio.setInteractive();
-                    this.game.jug.edificio.posicion = this.game.jug.casillaPuntero;
-                    if(this.game.jug.edificio.key === 'chozaMaestra')this.game.jug.edificio.setMenu();
-
-                    if (!this.game.jug.celdasEdificioOcupadas(celdas)) {
-                        celdas.forEach(elem => { elem.sprite.clearTint(); elem.ocupada = true; });
-                        this.game.jug.casillaPuntero.sprite.tint = 0xEE4141;
-                        this.game.jug.isBuilding = false;
-                    }
-                }
-
-            }
-
-        })
-
-    }
-
-    changeColor(cell) {
-
-        cell.sprite.on('pointerover', () => {
-            this.game.jug.casillaPuntero = cell;
-            if (this.game.jug.isBuilding) {
-                let celdas = this.game.jug.celdasEdificio(this.game.jug.edificio);
-                if (this.game.jug.celdasEdificioOcupadas(celdas))
-                    celdas.forEach(elem => elem.sprite.tint = 0xEE4141);
-                else celdas.forEach(elem => elem.sprite.tint = 0x41EE7B);
-            }
-            else {
-                if (!cell.ocupada)
-                    cell.sprite.tint = 0x41EE7B;
-                else cell.sprite.tint = 0xEE4141;
-            }
-        })
-
-        cell.sprite.on('pointerout', () => {
-            if (this.game.jug.isBuilding) {
-                this.game.jug.celdasEdificio(this.game.jug.edificio).forEach(elem => elem.sprite.clearTint());
-            }
-            else cell.sprite.clearTint();
-        })
-    }
 
     //ALGORITMO BUSQUEDA DE CAMINOS
     pathFinding(celdaInicial, celdaFinal) {
