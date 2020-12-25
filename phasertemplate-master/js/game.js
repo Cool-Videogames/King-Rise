@@ -7,6 +7,7 @@ import Camera from "./camera.js";
 import Aldeano from "./aldeano.js";
 import Obstaculo from "./obstaculo.js";
 import Acciones from "./acciones.js";
+import Edificio from "./edificio.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -26,18 +27,22 @@ export default class Game extends Phaser.Scene {
     this.xSize = 1280;
     this.ySize = 720;
 
-    this.casillaPuntero; 
+    this.casillaPuntero;
   }
 
   create() {
     this.acciones = new Acciones(this, config.numeroAccionesIniciales);
     this.mapa = new Mapa(this, config.columnas, config.filas, config.sizeCasilla);
-    this.jug = new Jugador(this, new Vector2D(config.columnas / 2, config.filas / 2));
+    this.jug = new Jugador(this, this.mapa.mapa[0][0]);
+    this.creaTrono();
     this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
-
     this.creaObstaculos();
 
+    this.creaAldeano();
+  }
+
+  creaAldeano() {
     let nextCell;
     do {
       let columna = Math.floor(Math.random() * config.columnas);
@@ -47,6 +52,18 @@ export default class Game extends Phaser.Scene {
     while (nextCell.ocupada);
     nextCell.ocupada = true;
     this.aldeanosBasicos.push(new Aldeano(this, nextCell, 0, 0));
+  }
+
+  creaTrono() {
+    this.trono = new Edificio(this, 100, 0, {}, 2, 2, 'trono');
+    this.trono.x = config.sizeCasilla * 2;
+    this.trono.y = config.sizeCasilla * 3;
+    for (let i = 1; i < 3; ++i)
+      for (let j = 1; j < 3; ++j) {
+        this.mapa.mapa[i][j].tint = 0xE2A41F;
+        this.mapa.mapa[i][j].sprite.tint = 0xE2A41F; 7
+        this.mapa.mapa[i][j].ocupada = true;
+      }
   }
 
   creaObstaculos() {
@@ -81,6 +98,7 @@ export default class Game extends Phaser.Scene {
   }
 
   update(t, dt) {
+    //if(this.trono.vida <=0)end;
     this.camera.comportamientoCamara();
   }
 

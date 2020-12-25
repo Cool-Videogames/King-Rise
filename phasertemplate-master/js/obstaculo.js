@@ -12,7 +12,7 @@ export default class Obstaculo extends Phaser.GameObjects.Sprite{
 
         this.setOrigin(this.scaleX/2,this.scaleY);
         this.setScale(1*config.sizeCasilla/32,1*config.sizeCasilla/32);
-        this.setDepth(config.playerDepth);
+        this.setDepth(config.personasDepth-1);
         scene.add.existing(this);
     }
 }

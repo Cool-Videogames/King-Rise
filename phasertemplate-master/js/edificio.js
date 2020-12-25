@@ -6,6 +6,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         let offSetY = config.sizeCasilla / 1.25;
 
         super(scene, posicion.x + offSetX, posicion.y + offSetY, key);
+        this.game = scene;
         this.vida = vida;
         this.coste = coste;
         this.posicion = posicion;
@@ -16,10 +17,15 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.alto = alto;
         this.setOrigin(this.scaleX / 2, this.scaleY);
         this.setScale(1 * config.sizeCasilla / 32, 1 * config.sizeCasilla / 32);
-        this.setDepth(config.playerDepth);
         scene.add.existing(this);
-
         this.celdasAnteriores = [];
+    }
+
+    preUpdate(t, dt) {
+        if (this.game.jug.y > this.y && this.depth != config.personasDepth - 1)
+            this.setDepth(config.personasDepth - 1);
+        else if (this.game.jug.y < this.y && this.depth != config.personasDepth + 1) this.setDepth(config.personasDepth + 1);
+        super.preUpdate(t, dt);
     }
 
     pintaCeldas() {

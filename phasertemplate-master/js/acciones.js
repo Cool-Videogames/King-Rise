@@ -12,6 +12,7 @@ export default class Acciones {
         this.accionesSiguienteAtaque = accionesSiguienteAtaque;
         this.numeroAccionesRestantes = accionesSiguienteAtaque;
 
+        this.nuevoAldeano = 0;
 
         this.casillasParaTurno = config.numeroCasillasRecorridasParaConsumirUnaAccion;
         this.casillasAvanzadas = 0;
@@ -33,6 +34,9 @@ export default class Acciones {
 
 
     actualizarIndice(aumento) {
+        this.nuevoAldeano++;
+        if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.creaAldeano(); this.nuevoAldeano = 0;}
+
         this.index += aumento;
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque - this.index;
 

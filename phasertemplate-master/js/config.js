@@ -34,11 +34,12 @@ export let alturaHUD = 570;
 
 //Profundidad de los sprites
 export let mapDepth = 0;
-export let playerDepth = 1;
-export let hudDepth = 2;
+export let personasDepth = 2; //No poner 1 y 3 para poder cambiar la de los edificios a playerDepth-1 o playerDepth+1 según si el jugador está por encima o por debajo
+export let hudDepth = 4;
 
 
 //Acciones
+export let nuevoAldeano = 15;
 export let numeroAccionesIniciales = 20;
 export let relacionAcciones = 0.8; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
 export let numeroAccionesMinimo = 5;
