@@ -37,8 +37,11 @@ export default class Cell {
                     let celdas = this.game.jug.edificio.celdas();
                     this.game.jug.edificio.posicion = this.game.casillaPuntero;
 
-                    if (!this.game.jug.edificio.celdasOcupadas()) {
+                    if (!this.game.jug.edificio.celdasOcupadas() && this.game.jug.edificio.esPagable() && this.game.jug.edificio.estaEnRangoDeConstruccion()) {
                         this.game.jug.edificio.setInteractive();
+                        this.game.jug.edificio.cobraCoste();
+                        this.game.interfaz.actualizaInterfaz();
+
                         if (this.game.jug.edificio.key === 'chozaMaestra') this.game.jug.edificio.setMenu();
                         celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada = true; });
                         this.game.jug.isBuilding = false;
@@ -55,6 +58,7 @@ export default class Cell {
         cell.sprite.on('pointerover', () => {
             this.game.casillaPuntero = cell;
             if (this.game.jug.isBuilding) {
+                this.game.jug.posicionaEdificio(this.game.jug.edificio);
                 this.game.jug.edificio.pintaCeldas();
             }
             else {

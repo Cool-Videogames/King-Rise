@@ -27,7 +27,7 @@ export default class Game extends Phaser.Scene {
     this.xSize = 1280;
     this.ySize = 720;
 
-    this.casillaPuntero;
+    this.casillaPuntero = {x:0,y:0};
   }
 
   create() {
@@ -55,7 +55,8 @@ export default class Game extends Phaser.Scene {
   }
 
   creaTrono() {
-    this.trono = new Edificio(this, 100, 0, {}, 2, 2, 'trono');
+    let coste = { oro: 0, materiales: 0, comida: 0, felicidad: 0 };
+    this.trono = new Edificio(this, 100, coste, {}, 2, 2, 'trono');
     this.trono.x = config.sizeCasilla * 2;
     this.trono.y = config.sizeCasilla * 3;
     for (let i = 1; i < 3; ++i)

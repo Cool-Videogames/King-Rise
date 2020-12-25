@@ -8,7 +8,9 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         super(scene, posicion.x + offSetX, posicion.y + offSetY, key);
         this.game = scene;
         this.vida = vida;
+
         this.coste = coste;
+
         this.posicion = posicion;
         this.destruible = true;
         this.key = key;
@@ -19,6 +21,35 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.setScale(1 * config.sizeCasilla / 32, 1 * config.sizeCasilla / 32);
         scene.add.existing(this);
         this.celdasAnteriores = [];
+    }
+
+    estaEnRangoDeConstruccion() {
+        let rango = config.rangoConstruccion * config.sizeCasilla;
+        let pos = this.posicion; 
+        let jug = this.game.jug.casilla;
+        if (pos.x >= jug.x - rango && pos.x + this.ancho*config.sizeCasilla <= jug.x + rango + config.sizeCasilla && 
+            pos.y >= jug.y - rango && pos.y + this.alto*config.sizeCasilla <= jug.y + rango + config.sizeCasilla) return true;
+        else return false;
+    }
+
+    esPagable() {
+        if (this.game.recursos.oro - this.coste.oro < 0 || this.game.recursos.comida - this.coste.comida < 0 || this.game.recursos.materiales - this.coste.materiales < 0
+            || this.game.recursos.felicidad - this.coste.felicidad < 0) return false;
+        else return true;
+    }
+
+    cobraCoste() {
+        this.game.recursos.oro -= this.coste.oro;
+        this.game.recursos.comida -= this.coste.comida;
+        this.game.recursos.materiales -= this.coste.materiales;
+        this.game.recursos.felicidad -= this.coste.felicidad;
+    }
+
+    devuelveCoste() {
+        this.game.recursos.oro += this.coste.oro;
+        this.game.recursos.comida += this.coste.comida;
+        this.game.recursos.materiales += this.coste.materiales;
+        this.game.recursos.felicidad += this.coste.felicidad;
     }
 
     preUpdate(t, dt) {
@@ -32,7 +63,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.celdasAnteriores.forEach(elem => elem.sprite.tint = elem.tint);
         let celdas = this.celdas();
         this.celdasAnteriores = celdas;
-        if (this.celdasOcupadas())
+        if (this.celdasOcupadas() || !this.esPagable() || !this.estaEnRangoDeConstruccion())
             celdas.forEach(elem => { elem.sprite.tint = 0xEE4141 });
         else celdas.forEach(elem => { elem.sprite.tint = 0x41EE7B });
     }
@@ -63,6 +94,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     }
 
     setPosition(pos) {
+        this.posicion = pos;
         this.x = pos.x + this.ancho / 2 * config.sizeCasilla;
         this.y = pos.y + this.alto * config.sizeCasilla;
     }
