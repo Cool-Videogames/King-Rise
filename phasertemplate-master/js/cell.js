@@ -11,7 +11,6 @@ export default class Cell {
         this.indiceY = indiceY;
 
         this.ocupada = false;
-        this.tint;
 
         //Un sprite como atributo de la clase
         this.sprite = new Phaser.GameObjects.Sprite(scene, x, y, 'sabana');
@@ -20,6 +19,8 @@ export default class Cell {
         this.sprite.setInteractive();
         this.sprite.setDepth(config.mapDepth);
         scene.add.existing(this.sprite);
+
+        this.tint = this.sprite.tint;
     }
 
 
@@ -33,13 +34,13 @@ export default class Cell {
                         this.game.jug.movimientoPathFinding(camino);
                     }
                 } else if (this.game.jug.isBuilding) {
-                    let celdas = this.game.jug.celdasEdificio(this.game.jug.edificio);
-                    this.game.jug.edificio.posicion = this.game.jug.casillaPuntero;
+                    let celdas = this.game.jug.edificio.celdas();
+                    this.game.jug.edificio.posicion = this.game.casillaPuntero;
 
-                    if (!this.game.jug.celdasEdificioOcupadas(celdas)) {
+                    if (!this.game.jug.edificio.celdasOcupadas()) {
                         this.game.jug.edificio.setInteractive();
                         if (this.game.jug.edificio.key === 'chozaMaestra') this.game.jug.edificio.setMenu();
-                        celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F;elem.ocupada = true; });
+                        celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada = true; });
                         this.game.jug.isBuilding = false;
                     }
                 }
@@ -52,12 +53,9 @@ export default class Cell {
 
     changeColor(cell) {
         cell.sprite.on('pointerover', () => {
-            this.game.jug.casillaPuntero = cell;
+            this.game.casillaPuntero = cell;
             if (this.game.jug.isBuilding) {
-                let celdas = this.game.jug.celdasEdificio(this.game.jug.edificio);
-                if (this.game.jug.celdasEdificioOcupadas(celdas))
-                    celdas.forEach(elem => {elem.sprite.tint = 0xEE4141 });
-                else celdas.forEach(elem => {elem.sprite.tint = 0x41EE7B });
+                this.game.jug.edificio.pintaCeldas();
             }
             else {
                 if (!cell.ocupada)
@@ -67,10 +65,8 @@ export default class Cell {
         })
 
         cell.sprite.on('pointerout', () => {
-            if (this.game.jug.isBuilding) {   
-                this.game.jug.celdasEdificio(this.game.jug.edificio).forEach(elem => { elem.sprite.tint = elem.tint });
-            }
-            else cell.sprite.tint = cell.tint;
+            if (!this.game.jug.isBuilding)
+                cell.sprite.tint = cell.tint;
         })
     }
 

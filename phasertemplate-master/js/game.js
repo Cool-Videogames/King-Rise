@@ -25,6 +25,8 @@ export default class Game extends Phaser.Scene {
 
     this.xSize = 1280;
     this.ySize = 720;
+
+    this.casillaPuntero; 
   }
 
   create() {

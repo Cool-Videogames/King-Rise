@@ -24,7 +24,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
 
         this.isBuilding = false;
         //Edificio que se este construyendo en el momento
-        this.edificio = null; 
+        this.edificio = null;
 
         this.isMoving = false;
         this.posDestino = iniCasilla;
@@ -32,15 +32,12 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.dir = 'none';
 
         this.stopBuild = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); //tecla para dejar de construir
-        this.casillaPuntero;
-
-        
     }
 
     preUpdate(t, dt) {
         if (Phaser.Input.Keyboard.JustDown(this.stopBuild) && this.isBuilding) {
-            this.celdasEdificio(this.edificio).forEach(elem => elem.sprite.clearTint());
-            this.casillaPuntero.sprite.tint = 0x41EE7B;
+            this.celdasEdificio(this.edificio).forEach(elem => elem.sprite.tint = elem.tint);
+            this.game.casillaPuntero.sprite.tint = 0x41EE7B;
             this.isBuilding = false;
             this.edificio.destroy();
             this.edificio = null;
@@ -52,41 +49,16 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.compruebaPosicion();
         super.preUpdate(t, dt);
     }
-    
-    inputConstruir(spritename){
+
+    inputConstruir(spritename) {
         this.isBuilding = true;
-        this.edificio = this.construir(spritename, '', this.casillaPuntero, 3, 3);
-        this.celdasEdificio(this.edificio);
-    }
-
-    celdasEdificio(edificio) {
-        let espacioEdificio = [];
-        for (let i = 0; i < edificio.ancho; ++i) {
-            for (let j = 0; j < edificio.alto; ++j) {
-                let col = this.casillaPuntero.x / config.sizeCasilla + i;
-                let fil = this.casillaPuntero.y / config.sizeCasilla + j;
-                if (fil >= 0 && fil < config.filas && col >= 0 && col < config.columnas)
-                    espacioEdificio.push(this.game.mapa.mapa[col][fil]);
-            }
-        }
-        return espacioEdificio;
-    }
-
-    celdasEdificioOcupadas(celdasEdificio) {
-        let i = 0;
-        let ocupada = false;
-        if(celdasEdificio.length !== this.game.jug.edificio.ancho * this.game.jug.edificio.alto) return true;
-        while (i < celdasEdificio.length && !ocupada) {
-            if (celdasEdificio[i].ocupada === true ) ocupada = true;
-            else ++i;
-        }
-        return ocupada;
+        this.edificio = this.construir(spritename, '', this.game.casillaPuntero, 3, 3);
     }
 
     posicionaEdificio(edificio) {
         let pos = { x: 0, y: 0 };
-        pos.x = this.casillaPuntero.x;
-        pos.y = this.casillaPuntero.y;
+        pos.x = this.game.casillaPuntero.x;
+        pos.y = this.game.casillaPuntero.y;
         edificio.setPosition(pos);
     }
 
@@ -128,14 +100,14 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             //scene,vida,coste,posicion,aldeanosMax,especialidad, key
             edificio = new EdificioRecursos(this.game, 0, 0, pos, ancho, alto, 5, especialidad, 'edificio');
         }
-         else if (tipo === 'social') {
+        else if (tipo === 'social') {
             //scene,vida,coste,posicion,felicidad, key
             edificio = new EdificioSocial(this.game, 0, 0, pos, 10, 'edificio');
-        } 
+        }
         else if (tipo === 'chozaMaestra') {
             //scene,vida,coste,posicion, key
-            edificio = new ChozaMaestra(this.game, 0, 0, pos,ancho,alto, tipo);
-        } 
+            edificio = new ChozaMaestra(this.game, 0, 0, pos, ancho, alto, tipo);
+        }
         else if (tipo === 'defensivo') {
             //scene,vida,coste,posicion,aldeanosMax,rango
             edificio = new EdificioDefensivo(this.game, 0, 0, pos, 2, 0);
