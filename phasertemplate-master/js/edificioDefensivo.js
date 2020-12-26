@@ -1,18 +1,19 @@
 import Edificio from "./edificio.js";
 
-export default class EdificioDefensivo extends Edificio{
-    constructor(scene,vida,coste,posicion,aldeanosMax,rango){
-    super(scene,vida,coste,posicion,mapa);
-    this.rango = rango;
-    this.aldeanosMax =aldeanosMax;
-    this.numAldeanos= 0;
+export default class EdificioDefensivo extends Edificio {
+    constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
+        super(scene, vida, coste, posicion, ancho, alto, key);
+        this.rango = rango;
+        this.aldeanosMax = aldeanosMax;
+        this.numAldeanos = 0;
+        this.especialidad = especialidad;
     }
 
-    atacar(objetivo, dmg){
+    atacar(objetivo, dmg) {
         objetivo.vida -= dmg;
     }
 
-    asignarTropas(aldeanos){
+    asignarTropas(aldeanos) {
         this.numAldeanos++;
     }
 }

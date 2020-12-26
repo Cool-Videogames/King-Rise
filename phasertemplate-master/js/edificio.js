@@ -20,15 +20,16 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.setOrigin(this.scaleX / 2, this.scaleY);
         this.setScale(1 * config.sizeCasilla / 32, 1 * config.sizeCasilla / 32);
         scene.add.existing(this);
+        scene.physics.add.existing(this);
         this.celdasAnteriores = [];
     }
 
     estaEnRangoDeConstruccion() {
         let rango = config.rangoConstruccion * config.sizeCasilla;
-        let pos = this.posicion; 
+        let pos = this.posicion;
         let jug = this.game.jug.casilla;
-        if (pos.x >= jug.x - rango && pos.x + this.ancho*config.sizeCasilla <= jug.x + rango + config.sizeCasilla && 
-            pos.y >= jug.y - rango && pos.y + this.alto*config.sizeCasilla <= jug.y + rango + config.sizeCasilla) return true;
+        if (pos.x >= jug.x - rango && pos.x + this.ancho * config.sizeCasilla <= jug.x + rango + config.sizeCasilla &&
+            pos.y >= jug.y - rango && pos.y + this.alto * config.sizeCasilla <= jug.y + rango + config.sizeCasilla) return true;
         else return false;
     }
 

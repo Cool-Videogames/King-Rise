@@ -48,9 +48,9 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
     }
 
-    inputConstruir(spritename) {
+    inputConstruir(spritename,especialidad,ancho,alto) {
         this.isBuilding = true;
-        this.edificio = this.construir(spritename, '', this.game.casillaPuntero, 3, 3);
+        this.edificio = this.construir(spritename, especialidad, this.game.casillaPuntero, ancho, alto);
     }
 
     posicionaEdificio(edificio) {
@@ -62,8 +62,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
 
     compruebaPosicion() {
         if (this.isMoving) {
-            if (this.x > this.posDestino.x - 1 && this.x < this.posDestino.x + 1
-                && this.y > this.posDestino.y - 1 && this.y < this.posDestino.y + 1) {
+            if (this.x > this.posDestino.x - config.margenPosicion && this.x < this.posDestino.x + config.margenPosicion
+                && this.y > this.posDestino.y - config.margenPosicion && this.y < this.posDestino.y + config.margenPosicion) {
                 this.body.reset(this.posDestino.x, this.posDestino.y);
                 this.isMoving = false;
 
@@ -107,8 +107,10 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             edificio = new ChozaMaestra(this.game, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, tipo);
         }
         else if (tipo === 'defensivo') {
-            //scene,vida,coste,posicion,aldeanosMax,rango
-            edificio = new EdificioDefensivo(this.game, 0, 0, pos, 2, 0);
+            //scene,especialidad,vida,coste,posicion,ancho,alto,aldeanosMax,rango, key
+            console.log(especialidad);
+            if (especialidad === 'trampaOsos')
+                edificio = new EdificioDefensivo(this.game, especialidad,0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0,0, especialidad);
         }
         return edificio;
     };

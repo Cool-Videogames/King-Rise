@@ -18,7 +18,7 @@ export default class Aldeano extends Persona {
         }
 
         this.casilla = casilla
-        this.casilla.ocupada= true;
+        this.casilla.ocupada = true;
 
         this.game = scene;
         this.ocupado = false;
@@ -37,7 +37,8 @@ export default class Aldeano extends Persona {
     }
 
     compruebaPosicion(dt) {
-        if (this.x > this.posDestino.x - 1 && this.x < this.posDestino.x + 1 && this.y > this.posDestino.y - 1 && this.y < this.posDestino.y + 1) {
+        if (this.x > this.posDestino.x - config.margenPosicion && this.x < this.posDestino.x + config.margenPosicion &&
+            this.y > this.posDestino.y - config.margenPosicion && this.y < this.posDestino.y + config.margenPosicion) {
             this.body.reset(this.posDestino.x, this.posDestino.y);
 
             if (this.nodoDestino.siguiente !== null) {
@@ -60,7 +61,7 @@ export default class Aldeano extends Persona {
         }
     }
 
-   
+
 
     casillaRandom() {
         let nextCell;

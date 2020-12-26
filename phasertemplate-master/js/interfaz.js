@@ -181,7 +181,7 @@ export default class Interfaz{
   }
   clickEnChoza(chozaMaestra){
     chozaMaestra.on('pointerup', pointer=>{
-      this.game.jug.inputConstruir('chozaMaestra');
+      this.game.jug.inputConstruir('chozaMaestra',' ',3,3);
       this.ocultaDesplegable();
     })
   }

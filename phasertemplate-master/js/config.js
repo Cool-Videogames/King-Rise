@@ -2,6 +2,7 @@ export let filas = 16;
 export let columnas = 32;
 export let sizeCasilla = 64;
 export let playerSpeed = sizeCasilla * 2.5;
+export let margenPosicion = 3;
 export let rangoConstruccion = 6;
 
 export let numObstaculos = 16;
