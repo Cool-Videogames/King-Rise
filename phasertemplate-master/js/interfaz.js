@@ -9,7 +9,7 @@ export default class Interfaz{
     //Arrays y enums con la informacion
     this.names = { ajustes: 0, desplegable: 1, hudGeneral: 2, infoAldeanos: 3, construir: 4, menuDesp: 5, info: 6, flechaAb: 7,
     botonConstruir: 8, flechaAr: 9, aldeanoB: 10, minero: 11, ganadero: 12, cantero:13, explorador: 14, chozaMaestra: 15, mina: 16, granja: 17,
-    cantera: 18, trampaSuelo: 19, trampaOso: 20, puestoVigilancia: 21, puestoGuardia: 22, muralla: 23, catedral: 24};
+    cantera: 18, trampaSuelo: 19, trampaOso: 20, puestoVigilancia: 21, puestoGuardia: 22, muralla: 23, catedral: 24, torreArqueros: 25};
     this.tnames = { oro: 0, comida : 1, materiales: 2, felicidad: 3, proxAtaque: 4, aldeanoBText: 5, mineroText:6, ganaderoText:7,
     canteroText: 8, exploradorText: 9};
     this.inDesp = 3; this.inIA = 10; this.inAT = 5; this.inEd = 15; this.indiceEdificios = this.inEd;
@@ -41,16 +41,16 @@ export default class Interfaz{
     this.nombres[this.names.ajustes] = 'ajustes'; this.nombres[this.names.desplegable] = 'desplegable'; 
     this.nombres[this.names.hudGeneral] = 'hud'; this.nombres[this.names.infoAldeanos] = 'infoAldeanos';
     this.nombres[this.names.construir] = 'construir'; this.nombres[this.names.menuDesp] = 'menuDesplegable';
-    this.nombres[this.names.info] = 'info'; this.nombres[this.names.flechaAb] = 'flecha';
-    this.nombres[this.names.botonConstruir] = 'botonConstruir'; this.nombres[this.names.flechaAr] = 'flecha';
+    this.nombres[this.names.info] = 'info'; this.nombres[this.names.flechaAb] = 'flechaIn';
+    this.nombres[this.names.botonConstruir] = 'botonConstruir'; this.nombres[this.names.flechaAr] = 'flechaIn';
     this.nombres[this.names.aldeanoB] = 'aldeano'; this.nombres[this.names.minero] = 'aldeano';
     this.nombres[this.names.ganadero] = 'aldeano'; this.nombres[this.names.cantero] = 'aldeano';
     this.nombres[this.names.explorador] = 'aldeano'; this.nombres[this.names.chozaMaestra] = 'chozaMaestra';
     this.nombres[this.names.mina] = 'mina'; this.nombres[this.names.granja] = 'granja';
     this.nombres[this.names.cantera] = 'cantera'; this.nombres[this.names.trampaSuelo] = 'trampaSuelo';
-    this.nombres[this.names.trampaOso] = 'trampaOsos'; this.nombres[this.names.puestoVigilancia] = 'puestoVigilancia';
+    this.nombres[this.names.trampaOso] = 'trampaOso'; this.nombres[this.names.puestoVigilancia] = 'puestoVigilancia';
     this.nombres[this.names.puestoGuardia] = 'puestoGuardia'; this.nombres[this.names.muralla] = 'muralla';
-    this.nombres[this.names.catedral] = 'catedral';
+    this.nombres[this.names.catedral] = 'catedral'; this.nombres[this.names.torreArqueros] = 'torreArqueros';
   }
 
   creaTexts(){
@@ -142,6 +142,7 @@ export default class Interfaz{
     let nE = this.names;
     this.sprites[nE.mina].setScale(0.4,0.4);
     this.sprites[nE.trampaOso].setScale(2,2);
+    this.sprites[nE.torreArqueros].setScale(2,2);
   }
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
   clickEnAjustes(ajustesSprite){
@@ -233,7 +234,13 @@ export default class Interfaz{
   }
   clickEnTramaOso(trampaOso){
     trampaOso.on('pointerup', pointer=>{
-      this.game.jug.inputConstruir('defensivo', 'trampaOsos', 1,1);
+      this.game.jug.inputConstruir('defensivo', 'trampaOso', 1,1);
+      this.ocultaDesplegable();
+    })
+  }
+  clickEnTorreArqueros(torreArqueros){
+    torreArqueros.on('pointerup', pointer=>{
+      this.game.jug.inputConstruir('defensivo', 'torreArqueros', 1,1);
       this.ocultaDesplegable();
     })
   }
@@ -266,6 +273,7 @@ export default class Interfaz{
     this.clickEnChoza(this.sprites[this.names.chozaMaestra]);
     this.clickEnMina(this.sprites[this.names.mina]);
     this.clickEnTramaOso(this.sprites[this.names.trampaOso]); 
+    this.clickEnTorreArqueros(this.sprites[this.names.torreArqueros]);
   }
   visibilidad(){
     //Sprites del desplgable comienzan no visibles
