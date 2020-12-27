@@ -3,6 +3,9 @@ import * as config from "./config.js";
 import EdificioRecursos from "./edificioRecursos.js";
 import EdificioDefensivo from "./edificioDefensivo.js";
 import Vector2D from "./vector2D.js";
+import Trampa from "./trampa.js";
+import Muro from "./muro.js";
+import TorreArqueros from "./torreArqueros.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
     constructor(scene, casilla) {
@@ -48,7 +51,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
     }
 
-    inputConstruir(spritename,especialidad,ancho,alto) {
+    inputConstruir(spritename, especialidad, ancho, alto) {
         this.isBuilding = true;
         this.edificio = this.construir(spritename, especialidad, this.game.casillaPuntero, ancho, alto);
     }
@@ -110,7 +113,11 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             //scene,especialidad,vida,coste,posicion,ancho,alto,aldeanosMax,rango, key
             console.log(especialidad);
             if (especialidad === 'trampaOsos' || especialidad === 'trampaSuelo')
-                edificio = new EdificioDefensivo(this.game, especialidad,0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0,0, especialidad);
+                edificio = new Trampa(this.game, especialidad, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 0, especialidad);
+            else if (especialidad === 'muro')
+                edificio = new Muro(this.game, especialidad, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 0, especialidad);
+                else if(especialidad === 'torreArqueros')
+                edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 3, especialidad)
         }
         return edificio;
     };
