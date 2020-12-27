@@ -86,7 +86,6 @@ export default class ChozaMaestra extends Edificio{
         }
     }
     actualizaCosteTotal(){
-        let op = this.opEnum;
         this.costeTotal = this.nMin*this.costeMin + this.nCant*this.costeCant + this.nGan*this.costeGan +this.nExp*this.costeGan;
         this.coste.text = this.costeTotal;
     }
