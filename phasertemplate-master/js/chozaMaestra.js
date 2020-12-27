@@ -90,15 +90,6 @@ export default class ChozaMaestra extends Edificio{
         this.costeTotal = this.nMin*this.costeMin + this.nCant*this.costeCant + this.nGan*this.costeGan +this.nExp*this.costeGan;
         this.coste.text = this.costeTotal;
     }
-    efectuaEsp(){
-        if(this.costeTotal <= this.game.recursos.oro){
-            this.game.recursos.oro -= this.costeTotal;
-            this.game.interfaz.actualizaInterfaz();
-            this.especializa({mineros: this.nMin, canteros: this.nCant, ganaderos: this.nGan, exploradores: this.nExp});
-            this.game.interfaz.actualizaInterfaz();
-            this.muestraOpciones();
-        }
-    }
     asignaInput(){
         this.masMi(this.ops[0]); this.menosMi(this.ops[1]); this.masCan(this.ops[2]); this.menosCan(this.ops[3]);
         this.masGan(this.ops[4]); this.menosGan(this.ops[5]); this.masEx(this.ops[6]); this.menosEx(this.ops[7]);
@@ -112,7 +103,13 @@ export default class ChozaMaestra extends Edificio{
       }
     clickEnDone(done){
         done.on('pointerup', pointer => {
-            this.efectuaEsp();
+            if(this.costeTotal <= this.game.recursos.oro){
+                this.game.recursos.oro -= this.costeTotal;
+                this.game.interfaz.actualizaInterfaz();
+                this.especializa(0, this.nMin, this.nCant, this.nGan, this.nExp);
+                this.game.interfaz.actualizaInterfaz();
+                this.muestraOpciones();
+            }
         })
     }
     masMi(masmineros){
@@ -171,22 +168,68 @@ export default class ChozaMaestra extends Edificio{
             this.actualizaCosteTotal();
         })
     }
-    especializa(aldeanos){
-        for(let i = 0; i < aldeanos.mineros; i++) {
-            let minero = new Aldeano(this.game,this.posicion, 0,0);
-            this.game.mineros.push(minero);
+    especializa(aldeanos, mineros, canteros, ganaderos, exploradores){
+        for(let i = 0;i<aldeanos;i++) this.game.creaAldeano();
+        this.espMineros(mineros);
+        this.espCanteros(canteros);
+        this.espGanaderos(ganaderos); 
+        this.espExploradores(exploradores);
+    }
+    espMineros(mineros){
+        if(this.game.aldeanosBasicos.length > 0){
+            for(let i = 0; i < mineros; i++){
+            let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1];
+            this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1] = null;
+            this.game.aldeanosBasicos.length--;
+            
+            //Configuracion del minero
+            aldeano.rendimiento.rendGeneral = 50;
+            //Cambiarle el sprite
+            aldeano.flipY = true; //simples pruebas xd
+            this.game.mineros.push(aldeano);
         }
-        for(let i = 0; i < aldeanos.canteros; i++) {
-            let cantero = new Aldeano(this.game,this.posicion, 0,0);
-            this.game.canteros.push(cantero);
+      }
+    }
+    espCanteros(canteros){
+        if(this.game.aldeanosBasicos.length > 0){
+            for(let i = 0; i < canteros; i++){
+                let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1];
+                this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1] = null;
+                this.game.aldeanosBasicos.length--;
+    
+                //Configuracion del cantero
+                aldeano.rendimiento.rendGeneral = 50;
+                //Cambiarle el sprite
+                this.game.canteros.push(aldeano);
+            }
         }
-        for(let i = 0; i < aldeanos.ganaderos; i++) {
-            let ganadero = new Aldeano(this.game,this.posicion, 0,0);
-            this.game.ganaderos.push(ganadero);
+    }
+    espGanaderos(ganaderos){
+        if(this.game.aldeanosBasicos.length > 0){
+            for(let i = 0; i < ganaderos; i++){
+                let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1];
+                this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1] = null;
+                this.game.aldeanosBasicos.length--;
+    
+                //Configuracion del ganadero
+                aldeano.rendimiento.rendGeneral = 50;
+                //Cambiarle el sprite
+                this.game.ganaderos.push(aldeano);
+            }
         }
-        for(let i = 0; i < aldeanos.exploradores; i++) {
-            let explorador = new Aldeano(this.game,this.posicion, 0,0);
-            this.game.exploradores.push(explorador);
+    }
+    espExploradores(exploradores){
+        if(this.game.aldeanosBasicos.length > 0){
+            for(let i = 0; i < exploradores; i++){
+                let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1];
+                this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1] = null;
+                this.game.aldeanosBasicos.length--;
+    
+                //Configuracion del explorador
+                aldeano.rendimiento.rendGeneral = 50;
+                //Cambiarle el sprite
+                this.game.exploradores.push(aldeano);
+            }
         }
     }
 }

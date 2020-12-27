@@ -34,11 +34,12 @@ export default class Game extends Phaser.Scene {
     this.mapa = new Mapa(this, config.columnas, config.filas, config.sizeCasilla);
     this.jug = new Jugador(this, this.mapa.mapa[0][0]);
     this.creaTrono();
-    this.interfaz = new Interfaz(this);
+    this.interfaz = new Interfaz(this); 
     this.camera = new Camera(this, this.cameras.main);
     this.creaObstaculos();
 
     this.creaAldeano();
+    this.interfaz.actualizaInterfaz();
   }
 
   creaAldeano() {
