@@ -2,6 +2,7 @@ import Edificio from "./edificio.js";
 import * as config from "./config.js"
 import Vector2D from "./vector2D.js";
 import * as functions from "./functions.js";
+import Aldeano from "./aldeano.js";
 
 export default class ChozaMaestra extends Edificio{
     constructor(scene,vida,coste,posicion,ancho, alto, key){
@@ -93,6 +94,8 @@ export default class ChozaMaestra extends Edificio{
         if(this.costeTotal <= this.game.recursos.oro){
             this.game.recursos.oro -= this.costeTotal;
             this.game.interfaz.actualizaInterfaz();
+            this.especializa({mineros: this.nMin, canteros: this.nCant, ganaderos: this.nGan, exploradores: this.nExp});
+            this.game.interfaz.actualizaInterfaz();
             this.muestraOpciones();
         }
     }
@@ -168,8 +171,22 @@ export default class ChozaMaestra extends Edificio{
             this.actualizaCosteTotal();
         })
     }
-    
-    especializar(aldeanos, espec){
-        aldeanos.Especializarse(espec);
+    especializa(aldeanos){
+        for(let i = 0; i < aldeanos.mineros; i++) {
+            let minero = new Aldeano(this.game,this.posicion, 0,0);
+            this.game.mineros.push(minero);
+        }
+        for(let i = 0; i < aldeanos.canteros; i++) {
+            let cantero = new Aldeano(this.game,this.posicion, 0,0);
+            this.game.canteros.push(cantero);
+        }
+        for(let i = 0; i < aldeanos.ganaderos; i++) {
+            let ganadero = new Aldeano(this.game,this.posicion, 0,0);
+            this.game.ganaderos.push(ganadero);
+        }
+        for(let i = 0; i < aldeanos.exploradores; i++) {
+            let explorador = new Aldeano(this.game,this.posicion, 0,0);
+            this.game.exploradores.push(explorador);
+        }
     }
 }
