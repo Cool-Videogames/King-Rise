@@ -12,7 +12,7 @@ export default class TorreArqueros extends EdificioDefensivo {
             if (this.arrow === null && this.fireRate <=0) {
                 this.fireRate = 2000;
                 this.enemy = enemy;
-                this.arrow = scene.physics.add.sprite(this.x, this.y, 'flecha');
+                this.arrow = scene.physics.add.sprite(this.x, this.y, 'arrow');
                 this.arrow.body.setSize(this.arrow.width / 1.5, this.arrow.height / 2.5);
 
                 scene.physics.add.overlap(this.arrow, this.game.jug, (arrow, enemy) => {
