@@ -232,7 +232,7 @@ export default class Interfaz{
       this.ocultaDesplegable();
     })
   }
-  clickEnTramaOso(trampaOso){
+  clickEnTrampaOso(trampaOso){
     trampaOso.on('pointerup', pointer=>{
       this.game.jug.inputConstruir('defensivo', 'trampaOso', 1,1);
       this.ocultaDesplegable();
@@ -272,7 +272,7 @@ export default class Interfaz{
     this.clickFlechaArriba(this.sprites[this.names.flechaAr]);
     this.clickEnChoza(this.sprites[this.names.chozaMaestra]);
     this.clickEnMina(this.sprites[this.names.mina]);
-    this.clickEnTramaOso(this.sprites[this.names.trampaOso]); 
+    this.clickEnTrampaOso(this.sprites[this.names.trampaOso]); 
     this.clickEnTorreArqueros(this.sprites[this.names.torreArqueros]);
   }
   visibilidad(){
