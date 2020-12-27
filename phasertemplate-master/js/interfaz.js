@@ -1,5 +1,6 @@
 import * as config from "./config.js";
 import * as functions from "./functions.js";
+import Vector2D from "./vector2D.js";
 
 export default class Interfaz{
   constructor(scene){
@@ -7,10 +8,11 @@ export default class Interfaz{
     
     //Arrays y enums con la informacion
     this.names = { ajustes: 0, desplegable: 1, hudGeneral: 2, infoAldeanos: 3, construir: 4, menuDesp: 5, info: 6, flechaAb: 7,
-    botonConstruir: 8, flechaAr: 9, aldeanoB: 10, minero: 11, ganadero: 12, cantero:13, explorador: 14, chozaMaestra: 15, mina: 16};
+    botonConstruir: 8, flechaAr: 9, aldeanoB: 10, minero: 11, ganadero: 12, cantero:13, explorador: 14, chozaMaestra: 15, mina: 16, granja: 17,
+    cantera: 18, trampaSuelo: 19, trampaOso: 20, puestoVigilancia: 21, puestoGuardia: 22, muralla: 23, catedral: 24};
     this.tnames = { oro: 0, comida : 1, materiales: 2, felicidad: 3, proxAtaque: 4, aldeanoBText: 5, mineroText:6, ganaderoText:7,
     canteroText: 8, exploradorText: 9};
-    this.inDesp = 3; this.inIA = 10; this.inAT = 5; this.inEd = 15;
+    this.inDesp = 3; this.inIA = 10; this.inAT = 5; this.inEd = 15; this.indiceEdificios = this.inEd;
 
     this.sprites = new Array(config.hudSprites);
     this.edificiosConstruibles = new Array(config.edificiosConstruibles);
@@ -44,7 +46,11 @@ export default class Interfaz{
     this.nombres[this.names.aldeanoB] = 'aldeano'; this.nombres[this.names.minero] = 'aldeano';
     this.nombres[this.names.ganadero] = 'aldeano'; this.nombres[this.names.cantero] = 'aldeano';
     this.nombres[this.names.explorador] = 'aldeano'; this.nombres[this.names.chozaMaestra] = 'chozaMaestra';
-    this.nombres[this.names.mina] = 'mina';
+    this.nombres[this.names.mina] = 'mina'; this.nombres[this.names.granja] = 'granja';
+    this.nombres[this.names.cantera] = 'cantera'; this.nombres[this.names.trampaSuelo] = 'trampaSuelo';
+    this.nombres[this.names.trampaOso] = 'trampaOsos'; this.nombres[this.names.puestoVigilancia] = 'puestoVigilancia';
+    this.nombres[this.names.puestoGuardia] = 'puestoGuardia'; this.nombres[this.names.muralla] = 'muralla';
+    this.nombres[this.names.catedral] = 'catedral';
   }
 
   creaTexts(){
@@ -113,14 +119,30 @@ export default class Interfaz{
     for(let i = this.inIA;i<this.inEd;++i) this.sprites[i].setScale(1.3,1.3);
 
     //Edificios construibles
-    this.sp(this.sprites[nE.chozaMaestra], pI.x+xoffSet*1.93,pI.y-pI.height/2-60);
-    this.sp(this.sprites[nE.mina], pI.x+xoffSet*1.93, pI.y-pI.height-55);
-    this.sprites[nE.mina].setScale(0.4,0.4);
+    this.posEdiArriba = new Vector2D(pI.x+xoffSet*1.93,pI.y-pI.height/2-60);
+    this.posEdiAbajo = new Vector2D(pI.x+xoffSet*1.93,pI.y-pI.height-55);
+
+    this.sp(this.sprites[nE.chozaMaestra], this.posEdiAbajo.x, this.posEdiAbajo.y);
+    this.sp(this.sprites[nE.mina], this.posEdiArriba.x, this.posEdiArriba.y);
+    this.sp(this.sprites[nE.granja], this.posEdiArriba.x, this.posEdiArriba.y);
+    this.sp(this.sprites[nE.cantera], this.posEdiAbajo.x, this.posEdiAbajo.y);
+    this.sp(this.sprites[nE.trampaSuelo], this.posEdiAbajo.x, this.posEdiArriba.y);
+    this.sp(this.sprites[nE.trampaOso], this.posEdiAbajo.x, this.posEdiAbajo.y);
+    this.sp(this.sprites[nE.puestoVigilancia], this.posEdiArriba.x, this.posEdiArriba.y);
+    this.sp(this.sprites[nE.puestoGuardia], this.posEdiAbajo.x, this.posEdiAbajo.y);
+    this.sp(this.sprites[nE.muralla], this.posEdiAbajo.x, this.posEdiArriba.y);
+    this.sp(this.sprites[nE.catedral], this.posEdiAbajo.x, this.posEdiAbajo.y);
+
+    this.escalaSprites();
   }
   sp(sprite,x,y){
     sprite.setPosition(x,y);
   }
-
+  escalaSprites(){
+    let nE = this.names;
+    this.sprites[nE.mina].setScale(0.4,0.4);
+    this.sprites[nE.trampaOso].setScale(2,2);
+  }
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
   clickEnAjustes(ajustesSprite){
     ajustesSprite.on('pointerdown', pointer => {
@@ -158,8 +180,12 @@ export default class Interfaz{
   }
   clickEnConstruccion(construccion){
     construccion.on('pointerdown', pointer =>{
-      this.sprites[this.names.chozaMaestra].setVisible(!this.sprites[this.names.chozaMaestra].visible);
-      this.sprites[this.names.mina].setVisible(!this.sprites[this.names.mina].visible);
+      for(let i = this.inEd; i< config.hudSprites;i++) this.sprites[i].setVisible(false);
+      this.sprites[this.names.chozaMaestra].setVisible(true);
+      this.sprites[this.names.mina].setVisible(true);
+      this.sp(this.sprites[this.names.chozaMaestra], this.posEdiAbajo.x, this.posEdiAbajo.y);
+      this.sp(this.sprites[this.names.mina], this.posEdiArriba.x, this.posEdiArriba.y);
+      this.indiceEdificios = this.inEd;
 
       this.sprites[this.names.construir].setVisible(!this.sprites[this.names.construir].visible);
       this.sprites[this.names.flechaAb].setVisible(!this.sprites[this.names.flechaAb].visible);
@@ -171,17 +197,43 @@ export default class Interfaz{
   }
   clickFlechaArriba(flechaAr){
     flechaAr.on('pointerdown', pointer =>{
-      console.log("ARRIBA");
+      if(this.indiceEdificios > this.inEd){
+        for(let i = this.inEd; i< config.hudSprites;i++) this.sprites[i].setVisible(false);
+        this.sprites[this.indiceEdificios-1].setVisible(true);
+        this.sprites[this.indiceEdificios].setVisible(true);
+        this.sp(this.sprites[this.indiceEdificios-1],this.posEdiAbajo.x, this.posEdiAbajo.y);
+        this.sp(this.sprites[this.indiceEdificios],this.posEdiArriba.x, this.posEdiArriba.y);
+        this.indiceEdificios--;
+      }
     })
   }
   clickFlechaAbajo(flechaAb){
     flechaAb.on('pointerdown', pointer =>{
-      console.log("ABAJO");
+      if(this.indiceEdificios < config.hudSprites-2){
+        for(let i = this.inEd; i< config.hudSprites;i++) this.sprites[i].setVisible(false);
+        this.sprites[this.indiceEdificios+1].setVisible(true);
+        this.sprites[this.indiceEdificios+2].setVisible(true);
+        this.sp(this.sprites[this.indiceEdificios+1],this.posEdiAbajo.x, this.posEdiAbajo.y);
+        this.sp(this.sprites[this.indiceEdificios+2],this.posEdiArriba.x, this.posEdiArriba.y);
+        this.indiceEdificios++;
+      }
     })
   }
   clickEnChoza(chozaMaestra){
     chozaMaestra.on('pointerup', pointer=>{
       this.game.jug.inputConstruir('chozaMaestra',' ',3,3);
+      this.ocultaDesplegable();
+    })
+  }
+  clickEnMina(mina){
+    mina.on('pointerup', pointer=>{
+      this.game.jug.inputConstruir('mina', '', 3,3);
+      this.ocultaDesplegable();
+    })
+  }
+  clickEnTramaOso(trampaOso){
+    trampaOso.on('pointerup', pointer=>{
+      this.game.jug.inputConstruir('defensivo', 'trampaOsos', 1,1);
       this.ocultaDesplegable();
     })
   }
@@ -212,6 +264,8 @@ export default class Interfaz{
     this.clickFlechaAbajo(this.sprites[this.names.flechaAb]);
     this.clickFlechaArriba(this.sprites[this.names.flechaAr]);
     this.clickEnChoza(this.sprites[this.names.chozaMaestra]);
+    this.clickEnMina(this.sprites[this.names.mina]);
+    this.clickEnTramaOso(this.sprites[this.names.trampaOso]); 
   }
   visibilidad(){
     //Sprites del desplgable comienzan no visibles
