@@ -11,7 +11,6 @@ import Edificio from "./edificio.js";
 export default class Game extends Phaser.Scene {
   constructor() {
     super({ key: 'game' });
-
     //LISTAS DE ALDEANOS
     this.aldeanosBasicos = [];
     this.mineros = [];
@@ -30,6 +29,7 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
+    
     this.acciones = new Acciones(this, config.numeroAccionesIniciales);
     this.mapa = new Mapa(this, config.columnas, config.filas, config.sizeCasilla);
     this.jug = new Jugador(this, this.mapa.mapa[0][0]);

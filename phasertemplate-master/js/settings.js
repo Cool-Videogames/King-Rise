@@ -17,8 +17,9 @@ export default class Settings extends Phaser.Scene{
     }
     volveraljuego(volverAlJuegoSprite){
         volverAlJuegoSprite.on('pointerup', pointer => {
-            this.scene.switch('game');
-            this.scene.resume('game');
+            
+            this.scene.switch('escenaInicio');
+            this.scene.stop('game');
         })
     }
 }

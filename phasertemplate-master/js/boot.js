@@ -35,7 +35,7 @@ export default class Boot extends Phaser.Scene {
 
     //Ajustes
     this.load.image('volveraljuego', "./phasertemplate-master/images/gestion.png");
-
+    this.load.image('jugar', "./phasertemplate-master/images/Interfaz/botonJugar.png")
     //Choza Maestra
     this.load.image('chozaMaestra', "./phasertemplate-master/images/Estructuras/ChozaMaestra/ChozaMaestra.png");
     this.load.image('marco', "./phasertemplate-master/images/Estructuras/ChozaMaestra/marco.png");
@@ -50,6 +50,6 @@ export default class Boot extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start('game');
+    this.scene.start('escenaInicio');
   }
 }
