@@ -147,8 +147,9 @@ export default class Interfaz{
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
   clickEnAjustes(ajustesSprite){
     ajustesSprite.on('pointerdown', pointer => {
-      this.game.scene.switch('settings');
-      this.game.pauseGame();
+      this.game.scene.start('settings');
+      this.game.scene.pause('game');
+     // this.game.pauseGame();
     })
   }
   clickEnDesplegable(desplegableSprite){

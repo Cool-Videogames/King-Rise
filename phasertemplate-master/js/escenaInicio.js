@@ -23,7 +23,12 @@ export default class EscenaInicio extends Phaser.Scene {
 
     comenzarJuego(jugar){
         jugar.on('pointerup', pointer => {
+            //var isActivee = scene.scene.isSleeping('game');
             this.scene.start('game');
+            /*if(!isActivee)
+            this.scene.start('game');
+            else
+            this.scene.resume('game');*/
         })
     }
 
