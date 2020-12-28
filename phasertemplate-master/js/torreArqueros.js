@@ -107,6 +107,7 @@ export default class TorreArqueros extends EdificioDefensivo {
                 for (let i = 0; i < this.variacionAldeanos; ++i)this.game.exploradores.pop().destroy();
             }
             this.variacionAldeanos = 0;
+            this.game.cierraMarcoAnterior = () => {};
             this.abreMarco();
         })
     }
@@ -114,8 +115,11 @@ export default class TorreArqueros extends EdificioDefensivo {
     clickEnTorre(torreSprite) {
         torreSprite.on('pointerup', pointer => {
             if (!this.game.jug.isBuilding) {
-                this.game.cierraMarcoAnterior();
-                this.game.cierraMarcoAnterior = this.abreMarco;
+                if(!this.marco.visible){
+                    this.game.cierraMarcoAnterior();
+                    this.game.cierraMarcoAnterior =  this.abreMarco;
+                }
+                else this.game.cierraMarcoAnterior = () => {};
                 this.abreMarco();
             }
         })

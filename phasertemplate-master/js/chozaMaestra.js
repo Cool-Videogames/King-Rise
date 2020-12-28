@@ -99,8 +99,11 @@ export default class ChozaMaestra extends Edificio {
     clickEnChoza(chozaSprite) {
         chozaSprite.on('pointerup', pointer => {
             if (!this.game.jug.isBuilding) {
-                this.game.cierraMarcoAnterior();
-                this.game.cierraMarcoAnterior = this.abreMarco;
+                if(!this.marco.visible){
+                    this.game.cierraMarcoAnterior();
+                    this.game.cierraMarcoAnterior =  this.abreMarco;
+                }
+                else this.game.cierraMarcoAnterior = () => {};
                 this.abreMarco();
             }
         })
@@ -113,6 +116,7 @@ export default class ChozaMaestra extends Edificio {
                 this.especializa(0, this.nMin, this.nCant, this.nGan, this.nExp);
                 this.game.interfaz.actualizaInterfaz();
                 this.abreMarco();
+                this.game.cierraMarcoAnterior = () => {};
             }
         })
     }
