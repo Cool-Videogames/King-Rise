@@ -144,12 +144,14 @@ export default class Interfaz{
     this.sprites[nE.trampaOso].setScale(2,2);
     this.sprites[nE.torreArqueros].setScale(2,2);
   }
+
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
   clickEnAjustes(ajustesSprite){
     ajustesSprite.on('pointerdown', pointer => {
       this.game.scene.switch('settings');
       this.game.pauseGame();
     })
+    
   }
   clickEnDesplegable(desplegableSprite){
     desplegableSprite.on('pointerdown', pointer => {
