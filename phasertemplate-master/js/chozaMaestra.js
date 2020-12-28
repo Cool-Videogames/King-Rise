@@ -171,11 +171,6 @@ export default class ChozaMaestra extends Edificio {
 
     especializa(aldeanos, mineros, canteros, ganaderos, exploradores) {
         for (let i = 0; i < aldeanos; i++) this.game.aldeanosBasicos.push(this.game.creaAldeano());
-        /*this.espMineros(mineros);
-        this.espCanteros(canteros);
-        this.espGanaderos(ganaderos);
-        this.espExploradores(exploradores);*/
-
         this.especializaTodo(mineros, canteros, ganaderos, exploradores);
     }
 
@@ -191,87 +186,27 @@ export default class ChozaMaestra extends Edificio {
                 //Configuracion del minero
                 aldeano.rendimiento.rendGeneral = 0;
                 console.log(j);
-                if (j < mineros) {
+                if (j < mineros) { //mineros
                     console.log('minero')
                     aldeano.rendimiento.rendMinero = 50;
                     this.game.mineros.push(aldeano);
                 }
-                else if (j < j + canteros) {
+                else if (j < canteros + mineros) { //canteros
                     console.log('cantero')
                     aldeano.rendimiento.rendCantero = 50;
                     this.game.canteros.push(aldeano);
                 }
-                else if (j < j + ganaderos) {
+                else if (j < ganaderos + canteros + mineros) { //ganaderos
                     console.log('ganadero')
                     aldeano.rendimiento.rendGanadero = 50;
                     this.game.ganaderos.push(aldeano);
                 }
-                else if (j < j + exploradores) {
+                else if (j  < exploradores + ganaderos + canteros + mineros) { //exploradores
                     console.log('explorador')
                     aldeano.rendimiento.rendGeneral = config.rendimientoGeneral;
                     this.game.exploradores.push(aldeano);
                 }
                 j++;
-            }
-        }
-    }
-
-    espMineros(mineros) {
-        if (this.game.aldeanosBasicos.length > 0) {
-            for (let i = 0; i < mineros; i++) {
-                let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1];
-                this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1] = null;
-                this.game.aldeanosBasicos.pop();
-
-                //Configuracion del minero
-                aldeano.rendimiento.rendGeneral = 0;
-                aldeano.rendimiento.rendMinero = 50;
-
-                //Cambiarle el sprite
-                aldeano.flipY = true; //simples pruebas xd
-                this.game.mineros.push(aldeano);
-            }
-        }
-    }
-    espCanteros(canteros) {
-        if (this.game.aldeanosBasicos.length > 0) {
-            for (let i = 0; i < canteros; i++) {
-                let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1];
-                this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1] = null;
-                this.game.aldeanosBasicos.length--;
-
-                //Configuracion del cantero
-                aldeano.rendimiento.rendGeneral = 50;
-                //Cambiarle el sprite
-                this.game.canteros.push(aldeano);
-            }
-        }
-    }
-    espGanaderos(ganaderos) {
-        if (this.game.aldeanosBasicos.length > 0) {
-            for (let i = 0; i < ganaderos; i++) {
-                let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1];
-                this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1] = null;
-                this.game.aldeanosBasicos.length--;
-
-                //Configuracion del ganadero
-                aldeano.rendimiento.rendGeneral = 50;
-                //Cambiarle el sprite
-                this.game.ganaderos.push(aldeano);
-            }
-        }
-    }
-    espExploradores(exploradores) {
-        if (this.game.aldeanosBasicos.length > 0) {
-            for (let i = 0; i < exploradores; i++) {
-                let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1];
-                this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1] = null;
-                this.game.aldeanosBasicos.length--;
-
-                //Configuracion del explorador
-                aldeano.rendimiento.rendGeneral = 50;
-                //Cambiarle el sprite
-                this.game.exploradores.push(aldeano);
             }
         }
     }
