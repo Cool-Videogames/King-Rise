@@ -20,14 +20,15 @@ export default class Game extends Phaser.Scene {
     this.canteros = [];
     this.exploradores = [];
 
-    this.recursos = { oro: 80, comida: 0, materiales: 0, felicidad: 0 }
+    this.recursos = { oro: 100, comida: 100, materiales: 100, felicidad: 100 }
     this.proxAtaque = 20;
     this.numEdificios = 0;
 
     this.xSize = 1280;
     this.ySize = 720;
 
-    this.casillaPuntero = {x:0,y:0};
+    this.casillaPuntero = { x: 0, y: 0 };
+    this.cierraMarcoAnterior = () => {};
   }
 
   create() {
@@ -36,11 +37,12 @@ export default class Game extends Phaser.Scene {
     this.mapa = new Mapa(this, config.columnas, config.filas, config.sizeCasilla);
     this.jug = new Jugador(this, this.mapa.mapa[0][0]);
     this.creaTrono();
-    this.interfaz = new Interfaz(this); 
+    this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
     this.creaObstaculos();
 
-    this.creaAldeano();
+    this.aldeanosBasicos.push(this.creaAldeano());
+
     this.interfaz.actualizaInterfaz();
   }
   
@@ -53,7 +55,9 @@ export default class Game extends Phaser.Scene {
     }
     while (nextCell.ocupada);
     nextCell.ocupada = true;
-    this.aldeanosBasicos.push(new Aldeano(this, nextCell, 0, 0));
+
+    let aldeano = new Aldeano(this, nextCell, 0, 0);
+    return aldeano;
   }
 
   creaTrono() {

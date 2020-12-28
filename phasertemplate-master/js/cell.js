@@ -42,7 +42,7 @@ export default class Cell {
                         this.game.jug.edificio.cobraCoste();
                         this.game.interfaz.actualizaInterfaz();
 
-                        if (this.game.jug.edificio.key === 'chozaMaestra') this.game.jug.edificio.setMenu();
+                        this.game.jug.edificio.setMenu();
                         celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada =true; });
                         this.game.jug.isBuilding = false;
                     }

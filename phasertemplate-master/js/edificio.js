@@ -100,11 +100,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.y = pos.y + this.alto * config.sizeCasilla;
     }
 
-    construir() {
-        //recursos del jugador -= coste;
-        //asignar posicion
-    }
-
     destruir() {
         if (this.destruible) {
             //recursos del jugador += coste * 0.75;

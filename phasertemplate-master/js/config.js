@@ -21,6 +21,7 @@ export let numEspecialidades = 4;
 
 //Interfaz
 export let hudScale = 1.5;
+
 //Texts
 export let stroke = '#000000';
 export let font = 'Arial Black'

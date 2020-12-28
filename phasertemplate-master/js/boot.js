@@ -37,16 +37,19 @@ export default class Boot extends Phaser.Scene {
     this.load.image('muralla', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/muralla.png");
     this.load.image('catedral', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/catedral.png");
 
+
+    this.load.image('done', "./phasertemplate-master/images/Interfaz/Done.png");
+    this.load.image('mas', "./phasertemplate-master/images/Interfaz/Mas.png");
+    this.load.image('menos', "./phasertemplate-master/images/Interfaz/Menos.png");
+    this.load.image('moneda', "./phasertemplate-master/images/Interfaz/MonedaOro.png");
+    this.load.image('asignar', "./phasertemplate-master/images/Estructuras/AsignarAldeanos.png")
+
     //Ajustes
     this.load.image('volveraljuego', "./phasertemplate-master/images/gestion.png");
 
     //Choza Maestra
     this.load.image('chozaMaestra', "./phasertemplate-master/images/Estructuras/ChozaMaestra/ChozaMaestra.png");
     this.load.image('marco', "./phasertemplate-master/images/Estructuras/ChozaMaestra/marco.png");
-    this.load.image('done', "./phasertemplate-master/images/Estructuras/ChozaMaestra/Done.png");
-    this.load.image('mas', "./phasertemplate-master/images/Estructuras/ChozaMaestra/Mas.png");
-    this.load.image('menos', "./phasertemplate-master/images/Estructuras/ChozaMaestra/Menos.png");
-    this.load.image('moneda', "./phasertemplate-master/images/Estructuras/ChozaMaestra/MonedaOro.png");
 
     //IGNORAR, SOLO DE PRUEBA
     this.load.image('obstaculo', "./phasertemplate-master/images/Obstaculo.png");
