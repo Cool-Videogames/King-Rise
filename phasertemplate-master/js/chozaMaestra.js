@@ -2,7 +2,6 @@ import Edificio from "./edificio.js";
 import * as config from "./config.js"
 import Vector2D from "./vector2D.js";
 import * as functions from "./functions.js";
-import Aldeano from "./aldeano.js";
 
 export default class ChozaMaestra extends Edificio{
     constructor(scene,vida,coste,posicion,ancho, alto, key){

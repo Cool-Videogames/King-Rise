@@ -47,6 +47,9 @@ export default class Boot extends Phaser.Scene {
     //IGNORAR, SOLO DE PRUEBA
     this.load.image('obstaculo', "./phasertemplate-master/images/Obstaculo.png");
     this.load.image('edificio', "./phasertemplate-master/images/favicon.png");
+
+    //Sonido
+    this.load.audio('music', "./phasertemplate-master/sound/MainSound.m4a");
   }
 
   create() {
