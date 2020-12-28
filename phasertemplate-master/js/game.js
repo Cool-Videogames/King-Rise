@@ -43,7 +43,7 @@ export default class Game extends Phaser.Scene {
     this.creaAldeano();
     this.interfaz.actualizaInterfaz();
   }
-
+  
   creaAldeano() {
     let nextCell;
     do {

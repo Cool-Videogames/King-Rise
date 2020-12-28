@@ -1,7 +1,6 @@
 import ChozaMaestra from "./chozaMaestra.js";
 import * as config from "./config.js";
 import EdificioRecursos from "./edificioRecursos.js";
-import EdificioDefensivo from "./edificioDefensivo.js";
 import Vector2D from "./vector2D.js";
 import Trampa from "./trampa.js";
 import Muro from "./muro.js";
@@ -35,9 +34,12 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.dir = 'none';
 
         this.stopBuild = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); //tecla para dejar de construir
+        this.createAnimations();
     }
 
     preUpdate(t, dt) {
+        super.preUpdate(t, dt);
+
         if (Phaser.Input.Keyboard.JustDown(this.stopBuild) && this.isBuilding) {
             this.edificio.celdas().forEach(elem => elem.sprite.tint = elem.tint);
             this.game.casillaPuntero.sprite.tint = 0x41EE7B;
@@ -46,9 +48,63 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             this.edificio.destroy();
             this.edificio = null;
         }
-
         this.compruebaPosicion();
-        super.preUpdate(t, dt);
+        this.calculaDir();
+    }
+
+    createAnimations(){
+       this.game.anims.create({
+            key: 'espaldas',
+            repeat: -1,
+            frameRate: 3,
+            frames: this.game.anims.generateFrameNames('jugadorEspaldas', {start: 0, end: 1}),
+        });
+        this.game.anims.create({
+            key: 'derecha',
+            repeat: -1,
+            frameRate: 3,
+            frames: this.game.anims.generateFrameNames('jugadorLado', {start: 0, end: 1}),
+        });
+        this.game.anims.create({
+            key: 'izquierda',
+            repeat: -1,
+            frameRate: 3,
+            frames: this.game.anims.generateFrameNames('jugadorLado', {start: 0, end: 1}),
+        });
+        this.game.anims.create({
+            key: 'frente',
+            repeat: -1,
+            frameRate: 3,
+            frames: this.game.anims.generateFrameNames('jugadorFrente', {start: 0, end: 1}),
+        });
+    }
+    calculaDir(){
+        let iniDir = this.dir;
+        if(this.x < this.posDestino.x && this.dir !== 'right') this.dir = 'right';
+        else if(this.x > this.posDestino.x && this.dir !== 'left') this.dir = 'left';
+        else if(this.y < this.posDestino.y && this.dir !== 'down') this.dir = 'down';
+        else if(this.y > this.posDestino.y && this.dir !== 'up') this.dir = 'up';
+
+        if(iniDir !== this.dir || !this.isMoving) this.animation();
+    }
+    animation(){
+        if(this.isMoving){
+            if(this.dir === 'right'){
+                this.play('derecha');
+                this.flipX = true;
+            }
+            else if(this.dir === 'left'){
+                this.play('izquierda');
+                this.flipX = false;
+            }
+            else if(this.dir === 'up'){
+                this.play('espaldas');
+            }
+            else if(this.dir === 'down'){
+                this.play('frente');
+            }
+        }
+        else this.setTexture('jugador');
     }
 
     inputConstruir(spritename, especialidad, ancho, alto) {
@@ -68,7 +124,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             if (this.x > this.posDestino.x - config.margenPosicion && this.x < this.posDestino.x + config.margenPosicion
                 && this.y > this.posDestino.y - config.margenPosicion && this.y < this.posDestino.y + config.margenPosicion) {
                 this.body.reset(this.posDestino.x, this.posDestino.y);
-                this.isMoving = false;
+                this.isMoving = false; 
 
                 if (this.nodoDestino.siguiente !== null) {
                     this.movimientoPathFinding(this.nodoDestino.siguiente);

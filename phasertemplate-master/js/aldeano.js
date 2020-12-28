@@ -22,6 +22,7 @@ export default class Aldeano extends Persona {
 
         this.game = scene;
         this.ocupado = false;
+        this.dir = 'none';
 
         this.casillaRandom();
         this.movimientoPathFinding(this.nodoInicial);
@@ -34,6 +35,17 @@ export default class Aldeano extends Persona {
     preUpdate(t, dt) {
         this.compruebaPosicion(dt);
         super.preUpdate(t, dt);
+        this.calculaDir();
+        this.animation();
+    }
+    animation(){
+
+    }
+    calculaDir(){
+        if(this.x < this.posDestino.x) this.dir = 'right';
+        else if(this.x > this.posDestino.x) this.dir = 'left';
+        else if(this.y < this.posDestino.y) this.dir = 'down';
+        else if(this.y > this.posDestino.y) this.dir = 'up';
     }
 
     compruebaPosicion(dt) {
