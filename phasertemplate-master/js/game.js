@@ -20,7 +20,7 @@ export default class Game extends Phaser.Scene {
     this.canteros = [];
     this.exploradores = [];
 
-    this.recursos = { oro: 100, comida: 100, materiales: 100, felicidad: 100 }
+    this.recursos = { oro: 500, comida: 100, materiales: 100, felicidad: 100 }
     this.proxAtaque = 20;
     this.numEdificios = 0;
 
@@ -42,6 +42,21 @@ export default class Game extends Phaser.Scene {
     this.creaObstaculos();
 
     this.aldeanosBasicos.push(this.creaAldeano());
+    this.aldeanosBasicos.push(this.creaAldeano());
+
+    this.aldeanosBasicos.push(this.creaAldeano());
+
+    this.aldeanosBasicos.push(this.creaAldeano());
+
+    this.aldeanosBasicos.push(this.creaAldeano());
+
+    this.aldeanosBasicos.push(this.creaAldeano());
+
+    this.aldeanosBasicos.push(this.creaAldeano());
+    this.aldeanosBasicos.push(this.creaAldeano());
+    this.aldeanosBasicos.push(this.creaAldeano());
+    this.aldeanosBasicos.push(this.creaAldeano());
+
 
     this.interfaz.actualizaInterfaz();
   }

@@ -93,17 +93,17 @@ export default class ChozaMaestra extends Edificio {
         this.coste.text = this.costeTotal;
     }
     asignaInput() {
-        this.masMi(this.ops[0]); this.menosMi(this.ops[1]); this.masCan(this.ops[2]); this.menosCan(this.ops[3]);
-        this.masGan(this.ops[4]); this.menosGan(this.ops[5]); this.masEx(this.ops[6]); this.menosEx(this.ops[7]);
+        this.inputMineros(this.ops[0], this.ops[1]); this.inputCanteros(this.ops[2], this.ops[3]);
+        this.inputGanaderos(this.ops[4], this.ops[5]); this.inputExploradores(this.ops[6], this.ops[7]);
     }
     clickEnChoza(chozaSprite) {
         chozaSprite.on('pointerup', pointer => {
             if (!this.game.jug.isBuilding) {
-                if(!this.marco.visible){
+                if (!this.marco.visible) {
                     this.game.cierraMarcoAnterior();
-                    this.game.cierraMarcoAnterior =  this.abreMarco;
+                    this.game.cierraMarcoAnterior = this.abreMarco;
                 }
-                else this.game.cierraMarcoAnterior = () => {};
+                else this.game.cierraMarcoAnterior = () => { };
                 this.abreMarco();
             }
         })
@@ -116,82 +116,117 @@ export default class ChozaMaestra extends Edificio {
                 this.especializa(0, this.nMin, this.nCant, this.nGan, this.nExp);
                 this.game.interfaz.actualizaInterfaz();
                 this.abreMarco();
-                this.game.cierraMarcoAnterior = () => {};
+                this.game.cierraMarcoAnterior = () => { };
             }
         })
     }
-    masMi(masmineros) {
+    inputMineros(masmineros, menosmineros) {
         masmineros.on('pointerdown', pointer => {
             this.nMin++;
             this.texts[this.opEnum.mineros].text = this.nMin;
             this.actualizaCosteTotal();
-        })
-    }
-    menosMi(menosmineros) {
+        });
         menosmineros.on('pointerdown', pointer => {
             if (this.nMin > 0) this.nMin--;
             this.texts[this.opEnum.mineros].text = this.nMin;
             this.actualizaCosteTotal();
-        })
+        });
     }
-    masCan(mascanteros) {
+    inputCanteros(mascanteros, menoscanteros) {
         mascanteros.on('pointerdown', pointer => {
             this.nCant++;
             this.texts[this.opEnum.canteros].text = this.nCant;
             this.actualizaCosteTotal();
-        })
-    }
-    menosCan(menoscanteros) {
+        });
         menoscanteros.on('pointerdown', pointer => {
             if (this.nCant > 0) this.nCant--;
             this.texts[this.opEnum.canteros].text = this.nCant;
             this.actualizaCosteTotal();
-        })
+        });
     }
-    masGan(masganaderos) {
+    inputGanaderos(masganaderos, menosganaderos) {
         masganaderos.on('pointerdown', pointer => {
             this.nGan++;
             this.texts[this.opEnum.ganaderos].text = this.nGan;
             this.actualizaCosteTotal();
-        })
-    }
-    menosGan(menosganaderos) {
+        });
         menosganaderos.on('pointerdown', pointer => {
             if (this.nGan > 0) this.nGan--;
             this.texts[this.opEnum.ganaderos].text = this.nGan;
             this.actualizaCosteTotal();
-        })
+        });
     }
-    masEx(masexploradores) {
+    inputExploradores(masexploradores, menosexploradores) {
         masexploradores.on('pointerdown', pointer => {
             this.nExp++;
             this.texts[this.opEnum.exploradores].text = this.nExp;
             this.actualizaCosteTotal();
         })
-    }
-    menosEx(menosexploradores) {
         menosexploradores.on('pointerdown', pointer => {
             if (this.nExp > 0) this.nExp--;
             this.texts[this.opEnum.exploradores].text = this.nExp;
             this.actualizaCosteTotal();
         })
     }
+
     especializa(aldeanos, mineros, canteros, ganaderos, exploradores) {
         for (let i = 0; i < aldeanos; i++) this.game.aldeanosBasicos.push(this.game.creaAldeano());
-        this.espMineros(mineros);
+        /*this.espMineros(mineros);
         this.espCanteros(canteros);
         this.espGanaderos(ganaderos);
-        this.espExploradores(exploradores);
+        this.espExploradores(exploradores);*/
+
+        this.especializaTodo(mineros, canteros, ganaderos, exploradores);
     }
+
+    especializaTodo(mineros, canteros, ganaderos, exploradores) {
+        let suma = mineros + canteros + ganaderos + exploradores;
+        if (this.game.aldeanosBasicos.length > 0) {
+            let j = 0;
+            for (let i = 0; i < suma; i++) {
+                let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1];
+                this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1] = null;
+                this.game.aldeanosBasicos.pop();
+
+                //Configuracion del minero
+                aldeano.rendimiento.rendGeneral = 0;
+                console.log(j);
+                if (j < mineros) {
+                    console.log('minero')
+                    aldeano.rendimiento.rendMinero = 50;
+                    this.game.mineros.push(aldeano);
+                }
+                else if (j < j + canteros) {
+                    console.log('cantero')
+                    aldeano.rendimiento.rendCantero = 50;
+                    this.game.canteros.push(aldeano);
+                }
+                else if (j < j + ganaderos) {
+                    console.log('ganadero')
+                    aldeano.rendimiento.rendGanadero = 50;
+                    this.game.ganaderos.push(aldeano);
+                }
+                else if (j < j + exploradores) {
+                    console.log('explorador')
+                    aldeano.rendimiento.rendGeneral = config.rendimientoGeneral;
+                    this.game.exploradores.push(aldeano);
+                }
+                j++;
+            }
+        }
+    }
+
     espMineros(mineros) {
         if (this.game.aldeanosBasicos.length > 0) {
             for (let i = 0; i < mineros; i++) {
                 let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1];
                 this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1] = null;
-                this.game.aldeanosBasicos.length--;
+                this.game.aldeanosBasicos.pop();
 
                 //Configuracion del minero
-                aldeano.rendimiento.rendGeneral = 50;
+                aldeano.rendimiento.rendGeneral = 0;
+                aldeano.rendimiento.rendMinero = 50;
+
                 //Cambiarle el sprite
                 aldeano.flipY = true; //simples pruebas xd
                 this.game.mineros.push(aldeano);
