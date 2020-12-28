@@ -4,10 +4,10 @@ export default class Boot extends Phaser.Scene {
   }
   preload() {
     //Juego
-    this.load.spritesheet('jugadorFrente', "./phasertemplate-master/images/Rey/ReyFrente.png", {frameWidth: 30, frameHeight: 36});
+    this.load.spritesheet('jugadorFrente', "./phasertemplate-master/images/Rey/ReyFrente.png", {frameWidth: 32, frameHeight: 38});
     this.load.image('jugador', "./phasertemplate-master/images/Rey/Rey.png");
-    this.load.spritesheet('jugadorLado', "./phasertemplate-master/images/Rey/ReyLado.png", {frameWidth: 25, frameHeight: 38});
-    this.load.spritesheet('jugadorEspaldas', "./phasertemplate-master/images/Rey/ReyEspaldas.png", {frameWidth: 24, frameHeight: 38});
+    this.load.spritesheet('jugadorLado', "./phasertemplate-master/images/Rey/ReyLado.png", {frameWidth: 32, frameHeight: 38});
+    this.load.spritesheet('jugadorEspaldas', "./phasertemplate-master/images/Rey/ReyEspaldas.png", {frameWidth: 32, frameHeight: 38});
 
     this.load.image('aldeano', "./phasertemplate-master/images/Aldeano/AldeanoFrente.png");
     this.load.image('sabana', "./phasertemplate-master/images/Sabana.png");
