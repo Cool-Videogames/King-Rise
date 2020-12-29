@@ -6,7 +6,7 @@ import * as config from "./config.js"
 export default class TorreArqueros extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
         super(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key);
-        this.body.setSize(this.body.width * rango, this.body.height * rango);
+        this.body.setSize(config.sizeCasilla * rango, config.sizeCasilla * rango);
         this.arrow = null;
         this.enemy = null;
         this.fireRate = 0; //Tiempo en ms
@@ -29,7 +29,7 @@ export default class TorreArqueros extends EdificioDefensivo {
         });
 
         this.variacionAldeanos = 0;
-        this.texts = new Array(3);
+        this.texts = new Array(4);
         this.abreMarco = this.muestraOpciones();
     }
 
@@ -76,12 +76,14 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.texts[0] = functions.creaTexto(this.marco.x + this.marco.width * 0.5, this.marco.y + this.marco.height * 0.29, this.aldeanosMax, this.game);
         this.texts[1] = functions.creaTexto(this.marco.x + this.marco.width * 0.58, this.marco.y + this.marco.height * 0.57, this.numAldeanos, this.game);
         this.texts[2] = functions.creaTexto(this.marco.x + this.marco.width * 0.86, this.marco.y + this.marco.height * 0.84, this.game.exploradores.length, this.game);
+        this.texts[3] = functions.creaTexto(this.x - 2 , this.y - this.height * 0.8, this.numAldeanos, this.game);
         for (let i of this.texts) {
             i.setDepth(config.hudDepth); i.setVisible(false);
             i.setFontSize(19);
             i.setStroke(config.stroke, 3);
         }
         this.texts[1].setFontSize(45);
+        this.texts[3].setVisible(true);
     }
 
     asignaInput() {
@@ -90,6 +92,7 @@ export default class TorreArqueros extends EdificioDefensivo {
                 this.numAldeanos++;
                 this.variacionAldeanos++;
                 this.texts[1].text = this.numAldeanos;
+                this.texts[3].text = this.numAldeanos;
             }
         })
 
@@ -98,6 +101,7 @@ export default class TorreArqueros extends EdificioDefensivo {
                 this.numAldeanos--;
                 this.variacionAldeanos--;
                 this.texts[1].text = this.numAldeanos;
+                this.texts[3].text = this.numAldeanos;
             }
         })
 
@@ -109,7 +113,7 @@ export default class TorreArqueros extends EdificioDefensivo {
                 for (let i = 0; i < this.variacionAldeanos; ++i)this.game.exploradores.pop().destroy();
             }
             this.variacionAldeanos = 0;
-            this.game.cierraMarcoAnterior = () => {};
+            this.game.cierraMarcoAnterior = () => { };
             this.abreMarco();
             this.game.interfaz.actualizaInterfaz();
         })
@@ -118,11 +122,11 @@ export default class TorreArqueros extends EdificioDefensivo {
     clickEnTorre(torreSprite) {
         torreSprite.on('pointerup', pointer => {
             if (!this.game.jug.isBuilding) {
-                if(!this.marco.visible){
+                if (!this.marco.visible) {
                     this.game.cierraMarcoAnterior();
-                    this.game.cierraMarcoAnterior =  this.abreMarco;
+                    this.game.cierraMarcoAnterior = this.abreMarco;
                 }
-                else this.game.cierraMarcoAnterior = () => {};
+                else this.game.cierraMarcoAnterior = () => { };
                 this.abreMarco();
             }
         })
@@ -139,6 +143,7 @@ export default class TorreArqueros extends EdificioDefensivo {
             for (let i of this.texts) {
                 i.setVisible(!i.visible);
             }
+            this.texts[3].setVisible(true);
         }
     }
 

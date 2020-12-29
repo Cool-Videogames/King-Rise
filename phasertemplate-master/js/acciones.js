@@ -35,7 +35,7 @@ export default class Acciones {
 
     actualizarIndice(aumento) {
         this.nuevoAldeano++;
-        if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.creaAldeano(); this.nuevoAldeano = 0;}
+        if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.aldeanosBasicos.push(this.game.creaAldeano()); this.nuevoAldeano = 0; }
 
         this.index += aumento;
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque - this.index;
