@@ -4,12 +4,25 @@ export default class Boot extends Phaser.Scene {
   }
   preload() {
     //Juego
-    this.load.spritesheet('jugadorFrente', "./phasertemplate-master/images/Rey/ReyFrente.png", {frameWidth: 32, frameHeight: 38});
+
+    //Jugador
     this.load.image('jugador', "./phasertemplate-master/images/Rey/Rey.png");
+    this.load.spritesheet('jugadorFrente', "./phasertemplate-master/images/Rey/ReyFrente.png", {frameWidth: 32, frameHeight: 38});
     this.load.spritesheet('jugadorLado', "./phasertemplate-master/images/Rey/ReyLado.png", {frameWidth: 32, frameHeight: 38});
     this.load.spritesheet('jugadorEspaldas', "./phasertemplate-master/images/Rey/ReyEspaldas.png", {frameWidth: 32, frameHeight: 38});
 
-    this.load.image('aldeano', "./phasertemplate-master/images/Aldeano/AldeanoFrente.png");
+    //Aldeano
+    this.load.image('aldeano', "./phasertemplate-master/images/Aldeano/Aldeano.png");
+    this.load.spritesheet('aldeanoEspaldas', "./phasertemplate-master/images/Aldeano/AldeanoEspaldas.png", {frameWidth: 32, frameHeight: 38});
+    this.load.spritesheet('aldeanoLado', "./phasertemplate-master/images/Aldeano/AldeanoLado.png", {frameWidth: 32, frameHeight: 38});
+    this.load.spritesheet('aldeanoFrente', "./phasertemplate-master/images/Aldeano/AldeanoFrente.png", {frameWidth: 32, frameHeight: 38});
+
+    //Aldeana
+    this.load.image('aldeana', "./phasertemplate-master/images/Aldeana/Aldeana.png");
+    this.load.spritesheet('aldeanaEspaldas', "./phasertemplate-master/images/Aldeana/AldeanaEspaldas.png", {frameWidth: 32, frameHeight: 46});
+    this.load.spritesheet('aldeanaLado', "./phasertemplate-master/images/Aldeana/AldeanaLado.png", {frameWidth: 32, frameHeight: 46});
+    this.load.spritesheet('aldeanaFrente', "./phasertemplate-master/images/Aldeana/AldeanaFrente.png", {frameWidth: 32, frameHeight: 46});
+
     this.load.image('sabana', "./phasertemplate-master/images/Sabana.png");
     this.load.image('trono', "./phasertemplate-master/images/Throne.png");
 
@@ -42,7 +55,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('mas', "./phasertemplate-master/images/Interfaz/Mas.png");
     this.load.image('menos', "./phasertemplate-master/images/Interfaz/Menos.png");
     this.load.image('moneda', "./phasertemplate-master/images/Interfaz/MonedaOro.png");
-    this.load.image('asignar', "./phasertemplate-master/images/Estructuras/AsignarAldeanos.png")
+    this.load.image('asignar', "./phasertemplate-master/images/Estructuras/AsignarAldeanos.png");
 
     //Ajustes
     this.load.image('volveraljuego', "./phasertemplate-master/images/gestion.png");

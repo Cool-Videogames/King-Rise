@@ -3,9 +3,10 @@ import Persona from "./persona.js"
 import Vector2D from "./vector2D.js";
 
 export default class Aldeano extends Persona {
-    constructor(scene, casilla, vida, fuerza) {
+    constructor(scene, casilla, vida, fuerza, chico) {
         let pos = { x: 0, y: 0 };
-        super(scene, pos, vida, fuerza, 'aldeano');
+        let sexo = 'aldeano'; if(!chico) sexo = 'aldeana';
+        super(scene, pos, vida, fuerza, sexo);
         pos = this.posicionCentrada(casilla);
         this.x = pos.x;
         this.y = pos.y;
@@ -20,6 +21,7 @@ export default class Aldeano extends Persona {
         this.casilla = casilla
         this.casilla.ocupada = true;
 
+        this.chico = chico;
         this.game = scene;
         this.ocupado = false;
         this.dir = 'none';
@@ -30,22 +32,104 @@ export default class Aldeano extends Persona {
         this.timer = 0;
         this.esperando = false;
         this.tiempoEspera = 1;
+
+        this.createAnimationsChico();
+        this.createAnimationsChica();
     }
 
     preUpdate(t, dt) {
         this.compruebaPosicion(dt);
         super.preUpdate(t, dt);
         this.calculaDir();
-        this.animation();
     }
-    animation(){
+    createAnimationsChico(){
+        this.game.anims.create({
+            key: 'espaldasAldeano',
+            repeat: -1,
+            frameRate: 4,
+            frames: this.game.anims.generateFrameNames('aldeanoEspaldas', {start: 0, end: 1}),
+        });
+        this.game.anims.create({
+            key: 'derechaAldeano',
+            repeat: -1,
+            frameRate: 4,
+            frames: this.game.anims.generateFrameNames('aldeanoLado', {start: 0, end: 1}),
+        });
+        this.game.anims.create({
+            key: 'izquierdaAldeano',
+            repeat: -1,
+            frameRate: 4,
+            frames: this.game.anims.generateFrameNames('aldeanoLado', {start: 0, end: 1}),
+        });
+        this.game.anims.create({
+            key: 'frenteAldeano',
+            repeat: -1,
+            frameRate: 4,
+            frames: this.game.anims.generateFrameNames('aldeanoFrente', {start: 0, end: 1}),
+        });
+    }
+    createAnimationsChica(){
+        this.game.anims.create({
+            key: 'espaldasAldeana',
+            repeat: -1,
+            frameRate: 4,
+            frames: this.game.anims.generateFrameNames('aldeanaEspaldas', {start: 0, end: 1}),
+        });
+        this.game.anims.create({
+            key: 'derechaAldeana',
+            repeat: -1,
+            frameRate: 4,
+            frames: this.game.anims.generateFrameNames('aldeanaLado', {start: 0, end: 1}),
+        });
+        this.game.anims.create({
+            key: 'izquierdaAldeana',
+            repeat: -1,
+            frameRate: 4,
+            frames: this.game.anims.generateFrameNames('aldeanaLado', {start: 0, end: 1}),
+        });
+        this.game.anims.create({
+            key: 'frenteAldeana',
+            repeat: -1,
+            frameRate: 4,
+            frames: this.game.anims.generateFrameNames('aldeanaFrente', {start: 0, end: 1}),
+        });
 
     }
+
+    animation(){
+        if(this.chico){
+            if(this.dir === 'right'){
+                this.play('derechaAldeano');
+                this.flipX = true;
+            }
+            else if(this.dir === 'left'){
+                this.play('izquierdaAldeano');
+                this.flipX = false;
+            }
+            else if(this.dir === 'up') this.play('espaldasAldeano');
+            else if(this.dir === 'down') this.play('frenteAldeano');
+        }
+        else {
+            if(this.dir === 'right'){
+                this.play('derechaAldeana');
+                this.flipX = true;
+            }
+            else if(this.dir === 'left'){
+                this.play('izquierdaAldeana');
+                this.flipX = false;
+            }
+            else if(this.dir === 'up') this.play('espaldasAldeana');
+            else if(this.dir === 'down') this.play('frenteAldeana');
+        }
+    }
     calculaDir(){
-        if(this.x < this.posDestino.x) this.dir = 'right';
-        else if(this.x > this.posDestino.x) this.dir = 'left';
-        else if(this.y < this.posDestino.y) this.dir = 'down';
-        else if(this.y > this.posDestino.y) this.dir = 'up';
+        let iniDir = this.dir;
+        if(this.x < this.posDestino.x && this.dir !== 'right') this.dir = 'right';
+        else if(this.x > this.posDestino.x && this.dir !== 'left') this.dir = 'left';
+        else if(this.y < this.posDestino.y && this.dir !== 'down') this.dir = 'down';
+        else if(this.y > this.posDestino.y && this.dir !== 'up') this.dir = 'up';
+
+        if(iniDir !== this.dir || this.esperando) this.animation();
     }
 
     compruebaPosicion(dt) {
