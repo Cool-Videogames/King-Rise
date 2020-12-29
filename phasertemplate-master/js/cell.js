@@ -42,8 +42,8 @@ export default class Cell {
                         this.game.jug.edificio.cobraCoste();
                         this.game.interfaz.actualizaInterfaz();
 
-                        this.game.jug.edificio.setMenu();
-                        celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada =true; });
+                        if (this.game.jug.edificio.hasMenu) this.game.jug.edificio.setMenu();
+                        celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada = true; });
                         this.game.jug.isBuilding = false;
                     }
                 }

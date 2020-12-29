@@ -16,6 +16,7 @@ export default class ChozaMaestra extends Edificio {
         this.nMin = 0; this.nGan = 0; this.nCant = 0; this.nExp = 0; this.costeTotal = 0; this.numTotal = 0;
         this.costeMin = 20; this.costeGan = 20; this.costeCant = 20; this.costeExp = 20;
         this.abreMarco = this.muestraOpciones();
+        this.hasMenu = true;
     }
 
     setMenu() {

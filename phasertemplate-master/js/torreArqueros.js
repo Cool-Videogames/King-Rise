@@ -11,6 +11,7 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.enemy = null;
         this.fireRate = 0; //Tiempo en ms
         this.game = scene;
+        this.hasMenu = true;
 
         scene.physics.add.overlap(this, this.game.jug, (turret, enemy) => {
             if (this.arrow === null && this.fireRate <= 0) {
