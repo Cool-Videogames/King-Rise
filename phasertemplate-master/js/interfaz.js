@@ -183,7 +183,8 @@ export default class Interfaz{
   }
   clickEnConstruccion(construccion){
     construccion.on('pointerdown', pointer =>{
-      for(let i = this.inEd; i< config.hudSprites;i++) this.sprites[i].setVisible(false);
+      if(!this.sprites[this.names.construir].visible){
+      for(let i = this.inEd; i < config.hudSprites; i++) this.sprites[i].setVisible(false);
       this.sprites[this.names.chozaMaestra].setVisible(true);
       this.sprites[this.names.mina].setVisible(true);
       this.sp(this.sprites[this.names.chozaMaestra], this.posEdiAbajo.x, this.posEdiAbajo.y);
@@ -196,6 +197,13 @@ export default class Interfaz{
       this.sprites[this.names.infoAldeanos].setVisible(false);
       for(let i = this.inIA;i<this.inEd;++i) this.sprites[i].setVisible(false);
       for(let i = this.inAT;i<config.numTexts;++i) this.texts[i].setVisible(false);
+      }
+      else {
+        this.sprites[this.names.construir].setVisible(false);
+      this.sprites[this.names.flechaAb].setVisible(false);
+      this.sprites[this.names.flechaAr].setVisible(false);
+      for(let i = this.inEd; i < config.hudSprites; i++) this.sprites[i].setVisible(false);
+      }
     })
   }
   clickFlechaArriba(flechaAr){
