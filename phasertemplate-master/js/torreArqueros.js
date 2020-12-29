@@ -10,6 +10,7 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.arrow = null;
         this.enemy = null;
         this.fireRate = 0; //Tiempo en ms
+        this.game = scene;
 
         scene.physics.add.overlap(this, this.game.jug, (turret, enemy) => {
             if (this.arrow === null && this.fireRate <= 0) {
@@ -83,7 +84,7 @@ export default class TorreArqueros extends EdificioDefensivo {
     }
 
     asignaInput() {
-        this.mas.on('pointerdown', pointer => {
+        this.mas.on('pointerup', pointer => {
             if (this.numAldeanos < this.aldeanosMax && this.numAldeanos + 1 <= this.game.exploradores.length) {
                 this.numAldeanos++;
                 this.variacionAldeanos++;
@@ -91,7 +92,7 @@ export default class TorreArqueros extends EdificioDefensivo {
             }
         })
 
-        this.menos.on('pointerdown', pointer => {
+        this.menos.on('pointerup', pointer => {
             if (this.numAldeanos > 0) {
                 this.numAldeanos--;
                 this.variacionAldeanos--;
@@ -99,7 +100,7 @@ export default class TorreArqueros extends EdificioDefensivo {
             }
         })
 
-        this.done.on('pointerdown', pointer => {
+        this.done.on('pointerup', pointer => {
             if (this.variacionAldeanos < 0) {
                 for (let i = 0; i < -this.variacionAldeanos; ++i)this.game.exploradores.push(this.game.creaAldeano());
             }
@@ -109,6 +110,7 @@ export default class TorreArqueros extends EdificioDefensivo {
             this.variacionAldeanos = 0;
             this.game.cierraMarcoAnterior = () => {};
             this.abreMarco();
+            this.game.interfaz.actualizaInterfaz();
         })
     }
 

@@ -13,7 +13,7 @@ export default class ChozaMaestra extends Edificio {
         this.ops = new Array(config.numEspecialidades * 2);
         this.texts = new Array(config.numEspecialidades);
 
-        this.nMin = 0; this.nGan = 0; this.nCant = 0; this.nExp = 0; this.costeTotal = 0;
+        this.nMin = 0; this.nGan = 0; this.nCant = 0; this.nExp = 0; this.costeTotal = 0; this.numTotal = 0;
         this.costeMin = 20; this.costeGan = 20; this.costeCant = 20; this.costeExp = 20;
         this.abreMarco = this.muestraOpciones();
     }
@@ -91,6 +91,7 @@ export default class ChozaMaestra extends Edificio {
     actualizaCosteTotal() {
         this.costeTotal = this.nMin * this.costeMin + this.nCant * this.costeCant + this.nGan * this.costeGan + this.nExp * this.costeGan;
         this.coste.text = this.costeTotal;
+        this.numTotal = this.nMin+ this.nCant+ this.nGan+ this.nExp;
     }
     asignaInput() {
         this.inputMineros(this.ops[0], this.ops[1]); this.inputCanteros(this.ops[2], this.ops[3]);
@@ -122,9 +123,12 @@ export default class ChozaMaestra extends Edificio {
     }
     inputMineros(masmineros, menosmineros) {
         masmineros.on('pointerdown', pointer => {
+            if(this.game.aldeanosBasicos.length > this.numTotal){
             this.nMin++;
             this.texts[this.opEnum.mineros].text = this.nMin;
             this.actualizaCosteTotal();
+            }
+            else console.log("No quedan aldeanos basicos para especializar")
         });
         menosmineros.on('pointerdown', pointer => {
             if (this.nMin > 0) this.nMin--;
@@ -134,9 +138,12 @@ export default class ChozaMaestra extends Edificio {
     }
     inputCanteros(mascanteros, menoscanteros) {
         mascanteros.on('pointerdown', pointer => {
+            if(this.game.aldeanosBasicos.length > this.numTotal){
             this.nCant++;
             this.texts[this.opEnum.canteros].text = this.nCant;
             this.actualizaCosteTotal();
+            }
+            else console.log("No quedan aldeanos basicos para especializar")
         });
         menoscanteros.on('pointerdown', pointer => {
             if (this.nCant > 0) this.nCant--;
@@ -146,9 +153,12 @@ export default class ChozaMaestra extends Edificio {
     }
     inputGanaderos(masganaderos, menosganaderos) {
         masganaderos.on('pointerdown', pointer => {
+            if(this.game.aldeanosBasicos.length > this.numTotal){
             this.nGan++;
             this.texts[this.opEnum.ganaderos].text = this.nGan;
             this.actualizaCosteTotal();
+            }
+            else console.log("No quedan aldeanos basicos para especializar")
         });
         menosganaderos.on('pointerdown', pointer => {
             if (this.nGan > 0) this.nGan--;
@@ -158,9 +168,12 @@ export default class ChozaMaestra extends Edificio {
     }
     inputExploradores(masexploradores, menosexploradores) {
         masexploradores.on('pointerdown', pointer => {
+            if(this.game.aldeanosBasicos.length > this.numTotal){
             this.nExp++;
             this.texts[this.opEnum.exploradores].text = this.nExp;
             this.actualizaCosteTotal();
+            }
+            else console.log("No quedan aldeanos basicos para especializar")
         })
         menosexploradores.on('pointerdown', pointer => {
             if (this.nExp > 0) this.nExp--;
@@ -183,26 +196,20 @@ export default class ChozaMaestra extends Edificio {
                 this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1] = null;
                 this.game.aldeanosBasicos.pop();
 
-                //Configuracion del minero
                 aldeano.rendimiento.rendGeneral = 0;
-                console.log(j);
                 if (j < mineros) { //mineros
-                    console.log('minero')
                     aldeano.rendimiento.rendMinero = 50;
                     this.game.mineros.push(aldeano);
                 }
                 else if (j < canteros + mineros) { //canteros
-                    console.log('cantero')
                     aldeano.rendimiento.rendCantero = 50;
                     this.game.canteros.push(aldeano);
                 }
                 else if (j < ganaderos + canteros + mineros) { //ganaderos
-                    console.log('ganadero')
                     aldeano.rendimiento.rendGanadero = 50;
                     this.game.ganaderos.push(aldeano);
                 }
                 else if (j  < exploradores + ganaderos + canteros + mineros) { //exploradores
-                    console.log('explorador')
                     aldeano.rendimiento.rendGeneral = config.rendimientoGeneral;
                     this.game.exploradores.push(aldeano);
                 }

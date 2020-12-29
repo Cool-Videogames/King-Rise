@@ -43,20 +43,9 @@ export default class Game extends Phaser.Scene {
 
     this.aldeanosBasicos.push(this.creaAldeano());
     this.aldeanosBasicos.push(this.creaAldeano());
-
-    this.aldeanosBasicos.push(this.creaAldeano());
-
-    this.aldeanosBasicos.push(this.creaAldeano());
-
-    this.aldeanosBasicos.push(this.creaAldeano());
-
-    this.aldeanosBasicos.push(this.creaAldeano());
-
     this.aldeanosBasicos.push(this.creaAldeano());
     this.aldeanosBasicos.push(this.creaAldeano());
     this.aldeanosBasicos.push(this.creaAldeano());
-    this.aldeanosBasicos.push(this.creaAldeano());
-
 
     this.interfaz.actualizaInterfaz();
   }

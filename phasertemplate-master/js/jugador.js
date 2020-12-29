@@ -56,25 +56,25 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
        this.game.anims.create({
             key: 'espaldas',
             repeat: -1,
-            frameRate: 3,
+            frameRate: 4,
             frames: this.game.anims.generateFrameNames('jugadorEspaldas', {start: 0, end: 1}),
         });
         this.game.anims.create({
             key: 'derecha',
             repeat: -1,
-            frameRate: 3,
+            frameRate: 4,
             frames: this.game.anims.generateFrameNames('jugadorLado', {start: 0, end: 1}),
         });
         this.game.anims.create({
             key: 'izquierda',
             repeat: -1,
-            frameRate: 3,
+            frameRate: 4,
             frames: this.game.anims.generateFrameNames('jugadorLado', {start: 0, end: 1}),
         });
         this.game.anims.create({
             key: 'frente',
             repeat: -1,
-            frameRate: 3,
+            frameRate: 4,
             frames: this.game.anims.generateFrameNames('jugadorFrente', {start: 0, end: 1}),
         });
     }
@@ -97,12 +97,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 this.play('izquierda');
                 this.flipX = false;
             }
-            else if(this.dir === 'up'){
-                this.play('espaldas');
-            }
-            else if(this.dir === 'down'){
-                this.play('frente');
-            }
+            else if(this.dir === 'up') this.play('espaldas');
+            else if(this.dir === 'down') this.play('frente');
         }
         else this.setTexture('jugador');
     }
