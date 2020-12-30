@@ -27,8 +27,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('trono', "./phasertemplate-master/images/Throne.png");
 
     //Edificios defensivos
-    this.load.image('torreArqueros', "./phasertemplate-master/images/TrampaOsos/TrampaOsos.png"); //hacer el sprite
-    this.load.image('arrow', "./phasertemplate-master/images/arrow.png");
+    this.load.image('trampaOsos', "./phasertemplate-master/images/Estructuras/TrampaOsos/TrampaOsos.png"); 
+    this.load.image('arrow', "./phasertemplate-master/images/Estructuras/arrow.png");
+    this.load.image('torreArqueros', "./phasertemplate-master/images/Estructuras/TorreArqueros.png");
 
     //Interfaz
     this.load.image('ajustes', "./phasertemplate-master/images/Interfaz/RuedaAjustes.png");
@@ -44,7 +45,7 @@ export default class Boot extends Phaser.Scene {
     //this.load.image('granja', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/granja.png");
     this.load.image('cantera', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/cantera.png");
     this.load.image('trampaSuelo', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/trampaSuelo.png");
-    this.load.image('trampaOso', "./phasertemplate-master/images/TrampaOsos/TrampaOsos.png");
+    this.load.image('trampaOsos', "./phasertemplate-master/images/Estructuras/TrampaOsos/TrampaOsos.png");
     this.load.image('puestoVigilancia', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/puestoVigilancia.png");
     this.load.image('puestoGuardia', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/puestoGuardia.png");
     this.load.image('muralla', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/muralla.png");

@@ -48,7 +48,7 @@ export default class Interfaz{
     this.nombres[this.names.explorador] = 'aldeano'; this.nombres[this.names.chozaMaestra] = 'chozaMaestra';
     this.nombres[this.names.mina] = 'mina'; this.nombres[this.names.granja] = 'granja';
     this.nombres[this.names.cantera] = 'cantera'; this.nombres[this.names.trampaSuelo] = 'trampaSuelo';
-    this.nombres[this.names.trampaOso] = 'trampaOso'; this.nombres[this.names.puestoVigilancia] = 'puestoVigilancia';
+    this.nombres[this.names.trampaOso] = 'trampaOsos'; this.nombres[this.names.puestoVigilancia] = 'puestoVigilancia';
     this.nombres[this.names.puestoGuardia] = 'puestoGuardia'; this.nombres[this.names.muralla] = 'muralla';
     this.nombres[this.names.catedral] = 'catedral'; this.nombres[this.names.torreArqueros] = 'torreArqueros';
   }
@@ -142,9 +142,8 @@ export default class Interfaz{
     let nE = this.names;
     this.sprites[nE.mina].setScale(0.4,0.4);
     this.sprites[nE.trampaOso].setScale(2,2);
-    this.sprites[nE.torreArqueros].setScale(2,2);
     this.sprites[nE.granja].setScale(0.3,0.3);
-  }
+    this.sprites[nE.torreArqueros].setScale(1,1);
 
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
   clickEnAjustes(ajustesSprite){
@@ -245,13 +244,13 @@ export default class Interfaz{
   }
   clickEnTrampaOso(trampaOso){
     trampaOso.on('pointerup', pointer=>{
-      this.game.jug.inputConstruir('defensivo', 'trampaOso', 1,1);
+      this.game.jug.inputConstruir('defensivo', 'trampaOsos', 1,1);
       this.ocultaDesplegable();
     })
   }
   clickEnTorreArqueros(torreArqueros){
     torreArqueros.on('pointerup', pointer=>{
-      this.game.jug.inputConstruir('defensivo', 'torreArqueros', 1,1);
+      this.game.jug.inputConstruir('defensivo', 'torreArqueros', 2,2);
       this.ocultaDesplegable();
     })
   }
