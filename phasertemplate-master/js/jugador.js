@@ -1,10 +1,12 @@
 import ChozaMaestra from "./chozaMaestra.js";
 import * as config from "./config.js";
-import EdificioRecursos from "./edificioRecursos.js";
 import Vector2D from "./vector2D.js";
 import Trampa from "./trampa.js";
 import Muro from "./muro.js";
 import TorreArqueros from "./torreArqueros.js";
+import EdificioMina from "./edificioMina.js";
+import EdificioGranja from "./edificioGranja.js";
+import EdificioCantera from "./edificioCantera.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
     constructor(scene, casilla) {
@@ -151,7 +153,15 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         let edificio;
         if (tipo === 'recursos') {
             //scene,vida,coste,posicion,aldeanosMax,especialidad, key
-            edificio = new EdificioRecursos(this.game, 0, 0, pos, ancho, alto, 5, especialidad, 'edificio');
+            if(especialidad === 'mina'){
+                edificio = new EdificioMina(this.game, 0, config.costeMina, pos,ancho,alto,config.alMaxMina, especialidad);
+            }
+            else if(especialidad === 'granja'){
+                edificio = new EdificioGranja(this.game, 0, config.costeGranja, pos, ancho, alto, config.alMaxGranja, especialidad);
+            }
+            else if(especialidad === 'cantera'){
+                edificio = new EdificioCantera(this.game, 0, config.costeCantera, pos, ancho, alto, config.alMaxCantera, especialidad);
+            }
         }
         else if (tipo === 'social') {
             //scene,vida,coste,posicion,felicidad, key

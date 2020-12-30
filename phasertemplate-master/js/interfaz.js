@@ -232,13 +232,13 @@ export default class Interfaz{
   }
   clickEnChoza(chozaMaestra){
     chozaMaestra.on('pointerup', pointer=>{
-      this.game.jug.inputConstruir('chozaMaestra',' ',3,3);
+      this.game.jug.inputConstruir('chozaMaestra','', 3,3);
       this.ocultaDesplegable();
     })
   }
   clickEnMina(mina){
     mina.on('pointerup', pointer=>{
-      this.game.jug.inputConstruir('mina', '', 3,3);
+      this.game.jug.inputConstruir('recursos', 'mina', config.tamMina.x ,config.tamMina.y);
       this.ocultaDesplegable();
     })
   }
@@ -256,7 +256,7 @@ export default class Interfaz{
   }
   clickEnGranja(granja){
     granja.on('pointerup',pointer=>{
-      this.game.jug.inputConstruir('recursos', 'comida', 3,3);
+      this.game.jug.inputConstruir('recursos', 'granja', config.tamGranja.x,config.tamGranja.y);
       this.ocultaDesplegable();
     })
   }

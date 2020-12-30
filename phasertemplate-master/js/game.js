@@ -56,8 +56,8 @@ export default class Game extends Phaser.Scene {
     while (nextCell.ocupada);
     nextCell.ocupada = true;
     
-    let sexo = Math.random(0,1);
-    let aldeano = new Aldeano(this, nextCell, 0, 0, Math.round(sexo));
+    let sexo = Math.round(Math.random(0,1));
+    let aldeano = new Aldeano(this, nextCell, 0, 0, sexo);
     return aldeano;
   }
 
