@@ -34,7 +34,35 @@ export default class Mapa {
     construyeMatriz(scene, sizeCasilla) {
         for (let c = 0; c < this.col; c++) {
             for (let j = 0; j < this.fil; j++) {
-                this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j);
+                //ESQUINAS
+                if(c === 0 && j === 0) {
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaEsquina', false, false); //Esquina
+                }
+                else if(c === this.col -1 && j === this.fil -1) {
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaEsquina', true, true);
+                }
+                else if(c === 0 && j === this.fil-1){
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaEsquina', false, true);
+                }
+                else if(c === this.col -1  && j === 0){
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaEsquina', true, false);
+                }
+                //BORDES
+                else if(c === 0){
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaBordeHor', true, false);
+                }
+                else if(c === this.col -1){
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaBordeHor', false, false );
+                }
+                else if(j === 0){
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaBordeVer', false, false);
+                }
+                else if(j === this.fil -1){
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaBordeVer', false, true);
+                }
+                //RESTO
+                else this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabana', false, false);
+                
                 this.mapa[c][j].onClick(this.mapa[c][j]);
                 this.mapa[c][j].changeColor(this.mapa[c][j]);
             }

@@ -4,7 +4,13 @@ export default class Boot extends Phaser.Scene {
   }
   preload() {
     //Juego
-
+    this.load.image('mar', "./phasertemplate-master/images/FondoYMapa/Mar.png");
+    this.load.image('mountain', "./phasertemplate-master/images/FondoYMapa/mountain.png");
+    this.load.image('montañamarVer', "./phasertemplate-master/images/FondoYMapa/MontañaMarVer.png");
+    this.load.image('montañamarHor', "./phasertemplate-master/images/FondoYMapa/MontañaMarHor.png");
+    this.load.image('sabanaEsquina', "./phasertemplate-master/images/FondoYMapa/SabanaEsquina.png");
+    this.load.image('sabanaBordeHor', "./phasertemplate-master/images/FondoYMapa/SabanaBordeHor.png");
+    this.load.image('sabanaBordeVer', "./phasertemplate-master/images/FondoYMapa/SabanaBordeVer.png");
     //Jugador
     this.load.image('jugador', "./phasertemplate-master/images/Rey/Rey.png");
     this.load.spritesheet('jugadorFrente', "./phasertemplate-master/images/Rey/ReyFrente.png", {frameWidth: 32, frameHeight: 38});
@@ -23,7 +29,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('aldeanaLado', "./phasertemplate-master/images/Aldeana/AldeanaLado.png", {frameWidth: 32, frameHeight: 46});
     this.load.spritesheet('aldeanaFrente', "./phasertemplate-master/images/Aldeana/AldeanaFrente.png", {frameWidth: 32, frameHeight: 46});
 
-    this.load.image('sabana', "./phasertemplate-master/images/Sabana.png");
+    this.load.image('sabana', "./phasertemplate-master/images/FondoYMapa/Sabana.png");
     this.load.image('trono', "./phasertemplate-master/images/Throne.png");
 
     //Edificios defensivos
