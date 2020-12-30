@@ -144,7 +144,7 @@ export default class Interfaz{
     this.sprites[nE.trampaOso].setScale(2,2);
     this.sprites[nE.granja].setScale(0.3,0.3);
     this.sprites[nE.torreArqueros].setScale(1,1);
-
+  }
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
   clickEnAjustes(ajustesSprite){
     ajustesSprite.on('pointerdown', pointer => {
