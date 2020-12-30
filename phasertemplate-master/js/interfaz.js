@@ -143,6 +143,7 @@ export default class Interfaz{
     this.sprites[nE.mina].setScale(0.4,0.4);
     this.sprites[nE.trampaOso].setScale(2,2);
     this.sprites[nE.torreArqueros].setScale(2,2);
+    this.sprites[nE.granja].setScale(0.3,0.3);
   }
 
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
@@ -254,6 +255,12 @@ export default class Interfaz{
       this.ocultaDesplegable();
     })
   }
+  clickEnGranja(granja){
+    granja.on('pointerup',pointer=>{
+      this.game.jug.inputConstruir('recursos', 'comida', 3,3);
+      this.ocultaDesplegable();
+    })
+  }
 
   //ACTUALIZAR TEXTOS
   actualizaInterfaz(){
@@ -284,6 +291,7 @@ export default class Interfaz{
     this.clickEnMina(this.sprites[this.names.mina]);
     this.clickEnTrampaOso(this.sprites[this.names.trampaOso]); 
     this.clickEnTorreArqueros(this.sprites[this.names.torreArqueros]);
+    this.clickEnGranja(this.sprites[this.names.granja]);
   }
   visibilidad(){
     //Sprites del desplgable comienzan no visibles

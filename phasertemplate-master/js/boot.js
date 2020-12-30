@@ -41,7 +41,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('botonConstruir', "./phasertemplate-master/images/Interfaz/BotonConstruir.png");
     this.load.image('flechaIn', "./phasertemplate-master/images/Interfaz/Flecha.png");
     this.load.image('mina', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/Mina.png");
-    this.load.image('granja', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/granja.png");
+    //this.load.image('granja', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/granja.png");
     this.load.image('cantera', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/cantera.png");
     this.load.image('trampaSuelo', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/trampaSuelo.png");
     this.load.image('trampaOso', "./phasertemplate-master/images/TrampaOsos/TrampaOsos.png");
@@ -63,6 +63,7 @@ export default class Boot extends Phaser.Scene {
     //Choza Maestra
     this.load.image('chozaMaestra', "./phasertemplate-master/images/Estructuras/ChozaMaestra/ChozaMaestra.png");
     this.load.image('marco', "./phasertemplate-master/images/Estructuras/ChozaMaestra/marco.png");
+    this.load.image('granja', "./phasertemplate-master/images/Estructuras/Granja.png");
 
     //IGNORAR, SOLO DE PRUEBA
     this.load.image('obstaculo', "./phasertemplate-master/images/Obstaculo.png");
