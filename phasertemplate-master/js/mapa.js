@@ -1,4 +1,5 @@
 import Cell from "./cell.js";
+import * as config from "./config.js";
 
 export default class Mapa {
     constructor(scene, col, fil, sizeCasilla) {
@@ -39,26 +40,35 @@ export default class Mapa {
                     this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaEsquina', false, false); //Esquina
                 }
                 else if(c === this.col -1 && j === this.fil -1) {
-                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaEsquina', true, true);
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'esquinaMontaña', true, true);
                 }
                 else if(c === 0 && j === this.fil-1){
-                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaEsquina', false, true);
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'esquinaMontaña', false, true);
                 }
                 else if(c === this.col -1  && j === 0){
-                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaEsquina', true, false);
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'esquinaMontaña', true, false);
                 }
+
                 //BORDES
                 else if(c === 0){
-                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaBordeHor', true, false);
+                    if(j === config.interseccionMontañaMar) {
+                        this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaInterseccionVer', false, true);
+                    }
+                    else if(j > config.interseccionMontañaMar) {
+                        this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'montañaBordeVer', true, false);
+                    }
+                    else this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaBordeHor', true, false);
                 }
                 else if(c === this.col -1){
-                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaBordeHor', false, false );
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'montañaBordeVer', false, false );
                 }
                 else if(j === 0){
-                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaBordeVer', false, false);
+                    if(c === config.interseccionMontañaMar) this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaInterseccionHor', false, false);
+                    else if(c > config.interseccionMontañaMar)this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'montañaBordeHor', false, false);
+                    else this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaBordeVer', false, false);
                 }
                 else if(j === this.fil -1){
-                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabanaBordeVer', false, true);
+                    this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'montañaBordeHor', false, true);
                 }
                 //RESTO
                 else this.mapa[c][j] = new Cell(scene, c * sizeCasilla, j * sizeCasilla, c, j, 'sabana', false, false);

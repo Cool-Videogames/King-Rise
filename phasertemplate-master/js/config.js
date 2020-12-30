@@ -1,4 +1,4 @@
-export let filas = 16;
+export let filas = 32;
 export let columnas = 32;
 export let sizeCasilla = 64;
 export let winWidth = 1280;
@@ -59,3 +59,6 @@ export let maximoRecursosPorRonda = 10;
 export let costeMina = 30; export let alMaxMina = 5; export let tamMina = { x: 4, y: 4};
 export let costeGranja = 30; export let alMaxGranja = 5; export let tamGranja = { x: 4, y: 4};
 export let costeCantera = 30; export let alMaxCantera = 5; export let tamCantera = { x: 4, y: 4};
+
+//Fondo
+export let interseccionMontañaMar = 24; //Siempre menor o igual que el numero de columnas del mapa

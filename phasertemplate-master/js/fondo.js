@@ -18,13 +18,13 @@ export default class Fondo{
         for (let c = 0; c < this.col; c++) {
             y = -(config.filas/2);
             for (let j = 0; j < this.fil; j++) {
-                if(j < this.fil/2+(this.fil/8) && c < this.col /2+this.col/8){
+                if(j < config.interseccionMontañaMar+this.fil/4  && c < config.interseccionMontañaMar+this.col/4){
                     this.mapa[c][j] = functions.creaSprite(x*config.sizeCasilla,y*config.sizeCasilla,'mar',this.game,-1);
                 }
-                else if(j === this.fil/2+this.fil/8 && c < this.col/2){
+                else if(j === config.interseccionMontañaMar+this.fil/4 && c < this.col/2){
                     this.mapa[c][j] = functions.creaSprite(x*config.sizeCasilla,y*config.sizeCasilla,'montañamarVer',this.game,-1);
                 }
-                else if(c === this.col/2 + this.col/8 && j < this.fil/2){
+                else if(c === config.interseccionMontañaMar+this.col/4 && j < this.fil/2){
                     this.mapa[c][j] = functions.creaSprite(x*config.sizeCasilla,y*config.sizeCasilla,'montañamarHor',this.game,-1);
                 }
                 else {
