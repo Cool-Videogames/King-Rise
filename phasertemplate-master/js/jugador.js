@@ -54,53 +54,53 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.calculaDir();
     }
 
-    createAnimations(){
-       this.game.anims.create({
+    createAnimations() {
+        this.game.anims.create({
             key: 'espaldas',
             repeat: -1,
             frameRate: 4,
-            frames: this.game.anims.generateFrameNames('jugadorEspaldas', {start: 0, end: 1}),
+            frames: this.game.anims.generateFrameNames('jugadorEspaldas', { start: 0, end: 1 }),
         });
         this.game.anims.create({
             key: 'derecha',
             repeat: -1,
             frameRate: 4,
-            frames: this.game.anims.generateFrameNames('jugadorLado', {start: 0, end: 1}),
+            frames: this.game.anims.generateFrameNames('jugadorLado', { start: 0, end: 1 }),
         });
         this.game.anims.create({
             key: 'izquierda',
             repeat: -1,
             frameRate: 4,
-            frames: this.game.anims.generateFrameNames('jugadorLado', {start: 0, end: 1}),
+            frames: this.game.anims.generateFrameNames('jugadorLado', { start: 0, end: 1 }),
         });
         this.game.anims.create({
             key: 'frente',
             repeat: -1,
             frameRate: 4,
-            frames: this.game.anims.generateFrameNames('jugadorFrente', {start: 0, end: 1}),
+            frames: this.game.anims.generateFrameNames('jugadorFrente', { start: 0, end: 1 }),
         });
     }
-    calculaDir(){
+    calculaDir() {
         let iniDir = this.dir;
-        if(this.x < this.posDestino.x && this.dir !== 'right') this.dir = 'right';
-        else if(this.x > this.posDestino.x && this.dir !== 'left') this.dir = 'left';
-        else if(this.y < this.posDestino.y && this.dir !== 'down') this.dir = 'down';
-        else if(this.y > this.posDestino.y && this.dir !== 'up') this.dir = 'up';
+        if (this.x < this.posDestino.x && this.dir !== 'right') this.dir = 'right';
+        else if (this.x > this.posDestino.x && this.dir !== 'left') this.dir = 'left';
+        else if (this.y < this.posDestino.y && this.dir !== 'down') this.dir = 'down';
+        else if (this.y > this.posDestino.y && this.dir !== 'up') this.dir = 'up';
 
-        if(iniDir !== this.dir || !this.isMoving) this.animation();
+        if (iniDir !== this.dir || !this.isMoving) this.animation();
     }
-    animation(){
-        if(this.isMoving){
-            if(this.dir === 'right'){
+    animation() {
+        if (this.isMoving) {
+            if (this.dir === 'right') {
                 this.play('derecha');
                 this.flipX = true;
             }
-            else if(this.dir === 'left'){
+            else if (this.dir === 'left') {
                 this.play('izquierda');
                 this.flipX = false;
             }
-            else if(this.dir === 'up') this.play('espaldas');
-            else if(this.dir === 'down') this.play('frente');
+            else if (this.dir === 'up') this.play('espaldas');
+            else if (this.dir === 'down') this.play('frente');
         }
         else this.setTexture('jugador');
     }
@@ -122,7 +122,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             if (this.x > this.posDestino.x - config.margenPosicion && this.x < this.posDestino.x + config.margenPosicion
                 && this.y > this.posDestino.y - config.margenPosicion && this.y < this.posDestino.y + config.margenPosicion) {
                 this.body.reset(this.posDestino.x, this.posDestino.y);
-                this.isMoving = false; 
+                this.isMoving = false;
 
                 if (this.nodoDestino.siguiente !== null) {
                     this.movimientoPathFinding(this.nodoDestino.siguiente);
@@ -153,13 +153,13 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         let edificio;
         if (tipo === 'recursos') {
             //scene,vida,coste,posicion,aldeanosMax,especialidad, key
-            if(especialidad === 'mina'){
-                edificio = new EdificioMina(this.game, 0, config.costeMina, pos,ancho,alto,config.alMaxMina, especialidad);
+            if (especialidad === 'mina') {
+                edificio = new EdificioMina(this.game, 0, config.costeMina, pos, ancho, alto, config.alMaxMina, especialidad);
             }
-            else if(especialidad === 'granja'){
+            else if (especialidad === 'granja') {
                 edificio = new EdificioGranja(this.game, 0, config.costeGranja, pos, ancho, alto, config.alMaxGranja, especialidad);
             }
-            else if(especialidad === 'cantera'){
+            else if (especialidad === 'cantera') {
                 edificio = new EdificioCantera(this.game, 0, config.costeCantera, pos, ancho, alto, config.alMaxCantera, especialidad);
             }
         }
@@ -178,8 +178,11 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 edificio = new Trampa(this.game, especialidad, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 0, especialidad);
             else if (especialidad === 'muro')
                 edificio = new Muro(this.game, especialidad, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 0, especialidad);
-                else if(especialidad === 'torreArqueros')
-                edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 5, especialidad)
+            else if (especialidad === 'torreArqueros')
+                edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 5, especialidad);
+            else if (especialidad === 'puestoVigilancia')
+                //Crear puesto vigilancia
+               // edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 5, especialidad);
         }
         return edificio;
     };
