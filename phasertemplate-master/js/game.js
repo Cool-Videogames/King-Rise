@@ -44,6 +44,9 @@ export default class Game extends Phaser.Scene {
     this.creaObstaculos();
 
     this.aldeanosBasicos.push(this.creaAldeano());
+    this.aldeanosBasicos.push(this.creaAldeano());
+    this.aldeanosBasicos.push(this.creaAldeano());
+    this.aldeanosBasicos.push(this.creaAldeano());
 
     this.interfaz.actualizaInterfaz();
   }
@@ -59,6 +62,8 @@ export default class Game extends Phaser.Scene {
     nextCell.ocupada = true;
 
     let sexo = Math.round(Math.random(0, 1));
+    if(sexo === 0) sexo = 'aldeano'; 
+    else sexo = 'aldeana'
     let aldeano = new Aldeano(this, nextCell, 0, 0, sexo);
     return aldeano;
   }

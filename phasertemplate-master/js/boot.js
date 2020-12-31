@@ -44,10 +44,10 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('mineroEspaldas', "./phasertemplate-master/images/Minero/mineroEspaldas.png", { frameWidth: 32, frameHeight: 42 });
 
     //Granjero
-    this.load.image('granjero', "./phasertemplate-master/images/Granjero/granjero.png");
-    this.load.spritesheet('granjeroFrente', "./phasertemplate-master/images/Granjero/GranjeroFrente.png", { frameWidth: 32, frameHeight: 44 });
-    this.load.spritesheet('granjeroLado', "./phasertemplate-master/images/Granjero/GranjeroLado.png", { frameWidth: 32, frameHeight: 44 });
-    this.load.spritesheet('granjeroEspaldas', "./phasertemplate-master/images/Granjero/GranjeroEspaldas.png", { frameWidth: 32, frameHeight: 44 });
+    this.load.image('ganadero', "./phasertemplate-master/images/Granjero/granjero.png");
+    this.load.spritesheet('ganaderoFrente', "./phasertemplate-master/images/Granjero/GranjeroFrente.png", { frameWidth: 32, frameHeight: 44 });
+    this.load.spritesheet('ganaderoLado', "./phasertemplate-master/images/Granjero/GranjeroLado.png", { frameWidth: 32, frameHeight: 44 });
+    this.load.spritesheet('ganaderoEspaldas', "./phasertemplate-master/images/Granjero/GranjeroEspaldas.png", { frameWidth: 32, frameHeight: 44 });
 
     //Frances
     this.load.image('frances', "./phasertemplate-master/images/Franceses/frances.png");
