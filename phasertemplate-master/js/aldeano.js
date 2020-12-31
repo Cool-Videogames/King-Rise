@@ -3,10 +3,9 @@ import Persona from "./persona.js"
 import Vector2D from "./vector2D.js";
 
 export default class Aldeano extends Persona {
-    constructor(scene, casilla, vida, fuerza, chico) {
+    constructor(scene, casilla, vida, fuerza, key) {
         let pos = { x: 0, y: 0 };
-        let sexo = 'aldeano'; if(!chico) sexo = 'aldeana';
-        super(scene, pos, vida, fuerza, sexo);
+        super(scene, pos, vida, fuerza, key);
         pos = this.posicionCentrada(casilla);
         this.x = pos.x;
         this.y = pos.y;
@@ -21,7 +20,7 @@ export default class Aldeano extends Persona {
         this.casilla = casilla
         this.casilla.ocupada = true;
 
-        this.chico = chico;
+        this.chico = key;
         this.game = scene;
         this.ocupado = false;
         this.dir = 'none';
@@ -38,8 +37,8 @@ export default class Aldeano extends Persona {
     }
 
     preUpdate(t, dt) {
-        this.compruebaPosicion(dt);
         super.preUpdate(t, dt);
+        this.compruebaPosicion(dt);
         this.calculaDir();
     }
     createAnimationsChico(){
@@ -97,7 +96,7 @@ export default class Aldeano extends Persona {
     }
 
     animation(){
-        if(this.chico){
+        if(this.chico === 'aldeano'){
             if(this.dir === 'right'){
                 this.play('derechaAldeano');
                 this.flipX = true;

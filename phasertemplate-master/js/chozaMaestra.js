@@ -2,6 +2,10 @@ import Edificio from "./edificio.js";
 import * as config from "./config.js"
 import Vector2D from "./vector2D.js";
 import * as functions from "./functions.js";
+import Minero from "./minero.js";
+import Cantero from "./cantero.js";
+import Ganadero from "./ganadero.js";
+import Explorador from "./explorador.js";
 
 export default class ChozaMaestra extends Edificio {
     constructor(scene, vida, coste, posicion, ancho, alto, key) {
@@ -185,38 +189,32 @@ export default class ChozaMaestra extends Edificio {
 
     especializa(aldeanos, mineros, canteros, ganaderos, exploradores) {
         for (let i = 0; i < aldeanos; i++) this.game.aldeanosBasicos.push(this.game.creaAldeano());
-        this.especializaTodo(mineros, canteros, ganaderos, exploradores);
-    }
-
-    especializaTodo(mineros, canteros, ganaderos, exploradores) {
-        let suma = mineros + canteros + ganaderos + exploradores;
-        if (this.game.aldeanosBasicos.length > 0) {
-            let j = 0;
-            for (let i = 0; i < suma; i++) {
-                let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1];
-                this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1] = null;
-                this.game.aldeanosBasicos.pop();
-
-                aldeano.rendimiento.rendGeneral = 0;
-                if (j < mineros) { //mineros
-                    aldeano.rendimiento.rendMinero = 50;
-                    aldeano.setTexture('minero');
-                    this.game.mineros.push(aldeano);
-                }
-                else if (j < canteros + mineros) { //canteros
-                    aldeano.rendimiento.rendCantero = 50;
-                    this.game.canteros.push(aldeano);
-                }
-                else if (j < ganaderos + canteros + mineros) { //ganaderos
-                    aldeano.rendimiento.rendGanadero = 50;
-                    this.game.ganaderos.push(aldeano);
-                }
-                else if (j  < exploradores + ganaderos + canteros + mineros) { //exploradores
-                    aldeano.rendimiento.rendGeneral = config.rendimientoGeneral;
-                    this.game.exploradores.push(aldeano);
-                }
-                j++;
-            }
+        
+        for(let i = 0;i< mineros;i++){
+            let aldeano = this.borraAldeano();
+            let minero = new Minero(this.game, aldeano.casilla, 0, 0);
+            this.game.mineros.push(minero);
         }
+        for(let i = 0;i< canteros;i++){
+            let aldeano = this.borraAldeano();
+            let cantero = new Cantero(this.game,aldeano.casilla,0,0);
+            this.game.canteros.push(cantero);
+        }
+        for(let i = 0;i< ganaderos;i++){
+            let aldeano = this.borraAldeano();
+            let ganadero = new Ganadero(this.game, aldeano.casilla,0,0);
+            this.game.ganaderos.push(ganadero);
+        }
+        for(let i = 0;i< exploradores;i++){
+            let aldeano = this.borraAldeano();
+            let explorador = new Explorador(this.game, aldeano.casilla, 0,0);
+            this.game.exploradores.push(explorador);
+        }
+    }
+    borraAldeano(){
+        let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1];
+        this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1].destroy();
+        this.game.aldeanosBasicos.pop();
+        return aldeano;
     }
 }
