@@ -140,9 +140,9 @@ export default class Interfaz{
   }
   escalaSprites(){
     let nE = this.names;
-    this.sprites[nE.mina].setScale(0.4,0.4);
+    this.sprites[nE.mina].setScale(0.5,0.5);
     this.sprites[nE.trampaOso].setScale(2,2);
-    this.sprites[nE.granja].setScale(0.3,0.3);
+    this.sprites[nE.granja].setScale(0.4,0.4);
     this.sprites[nE.torreArqueros].setScale(1,1);
   }
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)

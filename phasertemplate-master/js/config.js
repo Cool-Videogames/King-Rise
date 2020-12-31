@@ -5,7 +5,7 @@ export let winWidth = 1280;
 export let winHeight = 720;
 export let playerSpeed = sizeCasilla * 2.5;
 export let margenPosicion = 3;
-export let rangoConstruccion = 6;
+export let rangoConstruccion = 3;
 
 export let numObstaculos = 16;
 export let zonaColumnas = 8;
@@ -57,8 +57,8 @@ export let probabilidadExitoPorExploradorAdicional = 0.05;
 export let maximoRecursosPorRonda = 10;
 
 //Edificios
-export let costeMina = 30; export let alMaxMina = 5; export let tamMina = { x: 4, y: 4};
-export let costeGranja = 30; export let alMaxGranja = 5; export let tamGranja = { x: 4, y: 4};
+export let costeMina = 30; export let alMaxMina = 5; export let tamMina = { x: 5, y: 5};
+export let costeGranja = 30; export let alMaxGranja = 5; export let tamGranja = { x: 7, y: 5};
 export let costeCantera = 30; export let alMaxCantera = 5; export let tamCantera = { x: 4, y: 4};
 
 //Fondo

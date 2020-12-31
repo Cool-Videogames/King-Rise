@@ -7,6 +7,7 @@ export default class TorreArqueros extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
         super(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key);
         this.body.setSize(config.sizeCasilla * rango, config.sizeCasilla * rango);
+
         this.arrow = null;
         this.enemy = null;
         this.fireRate = 0; //Tiempo en ms
@@ -55,7 +56,7 @@ export default class TorreArqueros extends EdificioDefensivo {
     }
 
     initRangoSprite() {
-        let sprite = new Phaser.GameObjects.Sprite(this.game, this.posicion.x + this.ancho/2*config.sizeCasilla, this.posicion.y + this.alto/2 * config.sizeCasilla, 'rangoCirculo');
+        let sprite = new Phaser.GameObjects.Sprite(this.game, this.posicion.x + this.ancho / 2 * config.sizeCasilla, this.posicion.y + this.alto / 2 * config.sizeCasilla, 'rangoCirculo');
         sprite.setDepth(config.rangosVisionDepth);
         this.game.add.existing(sprite);
         sprite.setScale(this.rango * 2, this.rango * 2);

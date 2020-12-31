@@ -28,9 +28,9 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         let rango = config.rangoConstruccion * config.sizeCasilla;
         let pos = this.posicion;
         let jug = this.game.jug.casilla;
-        if (pos.x >= jug.x - rango && pos.x + this.ancho * config.sizeCasilla <= jug.x + rango + config.sizeCasilla &&
-            pos.y >= jug.y - rango && pos.y + this.alto * config.sizeCasilla <= jug.y + rango + config.sizeCasilla) return true;
-        else return false;
+        if (pos.x > jug.x + rango + config.sizeCasilla || pos.x + this.ancho * config.sizeCasilla < jug.x - rango || pos.y > jug.y + rango + config.sizeCasilla
+            || pos.y + this.alto * config.sizeCasilla < jug.y - rango) return false;
+        else return true;
     }
 
     esPagable() {
