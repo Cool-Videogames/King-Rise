@@ -16,6 +16,7 @@ export default class Acciones {
 
         this.casillasParaTurno = config.numeroCasillasRecorridasParaConsumirUnaAccion;
         this.casillasAvanzadas = 0;
+
     }
 
 
@@ -25,11 +26,13 @@ export default class Acciones {
     }
 
     nuevaOleada() {  //Cuando el ataque finalice y volvamos al modo aldea
+
         this.index = 0;
         this.numeroAtaque++;
         this.accionesSiguienteAtaque = Math.floor(this.accionesSiguienteAtaque * config.relacionAcciones);
-        this.accionesSiguienteAtaque = Math.min(this.accionesSiguienteAtaque, congif.numeroAccionesMinimo);
+        this.accionesSiguienteAtaque = Math.min(this.accionesSiguienteAtaque, config.numeroAccionesMinimo);
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque;
+
     }
 
 
@@ -44,7 +47,7 @@ export default class Acciones {
 
         if (this.numeroAccionesRestantes <= 0) {
             this.ataque();
-            this.actualizarIndice(0);
+            this.nuevaOleada();
         }
     }
 
