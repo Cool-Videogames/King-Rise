@@ -58,7 +58,7 @@ export default class Boot extends Phaser.Scene {
     //Edificios defensivos
     this.load.image('trampaOsos', "./phasertemplate-master/images/Estructuras/TrampaOsos/TrampaOsos.png");
     this.load.image('arrow', "./phasertemplate-master/images/Estructuras/arrow.png");
-    this.load.image('torreArqueros', "./phasertemplate-master/images/Estructuras/TorreArqueros.png");
+    this.load.image('torreArqueros', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/TorreArqueros.png");
     this.load.image('rangoCirculo', "./phasertemplate-master/images/Estructuras/RangoCirculo.png")
 
     //Interfaz
@@ -72,7 +72,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('botonConstruir', "./phasertemplate-master/images/Interfaz/BotonConstruir.png");
     this.load.image('flechaIn', "./phasertemplate-master/images/Interfaz/Flecha.png");
     this.load.image('mina', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/Mina.png");
-    //this.load.image('granja', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/granja.png");
+
+    this.load.image('granja', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/granja.png");
     this.load.image('cantera', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/cantera.png");
     this.load.image('trampaSuelo', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/trampaSuelo.png");
     this.load.image('trampaOsos', "./phasertemplate-master/images/Estructuras/TrampaOsos/TrampaOsos.png");
@@ -99,7 +100,6 @@ export default class Boot extends Phaser.Scene {
     this.load.image('granja', "./phasertemplate-master/images/Estructuras/Granja.png");
 
     //IGNORAR, SOLO DE PRUEBA
-    this.load.image('obstaculo', "./phasertemplate-master/images/Obstaculo.png");
     this.load.image('edificio', "./phasertemplate-master/images/favicon.png");
 
     //Sonido
