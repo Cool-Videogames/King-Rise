@@ -180,7 +180,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 edificio = new Muro(this.game, especialidad, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 0, especialidad);
             else if (especialidad === 'torreArqueros')
                 edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 5, especialidad);
-            else if (especialidad === 'puestoVigilancia')
+            else if (especialidad === 'puestoVigilancia');
                 //Crear puesto vigilancia
                // edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 5, especialidad);
         }
