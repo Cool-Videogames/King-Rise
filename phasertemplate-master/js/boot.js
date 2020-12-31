@@ -18,29 +18,30 @@ export default class Boot extends Phaser.Scene {
     this.load.image('sabanaInterseccionVer', "./phasertemplate-master/images/FondoYMapa/SabanaInterseccionVer.png");
     //Jugador
     this.load.image('jugador', "./phasertemplate-master/images/Rey/Rey.png");
-    this.load.spritesheet('jugadorFrente', "./phasertemplate-master/images/Rey/ReyFrente.png", {frameWidth: 32, frameHeight: 38});
-    this.load.spritesheet('jugadorLado', "./phasertemplate-master/images/Rey/ReyLado.png", {frameWidth: 32, frameHeight: 38});
-    this.load.spritesheet('jugadorEspaldas', "./phasertemplate-master/images/Rey/ReyEspaldas.png", {frameWidth: 32, frameHeight: 38});
+    this.load.spritesheet('jugadorFrente', "./phasertemplate-master/images/Rey/ReyFrente.png", { frameWidth: 32, frameHeight: 38 });
+    this.load.spritesheet('jugadorLado', "./phasertemplate-master/images/Rey/ReyLado.png", { frameWidth: 32, frameHeight: 38 });
+    this.load.spritesheet('jugadorEspaldas', "./phasertemplate-master/images/Rey/ReyEspaldas.png", { frameWidth: 32, frameHeight: 38 });
 
     //Aldeano
     this.load.image('aldeano', "./phasertemplate-master/images/Aldeano/Aldeano.png");
-    this.load.spritesheet('aldeanoEspaldas', "./phasertemplate-master/images/Aldeano/AldeanoEspaldas.png", {frameWidth: 32, frameHeight: 38});
-    this.load.spritesheet('aldeanoLado', "./phasertemplate-master/images/Aldeano/AldeanoLado.png", {frameWidth: 32, frameHeight: 38});
-    this.load.spritesheet('aldeanoFrente', "./phasertemplate-master/images/Aldeano/AldeanoFrente.png", {frameWidth: 32, frameHeight: 38});
+    this.load.spritesheet('aldeanoEspaldas', "./phasertemplate-master/images/Aldeano/AldeanoEspaldas.png", { frameWidth: 32, frameHeight: 38 });
+    this.load.spritesheet('aldeanoLado', "./phasertemplate-master/images/Aldeano/AldeanoLado.png", { frameWidth: 32, frameHeight: 38 });
+    this.load.spritesheet('aldeanoFrente', "./phasertemplate-master/images/Aldeano/AldeanoFrente.png", { frameWidth: 32, frameHeight: 38 });
 
     //Aldeana
     this.load.image('aldeana', "./phasertemplate-master/images/Aldeana/Aldeana.png");
-    this.load.spritesheet('aldeanaEspaldas', "./phasertemplate-master/images/Aldeana/AldeanaEspaldas.png", {frameWidth: 32, frameHeight: 46});
-    this.load.spritesheet('aldeanaLado', "./phasertemplate-master/images/Aldeana/AldeanaLado.png", {frameWidth: 32, frameHeight: 46});
-    this.load.spritesheet('aldeanaFrente', "./phasertemplate-master/images/Aldeana/AldeanaFrente.png", {frameWidth: 32, frameHeight: 46});
+    this.load.spritesheet('aldeanaEspaldas', "./phasertemplate-master/images/Aldeana/AldeanaEspaldas.png", { frameWidth: 32, frameHeight: 46 });
+    this.load.spritesheet('aldeanaLado', "./phasertemplate-master/images/Aldeana/AldeanaLado.png", { frameWidth: 32, frameHeight: 46 });
+    this.load.spritesheet('aldeanaFrente', "./phasertemplate-master/images/Aldeana/AldeanaFrente.png", { frameWidth: 32, frameHeight: 46 });
 
     this.load.image('sabana', "./phasertemplate-master/images/FondoYMapa/Sabana.png");
     this.load.image('trono', "./phasertemplate-master/images/Throne.png");
 
     //Edificios defensivos
-    this.load.image('trampaOsos', "./phasertemplate-master/images/Estructuras/TrampaOsos/TrampaOsos.png"); 
+    this.load.image('trampaOsos', "./phasertemplate-master/images/Estructuras/TrampaOsos/TrampaOsos.png");
     this.load.image('arrow', "./phasertemplate-master/images/Estructuras/arrow.png");
     this.load.image('torreArqueros', "./phasertemplate-master/images/Estructuras/TorreArqueros.png");
+    this.load.image('rangoCirculo', "./phasertemplate-master/images/Estructuras/RangoCirculo.png")
 
     //Interfaz
     this.load.image('ajustes', "./phasertemplate-master/images/Interfaz/RuedaAjustes.png");
@@ -68,6 +69,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('menos', "./phasertemplate-master/images/Interfaz/Menos.png");
     this.load.image('moneda', "./phasertemplate-master/images/Interfaz/MonedaOro.png");
     this.load.image('asignar', "./phasertemplate-master/images/Estructuras/AsignarAldeanos.png");
+    this.load.image('eliminar', "./phasertemplate-master/images/Estructuras/EliminarObstaculo.png");
+    this.load.image('x', "./phasertemplate-master/images/Estructuras/X.png");
 
     //Ajustes
     this.load.image('volveraljuego', "./phasertemplate-master/images/gestion.png");

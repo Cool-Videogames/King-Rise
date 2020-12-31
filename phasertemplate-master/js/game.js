@@ -29,7 +29,7 @@ export default class Game extends Phaser.Scene {
     this.ySize = 720;
 
     this.casillaPuntero = { x: 0, y: 0 };
-    this.cierraMarcoAnterior = () => {};
+    this.cierraMarcoAnterior = () => { };
   }
 
   create() {
@@ -47,7 +47,7 @@ export default class Game extends Phaser.Scene {
 
     this.interfaz.actualizaInterfaz();
   }
-  
+
   creaAldeano() {
     let nextCell;
     do {
@@ -57,8 +57,8 @@ export default class Game extends Phaser.Scene {
     }
     while (nextCell.ocupada);
     nextCell.ocupada = true;
-    
-    let sexo = Math.round(Math.random(0,1));
+
+    let sexo = Math.round(Math.random(0, 1));
     let aldeano = new Aldeano(this, nextCell, 0, 0, sexo);
     return aldeano;
   }
@@ -84,8 +84,8 @@ export default class Game extends Phaser.Scene {
       if (visitadas.length >= config.zonaColumnas * config.zonaFilas) { visitadas = []; }
       do {
         zona = {
-          zonaColumna: (config.columnas / config.zonaColumnas) * (Math.floor(Math.random() * (config.zonaColumnas - 1)) + 1),
-          zonaFila: (config.filas / config.zonaFilas) * (Math.floor(Math.random() * (config.zonaFilas - 1)) + 1)
+          zonaColumna: (config.columnas / config.zonaColumnas) * (Math.floor(Math.random() * config.zonaColumnas)),
+          zonaFila: (config.filas / config.zonaFilas) * (Math.floor(Math.random() * config.zonaFilas))
         }
       }
       while (visitadas.some(item => check(item, zona)));
@@ -99,7 +99,9 @@ export default class Game extends Phaser.Scene {
       }
       while (this.mapa.mapa[columna][fila].ocupada);
 
-      new Obstaculo(this, 0, this.mapa.mapa[columna][fila]);
+      //COSTE EN ORO
+      let coste = 10;
+      new Obstaculo(this, coste, this.mapa.mapa[columna][fila]);
       this.mapa.mapa[columna][fila].tint = 0xE2A41F;
       this.mapa.mapa[columna][fila].sprite.tint = 0xE2A41F;
       this.mapa.mapa[columna][fila].ocupada = true;
