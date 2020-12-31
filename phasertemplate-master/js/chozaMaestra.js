@@ -200,6 +200,7 @@ export default class ChozaMaestra extends Edificio {
                 aldeano.rendimiento.rendGeneral = 0;
                 if (j < mineros) { //mineros
                     aldeano.rendimiento.rendMinero = 50;
+                    aldeano.setTexture('minero');
                     this.game.mineros.push(aldeano);
                 }
                 else if (j < canteros + mineros) { //canteros

@@ -16,6 +16,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('montañaBordeVer', "./phasertemplate-master/images/FondoYMapa/MontañaBordeVer.png");
     this.load.image('sabanaInterseccionHor', "./phasertemplate-master/images/FondoYMapa/SabanaInterseccionHor.png");
     this.load.image('sabanaInterseccionVer', "./phasertemplate-master/images/FondoYMapa/SabanaInterseccionVer.png");
+    this.load.image('sabana', "./phasertemplate-master/images/FondoYMapa/Sabana.png");
+    this.load.image('trono', "./phasertemplate-master/images/Throne.png");
+
     //Jugador
     this.load.image('jugador', "./phasertemplate-master/images/Rey/Rey.png");
     this.load.spritesheet('jugadorFrente', "./phasertemplate-master/images/Rey/ReyFrente.png", { frameWidth: 32, frameHeight: 38 });
@@ -34,8 +37,23 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('aldeanaLado', "./phasertemplate-master/images/Aldeana/AldeanaLado.png", { frameWidth: 32, frameHeight: 46 });
     this.load.spritesheet('aldeanaFrente', "./phasertemplate-master/images/Aldeana/AldeanaFrente.png", { frameWidth: 32, frameHeight: 46 });
 
-    this.load.image('sabana', "./phasertemplate-master/images/FondoYMapa/Sabana.png");
-    this.load.image('trono', "./phasertemplate-master/images/Throne.png");
+    //Minero
+    this.load.image('minero', "./phasertemplate-master/images/Minero/minero.png");
+    this.load.spritesheet('mineroFrente', "./phasertemplate-master/images/Minero/mineroFrente.png", { frameWidth: 32, frameHeight: 42 });
+    this.load.spritesheet('mineroLado', "./phasertemplate-master/images/Minero/mineroLado.png", { frameWidth: 32, frameHeight: 42 });
+    this.load.spritesheet('mineroEspaldas', "./phasertemplate-master/images/Minero/mineroEspaldas.png", { frameWidth: 32, frameHeight: 42 });
+
+    //Granjero
+    this.load.image('granjero', "./phasertemplate-master/images/Granjero/granjero.png");
+    this.load.spritesheet('granjeroFrente', "./phasertemplate-master/images/Granjero/GranjeroFrente.png", { frameWidth: 32, frameHeight: 44 });
+    this.load.spritesheet('granjeroLado', "./phasertemplate-master/images/Granjero/GranjeroLado.png", { frameWidth: 32, frameHeight: 44 });
+    this.load.spritesheet('granjeroEspaldas', "./phasertemplate-master/images/Granjero/GranjeroEspaldas.png", { frameWidth: 32, frameHeight: 44 });
+
+    //Frances
+    this.load.image('frances', "./phasertemplate-master/images/Franceses/frances.png");
+    this.load.spritesheet('francesFrente', "./phasertemplate-master/images/Franceses/FrancesFrente.png", { frameWidth: 32, frameHeight: 38 });
+    this.load.spritesheet('francesLado', "./phasertemplate-master/images/Franceses/FrancesLado.png", { frameWidth: 32, frameHeight: 38 });
+    this.load.spritesheet('francesEspaldas', "./phasertemplate-master/images/Franceses/FrancesEspaldas.png", { frameWidth: 32, frameHeight: 38 });
 
     //Edificios defensivos
     this.load.image('trampaOsos', "./phasertemplate-master/images/Estructuras/TrampaOsos/TrampaOsos.png");
@@ -63,7 +81,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('muralla', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/muralla.png");
     this.load.image('catedral', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/catedral.png");
 
-
+    //Menus
     this.load.image('done', "./phasertemplate-master/images/Interfaz/Done.png");
     this.load.image('mas', "./phasertemplate-master/images/Interfaz/Mas.png");
     this.load.image('menos', "./phasertemplate-master/images/Interfaz/Menos.png");
