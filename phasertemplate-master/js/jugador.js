@@ -7,6 +7,7 @@ import TorreArqueros from "./torreArqueros.js";
 import EdificioMina from "./edificioMina.js";
 import EdificioGranja from "./edificioGranja.js";
 import EdificioCantera from "./edificioCantera.js";
+import PuestoVigilancia from "./puestoVigilancia.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
     constructor(scene, casilla) {
@@ -180,9 +181,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 edificio = new Muro(this.game, especialidad, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 0, especialidad);
             else if (especialidad === 'torreArqueros')
                 edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 5, especialidad);
-            else if (especialidad === 'puestoVigilancia');
-                //Crear puesto vigilancia
-               // edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 5, especialidad);
+            else if (especialidad === 'puestoVigilancia')    
+               edificio = new PuestoVigilancia(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 3, especialidad);
         }
         return edificio;
     };

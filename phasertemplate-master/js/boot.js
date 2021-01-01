@@ -60,7 +60,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('trampaOsos', "./phasertemplate-master/images/Estructuras/TrampaOsos/TrampaOsos.png");
     this.load.image('arrow', "./phasertemplate-master/images/Estructuras/arrow.png");
     this.load.image('torreArqueros', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/TorreArqueros.png");
-    this.load.image('rangoCirculo', "./phasertemplate-master/images/Estructuras/RangoCirculo.png")
+    this.load.image('rangoCirculo', "./phasertemplate-master/images/Estructuras/RangoCirculo.png");
+    this.load.image('rangoCono', "./phasertemplate-master/images/Estructuras/RangoCono.png")
 
     //Interfaz
     this.load.image('ajustes', "./phasertemplate-master/images/Interfaz/RuedaAjustes.png");
