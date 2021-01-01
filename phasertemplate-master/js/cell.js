@@ -31,7 +31,8 @@ export default class Cell {
                     if (camino != null) {
                         this.game.jug.movimientoPathFinding(camino);
                     }
-                } else if (this.game.jug.isBuilding) {
+                } 
+                else {
                     let celdas = this.game.jug.edificio.celdas();
                     this.game.jug.edificio.posicion = this.game.casillaPuntero;
 

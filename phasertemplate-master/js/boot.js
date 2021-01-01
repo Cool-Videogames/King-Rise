@@ -18,7 +18,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('sabanaInterseccionVer', "./phasertemplate-master/images/FondoYMapa/SabanaInterseccionVer.png");
     this.load.image('sabana', "./phasertemplate-master/images/FondoYMapa/Sabana.png");
     this.load.image('trono', "./phasertemplate-master/images/Estructuras/Trono.png");
-    this.load.image('obstaculo', "./phasertemplate-master/images/Estructuras/obstaculo.png")
+    this.load.image('obstaculo', "./phasertemplate-master/images/Estructuras/Obstaculo.png")
 
     //Jugador
     this.load.image('jugador', "./phasertemplate-master/images/Rey/Rey.png");

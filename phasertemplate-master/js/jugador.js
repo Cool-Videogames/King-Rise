@@ -28,8 +28,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.game = scene;
 
         this.isBuilding = false;
-        //Edificio que se este construyendo en el momento
-        this.edificio = null;
+        this.edificio = null; //Edificio que se este construyendo en el momento
 
         this.isMoving = false;
         this.posDestino = iniCasilla;

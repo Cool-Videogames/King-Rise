@@ -42,14 +42,18 @@ export default class Game extends Phaser.Scene {
     this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
     this.creaObstaculos();
-
-    this.aldeanosBasicos.push(this.creaAldeano());
-    this.aldeanosBasicos.push(this.creaAldeano());
-    this.aldeanosBasicos.push(this.creaAldeano());
-    this.aldeanosBasicos.push(this.creaAldeano());
-
+    this.creaAldeanos();
     this.interfaz.actualizaInterfaz();
   }
+  update(t, dt) {
+    this.camera.comportamientoCamara();
+  }
+
+  pauseGame() {
+    this.scene.pause();
+  }
+
+  //ALDEANOS, OBSTACULOS Y TRONO (PENSAR EN ESTRUCTURARLO EN CLASES)
 
   creaAldeano() {
     let nextCell;
@@ -66,6 +70,9 @@ export default class Game extends Phaser.Scene {
     else sexo = 'aldeana'
     let aldeano = new Aldeano(this, nextCell, 0, 0, sexo);
     return aldeano;
+  }
+  creaAldeanos(){
+    for(let i = 0; i< config.numAldeanosIniciales;i++) this.aldeanosBasicos.push(this.creaAldeano());
   }
 
   creaTrono() {
@@ -112,14 +119,5 @@ export default class Game extends Phaser.Scene {
       this.mapa.mapa[columna][fila].ocupada = true;
       visitadas.push(zona);
     }
-  }
-
-  update(t, dt) {
-    //if(this.trono.vida <=0)end;
-    this.camera.comportamientoCamara();
-  }
-
-  pauseGame() {
-    this.scene.pause();
   }
 }
