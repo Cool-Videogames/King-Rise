@@ -9,5 +9,6 @@ export default class EnemigoMele extends Enemigo{
 
     preUpdate(t, dt){
         super.preUpdate(t, dt);
+        
     }
 }
