@@ -159,7 +159,7 @@ export default class Mapa {
 
     crearCamino(nodoFinal) {
         let nodoAct = nodoFinal;
-        let camino = new Nodo(nodoAct, null);
+        let camino = new Camino(nodoAct, null);
         while (nodoAct !== null) {
 
             if (nodoAct.anterior !== null) {
@@ -171,6 +171,9 @@ export default class Mapa {
                 } else {
                     camino.cell = nodoAct.cell;
                 }
+            }else{
+                camino.anterior = new Camino(nodoAct, camino);
+                camino = camino.anterior;
             }
             nodoAct = nodoAct.anterior;
         }
