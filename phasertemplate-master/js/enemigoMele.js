@@ -3,7 +3,7 @@ import * as config from "./config.js";
 
 export default class EnemigoMele extends Enemigo{
     constructor(scene, pos){
-        let meleeInfo = config.melee;
+        let meleeInfo = config.meleeEnemy;
         super(scene, pos,meleeInfo.meleeHealth, meleeInfo.meleeAtackDamage, 'frances');
     }
 

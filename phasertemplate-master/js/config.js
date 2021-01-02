@@ -67,10 +67,15 @@ export let interseccionMontañaMar = 24; //Siempre menor o igual que el numero d
 
 
 //Enemigo
-export let melee = {
+export let meleeEnemy = {
     meleeAtackDamage :  5,
     meleeHealth : 20,
     meleeAtackDistance : 5,
     meleeMovementSpeed : 5
 }
-export let rangedAtackDistance = 15;
+export let rangedEnemy = {
+    meleeAtackDamage :  5,
+    meleeHealth : 20,
+    meleeAtackDistance : 5,
+    meleeMovementSpeed : 5
+}

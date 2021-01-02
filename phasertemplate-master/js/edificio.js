@@ -22,6 +22,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.celdasAnteriores = [];
+
+        scene.edificios.push(this);
     }
 
     estaEnRangoDeConstruccion() {
