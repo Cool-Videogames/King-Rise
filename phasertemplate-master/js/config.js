@@ -64,3 +64,13 @@ export let costeCantera = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; exp
 
 //Fondo
 export let interseccionMontañaMar = 24; //Siempre menor o igual que el numero de columnas del mapa
+
+
+//Enemigo
+export let melee = {
+    meleeAtackDamage :  5,
+    meleeHealth : 20,
+    meleeAtackDistance : 5,
+    meleeMovementSpeed : 5
+}
+export let rangedAtackDistance = 15;

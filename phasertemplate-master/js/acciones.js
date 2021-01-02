@@ -17,12 +17,19 @@ export default class Acciones {
         this.casillasParaTurno = config.numeroCasillasRecorridasParaConsumirUnaAccion;
         this.casillasAvanzadas = 0;
 
+
+        this.direccion = Math.random() < 0.5;
+        this.ataqueEnCurso = false;
     }
 
 
     ataque() {
         //Se llamará a este método una vez empiece el ataque
         console.log("Ataque iniciado");
+        this.ataqueEnCurso = true;
+        this.game.oleadasEnemigos.createWave(20, this.direccion);
+
+        this.nuevaOleada();
     }
 
     nuevaOleada() {  //Cuando el ataque finalice y volvamos al modo aldea
@@ -47,7 +54,6 @@ export default class Acciones {
 
         if (this.numeroAccionesRestantes <= 0) {
             this.ataque();
-            this.nuevaOleada();
         }
     }
 
