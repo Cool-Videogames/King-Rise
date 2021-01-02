@@ -15,10 +15,14 @@ export default class EdificioGranja extends EdificioRecursos{
     }
     generar(){
         this.game.recursos.comida += this.cantidad + this.rendimientoAldeanos;
+        this.game.interfaz.actualizaInterfaz();
     }
     asignar(){
         super.asignar();
         rend += aldeanos.rendimiento.rendComida;
     }
     //MENU PARA ASIGNAR ALDEANOS
+    setMenu(){
+        
+    }
 }

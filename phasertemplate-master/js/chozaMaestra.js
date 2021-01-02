@@ -26,7 +26,7 @@ export default class ChozaMaestra extends Edificio {
     setMenu() {
         this.initMarco(); this.createMasMenos();
         this.creaText(); this.setMasMenosPos();
-        this.clickEnChoza(this); this.clickEnDone(this.done);
+        this.clickEnDone(this.done);
     }
     initMarco() {
         //MARCO DEL MENU
@@ -72,6 +72,7 @@ export default class ChozaMaestra extends Edificio {
             this.coste.setVisible(!this.coste.visible);
             this.costeTotal = 0;
             this.coste.text = this.costeTotal;
+            this.marcoDestruir.setVisible(!this.marcoDestruir.visible);
 
             for (let i of this.ops) i.setVisible(!i.visible);
             this.nMin = 0; this.nCant = 0; this.nGan = 0; this.nExp = 0;
@@ -102,16 +103,34 @@ export default class ChozaMaestra extends Edificio {
         this.inputMineros(this.ops[0], this.ops[1]); this.inputCanteros(this.ops[2], this.ops[3]);
         this.inputGanaderos(this.ops[4], this.ops[5]); this.inputExploradores(this.ops[6], this.ops[7]);
     }
-    clickEnChoza(chozaSprite) {
-        chozaSprite.on('pointerup', pointer => {
-            if (!this.game.jug.isBuilding) {
-                if (!this.marco.visible) {
-                    this.game.cierraMarcoAnterior();
-                    this.game.cierraMarcoAnterior = this.abreMarco;
-                }
-                else this.game.cierraMarcoAnterior = () => { };
-                this.abreMarco();
+    destruir(){
+        this.coste.destroy();
+        this.moneda.destroy();
+        this.marco.destroy();
+        this.done.destroy();
+        for(let i of this.texts) i.destroy();
+        for(let i of this.ops) i.destroy();
+        this.game.cierraMarcoAnterior = () => {};
+        
+        this.game.numChozas--;
+        this.game.interfaz.sprites[this.game.interfaz.names.chozaMaestra].clearTint();
+        this.game.interfaz.actualizaInterfaz();
+        super.destruir();
+    }
+    logicaMarco(){
+        if (!this.game.jug.isBuilding) {
+            if (!this.marco.visible) {
+                this.game.cierraMarcoAnterior();
+                this.game.cierraMarcoAnterior = this.abreMarco;
             }
+            else this.game.cierraMarcoAnterior = () => { };
+
+            this.abreMarco();
+        }
+    }
+    inputEdificio(edificio){
+        edificio.on('pointerup', pointer=>{
+            this.logicaMarco(); 
         })
     }
     clickEnDone(done) {
@@ -123,6 +142,7 @@ export default class ChozaMaestra extends Edificio {
                 this.game.interfaz.actualizaInterfaz();
                 this.abreMarco();
                 this.game.cierraMarcoAnterior = () => { };
+                this.marcoDestruir.setVisible(false);
             }
         })
     }

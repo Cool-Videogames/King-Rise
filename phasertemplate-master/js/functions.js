@@ -22,3 +22,6 @@ export function creaTexto(x,y, texto, scene){
 
     return text;
 }
+export function resetCells(cells) {
+    cells.forEach(elem => { elem.sprite.clearTint(); elem.tint = elem.sprite.tint; elem.ocupada = false; });
+}

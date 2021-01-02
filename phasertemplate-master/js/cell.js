@@ -21,7 +21,6 @@ export default class Cell {
         this.tint = this.sprite.tint;
     }
 
-
     onClick(nextCell) {
         nextCell.sprite.on('pointerup', () => {
             if (!nextCell.ocupada) {
@@ -33,15 +32,17 @@ export default class Cell {
                     }
                 } 
                 else {
-                    let celdas = this.game.jug.edificio.celdas();
+                    let celdas = this.game.jug.edificio.celdas(this.game.casillaPuntero);
                     this.game.jug.edificio.posicion = this.game.casillaPuntero;
 
                     if (!this.game.jug.edificio.celdasOcupadas() && this.game.jug.edificio.esPagable() && this.game.jug.edificio.estaEnRangoDeConstruccion()) {
                         this.game.jug.edificio.setInteractive();
                         this.game.jug.edificio.cobraCoste();
                         this.game.interfaz.actualizaInterfaz();
-
-                        if (this.game.jug.edificio.hasMenu) this.game.jug.edificio.setMenu();
+                        this.game.jug.edificio.creaMarcoDestruir();
+                        if (this.game.jug.edificio.hasMenu) {
+                            this.game.jug.edificio.setMenu();
+                        }
                         celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada = true; });
                         this.game.jug.isBuilding = false;
                     }

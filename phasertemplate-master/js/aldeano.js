@@ -156,8 +156,6 @@ export default class Aldeano extends Persona {
         }
     }
 
-
-
     casillaRandom() {
         let nextCell;
         let nodoInicial;

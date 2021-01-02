@@ -15,10 +15,14 @@ export default class EdificioCantera extends EdificioRecursos{
     }
     generar(){
         this.game.recursos.materiales += this.cantidad + this.rendimientoAldeanos;
+        this.game.interfaz.actualizaInterfaz();
     }
     asignar(){
         super.asignar();
         rend += aldeanos.rendimiento.rendMateriales;
     }
     //MENU PARA ASIGNAR ALDEANOS
+    setMenu(){
+        
+    }
 }

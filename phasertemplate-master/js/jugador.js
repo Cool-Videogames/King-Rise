@@ -43,10 +43,13 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         super.preUpdate(t, dt);
 
         if (Phaser.Input.Keyboard.JustDown(this.stopBuild) && this.isBuilding) {
-            this.edificio.celdas().forEach(elem => elem.sprite.tint = elem.tint);
+            this.edificio.celdas(this.edificio.posicion).forEach(elem => elem.sprite.tint = elem.tint);
             this.game.casillaPuntero.sprite.tint = 0x41EE7B;
             this.isBuilding = false;
-
+            if(this.edificio.key === 'chozaMaestra') {
+                this.game.interfaz.sprites[this.game.interfaz.names.chozaMaestra].clearTint();
+                this.game.numChozas--;
+            }
             this.edificio.destroy();
             this.edificio = null;
         }
@@ -169,7 +172,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         }
         else if (tipo === 'chozaMaestra') {
             //scene,vida,coste,posicion, key
-            edificio = new ChozaMaestra(this.game, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, tipo);
+            edificio = new ChozaMaestra(this.game, 0,{ oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, tipo);
         }
         else if (tipo === 'defensivo') {
             //scene,especialidad,vida,coste,posicion,ancho,alto,aldeanosMax,rango, key

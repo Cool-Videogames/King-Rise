@@ -32,7 +32,7 @@ export default class TorreArqueros extends EdificioDefensivo {
 
         this.variacionAldeanos = 0;
         this.texts = new Array(4);
-        this.abreMarco = this.muestraOpciones();
+        this.abreMarcoTorre = this.muestraOpcionesTorre();
     }
 
     preUpdate(t, dt) {
@@ -51,7 +51,6 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.createMasMenos();
         this.creaText();
         this.asignaInput();
-        this.clickEnTorre(this);
         this.initRangoSprite();
     }
 
@@ -126,31 +125,34 @@ export default class TorreArqueros extends EdificioDefensivo {
             }
             this.variacionAldeanos = 0;
             this.game.cierraMarcoAnterior = () => { };
-            this.abreMarco();
+            this.abreMarcoTorre();
             this.game.interfaz.actualizaInterfaz();
         })
     }
 
-    clickEnTorre(torreSprite) {
-        torreSprite.on('pointerup', pointer => {
+    inputEdificio(edificio) {
+        edificio.on('pointerup', pointer => {
             if (!this.game.jug.isBuilding) {
                 if (!this.marco.visible) {
                     this.game.cierraMarcoAnterior();
-                    this.game.cierraMarcoAnterior = this.abreMarco;
+                    this.game.cierraMarcoAnterior = this.abreMarcoTorre;
                 }
-                else this.game.cierraMarcoAnterior = () => { };
-                this.abreMarco();
+                else {
+                    this.game.cierraMarcoAnterior = () => { };
+                }
+                this.abreMarcoTorre();
             }
         })
     }
 
-    muestraOpciones() {
+    muestraOpcionesTorre() {
         return () => {
             this.marco.setVisible(!this.marco.visible);
             this.done.setVisible(!this.done.visible);
             this.texts[2].text = this.game.exploradores.length;
             this.mas.setVisible(!this.mas.visible);
             this.menos.setVisible(!this.menos.visible);
+            this.marcoDestruir.setVisible(!this.marcoDestruir.visible);
 
             for (let i of this.texts) {
                 i.setVisible(!i.visible);

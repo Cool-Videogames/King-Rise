@@ -24,6 +24,7 @@ export default class Game extends Phaser.Scene {
     this.recursos = { oro: 500, comida: 100, materiales: 100, felicidad: 100 }
     this.proxAtaque = 20;
     this.numEdificios = 0;
+    this.numChozas = 0;
 
     this.xSize = 1280;
     this.ySize = 720;

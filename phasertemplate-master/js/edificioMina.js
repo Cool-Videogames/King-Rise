@@ -15,10 +15,14 @@ export default class EdificioMina extends EdificioRecursos{
     }
     generar(){
         this.game.recursos.oro += this.cantidad + this.rendimientoAldeanos;
+        this.game.interfaz.actualizaInterfaz();
     }
     asignar(){
         super.asignar(); //Me he tirado un triple que puede funcionar
         rend += aldeanos.rendimiento.rendOro;
     }
     //MENU PARA ASIGNAR ALDEANOS
+    setMenu(){
+        
+    }
 }

@@ -237,8 +237,12 @@ export default class Interfaz {
   }
   clickEnChoza(chozaMaestra) {
     chozaMaestra.on('pointerup', pointer => {
+      if(this.game.numChozas < 1){
       this.game.jug.inputConstruir('chozaMaestra', '', 3, 3);
       this.ocultaDesplegable();
+      this.sprites[this.names.chozaMaestra].tint = 0x6C6A6B;
+      this.game.numChozas++;
+      }
     })
   }
   clickEnMina(mina) {
