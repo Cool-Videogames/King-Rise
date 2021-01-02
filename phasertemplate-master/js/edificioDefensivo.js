@@ -7,6 +7,8 @@ export default class EdificioDefensivo extends Edificio {
         this.aldeanosMax = aldeanosMax;
         this.numAldeanos = 0;
         this.especialidad = especialidad;
+
+        scene.edificiosDefensivos.push(this);
     }
 
     atacar(objetivo, dmg) {

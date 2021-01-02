@@ -128,6 +128,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 this.isMoving = false;
 
                 if (this.nodoDestino.siguiente !== null) {
+                    this.game.acciones.movimiento();
+
                     this.movimientoPathFinding(this.nodoDestino.siguiente);
                 }
             }
@@ -140,11 +142,10 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
     }
 
     movimientoPathFinding(camino) {
-        this.game.acciones.movimiento();
         this.nodoDestino = camino;
         this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
-        this.casilla.ocupada = false;
 
+        this.casilla.ocupada = false;
         this.casilla = this.nodoDestino.cell;
         this.casilla.ocupada = true;
 
@@ -183,8 +184,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 edificio = new Muro(this.game, especialidad, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 0, especialidad);
             else if (especialidad === 'torreArqueros')
                 edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 5, especialidad);
-            else if (especialidad === 'puestoVigilancia')    
-               edificio = new PuestoVigilancia(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 3, especialidad);
+            else if (especialidad === 'puestoVigilancia')
+                edificio = new PuestoVigilancia(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 3, especialidad);
         }
         return edificio;
     };

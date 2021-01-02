@@ -65,3 +65,18 @@ export let recuperacionRecursos = 75; //Porcentaje
 
 //Fondo
 export let interseccionMontañaMar = 24; //Siempre menor o igual que el numero de columnas del mapa
+
+
+//Enemigo
+export let meleeEnemy = {
+    meleeAtackDamage :  5,
+    meleeHealth : 20,
+    meleeAtackDistance : 5,
+    meleeMovementSpeed : 5
+}
+export let rangedEnemy = {
+    meleeAtackDamage :  5,
+    meleeHealth : 20,
+    meleeAtackDistance : 5,
+    meleeMovementSpeed : 5
+}

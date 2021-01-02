@@ -55,6 +55,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('francesFrente', "./phasertemplate-master/images/Franceses/FrancesFrente.png", { frameWidth: 32, frameHeight: 38 });
     this.load.spritesheet('francesLado', "./phasertemplate-master/images/Franceses/FrancesLado.png", { frameWidth: 32, frameHeight: 38 });
     this.load.spritesheet('francesEspaldas', "./phasertemplate-master/images/Franceses/FrancesEspaldas.png", { frameWidth: 32, frameHeight: 38 });
+    this.load.image('marcadorFrances', "./phasertemplate-master/images/Estructuras/MarcadorFrances.png")
 
     //Edificios defensivos
     this.load.image('trampaOsos', "./phasertemplate-master/images/Estructuras/TrampaOsos/TrampaOsos.png");

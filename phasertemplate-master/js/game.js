@@ -9,6 +9,7 @@ import Acciones from "./acciones.js";
 import Edificio from "./edificio.js";
 import AudioManager from "./audioManager.js";
 import Fondo from "./fondo.js";
+import OleadasEnemigos from "./oleadasEnemigos.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -29,6 +30,9 @@ export default class Game extends Phaser.Scene {
     this.xSize = 1280;
     this.ySize = 720;
 
+    this.edificios = [];
+    this.edificiosDefensivos = [];
+
     this.casillaPuntero = { x: 0, y: 0 };
     this.cierraMarcoAnterior = () => { };
   }
@@ -45,6 +49,8 @@ export default class Game extends Phaser.Scene {
     this.creaObstaculos();
     this.creaAldeanos();
     this.interfaz.actualizaInterfaz();
+    this.oleadasEnemigos = new OleadasEnemigos(this);
+
   }
   update(t, dt) {
     this.camera.comportamientoCamara();
@@ -87,6 +93,8 @@ export default class Game extends Phaser.Scene {
         this.mapa.mapa[i][j].sprite.tint = 0xE2A41F; 7
         this.mapa.mapa[i][j].ocupada = true;
       }
+    
+    this.edificios.push(this.trono);
   }
 
   creaObstaculos() {
