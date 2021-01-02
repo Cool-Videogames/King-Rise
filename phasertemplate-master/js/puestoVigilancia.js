@@ -31,15 +31,36 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         sprite.setOrigin(0.5, 1);
         sprite.alpha = 0.25;
 
-        if (dir === 'sur') { sprite.setRotation(Phaser.Math.DegToRad(180)); sprite.y += config.sizeCasilla / 2; }
-        else if (dir === 'este') sprite.setRotation(Phaser.Math.DegToRad(-90));
-        else if (dir === 'oeste') sprite.setRotation(Phaser.Math.DegToRad(90));
-        else sprite.y -= config.sizeCasilla / 2;
 
-        this.game.physics.add.overlap(this, this.game.jug, (turret, enemy) => {
+        if (dir === 'sur') {
+            sprite.setRotation(Phaser.Math.DegToRad(180));
+            sprite.y += config.sizeCasilla / 2;
+            this.body.setSize(sprite.width, sprite.height);
+            this.body.setOffset(-config.sizeCasilla / 2, config.sizeCasilla);
+        }
+        else if (dir === 'este') {
+            sprite.setRotation(Phaser.Math.DegToRad(90));
+            this.body.setSize(sprite.height, sprite.width);
+            this.body.setOffset(config.sizeCasilla / 4 + 1, 0);
+        }
+        else if (dir === 'oeste') {
+            sprite.setRotation(Phaser.Math.DegToRad(-90));
+            this.body.setSize(sprite.height, sprite.width);
+            this.body.setOffset(-config.sizeCasilla * 2.25 - 1, 0);
+        }
+        else {
+            sprite.y -= config.sizeCasilla / 2;
+            this.body.setSize(sprite.width, sprite.height);
+            this.body.setOffset(-config.sizeCasilla / 2, -2 * config.sizeCasilla);
+        }
 
-
-        });
+        //PENDIENTE, ESPERAR A TENER LOS ENEMIGOS
+        /*this.game.physics.add.overlap(this, this.game.jug, (turret, enemy) => {
+            let marcador = new Phaser.GameObjects.Sprite(this.game, enemy.x, enemy.y, 'marcadorFrances');
+            marcador.setDepth(config.rangosVisionDepth);
+            marcador.setOrigin(0.5, 0.5);
+            this.game.add.existing(marcador);
+        });*/
     }
 
     initFlechas() {
@@ -75,12 +96,12 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         })
 
         this.flechas[2].on('pointerup', pointer => {
-            this.initRangoSprite('este');
+            this.initRangoSprite('oeste');
             this.destroyFlechas();
         })
 
         this.flechas[3].on('pointerup', pointer => {
-            this.initRangoSprite('oeste');
+            this.initRangoSprite('este');
             this.destroyFlechas();
         })
 
