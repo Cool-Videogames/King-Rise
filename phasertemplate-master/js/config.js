@@ -17,6 +17,7 @@ export let rendimientoGeneral = 5;
 
 export let cameraSpeed = 10;
 export let cameraLimit = 200;
+export let cameraPos = {x: 400, y: 100};
 
 export let fontColor = 0xffff00;
 

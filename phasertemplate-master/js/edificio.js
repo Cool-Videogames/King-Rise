@@ -90,7 +90,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         })
     }
     creaMarcoDestruir(){
-        this.marcoDestruir = functions.creaSprite(this.posicion.x-70, this.posicion.y,'x',this.game,config.hudDepth);
+        this.marcoDestruir = functions.creaSprite(this.posicion.x-70, this.posicion.y,'destruir',this.game,config.hudDepth);
         this.marcoDestruir.setVisible(false);
         this.marcoDestruir.setScale(2,2);
         this.inputMarco(this.marcoDestruir);

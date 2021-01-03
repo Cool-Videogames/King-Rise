@@ -4,7 +4,7 @@ export default class Camera {
     constructor(scene,camera){
         this.camera = camera;
 
-        this.camera.centerOn(scene.jug.x,scene.jug.y);
+        this.camera.centerOn(scene.jug.x+config.cameraPos.x,scene.jug.y+config.cameraPos.y);
 
         this.cursors = scene.input.keyboard.addKeys({
             up:Phaser.Input.Keyboard.KeyCodes.W,
