@@ -184,8 +184,8 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.menos.destroy();
         this.done.destroy();
         for (let i of this.texts) i.destroy();
-        this.game.cierraMarcoAnterior = () => {};
-        if(this.arrow!==null)this.arrow.destroy();
+        this.game.cierraMarcoAnterior = () => { };
+        if (this.arrow !== null) this.arrow.destroy();
         this.enemyDestruir();
     }
 
@@ -198,7 +198,9 @@ export default class TorreArqueros extends EdificioDefensivo {
 
             let rndX = Math.floor(Math.random() * this.ancho);
             let rndY = Math.floor(Math.random() * this.alto);
-            let aldeano = new Aldeano(this.game, this.posicion, 0, 0, sexo);
+            let nextCell = this.game.mapa.mapa[this.posicion.indiceX + rndX][this.posicion.indiceY + rndY];
+
+            let aldeano = new Aldeano(this.game, nextCell, 0, 0, sexo);
             this.game.exploradores.push(aldeano);
         }
     }
