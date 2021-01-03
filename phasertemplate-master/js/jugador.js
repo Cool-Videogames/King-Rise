@@ -8,6 +8,7 @@ import EdificioMina from "./edificioMina.js";
 import EdificioGranja from "./edificioGranja.js";
 import EdificioCantera from "./edificioCantera.js";
 import PuestoVigilancia from "./puestoVigilancia.js";
+import CaballoTroya from "./caballoTroya.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
     constructor(scene, casilla) {
@@ -46,7 +47,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             this.edificio.celdas(this.edificio.posicion).forEach(elem => elem.sprite.tint = elem.tint);
             this.game.casillaPuntero.sprite.tint = 0x41EE7B;
             this.isBuilding = false;
-            if(this.edificio.key === 'chozaMaestra') {
+            if (this.edificio.key === 'chozaMaestra') {
                 this.game.interfaz.sprites[this.game.interfaz.names.chozaMaestra].clearTint();
                 this.game.numChozas--;
             }
@@ -173,7 +174,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         }
         else if (tipo === 'chozaMaestra') {
             //scene,vida,coste,posicion, key
-            edificio = new ChozaMaestra(this.game, 0,{ oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, tipo);
+            edificio = new ChozaMaestra(this.game, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, tipo);
         }
         else if (tipo === 'defensivo') {
             //scene,especialidad,vida,coste,posicion,ancho,alto,aldeanosMax,rango, key
@@ -186,6 +187,9 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 5, especialidad);
             else if (especialidad === 'puestoVigilancia')
                 edificio = new PuestoVigilancia(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 3, especialidad);
+            else if (especialidad === 'caballoTroya') {
+                edificio = new CaballoTroya(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, 3, 3, 10, 0, 'torreArqueros');
+            }
         }
         return edificio;
     };

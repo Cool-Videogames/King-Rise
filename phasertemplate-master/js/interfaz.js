@@ -10,7 +10,7 @@ export default class Interfaz {
     this.names = {
       ajustes: 0, desplegable: 1, hudGeneral: 2, infoAldeanos: 3, construir: 4, menuDesp: 5, info: 6, flechaAb: 7,
       botonConstruir: 8, flechaAr: 9, aldeanoB: 10, minero: 11, ganadero: 12, cantero: 13, explorador: 14, chozaMaestra: 15, mina: 16, granja: 17,
-      cantera: 18, trampaSuelo: 19, trampaOso: 20, puestoVigilancia: 21, puestoGuardia: 22, muralla: 23, catedral: 24, torreArqueros: 25
+      cantera: 18, trampaSuelo: 19, trampaOso: 20, puestoVigilancia: 21, puestoGuardia: 22, muralla: 23, catedral: 24, torreArqueros: 25, caballoTroya: 26
     };
     this.tnames = {
       oro: 0, comida: 1, materiales: 2, felicidad: 3, proxAtaque: 4, aldeanoBText: 5, mineroText: 6, ganaderoText: 7,
@@ -55,6 +55,7 @@ export default class Interfaz {
     this.nombres[this.names.trampaOso] = 'trampaOsos'; this.nombres[this.names.puestoVigilancia] = 'puestoVigilancia';
     this.nombres[this.names.puestoGuardia] = 'puestoGuardia'; this.nombres[this.names.muralla] = 'muralla';
     this.nombres[this.names.catedral] = 'catedral'; this.nombres[this.names.torreArqueros] = 'torreArqueros';
+    this.nombres[this.names.caballoTroya] = 'torreArqueros';
   }
 
   creaTexts() {
@@ -77,6 +78,7 @@ export default class Interfaz {
     for (let i of this.texts) { i.setScrollFactor(0); i.setDepth(config.hudDepth + 1) };
     this.texts[a.proxAtaque].setFontSize(config.fontSize + 40);
   }
+
   setTextsPos() {
     let a = this.tnames; let nE = this.names; let pI = this.sprites[nE.hudGeneral];
     let xOS = 20; let yOS = 10;
@@ -126,7 +128,7 @@ export default class Interfaz {
     this.posEdiArriba = new Vector2D(pI.x + xoffSet * 1.93, pI.y - pI.height / 2 - 60);
     this.posEdiAbajo = new Vector2D(pI.x + xoffSet * 1.93, pI.y - pI.height - 55);
 
-    this.sp(this.sprites[nE.chozaMaestra], this.posEdiAbajo.x, this.posEdiAbajo.y);
+    /*this.sp(this.sprites[nE.chozaMaestra], this.posEdiAbajo.x, this.posEdiAbajo.y);
     this.sp(this.sprites[nE.mina], this.posEdiArriba.x, this.posEdiArriba.y);
     this.sp(this.sprites[nE.granja], this.posEdiArriba.x, this.posEdiArriba.y);
     this.sp(this.sprites[nE.cantera], this.posEdiAbajo.x, this.posEdiAbajo.y);
@@ -135,7 +137,7 @@ export default class Interfaz {
     this.sp(this.sprites[nE.puestoVigilancia], this.posEdiArriba.x, this.posEdiArriba.y);
     this.sp(this.sprites[nE.puestoGuardia], this.posEdiAbajo.x, this.posEdiAbajo.y);
     this.sp(this.sprites[nE.muralla], this.posEdiAbajo.x, this.posEdiArriba.y);
-    this.sp(this.sprites[nE.catedral], this.posEdiAbajo.x, this.posEdiAbajo.y);
+    this.sp(this.sprites[nE.catedral], this.posEdiAbajo.x, this.posEdiAbajo.y);*/
 
     this.escalaSprites();
   }
@@ -150,6 +152,7 @@ export default class Interfaz {
     this.sprites[nE.torreArqueros].setScale(1, 1);
     this.sprites[nE.puestoVigilancia].setScale(1.2, 1.1);
   }
+
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
   clickEnAjustes(ajustesSprite) {
     ajustesSprite.on('pointerdown', pointer => {
@@ -237,11 +240,11 @@ export default class Interfaz {
   }
   clickEnChoza(chozaMaestra) {
     chozaMaestra.on('pointerup', pointer => {
-      if(this.game.numChozas < 1){
-      this.game.jug.inputConstruir('chozaMaestra', '', 3, 3);
-      this.ocultaDesplegable();
-      this.sprites[this.names.chozaMaestra].tint = 0x6C6A6B;
-      this.game.numChozas++;
+      if (this.game.numChozas < 1) {
+        this.game.jug.inputConstruir('chozaMaestra', '', 3, 3);
+        this.ocultaDesplegable();
+        this.sprites[this.names.chozaMaestra].tint = 0x6C6A6B;
+        this.game.numChozas++;
       }
     })
   }
@@ -277,6 +280,13 @@ export default class Interfaz {
     })
   }
 
+  clickEnCaballoTroya(caballoTroya) {
+    caballoTroya.on('pointerup', pointer => {
+      this.game.jug.inputConstruir('defensivo', 'caballoTroya', 2, 2);
+      this.ocultaDesplegable();
+    })
+  }
+
   //ACTUALIZAR TEXTOS
   actualizaInterfaz() {
     //Recursos y proximo ataque
@@ -308,7 +318,9 @@ export default class Interfaz {
     this.clickEnTorreArqueros(this.sprites[this.names.torreArqueros]);
     this.clickEnGranja(this.sprites[this.names.granja]);
     this.clickEnPuestoVigilancia(this.sprites[this.names.puestoVigilancia]);
+    this.clickEnCaballoTroya(this.sprites[this.names.caballoTroya]);
   }
+
   visibilidad() {
     //Sprites del desplgable comienzan no visibles
     for (let a = this.inDesp; a < config.hudSprites; a++) {

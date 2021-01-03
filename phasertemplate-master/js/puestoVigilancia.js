@@ -11,7 +11,7 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         this.game = scene;
         this.hasMenu = true;
         this.rango = rango;
-        this.sprite = null;
+        this.rangoSprite = null;
     }
 
     preUpdate(t, dt) {
@@ -54,6 +54,8 @@ export default class PuestoVigilancia extends EdificioDefensivo {
             this.body.setSize(sprite.width, sprite.height);
             this.body.setOffset(-config.sizeCasilla / 2, -2 * config.sizeCasilla);
         }
+
+        this.rangoSprite = sprite;
 
         //PENDIENTE, ESPERAR A TENER LOS ENEMIGOS
         /*this.game.physics.add.overlap(this, this.game.jug, (turret, enemy) => {
@@ -108,10 +110,10 @@ export default class PuestoVigilancia extends EdificioDefensivo {
 
     }
 
-    destruir(){
+    destruir() {
         super.destruir();
         this.destroyFlechas();
-       if(this.sprite !== null) this.sprite.destroy();
+        if (this.rangoSprite !== null) this.rangoSprite.destroy();
     }
 
     recuperaAldeanos() {

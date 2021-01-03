@@ -2,6 +2,7 @@ import EdificioDefensivo from "./edificioDefensivo.js";
 import Vector2D from "./vector2D.js";
 import * as functions from "./functions.js";
 import * as config from "./config.js"
+import Aldeano from "./aldeano.js";
 
 export default class TorreArqueros extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
@@ -14,6 +15,8 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.game = scene;
         this.hasMenu = true;
         this.rango = rango;
+
+        this.numAldeanos = 0;
 
         scene.physics.add.overlap(this, this.game.jug, (turret, enemy) => {
             if (this.arrow === null && this.fireRate <= 0 && this.numAldeanos > 0) {
@@ -33,6 +36,7 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.variacionAldeanos = 0;
         this.texts = new Array(4);
         this.abreMarcoTorre = this.muestraOpcionesTorre();
+        this.rangoSprite = null;
     }
 
     preUpdate(t, dt) {
@@ -61,6 +65,7 @@ export default class TorreArqueros extends EdificioDefensivo {
         sprite.setScale(this.rango * 2, this.rango * 2);
         sprite.setOrigin(0.5, 0.5);
         sprite.alpha = 0.25;
+        this.rangoSprite = sprite;
     }
 
     initMarco() {
@@ -85,7 +90,7 @@ export default class TorreArqueros extends EdificioDefensivo {
 
     creaText() {
         this.texts[0] = functions.creaTexto(this.marco.x + this.marco.width * 0.5, this.marco.y + this.marco.height * 0.29, this.aldeanosMax, this.game);
-        this.texts[1] = functions.creaTexto(this.marco.x + this.marco.width * 0.58, this.marco.y + this.marco.height * 0.57, this.numAldeanos, this.game);
+        this.texts[1] = functions.creaTexto(this.marco.x + this.marco.width * 0.58, this.marco.y + this.marco.height * 0.57, this.variacionAldeanos, this.game);
         this.texts[2] = functions.creaTexto(this.marco.x + this.marco.width * 0.86, this.marco.y + this.marco.height * 0.84, this.game.exploradores.length, this.game);
         this.texts[3] = functions.creaTexto(this.x - 2, this.y - this.height * 0.8, this.numAldeanos, this.game);
         for (let i of this.texts) {
@@ -99,29 +104,37 @@ export default class TorreArqueros extends EdificioDefensivo {
 
     asignaInput() {
         this.mas.on('pointerup', pointer => {
-            if (this.numAldeanos < this.aldeanosMax && this.numAldeanos + 1 <= this.game.exploradores.length) {
-                this.numAldeanos++;
+            if (this.variacionAldeanos + this.numAldeanos < this.aldeanosMax && this.variacionAldeanos + 1 <= this.game.exploradores.length) {
                 this.variacionAldeanos++;
-                this.texts[1].text = this.numAldeanos;
-                this.texts[3].text = this.numAldeanos;
+                console.log(this.numAldeanos);
+                this.texts[1].text = this.variacionAldeanos + this.numAldeanos;;
+                this.texts[2].text--;
+                this.texts[3].text = this.variacionAldeanos + this.numAldeanos;;
             }
         })
 
         this.menos.on('pointerup', pointer => {
-            if (this.numAldeanos > 0) {
-                this.numAldeanos--;
+            if (this.variacionAldeanos + this.numAldeanos > 0) {
                 this.variacionAldeanos--;
-                this.texts[1].text = this.numAldeanos;
-                this.texts[3].text = this.numAldeanos;
+                console.log(this.numAldeanos);
+                this.texts[1].text = this.variacionAldeanos + this.numAldeanos;
+                this.texts[2].text++;
+                this.texts[3].text = this.variacionAldeanos + this.numAldeanos;
             }
         })
 
         this.done.on('pointerup', pointer => {
             if (this.variacionAldeanos < 0) {
-                for (let i = 0; i < -this.variacionAldeanos; ++i)this.game.exploradores.push(this.game.creaAldeano());
+                for (let i = 0; i < -this.variacionAldeanos; ++i) {
+                    this.game.exploradores.push(this.game.creaAldeano());
+                    this.numAldeanos--;
+                }
             }
             else if (this.variacionAldeanos > 0) {
-                for (let i = 0; i < this.variacionAldeanos; ++i)this.game.exploradores.pop().destroy();
+                for (let i = 0; i < this.variacionAldeanos; ++i) {
+                    this.game.exploradores.pop().destroy();
+                    this.numAldeanos++;
+                }
             }
             this.variacionAldeanos = 0;
             this.game.cierraMarcoAnterior = () => { };
@@ -139,6 +152,7 @@ export default class TorreArqueros extends EdificioDefensivo {
                 }
                 else {
                     this.game.cierraMarcoAnterior = () => { };
+
                 }
                 this.abreMarcoTorre();
             }
@@ -161,8 +175,32 @@ export default class TorreArqueros extends EdificioDefensivo {
         }
     }
 
-    onDestroy() {
-        //Spawnear aldeanos almacenados
+    //Cuando lo destruimos nosotros
+    destruir() {
+        super.destruir();
+        this.rangoSprite.destroy();
+        this.marco.destroy();
+        this.mas.destroy();
+        this.menos.destroy();
+        this.done.destroy();
+        for (let i of this.texts) i.destroy();
+        this.game.cierraMarcoAnterior = () => {};
+        if(this.arrow!==null)this.arrow.destroy();
+        this.enemyDestruir();
+    }
+
+    //Cuando lo destruye el enemigo. Spawnear aldeanos almacenados
+    enemyDestruir() {
+        for (let i = 0; i < this.numAldeanos; ++i) {
+            let sexo = Math.round(Math.random(0, 1));
+            if (sexo === 0) sexo = 'aldeano';
+            else sexo = 'aldeana';
+
+            let rndX = Math.floor(Math.random() * this.ancho);
+            let rndY = Math.floor(Math.random() * this.alto);
+            let aldeano = new Aldeano(this.game, this.posicion, 0, 0, sexo);
+            this.game.exploradores.push(aldeano);
+        }
     }
 
     recuperaAldeanos() {

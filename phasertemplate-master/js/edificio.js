@@ -84,7 +84,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             this.marcoDestruir.setVisible(!this.marcoDestruir.visible);
         }
     }
-    inputMarco(marco){
+    inputMarcoDestruir(marco){
         marco.on('pointerup', pointer=>{
             this.destruir();
         })
@@ -93,7 +93,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.marcoDestruir = functions.creaSprite(this.posicion.x-70, this.posicion.y,'destruir',this.game,config.hudDepth);
         this.marcoDestruir.setVisible(false);
         this.marcoDestruir.setScale(2,2);
-        this.inputMarco(this.marcoDestruir);
+        this.inputMarcoDestruir(this.marcoDestruir);
     }
 
     preUpdate(t, dt) {
