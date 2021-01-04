@@ -46,10 +46,10 @@ export let hudDepth = 4;
 
 //Acciones
 export let nuevoAldeano = 15;
-export let numeroAccionesIniciales = 20;
+export let numeroAccionesIniciales = 2;
 export let relacionAcciones = 0.8; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
 export let numeroAccionesMinimo = 5;
-export let numeroCasillasRecorridasParaConsumirUnaAccion = 4;
+export let numeroCasillasRecorridasParaConsumirUnaAccion = 0;
 
 //Exploracion
 export let costeBaseExploracion = 20;
