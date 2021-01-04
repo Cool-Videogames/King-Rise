@@ -1,24 +1,24 @@
-//CLASE HECHA UNICAMENTE PARA TESTEAR LA INTERFAZ, SE PUEDE PARTIR DE ESTO PARA HACER LOS AJUSTES
-export default class Settings extends Phaser.Scene{
-    constructor(){
-        super({ key: "settings" });
-    }
+//import * as functions from "./functions.js";
+//import * as config from "./config.js"
 
-    create(){
-      this.volver = new Phaser.GameObjects.Sprite(this,600,250, 'volveraljuego');
-      this.volver.setOrigin(0,0);
-      this.volver.setInteractive();
-      this.add.existing(this.volver);
-      this.volveraljuego(this.volver);
-      this.add.text(600,250," Volver\n al juego", {fontColor: 0xffff00, fontFamiliy: 'Quantico', fontSize: '14px', strokeThickness: 0});
+export default class Settings {
+    constructor(scene){
+        this.game = scene;
+        //this.background = new Phaser.GameObjects.Sprite(this.game, 0,0,'settingsBackGround');
+        //this.background = functions.creaSprite(config.winWidth/2, config.winHeight/2, 'settingsBackground', this.game, config.hudDepth);
+        //this.creaSettings();
     }
-    update(){
+    muestraSettings(){
+        console.log("HOLA");
+    }
+    /*ocultaSettings(){
 
     }
-    volveraljuego(volverAlJuegoSprite){
-        volverAlJuegoSprite.on('pointerup', pointer => {
-            this.scene.switch('game');
-            this.scene.resume('game');
-        })
-    }
+    creaSettings(){
+       this.background = functions.creaSprite(config.winWidth/2, config.winHeight/2, 'settingsBackground', this.game, config.hudDepth);
+       // this.background = functions.creaSprite(0,0,'settingsBackground', this.game, config.hudDepth);
+       /*this.volver = functions.creaSprite(config.winWidth/2, config.winHeight/2, 'volveraljuego', this, config.hudDepth);
+        this.volver.setOrigin(0.5,0.5);
+        this.volver.setScale(2,2);
+    }*/
 }

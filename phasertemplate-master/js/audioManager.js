@@ -6,7 +6,7 @@ export default class AudioManager{
         this.startMusic();
     }
     startMusic(){
-        let musicConfig = {
+        this.musicConfig = {
             mute: false,
             volume: 0.1,
             rate: 1,
@@ -15,6 +15,9 @@ export default class AudioManager{
             loop: true,
             delay: 0,
         }
-        this.mainSound.play(musicConfig);
+        this.mainSound.play(this.musicConfig);
+    }
+    setVolumen(vol){
+        this.mainSound.setVolume(vol);
     }
 }

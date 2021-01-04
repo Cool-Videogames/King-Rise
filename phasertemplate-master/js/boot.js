@@ -96,7 +96,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('destruir', "./phasertemplate-master/images/Estructuras/Destruir.png");
 
     //Ajustes
-    this.load.image('volveraljuego', "./phasertemplate-master/images/gestion.png");
+    this.load.image('volveraljuego', "./phasertemplate-master/images/Settings/VOLVER.png");
+    this.load.image('settingsBackground', "./phasertemplate-master/images/Settings/SettingsBackGround.png")
 
     //Choza Maestra
     this.load.image('chozaMaestra', "./phasertemplate-master/images/Estructuras/ChozaMaestra/ChozaMaestra.png");

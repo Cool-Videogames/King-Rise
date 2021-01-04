@@ -127,18 +127,6 @@ export default class Interfaz {
     //Edificios construibles
     this.posEdiArriba = new Vector2D(pI.x + xoffSet * 1.93, pI.y - pI.height / 2 - 60);
     this.posEdiAbajo = new Vector2D(pI.x + xoffSet * 1.93, pI.y - pI.height - 55);
-
-    /*this.sp(this.sprites[nE.chozaMaestra], this.posEdiAbajo.x, this.posEdiAbajo.y);
-    this.sp(this.sprites[nE.mina], this.posEdiArriba.x, this.posEdiArriba.y);
-    this.sp(this.sprites[nE.granja], this.posEdiArriba.x, this.posEdiArriba.y);
-    this.sp(this.sprites[nE.cantera], this.posEdiAbajo.x, this.posEdiAbajo.y);
-    this.sp(this.sprites[nE.trampaSuelo], this.posEdiAbajo.x, this.posEdiArriba.y);
-    this.sp(this.sprites[nE.trampaOso], this.posEdiAbajo.x, this.posEdiAbajo.y);
-    this.sp(this.sprites[nE.puestoVigilancia], this.posEdiArriba.x, this.posEdiArriba.y);
-    this.sp(this.sprites[nE.puestoGuardia], this.posEdiAbajo.x, this.posEdiAbajo.y);
-    this.sp(this.sprites[nE.muralla], this.posEdiAbajo.x, this.posEdiArriba.y);
-    this.sp(this.sprites[nE.catedral], this.posEdiAbajo.x, this.posEdiAbajo.y);*/
-
     this.escalaSprites();
   }
   sp(sprite, x, y) {
@@ -156,8 +144,7 @@ export default class Interfaz {
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
   clickEnAjustes(ajustesSprite) {
     ajustesSprite.on('pointerdown', pointer => {
-      this.game.scene.switch('settings');
-      this.game.pauseGame();
+      this.game.ajustes.muestraSettings();
     })
 
   }

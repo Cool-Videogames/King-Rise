@@ -10,7 +10,6 @@ export default class CaballoTroya extends EdificioDefensivo {
         this.game = scene;
         this.hasMenu = true;
 
-
         this.variacionAldeanos = 0;
         this.texts = new Array(4);
         this.abreMarco = this.muestraOpciones();
