@@ -36,6 +36,7 @@ export default class Game extends Phaser.Scene {
 
     this.casillaPuntero = { x: 0, y: 0 };
     this.cierraMarcoAnterior = () => { };
+
   }
 
   create() {
