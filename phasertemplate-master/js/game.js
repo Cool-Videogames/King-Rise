@@ -11,6 +11,7 @@ import AudioManager from "./audioManager.js";
 import Fondo from "./fondo.js";
 import OleadasEnemigos from "./oleadasEnemigos.js";
 import Vector2D from "./vector2D.js";
+import Ajustes from "./ajustes.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
