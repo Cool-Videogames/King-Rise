@@ -144,7 +144,7 @@ export default class Interfaz {
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
   clickEnAjustes(ajustesSprite) {
     ajustesSprite.on('pointerdown', pointer => {
-      this.game.ajustes.muestraSettings();
+      this.game.ajustes.muestraAjustes();
     })
 
   }

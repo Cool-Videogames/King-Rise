@@ -67,6 +67,9 @@ export let recuperacionRecursos = 75; //Porcentaje
 //Fondo
 export let interseccionMontañaMar = 24; //Siempre menor o igual que el numero de columnas del mapa
 
+//Ajustes
+export let limiteDer = 769.1488893499442;
+export let limiteIzq = 508;
 
 //Enemigo
 export let meleeEnemy = {

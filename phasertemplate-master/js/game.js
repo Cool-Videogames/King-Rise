@@ -10,7 +10,7 @@ import Edificio from "./edificio.js";
 import AudioManager from "./audioManager.js";
 import Fondo from "./fondo.js";
 import OleadasEnemigos from "./oleadasEnemigos.js";
-import Settings from "./settings.js";
+import Ajustes from "./ajustes.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -46,7 +46,7 @@ export default class Game extends Phaser.Scene {
     this.fondo = new Fondo(this, this.mapa);
     this.jug = new Jugador(this, this.mapa.mapa[0][0]);
     this.creaTrono();
-    this.ajustes = new Settings(this);
+    this.ajustes = new Ajustes(this);
     this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
     this.creaObstaculos();
@@ -57,6 +57,7 @@ export default class Game extends Phaser.Scene {
   }
   update(t, dt) {
     this.camera.comportamientoCamara();
+    this.ajustes.comportamientoAjustes();
   }
 
   pauseGame() {
