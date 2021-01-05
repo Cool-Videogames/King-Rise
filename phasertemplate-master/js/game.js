@@ -10,7 +10,7 @@ import Edificio from "./edificio.js";
 import AudioManager from "./audioManager.js";
 import Fondo from "./fondo.js";
 import OleadasEnemigos from "./oleadasEnemigos.js";
-import Ajustes from "./ajustes.js";
+import Vector2D from "./vector2D.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -77,27 +77,25 @@ export default class Game extends Phaser.Scene {
     nextCell.ocupada = true;
 
     let sexo = Math.round(Math.random(0, 1));
-    if(sexo === 0) sexo = 'aldeano'; 
+    if (sexo === 0) sexo = 'aldeano';
     else sexo = 'aldeana'
     let aldeano = new Aldeano(this, nextCell, 0, 0, sexo);
     return aldeano;
   }
-  creaAldeanos(){
-    for(let i = 0; i< config.numAldeanosIniciales;i++) this.aldeanosBasicos.push(this.creaAldeano());
+  creaAldeanos() {
+    for (let i = 0; i < config.numAldeanosIniciales; i++) this.aldeanosBasicos.push(this.creaAldeano());
   }
 
   creaTrono() {
     let coste = { oro: 0, materiales: 0, comida: 0, felicidad: 0 };
-    this.trono = new Edificio(this, 100, coste, {}, 2, 2, 'trono');
-    this.trono.x = config.sizeCasilla * 2;
-    this.trono.y = config.sizeCasilla * 3;
+    this.trono = new Edificio(this, 100, coste, new Vector2D(config.sizeCasilla * 2, config.sizeCasilla * 3), 2, 2, 'trono');
     for (let i = 1; i < 3; ++i)
       for (let j = 1; j < 3; ++j) {
         this.mapa.mapa[i][j].tint = 0xE2A41F;
         this.mapa.mapa[i][j].sprite.tint = 0xE2A41F; 7
         this.mapa.mapa[i][j].ocupada = true;
       }
-    
+
     this.edificios.push(this.trono);
   }
 
@@ -119,8 +117,8 @@ export default class Game extends Phaser.Scene {
       let columna;
 
       do {
-        fila = zona.zonaFila + Math.floor(Math.random() * (config.filas / 4));
-        columna = zona.zonaColumna + Math.floor(Math.random() * (config.columnas / 8))
+        fila = zona.zonaFila + Math.floor(Math.random() * (config.filas / config.zonaFilas));
+        columna = zona.zonaColumna + Math.floor(Math.random() * (config.columnas / config.zonaColumnas))
       }
       while (this.mapa.mapa[columna][fila].ocupada);
 

@@ -1,5 +1,5 @@
-export let filas = 32;
-export let columnas = 32;
+export let filas = 25;
+export let columnas = 25;
 export let sizeCasilla = 64;
 export let winWidth = 1280;
 export let winHeight = 720;
@@ -9,8 +9,8 @@ export let rangoConstruccion = 3;
 export let numAldeanosIniciales = 5;
 
 export let numObstaculos = 16;
-export let zonaColumnas = 8;
-export let zonaFilas = 4;
+export let zonaColumnas = 5;
+export let zonaFilas = 5;
 
 export let cantidadRecursosPorDefecto = 5;
 export let rendimientoGeneral = 5;
@@ -73,14 +73,16 @@ export let limiteIzq = 508;
 
 //Enemigo
 export let meleeEnemy = {
-    meleeAtackDamage :  5,
-    meleeHealth : 20,
-    meleeAtackDistance : 5,
-    meleeMovementSpeed : 5
+    AtackDamage :  5,
+    Health : 20,
+    AtackDistance : 5,
+    MovementSpeed : 120,
+    AtackTime : 1
 }
 export let rangedEnemy = {
-    meleeAtackDamage :  5,
-    meleeHealth : 20,
-    meleeAtackDistance : 5,
-    meleeMovementSpeed : 5
+    AtackDamage :  5,
+    Health : 20,
+    AtackDistance : 5,
+    MovementSpeed : 120,
+    AtackTime : 1
 }

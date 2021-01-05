@@ -12,7 +12,7 @@ export default class CaballoTroya extends EdificioDefensivo {
 
         this.variacionAldeanos = 0;
         this.texts = new Array(4);
-        this.abreMarco = this.muestraOpciones();
+        this.abreMarcoTorre = this.muestraOpcionesCaballo();
 
         this.setScale(3, 3);
 
@@ -24,7 +24,6 @@ export default class CaballoTroya extends EdificioDefensivo {
         this.createMasMenos();
         this.creaText();
         this.asignaInput();
-        this.clickEnCaballo(this);
     }
 
     initMarco() {
@@ -63,51 +62,62 @@ export default class CaballoTroya extends EdificioDefensivo {
 
     asignaInput() {
         this.mas.on('pointerup', pointer => {
-            if (this.numAldeanos < this.aldeanosMax && this.numAldeanos + 1 <= this.game.exploradores.length) {
-                this.numAldeanos++;
+            if (this.variacionAldeanos + this.numAldeanos < this.aldeanosMax && this.variacionAldeanos + 1 <= this.game.exploradores.length) {
                 this.variacionAldeanos++;
-                this.texts[1].text = this.numAldeanos;
-                this.texts[3].text = this.numAldeanos;
+                console.log(this.numAldeanos);
+                this.texts[1].text = this.variacionAldeanos + this.numAldeanos;;
+                this.texts[2].text--;
+                this.texts[3].text = this.variacionAldeanos + this.numAldeanos;;
             }
         })
 
         this.menos.on('pointerup', pointer => {
-            if (this.numAldeanos > 0) {
-                this.numAldeanos--;
+            if (this.variacionAldeanos + this.numAldeanos > 0) {
                 this.variacionAldeanos--;
-                this.texts[1].text = this.numAldeanos;
-                this.texts[3].text = this.numAldeanos;
+                console.log(this.numAldeanos);
+                this.texts[1].text = this.variacionAldeanos + this.numAldeanos;
+                this.texts[2].text++;
+                this.texts[3].text = this.variacionAldeanos + this.numAldeanos;
             }
         })
 
         this.done.on('pointerup', pointer => {
             if (this.variacionAldeanos < 0) {
-                for (let i = 0; i < -this.variacionAldeanos; ++i)this.game.exploradores.push(this.game.creaAldeano());
+                for (let i = 0; i < -this.variacionAldeanos; ++i) {
+                    this.game.exploradores.push(this.game.creaAldeano());
+                    this.numAldeanos--;
+                }
             }
             else if (this.variacionAldeanos > 0) {
-                for (let i = 0; i < this.variacionAldeanos; ++i)this.game.exploradores.pop().destroy();
+                for (let i = 0; i < this.variacionAldeanos; ++i) {
+                    this.game.exploradores.pop().destroy();
+                    this.numAldeanos++;
+                }
             }
             this.variacionAldeanos = 0;
             this.game.cierraMarcoAnterior = () => { };
-            this.abreMarco();
+            this.abreMarcoTorre();
             this.game.interfaz.actualizaInterfaz();
         })
     }
 
-    clickEnCaballo(caballoSprite) {
-        caballoSprite.on('pointerup', pointer => {
+    inputEdificio(edificio) {
+        edificio.on('pointerup', pointer => {
             if (!this.game.jug.isBuilding) {
                 if (!this.marco.visible) {
                     this.game.cierraMarcoAnterior();
-                    this.game.cierraMarcoAnterior = this.abreMarco;
+                    this.game.cierraMarcoAnterior = this.abreMarcoTorre;
                 }
-                else this.game.cierraMarcoAnterior = () => { };
-                this.abreMarco();
+                else {
+                    this.game.cierraMarcoAnterior = () => { };
+
+                }
+                this.abreMarcoTorre();
             }
         })
     }
 
-    muestraOpcionesTorre() {
+    muestraOpcionesCaballo() {
         return () => {
             this.marco.setVisible(!this.marco.visible);
             this.done.setVisible(!this.done.visible);
@@ -126,11 +136,28 @@ export default class CaballoTroya extends EdificioDefensivo {
     //Cuando lo destruimos nosotros
     destruir() {
         super.destruir();
-        this.rangoSprite.destroy();
         this.marco.destroy();
         this.mas.destroy();
         this.menos.destroy();
         this.done.destroy();
         for (let i of this.texts) i.destroy();
+        this.game.cierraMarcoAnterior = () => { };
+    }
+
+    //Cuando lo destruye el enemigo. Spawnear aldeanos almacenados
+    enemyDestruir() {
+        for (let i = 0; i < this.numAldeanos; ++i) {
+            let sexo = Math.round(Math.random(0, 1));
+            if (sexo === 0) sexo = 'aldeano';
+            else sexo = 'aldeana';
+
+            let rndX = Math.floor(Math.random() * this.ancho);
+            let rndY = Math.floor(Math.random() * this.alto);
+            let nextCell = this.game.mapa.mapa[this.posicion.indiceX + rndX][this.posicion.indiceY + rndY];
+
+            let aldeano = new Aldeano(this.game, nextCell, 0, 0, sexo);
+            this.game.exploradores.push(aldeano);
+        }
+        this.destruir();
     }
 }

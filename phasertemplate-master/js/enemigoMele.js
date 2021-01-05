@@ -4,9 +4,11 @@ import * as config from "./config.js";
 export default class EnemigoMele extends Enemigo {
     constructor(scene, pos) {
         let meleeInfo = config.meleeEnemy;
-        super(scene, pos, meleeInfo.meleeHealth, meleeInfo.meleeAtackDamage, 'frances');
+        super(scene, pos, meleeInfo.Health, meleeInfo.AtackDamage, 'frances');
 
-        this.destino = this.objetivoMasCercano(true);
+        this.moveSpeed = meleeInfo.MovementSpeed;
+        this.objetivo = this.objetivoMasCercano(true);
+        this.range = meleeInfo.AtackDistance;
         this.move();
     }
 
@@ -15,6 +17,5 @@ export default class EnemigoMele extends Enemigo {
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
     }
 }
