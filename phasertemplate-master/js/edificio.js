@@ -29,8 +29,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.celdasAnteriores = [];
         this.inputEdificio(this);
         this.creaMarcoDestruir();
-        scene.edificios.push(this);
-
     }
 
     estaEnRangoDeConstruccion() {

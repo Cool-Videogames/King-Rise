@@ -1,5 +1,6 @@
-import Persona from "./persona.js"
+import Persona from "./persona.js";
 import Vector2D from "./vector2D.js";
+import * as config from "./config.js";
 
 export default class Enemigo extends Persona {
     constructor(scene, pos, vida, fuerza, key) {
@@ -10,12 +11,12 @@ export default class Enemigo extends Persona {
         this.game = scene;
         this.moveSpeed = 5;
         this.range = 5;
-        this.damage = 10;
 
         this.attackTime = 1;
         this.t = 0;
 
         this.isInRange = false;
+        this.setOrigin(0.5,0.5);
     }
 
     preUpdate(t, dt) {
@@ -67,7 +68,9 @@ export default class Enemigo extends Persona {
     }
 
     move() {
+        let obj = { x: 0, y: 0 };
+        this.objetivo.getCenter(obj);
         if (this.objetivo != null)
-            this.game.physics.moveTo(this, this.objetivo.posicion.x, this.objetivo.posicion.y, this.moveSpeed);
+            this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
     }
 }

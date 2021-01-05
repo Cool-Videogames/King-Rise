@@ -88,7 +88,7 @@ export default class Game extends Phaser.Scene {
 
   creaTrono() {
     let coste = { oro: 0, materiales: 0, comida: 0, felicidad: 0 };
-    this.trono = new Edificio(this, 100, coste, new Vector2D(config.sizeCasilla * 2,config.sizeCasilla * 3 ), 2, 2, 'trono');
+    this.trono = new Edificio(this, 100, coste, new Vector2D(config.sizeCasilla * 2, config.sizeCasilla * 3), 2, 2, 'trono');
     for (let i = 1; i < 3; ++i)
       for (let j = 1; j < 3; ++j) {
         this.mapa.mapa[i][j].tint = 0xE2A41F;
@@ -117,8 +117,8 @@ export default class Game extends Phaser.Scene {
       let columna;
 
       do {
-        fila = zona.zonaFila + Math.floor(Math.random() * (config.filas / 4));
-        columna = zona.zonaColumna + Math.floor(Math.random() * (config.columnas / 8))
+        fila = zona.zonaFila + Math.floor(Math.random() * (config.filas / config.zonaFilas));
+        columna = zona.zonaColumna + Math.floor(Math.random() * (config.columnas / config.zonaColumnas))
       }
       while (this.mapa.mapa[columna][fila].ocupada);
 

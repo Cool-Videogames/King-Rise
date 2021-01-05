@@ -9,11 +9,7 @@ export default class EnemigoMele extends Enemigo {
         this.moveSpeed = meleeInfo.MovementSpeed;
         this.objetivo = this.objetivoMasCercano(true);
         this.range = meleeInfo.AtackDistance;
-        this.damage = meleeInfo.AtackDamage;
         this.move();
-
-
-        console.log(this.moveSpeed);
     }
 
 
@@ -21,6 +17,5 @@ export default class EnemigoMele extends Enemigo {
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
     }
 }
