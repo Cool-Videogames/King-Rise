@@ -14,10 +14,10 @@ export default class Cell {
         this.ocupada = false;
 
         //Un sprite como atributo de la clase
-        this.sprite = functions.creaSprite(x,y,this.key,scene,config.mapDepth);
+        this.sprite = functions.creaSprite(x, y, this.key, scene, config.mapDepth);
         this.sprite.setScale(config.sizeCasilla / 32, config.sizeCasilla / 32);
-        this.sprite.setFlip(flipHor,flipVer);
-        
+        this.sprite.setFlip(flipHor, flipVer);
+
         this.tint = this.sprite.tint;
     }
 
@@ -30,7 +30,7 @@ export default class Cell {
                     if (camino != null) {
                         this.game.jug.movimientoPathFinding(camino);
                     }
-                } 
+                }
                 else {
                     let celdas = this.game.jug.edificio.celdas(this.game.casillaPuntero);
                     this.game.jug.edificio.posicion = this.game.casillaPuntero;
@@ -45,6 +45,7 @@ export default class Cell {
                         }
                         celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada = true; });
                         this.game.jug.isBuilding = false;
+                        this.game.edificios.push(this.game.jug.edificio);       
                     }
                 }
 

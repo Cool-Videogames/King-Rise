@@ -81,7 +81,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('trampaSuelo', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/trampaSuelo.png");
     this.load.image('trampaOsos', "./phasertemplate-master/images/Estructuras/TrampaOsos/TrampaOsos.png");
     this.load.image('puestoVigilancia', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/puestoVigilancia.png");
-    this.load.image('puestoGuardia', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/puestoGuardia.png");
+    this.load.image('bunker', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/bunker.png");
     this.load.image('muralla', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/muralla.png");
     this.load.image('catedral', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/catedral.png");
 
@@ -97,7 +97,9 @@ export default class Boot extends Phaser.Scene {
 
     //Ajustes
     this.load.image('volveraljuego', "./phasertemplate-master/images/Settings/VOLVER.png");
-    this.load.image('settingsBackground', "./phasertemplate-master/images/Settings/SettingsBackGround.png")
+    this.load.image('settingsBackground', "./phasertemplate-master/images/Settings/SettingsBackGround.png");
+    this.load.image('volumen', "./phasertemplate-master/images/Settings/volumen.png");
+    this.load.image('ajusteVolumen', "./phasertemplate-master/images/Settings/AjusteVolumen.png");
 
     //Choza Maestra
     this.load.image('chozaMaestra', "./phasertemplate-master/images/Estructuras/ChozaMaestra/ChozaMaestra.png");

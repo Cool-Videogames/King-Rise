@@ -27,7 +27,6 @@
     <script type="module">
       import Boot from "./phasertemplate-master/js/boot.js";
       import Game from "./phasertemplate-master/js/game.js";
-      import Settings from "./phasertemplate-master/js/settings.js";
 
       var config = {
         type: Phaser.AUTO,
@@ -41,7 +40,7 @@
           mode: Phaser.Scale.FIT,
           autoCenter: Phaser.Scale.CENTER_BOTH,
         },
-        scene: [Boot, Game, Settings],
+        scene: [Boot, Game],
         physics: {
           default: "arcade",
           arcade: { gravity: { y: 0 }, debug: true },
