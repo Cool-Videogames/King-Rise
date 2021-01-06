@@ -1,5 +1,6 @@
 import Persona from "./persona.js"
 import Vector2D from "./vector2D.js";
+import * as config from "./config.js";
 
 export default class Enemigo extends Persona {
     constructor(scene, pos, vida, fuerza, key) {
@@ -28,7 +29,10 @@ export default class Enemigo extends Persona {
                 this.t = 0;
             }
         } else {
-
+            if (this.distancia(this.objetivo.posicion) <= this.range + this.objetivo.ancho * config.sizeCasilla) {
+                this.isInRange = true;
+                this.velocity = { x: 0, y: 0 };
+            }
         }
     }
 

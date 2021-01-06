@@ -130,7 +130,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
 
                 if (this.nodoDestino.siguiente !== null) {
                     this.game.acciones.movimiento();
-
+                    
                     this.movimientoPathFinding(this.nodoDestino.siguiente);
                 }
             }
