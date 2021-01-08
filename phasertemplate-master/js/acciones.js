@@ -27,7 +27,7 @@ export default class Acciones {
         //Se llamará a este método una vez empiece el ataque
         console.log("Ataque iniciado");
         this.ataqueEnCurso = true;
-        this.game.oleadasEnemigos.createWave(20, this.direccion);
+        this.game.oleadasEnemigos.createWave(1, this.direccion);
 
         this.nuevaOleada();
     }
@@ -44,6 +44,8 @@ export default class Acciones {
 
 
     actualizarIndice(aumento) {
+        if(this.ataqueEnCurso) return;
+
         this.nuevoAldeano++;
         if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.aldeanosBasicos.push(this.game.creaAldeano()); this.nuevoAldeano = 0; }
 

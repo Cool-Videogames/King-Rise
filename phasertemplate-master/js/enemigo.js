@@ -29,9 +29,11 @@ export default class Enemigo extends Persona {
                 this.t = 0;
             }
         } else {
-            if (this.distancia(this.objetivo.posicion) <= this.range + this.objetivo.ancho * config.sizeCasilla) {
+            let distancia = this.distancia(this.objetivo.posicion);
+
+            if (distancia <= this.range + this.objetivo.ancho * config.sizeCasilla) {
                 this.isInRange = true;
-                this.velocity = { x: 0, y: 0 };
+                this.body.reset(this.x,this.y);
             }
         }
     }
