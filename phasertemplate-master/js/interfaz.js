@@ -49,8 +49,8 @@ export default class Interfaz {
     this.nombres[this.names.info] = 'info'; this.nombres[this.names.flechaAb] = 'flechaIn';
     this.nombres[this.names.botonConstruir] = 'botonConstruir'; this.nombres[this.names.flechaAr] = 'flechaIn';
     this.nombres[this.names.aldeanoB] = 'aldeano'; this.nombres[this.names.minero] = 'minero';
-    this.nombres[this.names.ganadero] = 'ganadero'; this.nombres[this.names.cantero] = 'aldeano';
-    this.nombres[this.names.explorador] = 'aldeano'; this.nombres[this.names.chozaMaestra] = 'chozaMaestra';
+    this.nombres[this.names.ganadero] = 'ganadero'; this.nombres[this.names.cantero] = 'cantero';
+    this.nombres[this.names.explorador] = 'explorador'; this.nombres[this.names.chozaMaestra] = 'chozaMaestra';
     this.nombres[this.names.mina] = 'mina'; this.nombres[this.names.granja] = 'granja';
     this.nombres[this.names.cantera] = 'cantera'; this.nombres[this.names.trampaSuelo] = 'trampaSuelo';
     this.nombres[this.names.trampaOso] = 'trampaOsos'; this.nombres[this.names.puestoVigilancia] = 'puestoVigilancia';
