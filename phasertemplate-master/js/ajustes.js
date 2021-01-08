@@ -18,22 +18,12 @@ export default class Ajustes extends Phaser.GameObjects.Sprite{
         if(!this.visible){
             if(this.game.input.mousePointer.isDown) {
 
-                //Dentro del sprite de control de volumen
-                if(this.game.input.mousePointer.x > this.ajusteVolumen.x-this.ajusteVolumen.width/2){
-                    if(this.game.input.mousePointer.x < this.ajusteVolumen.x +this.ajusteVolumen.width/2){
-                        if(this.game.input.mousePointer.y < this.ajusteVolumen.y + this.ajusteVolumen.height/2){
-                            if(this.game.input.mousePointer.y > this.ajusteVolumen.y - this.ajusteVolumen.height/2){
-
-                                if(this.pulsado){
-                                    if(this.ajusteVolumen.x > config.limiteIzq && this.ajusteVolumen.x < config.limiteDer)
-                                        this.ajusteVolumen.x = this.mousePos.x;
-                                    else{
-                                        if(this.ajusteVolumen.x < this.ajusteVolumenIniPos)this.ajusteVolumen.x = config.limiteIzq+1;
-                                        else if(this.ajusteVolumen.x > this.ajusteVolumenIniPos) this.ajusteVolumen.x = config.limiteDer-1;
-                                    }
-                                }
-                            }
-                        }
+                if(this.pulsado){
+                    if(this.ajusteVolumen.x > config.limiteIzq && this.ajusteVolumen.x < config.limiteDer)
+                        this.ajusteVolumen.x = this.mousePos.x;
+                    else{
+                        if(this.ajusteVolumen.x < this.ajusteVolumenIniPos)this.ajusteVolumen.x = config.limiteIzq+1;
+                        else if(this.ajusteVolumen.x > this.ajusteVolumenIniPos) this.ajusteVolumen.x = config.limiteDer-1;
                     }
                 }
             }
@@ -83,7 +73,16 @@ export default class Ajustes extends Phaser.GameObjects.Sprite{
     }
     moveAjusteVolume(ajusteVolumen){
         ajusteVolumen.on('pointerdown', pointer=>{
-            this.pulsado = true;
+            //SE HA PULSADO DENTRO DEL SPRITE
+            if(this.game.input.mousePointer.x > this.ajusteVolumen.x-this.ajusteVolumen.width/2){
+                if(this.game.input.mousePointer.x < this.ajusteVolumen.x +this.ajusteVolumen.width/2){
+                    if(this.game.input.mousePointer.y < this.ajusteVolumen.y + this.ajusteVolumen.height/2){
+                        if(this.game.input.mousePointer.y > this.ajusteVolumen.y - this.ajusteVolumen.height/2){
+                            this.pulsado = true;
+                        }
+                    }
+                }
+            }
         })
         ajusteVolumen.on('pointerup', pointer=>{
             this.pulsado = false;
