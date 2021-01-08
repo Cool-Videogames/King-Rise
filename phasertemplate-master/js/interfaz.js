@@ -149,7 +149,7 @@ export default class Interfaz{
     ajustesSprite.on('pointerdown', pointer => {
       this.game.scene.start('settings');
       this.game.scene.pause('game');
-     // this.game.pauseGame();
+      this.game.pauseGame();
     })
   }
   clickEnDesplegable(desplegableSprite){

@@ -104,6 +104,7 @@ export default class Game extends Phaser.Scene {
   }
 
   pauseGame() {
-    this.scene.pause();
+    //this.scene.pause();
+    this.scene.moveDown();
   }
 }
