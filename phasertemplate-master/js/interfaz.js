@@ -10,7 +10,8 @@ export default class Interfaz {
     this.names = {
       ajustes: 0, desplegable: 1, hudGeneral: 2, infoAldeanos: 3, construir: 4, menuDesp: 5, info: 6, flechaAb: 7,
       botonConstruir: 8, flechaAr: 9, aldeanoB: 10, minero: 11, ganadero: 12, cantero: 13, explorador: 14, chozaMaestra: 15, mina: 16, granja: 17,
-      cantera: 18, trampaSuelo: 19, trampaOso: 20, puestoVigilancia: 21, bunker: 22, muralla: 23, catedral: 24, torreArqueros: 25, caballoTroya: 26
+      cantera: 18, trampaSuelo: 19, trampaOso: 20, puestoVigilancia: 21, bunker: 22, muralla: 23, catedral: 24, torreArqueros: 25, caballoTroya: 26,
+      taberna: 27
     };
     this.tnames = {
       oro: 0, comida: 1, materiales: 2, felicidad: 3, proxAtaque: 4, aldeanoBText: 5, mineroText: 6, ganaderoText: 7,
@@ -48,14 +49,14 @@ export default class Interfaz {
     this.nombres[this.names.info] = 'info'; this.nombres[this.names.flechaAb] = 'flechaIn';
     this.nombres[this.names.botonConstruir] = 'botonConstruir'; this.nombres[this.names.flechaAr] = 'flechaIn';
     this.nombres[this.names.aldeanoB] = 'aldeano'; this.nombres[this.names.minero] = 'minero';
-    this.nombres[this.names.ganadero] = 'ganadero'; this.nombres[this.names.cantero] = 'aldeano';
-    this.nombres[this.names.explorador] = 'aldeano'; this.nombres[this.names.chozaMaestra] = 'chozaMaestra';
+    this.nombres[this.names.ganadero] = 'ganadero'; this.nombres[this.names.cantero] = 'cantero';
+    this.nombres[this.names.explorador] = 'explorador'; this.nombres[this.names.chozaMaestra] = 'chozaMaestra';
     this.nombres[this.names.mina] = 'mina'; this.nombres[this.names.granja] = 'granja';
     this.nombres[this.names.cantera] = 'cantera'; this.nombres[this.names.trampaSuelo] = 'trampaSuelo';
     this.nombres[this.names.trampaOso] = 'trampaOsos'; this.nombres[this.names.puestoVigilancia] = 'puestoVigilancia';
     this.nombres[this.names.bunker] = 'bunker'; this.nombres[this.names.muralla] = 'muralla';
     this.nombres[this.names.catedral] = 'catedral'; this.nombres[this.names.torreArqueros] = 'torreArqueros';
-    this.nombres[this.names.caballoTroya] = 'torreArqueros';
+    this.nombres[this.names.caballoTroya] = 'torreArqueros'; this.nombres[this.names.taberna] = 'taberna';
   }
 
   creaTexts() {
@@ -145,6 +146,7 @@ export default class Interfaz {
   clickEnAjustes(ajustesSprite) {
     ajustesSprite.on('pointerdown', pointer => {
       this.game.ajustes.muestraAjustes();
+      this.ocultaDesplegable();
     })
 
   }
@@ -273,6 +275,12 @@ export default class Interfaz {
       this.ocultaDesplegable();
     })
   }
+  clickEnTaberna(taberna){
+    taberna.on('pointerup', pointer =>{
+      this.game.jug.inputConstruir('social', 'taberna', 5, 3);
+      this.ocultaDesplegable();
+    })
+  }
 
   //ACTUALIZAR TEXTOS
   actualizaInterfaz() {
@@ -306,6 +314,7 @@ export default class Interfaz {
     this.clickEnGranja(this.sprites[this.names.granja]);
     this.clickEnPuestoVigilancia(this.sprites[this.names.puestoVigilancia]);
     this.clickEnCaballoTroya(this.sprites[this.names.caballoTroya]);
+    this.clickEnTaberna(this.sprites[this.names.taberna]);
   }
 
   visibilidad() {

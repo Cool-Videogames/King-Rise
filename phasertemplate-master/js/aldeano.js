@@ -31,68 +31,12 @@ export default class Aldeano extends Persona {
         this.timer = 0;
         this.esperando = false;
         this.tiempoEspera = 1;
-
-        this.createAnimationsChico();
-        this.createAnimationsChica();
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
         this.compruebaPosicion(dt);
         this.calculaDir();
-    }
-    createAnimationsChico(){
-        this.game.anims.create({
-            key: 'espaldasAldeano',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('aldeanoEspaldas', {start: 0, end: 1}),
-        });
-        this.game.anims.create({
-            key: 'derechaAldeano',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('aldeanoLado', {start: 0, end: 1}),
-        });
-        this.game.anims.create({
-            key: 'izquierdaAldeano',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('aldeanoLado', {start: 0, end: 1}),
-        });
-        this.game.anims.create({
-            key: 'frenteAldeano',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('aldeanoFrente', {start: 0, end: 1}),
-        });
-    }
-    createAnimationsChica(){
-        this.game.anims.create({
-            key: 'espaldasAldeana',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('aldeanaEspaldas', {start: 0, end: 1}),
-        });
-        this.game.anims.create({
-            key: 'derechaAldeana',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('aldeanaLado', {start: 0, end: 1}),
-        });
-        this.game.anims.create({
-            key: 'izquierdaAldeana',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('aldeanaLado', {start: 0, end: 1}),
-        });
-        this.game.anims.create({
-            key: 'frenteAldeana',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('aldeanaFrente', {start: 0, end: 1}),
-        });
-
     }
 
     animation(){
