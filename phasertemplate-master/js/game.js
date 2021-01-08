@@ -65,8 +65,6 @@ export default class Game extends Phaser.Scene {
     this.scene.pause();
   }
 
-  //ALDEANOS, OBSTACULOS Y TRONO (PENSAR EN ESTRUCTURARLO EN CLASES)
-
   creaAldeano() {
     let nextCell;
     do {

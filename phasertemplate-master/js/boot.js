@@ -50,6 +50,18 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('ganaderoLado', "./phasertemplate-master/images/Granjero/GranjeroLado.png", { frameWidth: 32, frameHeight: 44 });
     this.load.spritesheet('ganaderoEspaldas', "./phasertemplate-master/images/Granjero/GranjeroEspaldas.png", { frameWidth: 32, frameHeight: 44 });
 
+    //Cantero
+    this.load.image('cantero', "./phasertemplate-master/images/Cantero/Cantero.png");
+    this.load.spritesheet('canteroLado', "./phasertemplate-master/images/Cantero/CanteroLado.png", { frameWidth: 32, frameHeight: 38 });
+    this.load.spritesheet('canteroFrente', "./phasertemplate-master/images/Cantero/CanteroFrente.png", { frameWidth: 32, frameHeight: 38 });
+    this.load.spritesheet('canteroEspaldas', "./phasertemplate-master/images/Cantero/CanteroEspaldas.png", { frameWidth: 32, frameHeight: 38 });
+
+    //Explorador
+    this.load.image('explorador', "./phasertemplate-master/images/Explorador/explorador.png");
+    this.load.spritesheet('exploradorLado', "./phasertemplate-master/images/Explorador/exploradorLado.png", { frameWidth: 32, frameHeight: 40 });
+    this.load.spritesheet('exploradorFrente', "./phasertemplate-master/images/Explorador/exploradorFrente.png", { frameWidth: 32, frameHeight: 40 });
+    this.load.spritesheet('exploradorEspaldas', "./phasertemplate-master/images/Explorador/exploradorEspaldas.png", { frameWidth: 32, frameHeight: 40 });
+
     //Frances
     this.load.image('frances', "./phasertemplate-master/images/Franceses/frances.png");
     this.load.spritesheet('francesFrente', "./phasertemplate-master/images/Franceses/FrancesFrente.png", { frameWidth: 32, frameHeight: 38 });
@@ -75,7 +87,6 @@ export default class Boot extends Phaser.Scene {
     this.load.image('botonConstruir', "./phasertemplate-master/images/Interfaz/BotonConstruir.png");
     this.load.image('flechaIn', "./phasertemplate-master/images/Interfaz/Flecha.png");
     this.load.image('mina', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/Mina.png");
-
     this.load.image('granja', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/granja.png");
     this.load.image('cantera', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/cantera.png");
     this.load.image('trampaSuelo', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/trampaSuelo.png");
@@ -106,14 +117,206 @@ export default class Boot extends Phaser.Scene {
     this.load.image('marco', "./phasertemplate-master/images/Estructuras/ChozaMaestra/marco.png");
     this.load.image('granja', "./phasertemplate-master/images/Estructuras/Granja.png");
 
-    //IGNORAR, SOLO DE PRUEBA
-    this.load.image('edificio', "./phasertemplate-master/images/favicon.png");
+    //Edificios sociales
+    this.load.image('taberna', "./phasertemplate-master/images/Estructuras/EdificiosFelicidad/Taberna.png");
 
     //Sonido
-    this.load.audio('music', "./phasertemplate-master/sound/MainSound.m4a");
+    this.load.audio('music', "./phasertemplate-master/sound/MainSound.wav");
   }
 
   create() {
+    this.createAnimationsJugador();
+    this.createAnimationsAldeano();
+    this.createAnimationsAldeana();
+    this.createAnimationsMinero();
+    this.createAnimationsGanadero();
+    this.createAnimationsCantero();
+    this.createAnimationsExplorador();
+
     this.scene.start('game');
+  }
+
+  //CREACION DE ANIMACIONES
+  createAnimationsJugador() {
+    this.game.anims.create({
+        key: 'espaldas',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('jugadorEspaldas', { start: 0, end: 1 }),
+    });
+    this.game.anims.create({
+        key: 'derecha',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('jugadorLado', { start: 0, end: 1 }),
+    });
+    this.game.anims.create({
+        key: 'izquierda',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('jugadorLado', { start: 0, end: 1 }),
+    });
+    this.game.anims.create({
+        key: 'frente',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('jugadorFrente', { start: 0, end: 1 }),
+    });
+}
+  createAnimationsAldeano(){
+    this.game.anims.create({
+        key: 'espaldasAldeano',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('aldeanoEspaldas', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'derechaAldeano',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('aldeanoLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'izquierdaAldeano',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('aldeanoLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'frenteAldeano',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('aldeanoFrente', {start: 0, end: 1}),
+    });
+  }
+  createAnimationsAldeana(){
+    this.game.anims.create({
+        key: 'espaldasAldeana',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('aldeanaEspaldas', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'derechaAldeana',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('aldeanaLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'izquierdaAldeana',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('aldeanaLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'frenteAldeana',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('aldeanaFrente', {start: 0, end: 1}),
+    });
+  }
+  createAnimationsMinero(){
+    this.game.anims.create({
+        key: 'mineroEspaldas',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('mineroEspaldas', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'mineroDerecha',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('mineroLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'mineroIzquierda',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('mineroLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'mineroFrente',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('mineroFrente', {start: 0, end: 1}),
+    });
+  }
+  createAnimationsGanadero(){
+    this.game.anims.create({
+        key: 'ganaderoEspaldas',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('ganaderoEspaldas', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'ganaderoDerecha',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('ganaderoLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'ganaderoIzquierda',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('ganaderoLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'ganaderoFrente',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('ganaderoFrente', {start: 0, end: 1}),
+    });
+  }
+  createAnimationsCantero(){
+    this.game.anims.create({
+        key: 'espaldasCantero',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('canteroEspaldas', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'derechaCantero',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('canteroLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'izquierdaCantero',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('canteroLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'frenteCantero',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('canteroFrente', {start: 0, end: 1}),
+    });
+  }
+  createAnimationsExplorador(){
+    this.game.anims.create({
+        key: 'espaldasExplorador',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('exploradorEspaldas', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'derechaExplorador',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('exploradorLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'izquierdaExplorador',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('exploradorLado', {start: 0, end: 1}),
+    });
+    this.game.anims.create({
+        key: 'frenteExplorador',
+        repeat: -1,
+        frameRate: 4,
+        frames: this.game.anims.generateFrameNames('exploradorFrente', {start: 0, end: 1}),
+    });
   }
 }

@@ -1,4 +1,4 @@
-export default class AudioManager{
+export default class AudioManager {
     constructor(scene){
         this.game = scene;
 
@@ -15,6 +15,9 @@ export default class AudioManager{
             loop: true,
             delay: 0,
         }
+        /*this.game.sound.on('decoded', 'music', () =>{
+            this.mainSound.play(this.musicConfig);
+        });*/
         this.mainSound.play(this.musicConfig);
     }
     setVolumen(vol){

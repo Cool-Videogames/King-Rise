@@ -1,5 +1,5 @@
-export let filas = 25;
-export let columnas = 25;
+export let filas = 24;
+export let columnas = 24;
 export let sizeCasilla = 64;
 export let winWidth = 1280;
 export let winHeight = 720;
@@ -9,8 +9,8 @@ export let rangoConstruccion = 3;
 export let numAldeanosIniciales = 5;
 
 export let numObstaculos = 16;
-export let zonaColumnas = 5;
-export let zonaFilas = 5;
+export let zonaColumnas = 4;
+export let zonaFilas = 4;
 
 export let cantidadRecursosPorDefecto = 5;
 export let rendimientoGeneral = 5;
@@ -34,7 +34,7 @@ export let fontSize = 30;
 
 //Sprites
 export let edificiosConstruibles = 10;
-export let hudSprites = 27;
+export let hudSprites = 28;
 export let numTexts = 10;
 
 //Profundidad de los sprites
@@ -65,7 +65,7 @@ export let costeCantera = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; exp
 export let recuperacionRecursos = 75; //Porcentaje
 
 //Fondo
-export let interseccionMontañaMar = 24; //Siempre menor o igual que el numero de columnas del mapa
+export let interseccionMontañaMar = 20; //Siempre menor o igual que el numero de columnas del mapa
 
 //Ajustes
 export let limiteDer = 769.1488893499442;

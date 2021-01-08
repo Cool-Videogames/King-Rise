@@ -9,6 +9,7 @@ import EdificioGranja from "./edificioGranja.js";
 import EdificioCantera from "./edificioCantera.js";
 import PuestoVigilancia from "./puestoVigilancia.js";
 import CaballoTroya from "./caballoTroya.js";
+import EdificioTaberna from "./edificioTaberna.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
     constructor(scene, casilla) {
@@ -35,9 +36,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.posDestino = iniCasilla;
         this.nodoDestino = null;
         this.dir = 'none';
-
         this.stopBuild = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); //tecla para dejar de construir
-        this.createAnimations();
     }
 
     preUpdate(t, dt) {
@@ -56,33 +55,6 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         }
         this.compruebaPosicion();
         this.calculaDir();
-    }
-
-    createAnimations() {
-        this.game.anims.create({
-            key: 'espaldas',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('jugadorEspaldas', { start: 0, end: 1 }),
-        });
-        this.game.anims.create({
-            key: 'derecha',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('jugadorLado', { start: 0, end: 1 }),
-        });
-        this.game.anims.create({
-            key: 'izquierda',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('jugadorLado', { start: 0, end: 1 }),
-        });
-        this.game.anims.create({
-            key: 'frente',
-            repeat: -1,
-            frameRate: 4,
-            frames: this.game.anims.generateFrameNames('jugadorFrente', { start: 0, end: 1 }),
-        });
     }
     calculaDir() {
         let iniDir = this.dir;
@@ -170,7 +142,9 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         }
         else if (tipo === 'social') {
             //scene,vida,coste,posicion,felicidad, key
-            edificio = new EdificioSocial(this.game, 0, 0, pos, 10, 'edificio');
+            if(especialidad === 'taberna'){
+                edificio = new EdificioTaberna(this.game,0,0,pos,ancho,alto,0, 10)
+            }
         }
         else if (tipo === 'chozaMaestra') {
             //scene,vida,coste,posicion, key
