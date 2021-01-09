@@ -1,4 +1,4 @@
-#headerButtons{
+/*#headerButtons{
   margin-top: 83px;
   margin-right: 60px;
   float: right;
@@ -16,20 +16,65 @@
 }
 
 #headerButtons a:hover {
-  background-color: #914735; /* Chocolate */
+  background-color: #914735; /* Chocolate 
   color: white;
   box-shadow: 0 6px 6px 0 rgba(0,0,0,0.24), 0 6px 6px 0 rgba(0,0,0,0.19);
+}*/
+
+@font-face{
+  font-family: PressStart2P;
+  src:url(./phasertemplate-master/fuentes/PressStart2P-Regular.ttf)
 }
 
 #pageLogo img{
-  margin-left: -30px; 
-  margin-top: -22px;
-  float: left;
-  width: 384px; 
- height: 216px;
+  /*background: rgb(61, 31, 84);*/
+  width: 330px; 
+ height: 200px;
+}
+
+nav .menu{
+  width: 100%;
+  height: 70px;
+  background: rgb(45, 6, 90);
+  display: flex;
+  align-items: center; /*alinear div hijos*/
+}
+
+.agrupar{
+  width: 1500px;
+  background: rgba(197, 153, 223, 0.5);
+  margin: auto;
+
+
+}
+
+.boton{
+    margin: auto;
+}
+
+.boton a{
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 25px;
+  font-family:'PressStart2P';
+  color: white;
 }
 
 body {
-  background-image: url("./phasertemplate-master/images/background.png");
   
+  text-align: center;
+  background-image: url("./phasertemplate-master/images/background1.jpg");
+
+  
+}
+
+body:before {
+  content: "";
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(#D2BEDB, #421F54);
+  opacity: 0.2;
 }

@@ -2,6 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta name="author" content="Cool-Videogames"/>
     <link rel="shortcut icon" href="logo.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=2.0" />
     <link rel="stylesheet" href="game.css" />
@@ -11,42 +12,62 @@
   </head>
 
   <body>
-    <header>
-      <div id= "pageLogo"> <!-- Padre contenedor -->
-        <img src="./phasertemplate-master/images/imagen logo.png" alt="KingRise">
+    <section>
+      <div class="agrupar">
+        <header id="cabecera" >
+          <div id= "pageLogo"> <!-- Padre contenedor -->
+            <img src="./phasertemplate-master/images/imagen logo.png" alt="KingRise">
+          </div>
+    
+          
+    
+          <!--<div id= "headerButtons">
+            <a href="index.html">GAME</a>
+            <a target="_blank" href="https://github.com/Cool-Videogames/Paradox-Invasion">GITHUB</a>
+            <a href="#">INFO</a>
+          </div>-->
+        </header>
+        
+        <nav id= "navegacion">
+          <div class = "menu">
+            <div class="boton"><a href="index.html">Inicio</a></div>
+            <div class="boton"><a href="index.html">Controles</a></div>
+            <div class="boton"><a href="index.html">Juego</a></div>
+            <div class="boton"><a href="index.html">Nuestro Git</a></div>
+          </div>
+        </nav>
+    
+        <script type="module">
+          import Boot from "./phasertemplate-master/js/boot.js";
+          import Game from "./phasertemplate-master/js/game.js";
+    
+          var config = {
+            type: Phaser.AUTO,
+            width:1280,
+            height:720,
+            pixelArt: true,
+            input: {
+              gamepad: true,
+            },
+            scale: {
+              mode: Phaser.Scale.FIT,
+              autoCenter: Phaser.Scale.CENTER_BOTH,
+            },
+            scene: [Boot, Game],
+            physics: {
+              default: "arcade",
+              arcade: { gravity: { y: 0 }, debug: true },
+            },
+          };
+          new Phaser.Game(config);
+        </script>
+        <h1>bla bla bla bla bla</h1>
       </div>
 
-      <div id= "headerButtons">
-        <a href="index.html">GAME</a>
-        <a target="_blank" href="https://github.com/Cool-Videogames/Paradox-Invasion">GITHUB</a>
-        <a href="#">INFO</a>
-      </div>
-    </header>
+    </section>
+    
+    
+    
 
-  
-    <script type="module">
-      import Boot from "./phasertemplate-master/js/boot.js";
-      import Game from "./phasertemplate-master/js/game.js";
-
-      var config = {
-        type: Phaser.AUTO,
-        width:1280,
-        height:720,
-        pixelArt: true,
-        input: {
-          gamepad: true,
-        },
-        scale: {
-          mode: Phaser.Scale.FIT,
-          autoCenter: Phaser.Scale.CENTER_BOTH,
-        },
-        scene: [Boot, Game],
-        physics: {
-          default: "arcade",
-          arcade: { gravity: { y: 0 }, debug: true },
-        },
-      };
-      new Phaser.Game(config);
-    </script>
   </body>
 </html>
