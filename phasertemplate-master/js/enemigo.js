@@ -20,12 +20,13 @@ export default class Enemigo extends Persona {
         this.isInRange = false;
         this.setOrigin(0.5, 0.5);
 
+
+        this.posAnterior = null;
     }
 
     preUpdate(t, dt) {
         if (this.isInRange) {
             this.t += dt / 1000;
-            //console.log(this.t + " " + this.attackTime);
 
             if (this.t > this.attackTime) {
                 if (this.ataque()) {
@@ -35,20 +36,28 @@ export default class Enemigo extends Persona {
                 this.t = 0;
             }
         } else {
-            if(this.objetivo === null) return;
-
+            if (this.objetivo === null) return;
+            
             let distancia = this.distancia(this.objetivo.posicion);
 
-            if (distancia <= this.range + this.objetivo.ancho * config.sizeCasilla) {
+            if(this.posAnterior !== null){
+                if(distancia >= this.posAnterior){
+                    this.move();
+                }
+            }
+
+            if (distancia <= this.range + this.objetivo.ancho / 2 * config.sizeCasilla) {
                 this.isInRange = true;
                 this.body.reset(this.x, this.y);
+                this.posAnterior = null;
             }
+
+            this.posAnterior = distancia;
         }
     }
 
 
     ataque() {
-        console.log("asd");
         return this.objetivo.recibirAtaque(this.damage);
     }
 
@@ -89,7 +98,7 @@ export default class Enemigo extends Persona {
             this.objetivo.getCenter(obj);
             if (this.objetivo != null)
                 this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
-        }else{
+        } else {
             //No quedan más edificios, finalizar ataque
             console.log("aldea destruida");
         }
