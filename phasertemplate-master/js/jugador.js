@@ -143,7 +143,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         else if (tipo === 'social') {
             //scene,vida,coste,posicion,felicidad, key
             if(especialidad === 'taberna'){
-                edificio = new EdificioTaberna(this.game,0,0,pos,ancho,alto,0, 10)
+                edificio = new EdificioTaberna(this.game,0,{ oro: 20, materiales: 0, comida: 0, felicidad: 0 },pos,ancho,alto,0, 10)
             }
         }
         else if (tipo === 'chozaMaestra') {

@@ -50,7 +50,7 @@ export default class Game extends Phaser.Scene {
     this.ajustes = new Ajustes(this);
     this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
-    this.creaObstaculos();
+    //this.creaObstaculos();
     this.creaAldeanos();
     this.interfaz.actualizaInterfaz();
     this.oleadasEnemigos = new OleadasEnemigos(this);

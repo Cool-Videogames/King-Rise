@@ -40,7 +40,8 @@ export let numTexts = 10;
 //Profundidad de los sprites
 export let mapDepth = 0;
 export let rangosVisionDepth = 1;
-export let personasDepth = 3; //No poner 2 y 4 para poder cambiar la de los edificios a playerDepth-1 o playerDepth+1 según si el jugador está por encima o por debajo
+export let edificiosDepth = 2;
+export let personasDepth = 3; 
 export let hudDepth = 4;
 
 

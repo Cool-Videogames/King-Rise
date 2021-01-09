@@ -9,20 +9,14 @@ export default class PuestoVigilancia extends EdificioDefensivo {
 
         this.enemy = null;
         this.game = scene;
-        this.hasMenu = true;
+        this.aldeanosAsignables = false;
         this.rango = rango;
         this.rangoSprite = null;
     }
-
-    preUpdate(t, dt) {
-        super.preUpdate(t, dt);
-    }
-
     setMenu() {
         this.initFlechas();
         this.asignaInput();
     }
-
     initRangoSprite(dir) {
         let pos = new Vector2D(this.posicion.x + this.ancho * config.sizeCasilla / 2, this.posicion.y + config.sizeCasilla * this.alto / 2);
         let sprite = new Phaser.GameObjects.Sprite(this.game, pos.x + 3, pos.y, 'rangoCono');
@@ -79,14 +73,12 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         this.flechas[3].setOrigin(0.5, 0); this.flechas[3].setScale(0.4, 0.4); this.flechas[3].setRotation(Phaser.Math.DegToRad(-90));
 
     }
-
     destroyFlechas() {
         this.flechas[0].destroy();
         this.flechas[1].destroy();
         this.flechas[2].destroy();
         this.flechas[3].destroy();
     }
-
     asignaInput() {
         this.flechas[0].on('pointerup', pointer => {
             this.initRangoSprite('norte');
@@ -109,13 +101,11 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         })
 
     }
-
     destruir() {
         super.destruir();
         this.destroyFlechas();
         if (this.rangoSprite !== null) this.rangoSprite.destroy();
     }
-
     recuperaAldeanos() {
         //CUANDO TERMINE EL ATAQUE SE LLAMARÁ A ESTE MÉTODO
         for (let i = 0; i < this.numAldeanos; i++)this.game.exploradores.push(this.game.creaAldeano());

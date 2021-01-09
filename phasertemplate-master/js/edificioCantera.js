@@ -3,6 +3,8 @@ import EdificioRecursos from "./edificioRecursos.js";
 export default class EdificioCantera extends EdificioRecursos{
     constructor(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key){
         super(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key);
+        this.game = scene;
+        this.tipoAldeano = scene.canteros;
     }
     //TIMEPO -> CAMBIAR A ACCIONES
     preUpdate(t,dt){
@@ -20,9 +22,5 @@ export default class EdificioCantera extends EdificioRecursos{
     asignar(){
         super.asignar();
         rend += aldeanos.rendimiento.rendMateriales;
-    }
-    //MENU PARA ASIGNAR ALDEANOS
-    setMenu(){
-        
     }
 }

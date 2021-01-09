@@ -4,6 +4,8 @@ export default class Trampa extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
         super(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key);
         this.hasMenu = false;
+        this.aldeanosAsignables = false;
+        
         scene.physics.add.overlap(this, /*enemy*/ (trap, enemy) => {
             if (especialidad === 'trampaSuelo')
                 enemy.destroy();

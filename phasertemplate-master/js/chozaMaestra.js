@@ -12,14 +12,14 @@ export default class ChozaMaestra extends Edificio {
         super(scene, vida, coste, posicion, alto, ancho, key);
 
         this.opEnum = { mineros: 0, canteros: 1, ganaderos: 2, exploradores: 3 };
-        this.names = new Array(2); this.initNames();
+        this.names = new Array(2); this.names[0] = 'mas'; this.names[1] = 'menos';
         this.pos = new Array(config.numEspecialidades * 2);
         this.ops = new Array(config.numEspecialidades * 2);
         this.texts = new Array(config.numEspecialidades);
+        this.aldeanosAsignables = false;
 
         this.nMin = 0; this.nGan = 0; this.nCant = 0; this.nExp = 0; this.costeTotal = 0; this.numTotal = 0;
         this.costeMin = 20; this.costeGan = 20; this.costeCant = 20; this.costeExp = 20;
-        this.abreMarco = this.muestraOpciones();
         this.hasMenu = true;
     }
 
@@ -42,10 +42,6 @@ export default class ChozaMaestra extends Edificio {
 
         this.coste = functions.creaTexto(this.marco.x + this.marco.width / 2 + 60, this.moneda.y, this.costeTotal, this.game);
         this.coste.setScale(0.6, 0.6); this.coste.setVisible(false); this.coste.setFill('#DF9013');
-    }
-    initNames() {
-        this.names[0] = 'mas';
-        this.names[1] = 'menos';
     }
     createMasMenos() {
         let j = 0;
@@ -117,22 +113,6 @@ export default class ChozaMaestra extends Edificio {
         this.game.interfaz.actualizaInterfaz();
         super.destruir();
     }
-    logicaMarco(){
-        if (!this.game.jug.isBuilding) {
-            if (!this.marco.visible) {
-                this.game.cierraMarcoAnterior();
-                this.game.cierraMarcoAnterior = this.abreMarco;
-            }
-            else this.game.cierraMarcoAnterior = () => { };
-
-            this.abreMarco();
-        }
-    }
-    inputEdificio(edificio){
-        edificio.on('pointerup', pointer=>{
-            this.logicaMarco(); 
-        })
-    }
     clickEnDone(done) {
         done.on('pointerup', pointer => {
             if (this.costeTotal <= this.game.recursos.oro) {
@@ -140,7 +120,7 @@ export default class ChozaMaestra extends Edificio {
                 this.game.interfaz.actualizaInterfaz();
                 this.especializa(0, this.nMin, this.nCant, this.nGan, this.nExp);
                 this.game.interfaz.actualizaInterfaz();
-                this.abreMarco();
+                this.abreMarcos();
                 this.game.cierraMarcoAnterior = () => { };
                 this.marcoDestruir.setVisible(false);
             }
@@ -149,9 +129,9 @@ export default class ChozaMaestra extends Edificio {
     inputMineros(masmineros, menosmineros) {
         masmineros.on('pointerdown', pointer => {
             if(this.game.aldeanosBasicos.length > this.numTotal){
-            this.nMin++;
-            this.texts[this.opEnum.mineros].text = this.nMin;
-            this.actualizaCosteTotal();
+                this.nMin++;
+                this.texts[this.opEnum.mineros].text = this.nMin;
+                this.actualizaCosteTotal();
             }
             else console.log("No quedan aldeanos basicos para especializar")
         });
@@ -164,9 +144,9 @@ export default class ChozaMaestra extends Edificio {
     inputCanteros(mascanteros, menoscanteros) {
         mascanteros.on('pointerdown', pointer => {
             if(this.game.aldeanosBasicos.length > this.numTotal){
-            this.nCant++;
-            this.texts[this.opEnum.canteros].text = this.nCant;
-            this.actualizaCosteTotal();
+                this.nCant++;
+                this.texts[this.opEnum.canteros].text = this.nCant;
+                this.actualizaCosteTotal();
             }
             else console.log("No quedan aldeanos basicos para especializar")
         });
@@ -179,9 +159,9 @@ export default class ChozaMaestra extends Edificio {
     inputGanaderos(masganaderos, menosganaderos) {
         masganaderos.on('pointerdown', pointer => {
             if(this.game.aldeanosBasicos.length > this.numTotal){
-            this.nGan++;
-            this.texts[this.opEnum.ganaderos].text = this.nGan;
-            this.actualizaCosteTotal();
+                this.nGan++;
+                this.texts[this.opEnum.ganaderos].text = this.nGan;
+                this.actualizaCosteTotal();
             }
             else console.log("No quedan aldeanos basicos para especializar")
         });
@@ -194,9 +174,9 @@ export default class ChozaMaestra extends Edificio {
     inputExploradores(masexploradores, menosexploradores) {
         masexploradores.on('pointerdown', pointer => {
             if(this.game.aldeanosBasicos.length > this.numTotal){
-            this.nExp++;
-            this.texts[this.opEnum.exploradores].text = this.nExp;
-            this.actualizaCosteTotal();
+                this.nExp++;
+                this.texts[this.opEnum.exploradores].text = this.nExp;
+                this.actualizaCosteTotal();
             }
             else console.log("No quedan aldeanos basicos para especializar")
         })

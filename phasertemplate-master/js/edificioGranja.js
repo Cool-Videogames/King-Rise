@@ -3,6 +3,8 @@ import EdificioRecursos from "./edificioRecursos.js";
 export default class EdificioGranja extends EdificioRecursos{
     constructor(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key){
         super(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key);
+        this.game = scene;
+        this.tipoAldeano = scene.ganaderos;
     }
     //TIMEPO -> CAMBIAR A ACCIONES
     preUpdate(t,dt){
@@ -20,9 +22,5 @@ export default class EdificioGranja extends EdificioRecursos{
     asignar(){
         super.asignar();
         rend += aldeanos.rendimiento.rendComida;
-    }
-    //MENU PARA ASIGNAR ALDEANOS
-    setMenu(){
-        
     }
 }

@@ -35,7 +35,7 @@ export default class Interfaz {
     for (let i = 0; i < config.hudSprites; i++) {
       this.sprites[i] = functions.creaSprite(0, 0, this.nombres[i], this.game, config.hudDepth + 1);
       this.sprites[i].setScale(this.sprites[i].scaleX / config.hudScale, this.sprites[i].scaleY / config.hudScale);
-      this.sprites[i].setOrigin(0.5, 0.5); this.sprites[i].setScrollFactor(0);
+      this.sprites[i].setOrigin(0.5, 0.5); this.sprites[i].setScrollFactor(0); 
     }
     this.setPos(); this.creaTexts(); this.setTextsPos();
     this.visibilidad();

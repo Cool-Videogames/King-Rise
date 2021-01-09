@@ -3,6 +3,8 @@ import EdificioRecursos from "./edificioRecursos.js";
 export default class EdificioMina extends EdificioRecursos{
     constructor(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key){
         super(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key);
+        this.game = scene;
+        this.tipoAldeano = scene.mineros;
     }
     //TIMEPO -> CAMBIAR A ACCIONES
     preUpdate(t,dt){
@@ -17,12 +19,8 @@ export default class EdificioMina extends EdificioRecursos{
         this.game.recursos.oro += this.cantidad + this.rendimientoAldeanos;
         this.game.interfaz.actualizaInterfaz();
     }
-    asignar(){
-        super.asignar(); //Me he tirado un triple que puede funcionar
+    asignarAldeanos(){
+        super.asignarAldeanos(); 
         rend += aldeanos.rendimiento.rendOro;
-    }
-    //MENU PARA ASIGNAR ALDEANOS
-    setMenu(){
-        
     }
 }
