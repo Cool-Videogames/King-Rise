@@ -11,35 +11,45 @@ export default class Enemigo extends Persona {
         this.game = scene;
         this.moveSpeed = 5;
         this.range = 5;
-
+        this.damage = 10;
         this.attackTime = 1;
+
+        this.esMelee = true;
         this.t = 0;
 
         this.isInRange = false;
-        this.setOrigin(0.5,0.5);
+        this.setOrigin(0.5, 0.5);
+
     }
 
     preUpdate(t, dt) {
-        super.preUpdate(t, dt);
-
         if (this.isInRange) {
-            this.t += dt;
-            if (t > this.attackTime) {
-                this.ataque();
+            this.t += dt / 1000;
+            //console.log(this.t + " " + this.attackTime);
+
+            if (this.t > this.attackTime) {
+                if (this.ataque()) {
+                    this.isInRange = false;
+                    this.move();
+                }
                 this.t = 0;
             }
         } else {
+            if(this.objetivo === null) return;
+
             let distancia = this.distancia(this.objetivo.posicion);
 
             if (distancia <= this.range + this.objetivo.ancho * config.sizeCasilla) {
                 this.isInRange = true;
-                this.body.reset(this.x,this.y);
+                this.body.reset(this.x, this.y);
             }
         }
     }
 
+
     ataque() {
-        this.objetivo.recibirAtaque(this.damage);
+        console.log("asd");
+        return this.objetivo.recibirAtaque(this.damage);
     }
 
     objetivoMasCercano(defensivos) {
@@ -73,9 +83,15 @@ export default class Enemigo extends Persona {
     }
 
     move() {
-        let obj = { x: 0, y: 0 };
-        this.objetivo.getCenter(obj);
-        if (this.objetivo != null)
-            this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
+        this.objetivo = this.objetivoMasCercano(this.esMelee);
+        if (this.objetivo !== null) {
+            let obj = { x: 0, y: 0 };
+            this.objetivo.getCenter(obj);
+            if (this.objetivo != null)
+                this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
+        }else{
+            //No quedan más edificios, finalizar ataque
+            console.log("aldea destruida");
+        }
     }
 }

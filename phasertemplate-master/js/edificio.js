@@ -11,7 +11,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.y = posicion.y;
         this.game = scene;
         this.vida = vida;
-
         this.costeEdificio = coste;
 
         this.posicion = posicion;
@@ -29,6 +28,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.celdasAnteriores = [];
         this.inputEdificio(this);
         this.creaMarcoDestruir();
+
+        scene.edificios.push(this);
     }
 
     estaEnRangoDeConstruccion() {
@@ -66,6 +67,9 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             functions.resetCells(celdas);
             this.destroy();
             this.game.interfaz.actualizaInterfaz();
+
+            let index = this.game.edificios.indexOf(this);
+            this.game.edificios.splice(index, 1);
         }
     }
     inputEdificio(edificio) {
@@ -143,7 +147,12 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
 
     recibirAtaque(dmg) {
         this.vida -= dmg;
-        if (this.vida <= 0)
+
+        console.log(this.vida);
+        if (this.vida <= 0) {
             this.destruir();
+            return true;
+        }
+        return false;
     }
 }

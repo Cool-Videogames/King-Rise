@@ -6,13 +6,13 @@ export default class EnemigoMele extends Enemigo {
         let meleeInfo = config.meleeEnemy;
         super(scene, pos, meleeInfo.Health, meleeInfo.AtackDamage, 'frances');
 
+        this.esMelee = true;
         this.moveSpeed = meleeInfo.MovementSpeed;
-        this.objetivo = this.objetivoMasCercano(true);
         this.range = meleeInfo.AtackDistance;
+        this.damage = meleeInfo.AtackDamage;
+        this.attackTime = meleeInfo.AtackTime;
         this.move();
     }
-
-
 
 
     preUpdate(t, dt) {

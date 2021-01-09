@@ -14,7 +14,7 @@ export default class Persona extends Phaser.GameObjects.Sprite{
         scene.physics.add.existing(this);
     }
 
-    attacak(objetivo, dmg){
+    attack(objetivo, dmg){
         objetivo.vida -= dmg;
     }
 }

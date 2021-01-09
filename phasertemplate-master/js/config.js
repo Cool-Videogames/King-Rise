@@ -77,7 +77,7 @@ export let meleeEnemy = {
     Health : 20,
     AtackDistance : 5,
     MovementSpeed : 120,
-    AtackTime : 1
+    AtackTime : 2
 }
 export let rangedEnemy = {
     AtackDamage :  5,
