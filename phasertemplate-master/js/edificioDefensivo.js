@@ -17,4 +17,10 @@ export default class EdificioDefensivo extends Edificio {
     asignarTropas(aldeanos) {
         this.numAldeanos+=aldeanos;
     }
+
+    destruir(){
+        super.destruir();
+        let index = this.game.edificiosDefensivos.indexOf(this);
+        this.game.edificiosDefensivos.splice(index, 1);
+    }
 }

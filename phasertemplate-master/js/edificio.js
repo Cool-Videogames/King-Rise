@@ -31,6 +31,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.celdasAnteriores = [];
         this.inputEdificio(this);
         this.creaMarcoDestruir();
+
+        scene.edificios.push(this);
     }
     estaEnRangoDeConstruccion() {
         let rango = config.rangoConstruccion * config.sizeCasilla;
@@ -67,6 +69,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             functions.resetCells(celdas);
             this.destroy();
             this.game.interfaz.actualizaInterfaz();
+            let index = this.game.edificios.indexOf(this);
+            this.game.edificios.splice(index, 1);
 
             if(this.aldeanosAsignables){
                 this.marco.destroy();
@@ -153,8 +157,13 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
 
     recibirAtaque(dmg) {
         this.vida -= dmg;
-        if (this.vida <= 0)
+
+        console.log(this.vida);
+        if (this.vida <= 0) {
             this.destruir();
+            return true;
+        }
+        return false;
     }
 
     //MARCO PARA ASIGNAR ALDEANOS
