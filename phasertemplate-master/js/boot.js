@@ -44,6 +44,10 @@ export default class Boot extends Phaser.Scene {
     this.load.image('menos', "./phasertemplate-master/images/Estructuras/ChozaMaestra/Menos.png");
     this.load.image('moneda', "./phasertemplate-master/images/Estructuras/ChozaMaestra/MonedaOro.png");
 
+    //Escenas
+    this.load.image('fondoInicio', "./phasertemplate-master/images/background.png");
+    this.load.image('logoJuego', "./phasertemplate-master/images/imagen logo.png");
+
     //IGNORAR, SOLO DE PRUEBA
     this.load.image('obstaculo', "./phasertemplate-master/images/Obstaculo.png");
     this.load.image('edificio', "./phasertemplate-master/images/favicon.png");

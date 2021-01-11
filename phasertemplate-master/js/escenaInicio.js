@@ -1,8 +1,11 @@
 import * as functions from "./functions.js"
 
+var fondo; 
 export default class EscenaInicio extends Phaser.Scene {
+    
     constructor(){
         super({key: 'escenaInicio'});
+        
         
     }
     preload(){
@@ -10,7 +13,19 @@ export default class EscenaInicio extends Phaser.Scene {
     }
 
     create(){
-        this.jugar = functions.creaSprite(450, 250, 'jugar', this);
+        this.fondo = new Phaser.GameObjects.Sprite(this,0,0, 'fondoInicio');
+        this.fondo.setOrigin(0,0);
+        this.fondo.setScale(1.3, 1);
+        
+        this.add.existing(this.fondo);
+        //fondo = functions.creaSprite(0, 0, 'fondoInicio', this);
+        
+        //this.fondo = functions.creaSprite(1024, 0, 'fondoInicio', this);
+        this.logo = new Phaser.GameObjects.Sprite(this,180,0, 'logoJuego');
+        this.logo.setOrigin(0,0);
+        this.logo.setScale(0.5, 0.5);
+        this.add.existing(this.logo);
+        this.jugar = functions.creaSprite(400, 500, 'jugar', this);
         
         this.comenzarJuego(this.jugar);
         this.changeColorJugar(this.jugar);
