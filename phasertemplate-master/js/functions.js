@@ -1,7 +1,7 @@
 import * as config from "./config.js"
 
 export function creaSprite(x, y, key, scene, depth) {
-    let sprite = new Phaser.GameObjects.Sprite(scene, x, y, key);
+    let sprite = scene.add.sprite (x, y, key);
     sprite.setOrigin(0, 0);
     sprite.setInteractive();
     sprite.setDepth(depth);

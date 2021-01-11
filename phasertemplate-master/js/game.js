@@ -16,7 +16,6 @@ import Ajustes from "./ajustes.js";
 export default class Game extends Phaser.Scene {
   constructor() {
     super({ key: 'game' });
-
     //LISTAS DE ALDEANOS
     this.aldeanosBasicos = [];
     this.mineros = [];

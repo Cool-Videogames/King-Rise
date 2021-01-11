@@ -111,7 +111,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('settingsBackground', "./phasertemplate-master/images/Settings/SettingsBackGround.png");
     this.load.image('volumen', "./phasertemplate-master/images/Settings/volumen.png");
     this.load.image('ajusteVolumen', "./phasertemplate-master/images/Settings/AjusteVolumen.png");
-
+    this.load.image('jugar', "./phasertemplate-master/images/Interfaz/botonJugar.png")
     //Choza Maestra
     this.load.image('chozaMaestra', "./phasertemplate-master/images/Estructuras/ChozaMaestra/ChozaMaestra.png");
     this.load.image('marco', "./phasertemplate-master/images/Estructuras/ChozaMaestra/marco.png");
@@ -122,6 +122,10 @@ export default class Boot extends Phaser.Scene {
 
     //Sonido
     this.load.audio('music', "./phasertemplate-master/sound/MainSound.wav");
+
+    //Escenas
+    this.load.image('fondoInicio', "./phasertemplate-master/images/background.png");
+    this.load.image('logoJuego', "./phasertemplate-master/images/imagen logo.png");
   }
 
   create() {
@@ -133,7 +137,8 @@ export default class Boot extends Phaser.Scene {
     this.createAnimationsCantero();
     this.createAnimationsExplorador();
 
-    this.scene.start('game');
+    this.scene.start('escenaInicio');
+    
   }
 
   //CREACION DE ANIMACIONES
