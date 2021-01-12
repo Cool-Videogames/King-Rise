@@ -8,9 +8,6 @@ export default class EscenaInicio extends Phaser.Scene {
         
         
     }
-    preload(){
-
-    }
 
     create(){
         this.fondo = new Phaser.GameObjects.Sprite(this,0,0, 'fondoInicio');
