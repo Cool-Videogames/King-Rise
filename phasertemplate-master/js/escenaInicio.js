@@ -27,7 +27,6 @@ export default class EscenaInicio extends Phaser.Scene {
         this.comenzarJuego(this.jugar);
         this.changeColorJugar(this.jugar);
         
-        console.log("escenaInicio");
     }
     update(time, delta){
         

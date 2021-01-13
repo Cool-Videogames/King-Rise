@@ -62,6 +62,9 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.game.recursos.felicidad += (config.recuperacionRecursos / 100) * this.costeEdificio.felicidad;
     }
     destruir() {
+
+        if(this.key== 'trono') {this.game.scene.start('escenaInicio'); return;}
+
         if (this.destruible) {
             this.marcoDestruir.destroy();
             this.devuelveCoste();

@@ -40,8 +40,6 @@ export default class Enemigo extends Persona {
             
             let distancia = this.distanciaObjetivo();
             let rango =  this.range + this.objetivo.ancho / 2 * config.sizeCasilla;
-            console.log("distancia: " + distancia);
-            console.log(rango);
             if (distancia <= rango) {
                 this.isInRange = true;
                 this.body.reset(this.x, this.y);
@@ -69,13 +67,11 @@ export default class Enemigo extends Persona {
         for (let i = 0; i < objectives.length; i++) {
             let distancia = this.distancia(objectives[i].posicion);
 
-            console.log({d:distancia, o:objectives[i].key});
             if (distancia < value) {
                 index = i;
                 value = distancia;
             }
         }
-        console.log(objectives[index].key);
         if (index >= 0) return objectives[index];
 
         if (defensivos) return this.objetivoMasCercano(false);
