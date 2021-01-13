@@ -38,21 +38,16 @@ export default class Enemigo extends Persona {
         } else {
             if (this.objetivo === null) return;
             
-            let distancia = this.distancia(this.objetivo.posicion);
-
-            if(this.posAnterior !== null){
-                if(distancia >= this.posAnterior){
-                    this.move();
-                }
-            }
-
-            if (distancia <= this.range + this.objetivo.ancho / 2 * config.sizeCasilla) {
+            let distancia = this.distanciaObjetivo();
+            let rango =  this.range + this.objetivo.ancho / 2 * config.sizeCasilla;
+            console.log("distancia: " + distancia);
+            console.log(rango);
+            if (distancia <= rango) {
                 this.isInRange = true;
                 this.body.reset(this.x, this.y);
                 this.posAnterior = null;
             }
 
-            this.posAnterior = distancia;
         }
     }
 
@@ -63,6 +58,7 @@ export default class Enemigo extends Persona {
 
     objetivoMasCercano(defensivos) {
         let objectives;
+        defensivos = false;
         if (defensivos) {
             objectives = this.game.edificiosDefensivos;
         } else {
@@ -72,12 +68,14 @@ export default class Enemigo extends Persona {
         let value = Infinity;
         for (let i = 0; i < objectives.length; i++) {
             let distancia = this.distancia(objectives[i].posicion);
+
+            console.log({d:distancia, o:objectives[i].key});
             if (distancia < value) {
                 index = i;
                 value = distancia;
             }
         }
-
+        console.log(objectives[index].key);
         if (index >= 0) return objectives[index];
 
         if (defensivos) return this.objetivoMasCercano(false);
@@ -89,6 +87,23 @@ export default class Enemigo extends Persona {
         let y = this.y - destino.y;
         let result = Math.sqrt(x * x + y * y);
         return result;
+    }
+    distanciaObjetivo(){
+        if(this.objetivo === null) return;
+        let obj = { x: 0, y: 0 };
+        this.objetivo.getCenter(obj);
+
+        let x = this.x - obj.x;
+        let y = this.y - obj.y;
+        let result = Math.sqrt(x * x + y * y);
+        return result;
+    }
+
+    distanciaPosAnterior(destino){
+        let x = this.posAnterior.x - destino.x;
+        let y = this.posAnterior.y - destino.y;
+        let result = Math.sqrt(x * x + y * y);
+        return result; 
     }
 
     move() {

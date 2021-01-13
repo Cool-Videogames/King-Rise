@@ -50,7 +50,7 @@ export let nuevoAldeano = 15;
 export let numeroAccionesIniciales = 2;
 export let relacionAcciones = 0.8; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
 export let numeroAccionesMinimo = 5;
-export let numeroCasillasRecorridasParaConsumirUnaAccion = 0;
+export let numeroCasillasRecorridasParaConsumirUnaAccion = 2;
 
 //Exploracion
 export let costeBaseExploracion = 20;
