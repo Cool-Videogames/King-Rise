@@ -109,9 +109,11 @@ export default class Enemigo extends Persona {
             this.objetivo.getCenter(obj);
             if (this.objetivo != null)
                 this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
-        } else {
-            //No quedan más edificios, finalizar ataque
-            console.log("aldea destruida");
-        }
+        } 
+    }
+
+
+    morir(){
+        this.destroy();
     }
 }
