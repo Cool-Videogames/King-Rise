@@ -21,6 +21,7 @@ export default class TorreArqueros extends EdificioDefensivo {
 
         this.rangoSprite = null;
     }
+    
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
 

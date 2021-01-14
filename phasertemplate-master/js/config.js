@@ -42,7 +42,7 @@ export let mapDepth = 0;
 export let rangosVisionDepth = 1;
 export let edificiosDepth = 2;
 export let personasDepth = 3; 
-export let hudDepth = 4;
+export let hudDepth = 7;
 
 
 //Acciones

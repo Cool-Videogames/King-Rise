@@ -36,6 +36,7 @@ export default class Cell {
                     this.game.jug.edificio.posicion = this.game.casillaPuntero;
 
                     if (!this.game.jug.edificio.celdasOcupadas() && this.game.jug.edificio.esPagable() && this.game.jug.edificio.estaEnRangoDeConstruccion()) {
+                        this.game.audio.construccion.play();
                         this.game.jug.edificio.setInteractive();
                         this.game.jug.edificio.cobraCoste();
                         this.game.interfaz.actualizaInterfaz();

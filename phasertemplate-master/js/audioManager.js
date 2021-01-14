@@ -3,6 +3,7 @@ export default class AudioManager {
         this.game = scene;
 
         this.mainSound = this.game.sound.add('music');
+        this.construccion = this.game.sound.add("construccion",{volume:0.7});
         this.startMusic();
     }
     startMusic(){
