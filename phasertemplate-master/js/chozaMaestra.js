@@ -123,6 +123,7 @@ export default class ChozaMaestra extends Edificio {
                 this.abreMarcos();
                 this.game.cierraMarcoAnterior = () => { };
                 this.marcoDestruir.setVisible(false);
+                this.numTotal = 0;
             }
         })
     }
