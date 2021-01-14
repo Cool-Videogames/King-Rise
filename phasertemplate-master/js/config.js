@@ -75,7 +75,7 @@ export let limiteIzq = 508;
 //Enemigo
 export let meleeEnemy = {
     AtackDamage :  15,
-    Health : 20,
+    Health : 50,
     AtackDistance : 2,
     MovementSpeed : 120,
     AtackTime : 2
