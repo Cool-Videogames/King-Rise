@@ -80,6 +80,9 @@ h1{
   font-family: 'PressStart2P';
   text-align: left;
   margin: 20px 30px;
+  font-size: 30px;
+  text-decoration: underline;
+  background-color: teal;
 }
 p {
   text-align: left;
