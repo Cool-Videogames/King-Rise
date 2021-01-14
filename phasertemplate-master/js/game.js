@@ -13,6 +13,8 @@ import OleadasEnemigos from "./oleadasEnemigos.js";
 import Vector2D from "./vector2D.js";
 import Ajustes from "./ajustes.js";
 
+//var trono; 
+
 export default class Game extends Phaser.Scene {
   constructor() {
     super({ key: 'game' });
