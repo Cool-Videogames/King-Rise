@@ -140,6 +140,7 @@ export default class Interfaz {
     this.sprites[nE.granja].setScale(0.4, 0.4);
     this.sprites[nE.torreArqueros].setScale(1, 1);
     this.sprites[nE.puestoVigilancia].setScale(1.2, 1.1);
+    this.sprites[nE.cantera].setScale(1, 1);
   }
 
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
@@ -281,6 +282,12 @@ export default class Interfaz {
       this.ocultaDesplegable();
     })
   }
+  clickEnCantera(cantera){
+    cantera.on('pointerup', pointer =>{
+      this.game.jug.inputConstruir('recursos', 'cantera', 3, 3);
+      this.ocultaDesplegable();
+    })
+  }
 
   //ACTUALIZAR TEXTOS
   actualizaInterfaz() {
@@ -315,6 +322,7 @@ export default class Interfaz {
     this.clickEnPuestoVigilancia(this.sprites[this.names.puestoVigilancia]);
     this.clickEnCaballoTroya(this.sprites[this.names.caballoTroya]);
     this.clickEnTaberna(this.sprites[this.names.taberna]);
+    this.clickEnCantera(this.sprites[this.names.cantera]);
   }
 
   visibilidad() {

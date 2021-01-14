@@ -62,7 +62,7 @@ export let maximoRecursosPorRonda = 10;
 //Edificios
 export let costeMina = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; export let alMaxMina = 5; export let tamMina = { x: 5, y: 5};
 export let costeGranja = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; export let alMaxGranja = 5; export let tamGranja = { x: 7, y: 5};
-export let costeCantera = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; export let alMaxCantera = 5; export let tamCantera = { x: 4, y: 4};
+export let costeCantera = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; export let alMaxCantera = 5; export let tamCantera = { x: 3, y: 3};
 export let recuperacionRecursos = 75; //Porcentaje
 
 //Fondo
