@@ -140,7 +140,7 @@ export default class Interfaz {
     this.sprites[nE.granja].setScale(0.4, 0.4);
     this.sprites[nE.torreArqueros].setScale(1, 1);
     this.sprites[nE.puestoVigilancia].setScale(1.2, 1.1);
-    this.sprites[nE.cantera].setScale(1, 1);
+    this.sprites[nE.cantera].setScale(0.7, 0.7);
   }
 
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)

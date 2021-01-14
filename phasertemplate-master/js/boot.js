@@ -115,7 +115,7 @@ export default class Boot extends Phaser.Scene {
     //Choza Maestra
     this.load.image('chozaMaestra', "./phasertemplate-master/images/Estructuras/ChozaMaestra/ChozaMaestra.png");
     this.load.image('marco', "./phasertemplate-master/images/Estructuras/ChozaMaestra/marco.png");
-    this.load.image('granja', "./phasertemplate-master/images/Estructuras/Granja.png");
+    //this.load.image('granja', "./phasertemplate-master/images/Estructuras/Granja.png");
 
     //Edificios sociales
     this.load.image('taberna', "./phasertemplate-master/images/Estructuras/EdificiosFelicidad/Taberna.png");
