@@ -17,7 +17,8 @@ export default class EdificioSocial extends Edificio{
         let posicionMarco = new Vector2D(this.posicion.x + config.sizeCasilla * 4, this.posicion.y + config.sizeCasilla / 2);
         this.marco = functions.creaSprite(posicionMarco.x, posicionMarco.y, 'asignar', this.game, config.hudDepth);
         this.marco.setVisible(false);
-
+        this.text = functions.creaTexto(this.x + 97, this.y - this.height * 1.12, this.numAldeanos, this.game);
+        this.text.setFontSize(config.fontSize-5);
         this.done = functions.creaSprite(this.marco.x + (this.marco.width / 2), this.marco.y + this.marco.height + 7, 'done', this.game, config.hudDepth);
         this.done.setOrigin(0.5, 0.5); this.done.setScale(1.5, 1.5); this.done.setVisible(false);
     }
