@@ -5,22 +5,10 @@ export default class EdificioGranja extends EdificioRecursos{
         super(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key);
         this.game = scene;
         this.tipoAldeano = scene.ganaderos;
-    }
-    //TIMEPO -> CAMBIAR A ACCIONES
-    preUpdate(t,dt){
-        super.preUpdate(t,dt);
-        this.timer -= dt;
-        if(this.timer <= 0){
-            this.generar();
-            this.timer = 5000;
-        }
+        this.posMarcoX = 6;
     }
     generar(){
-        this.game.recursos.comida += this.cantidad + this.rendimientoAldeanos;
-        this.game.interfaz.actualizaInterfaz();
-    }
-    asignar(){
-        super.asignar();
-        rend += aldeanos.rendimiento.rendComida;
+        super.generar();
+        this.game.recursos.comida += this.cantidad;
     }
 }

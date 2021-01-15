@@ -20,6 +20,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.aldeanosAsignables = true;
         this.tipoAldeano = this.game.exploradores;
         this.numAldeanos = 0;
+        this.posMarcoX = 2;
 
         this.ancho = ancho;
         this.alto = alto;
@@ -182,7 +183,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         }
     }
     initMarco() {
-        let posicionMarco = new Vector2D(this.posicion.x + config.sizeCasilla * 1.5, this.posicion.y + config.sizeCasilla / 2);
+        let posicionMarco = new Vector2D(this.posicion.x + config.sizeCasilla * this.posMarcoX, this.posicion.y + config.sizeCasilla / 2);
         this.marco = functions.creaSprite(posicionMarco.x, posicionMarco.y, 'asignar', this.game, config.hudDepth);
         this.marco.setVisible(false);
 

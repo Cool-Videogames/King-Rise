@@ -1,3 +1,4 @@
+//General
 export let filas = 24;
 export let columnas = 24;
 export let sizeCasilla = 64;
@@ -43,7 +44,6 @@ export let rangosVisionDepth = 1;
 export let edificiosDepth = 2;
 export let personasDepth = 3; 
 export let hudDepth = 7;
-
 
 //Acciones
 export let nuevoAldeano = 15;

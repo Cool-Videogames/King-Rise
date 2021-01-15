@@ -5,22 +5,11 @@ export default class EdificioCantera extends EdificioRecursos{
         super(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key);
         this.game = scene;
         this.tipoAldeano = scene.canteros;
-    }
-    //TIMEPO -> CAMBIAR A ACCIONES
-    preUpdate(t,dt){
-        super.preUpdate(t,dt);
-        this.timer -= dt;
-        if(this.timer <= 0){
-            this.generar();
-            this.timer = 5000;
-        }
+        this.posicionMarcoAsignar = 2;
+        this.posMarcoX = 2;
     }
     generar(){
-        this.game.recursos.materiales += this.cantidad + this.rendimientoAldeanos;
-        this.game.interfaz.actualizaInterfaz();
-    }
-    asignar(){
-        super.asignar();
-        rend += aldeanos.rendimiento.rendMateriales;
+        super.generar();
+        this.game.recursos.materiales += this.cantidad;
     }
 }
