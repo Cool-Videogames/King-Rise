@@ -155,14 +155,14 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             console.log(especialidad);
             if (especialidad === 'trampaOsos' || especialidad === 'trampaSuelo')
                 edificio = new Trampa(this.game, especialidad, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 0, especialidad);
-            else if (especialidad === 'muro')
+            else if (especialidad === 'muralla')
                 edificio = new Muro(this.game, especialidad, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 0, especialidad);
             else if (especialidad === 'torreArqueros')
                 edificio = new TorreArqueros(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 5, 5, especialidad);
             else if (especialidad === 'puestoVigilancia')
                 edificio = new PuestoVigilancia(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 3, especialidad);
             else if (especialidad === 'caballoTroya') {
-                edificio = new CaballoTroya(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, 3, 3, 10, 0, 'torreArqueros');
+                edificio = new CaballoTroya(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 10, 0, especialidad);
             }
         }
         return edificio;

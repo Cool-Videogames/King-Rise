@@ -18,7 +18,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('sabanaInterseccionVer', "./phasertemplate-master/images/FondoYMapa/SabanaInterseccionVer.png");
     this.load.image('sabana', "./phasertemplate-master/images/FondoYMapa/Sabana.png");
     this.load.image('trono', "./phasertemplate-master/images/Estructuras/Trono.png");
-    this.load.image('obstaculo', "./phasertemplate-master/images/Estructuras/Obstaculo.png")
+    this.load.image('obstaculo', "./phasertemplate-master/images/Estructuras/Obstaculo.png");
 
     //Jugador
     this.load.image('jugador', "./phasertemplate-master/images/Rey/Rey.png");
@@ -94,7 +94,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('puestoVigilancia', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/puestoVigilancia.png");
     this.load.image('bunker', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/bunker.png");
     this.load.image('muralla', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/muralla.png");
-    this.load.image('catedral', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/catedral.png");
+    this.load.image('caballoTroya', "./phasertemplate-master/images/Estructuras/EdificiosConstruibles/caballoTroya.png");
 
     //Menus
     this.load.image('done', "./phasertemplate-master/images/Interfaz/Done.png");

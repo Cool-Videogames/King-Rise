@@ -1,13 +1,11 @@
 import EdificioDefensivo from "./edificioDefensivo.js";
-import * as functions from "./functions.js";
-import * as config from "./config.js"
 
 export default class CaballoTroya extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
         super(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key);
-
+        this.tipoAldeano = scene.exploradores;
         this.game = scene;
-        this.setScale(3, 3);
+        this.setScale(2.2, 2.2);
     }
     muestraOpciones(){ //CAMBIAR PARA ADAPTARLO AL MENU DEL CABALLO DE TROYA (SI LO TIENE)
         return () => {

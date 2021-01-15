@@ -34,7 +34,7 @@ export let fontSize = 30;
 
 //Sprites
 export let edificiosConstruibles = 10;
-export let hudSprites = 28;
+export let hudSprites = 27;
 export let numTexts = 10;
 
 //Profundidad de los sprites
