@@ -12,6 +12,10 @@ import Fondo from "./fondo.js";
 import OleadasEnemigos from "./oleadasEnemigos.js";
 import Vector2D from "./vector2D.js";
 import Ajustes from "./ajustes.js";
+import Minero from "./minero.js";
+import Cantero from "./cantero.js";
+import Ganadero from "./ganadero.js";
+import Explorador from "./explorador.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -48,8 +52,8 @@ export default class Game extends Phaser.Scene {
     this.ajustes = new Ajustes(this);
     this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
-    //this.creaObstaculos();
-    this.creaAldeanos();
+    this.creaObstaculos();
+    this.creaAldeanos(config.numAldeanosIniciales, this.aldeanosBasicos);
     this.interfaz.actualizaInterfaz();
     this.oleadasEnemigos = new OleadasEnemigos(this);
 
@@ -63,7 +67,7 @@ export default class Game extends Phaser.Scene {
     this.scene.pause();
   }
 
-  creaAldeano() {
+  creaAldeano(tipo) {
     let nextCell;
     do {
       let columna = Math.floor(Math.random() * config.columnas);
@@ -73,14 +77,22 @@ export default class Game extends Phaser.Scene {
     while (nextCell.ocupada);
     nextCell.ocupada = true;
 
-    let sexo = Math.round(Math.random(0, 1));
-    if (sexo === 0) sexo = 'aldeano';
-    else sexo = 'aldeana'
-    let aldeano = new Aldeano(this, nextCell, 0, 0, sexo);
+    let aldeano;
+    if(tipo === this.aldeanosBasicos){
+      let sexo = Math.round(Math.random(0, 1));
+      if (sexo === 0) sexo = 'aldeano';
+      else sexo = 'aldeana'
+      aldeano = new Aldeano(this, nextCell, 0, 0, sexo);
+    }
+    else if(tipo === this.mineros) aldeano = new Minero(this,nextCell,0,0);
+    else if(tipo == this.canteros) aldeano = new Cantero(this,nextCell,0,0);
+    else if(tipo === this.ganaderos) aldeano = new Ganadero(this,nextCell,0,0);
+    else aldeano = new Explorador(this, nextCell, 0, 0);
+
     return aldeano;
   }
-  creaAldeanos() {
-    for (let i = 0; i < config.numAldeanosIniciales; i++) this.aldeanosBasicos.push(this.creaAldeano());
+  creaAldeanos(numAldeanos, tipoAldeano) {
+    for (let i = 0; i < numAldeanos; i++) tipoAldeano.push(this.creaAldeano(tipoAldeano));
   }
 
   creaTrono() {

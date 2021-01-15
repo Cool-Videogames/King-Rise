@@ -1,4 +1,7 @@
 import EdificioDefensivo from "./edificioDefensivo.js";
+import * as config from "./config.js"
+import * as functions from "./functions.js";
+import Vector2D from "./vector2D.js";
 
 export default class CaballoTroya extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
@@ -6,6 +9,14 @@ export default class CaballoTroya extends EdificioDefensivo {
         this.tipoAldeano = scene.exploradores;
         this.game = scene;
         this.setScale(2.2, 2.2);
+    }
+    initMarco() {
+        let posicionMarco = new Vector2D(this.posicion.x + config.sizeCasilla * 3, this.posicion.y + config.sizeCasilla / 2);
+        this.marco = functions.creaSprite(posicionMarco.x, posicionMarco.y, 'asignar', this.game, config.hudDepth);
+        this.marco.setVisible(false);
+
+        this.done = functions.creaSprite(this.marco.x + (this.marco.width / 2), this.marco.y + this.marco.height + 7, 'done', this.game, config.hudDepth);
+        this.done.setOrigin(0.5, 0.5); this.done.setScale(1.5, 1.5); this.done.setVisible(false);
     }
     muestraOpciones(){ //CAMBIAR PARA ADAPTARLO AL MENU DEL CABALLO DE TROYA (SI LO TIENE)
         return () => {

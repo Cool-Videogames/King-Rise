@@ -19,6 +19,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.hasMenu = true;
         this.aldeanosAsignables = true;
         this.tipoAldeano = this.game.exploradores;
+        this.numAldeanos = 0;
 
         this.ancho = ancho;
         this.alto = alto;
@@ -66,6 +67,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         if(this.key== 'trono') {this.game.scene.start('escenaInicio'); return;}
 
         if (this.destruible) {
+            this.game.creaAldeanos(this.numAldeanos, this.tipoAldeano);
             this.game.audio.destruccion.play();
             this.marcoDestruir.destroy();
             this.devuelveCoste();
@@ -246,6 +248,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             this.game.cierraMarcoAnterior = () => { };
             this.abreMarcos();
             this.game.interfaz.actualizaInterfaz();
+            console.log(this.numAldeanos);
         })
     }
 }
