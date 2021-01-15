@@ -143,6 +143,7 @@ export default class Interfaz {
     this.sprites[nE.trampaSuelo].setScale(1.5,1.5);
     this.sprites[nE.muralla].setScale(2,2);
     this.sprites[nE.caballoTroya].setScale(1.0005,1.0005);
+    this.sprites[nE.cantera].setScale(0.7, 0.7);
   }
 
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
@@ -291,8 +292,14 @@ export default class Interfaz {
     })
   }
   clickEnMuralla(muralla){
-    muralla.on('pointerup',pointer=>{
+    muralla.on('pointerup', pointer=>{
       this.game.jug.inputConstruir('defensivo', 'muralla',1,1);
+      this.ocultaDesplegable();
+    })
+  }
+  clickEnCantera(cantera){
+    cantera.on('pointerup', pointer =>{
+      this.game.jug.inputConstruir('recursos', 'cantera', 3, 3);
       this.ocultaDesplegable();
     })
   }
@@ -332,6 +339,7 @@ export default class Interfaz {
     this.clickEnTaberna(this.sprites[this.names.taberna]);
     this.clickEnTrampaSuelo(this.sprites[this.names.trampaSuelo]);
     this.clickEnMuralla(this.sprites[this.names.muralla]);
+    this.clickEnCantera(this.sprites[this.names.cantera]);
   }
 
   visibilidad() {

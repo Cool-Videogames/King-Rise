@@ -19,6 +19,7 @@ export default class Enemigo extends Persona {
 
         this.isInRange = false;
         this.setOrigin(0.5, 0.5);
+        this.setDepth(config.hudDepth-1);
 
 
         this.posAnterior = null;
@@ -37,9 +38,9 @@ export default class Enemigo extends Persona {
             }
         } else {
             if (this.objetivo === null) return;
-            
+
             let distancia = this.distanciaObjetivo();
-            let rango =  this.range + this.objetivo.ancho / 2 * config.sizeCasilla;
+            let rango = this.range + this.objetivo.ancho / 2 * config.sizeCasilla;
             if (distancia <= rango) {
                 this.isInRange = true;
                 this.body.reset(this.x, this.y);
@@ -84,8 +85,8 @@ export default class Enemigo extends Persona {
         let result = Math.sqrt(x * x + y * y);
         return result;
     }
-    distanciaObjetivo(){
-        if(this.objetivo === null) return;
+    distanciaObjetivo() {
+        if (this.objetivo === null) return;
         let obj = { x: 0, y: 0 };
         this.objetivo.getCenter(obj);
 
@@ -95,11 +96,11 @@ export default class Enemigo extends Persona {
         return result;
     }
 
-    distanciaPosAnterior(destino){
+    distanciaPosAnterior(destino) {
         let x = this.posAnterior.x - destino.x;
         let y = this.posAnterior.y - destino.y;
         let result = Math.sqrt(x * x + y * y);
-        return result; 
+        return result;
     }
 
     move() {
@@ -109,11 +110,11 @@ export default class Enemigo extends Persona {
             this.objetivo.getCenter(obj);
             if (this.objetivo != null)
                 this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
-        } 
+        }
     }
 
 
-    morir(){
+    morir() {
         this.destroy();
     }
 }

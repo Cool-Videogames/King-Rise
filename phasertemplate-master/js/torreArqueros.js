@@ -2,6 +2,8 @@ import EdificioDefensivo from "./edificioDefensivo.js";
 import * as config from "./config.js"
 import * as functions from "./functions.js";
 import Aldeano from "./aldeano.js";
+import Enemigo from "./enemigo.js";
+import EnemigoMele from "./enemigoMele.js";
 
 export default class TorreArqueros extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
@@ -14,27 +16,36 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.game = scene;
         this.aldeanosAsignables = true;
         this.rango = rango;
-
+        this.collider = null;
         this.numAldeanos = 0;
 
-        scene.physics.add.overlap(this, this.game.jug, (turret, enemy) => {
-            if (this.arrow === null && this.fireRate <= 0 && this.numAldeanos > 0) {
-                this.fireRate = 2000;
-                this.enemy = enemy;
-                this.arrow = scene.physics.add.sprite(this.x, this.y - this.height / 2, 'arrow');
-                this.arrow.body.setSize(this.arrow.width / 1.5, this.arrow.height / 2.5);
-
-                scene.physics.add.overlap(this.arrow, this.game.jug, (arrow, enemy) => {
-                    arrow.destroy();
-                    this.arrow = null;
-                    this.atacar(enemy, 10 * this.numAldeanos);
-                })
-            }
-        });
         this.rangoSprite = null;
     }
+    
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
+
+        if (this.game.acciones.ataqueEnCurso && this.collider === null) {
+            this.collider = this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (turret, enemy) => {
+                if (this.arrow === null && this.fireRate <= 0 && this.numAldeanos > 0) {
+                    this.fireRate = 2000;
+                    this.enemy = enemy;
+                    this.arrow = this.game.physics.add.sprite(this.x, this.y - this.height / 2, 'arrow');
+                    this.arrow.setDepth(config.hudDepth-1);
+                    this.arrow.body.setSize(this.arrow.width / 1.5, this.arrow.height / 2.5);
+
+                    this.game.physics.add.overlap(this.arrow, enemy, (arrow, enemy) => {
+                        arrow.destroy();
+                        this.arrow = null;
+                        this.atacar(enemy, 2 * this.numAldeanos);
+                    })
+                }
+            });
+        }
+        else if (!this.game.acciones.ataqueEnCurso && this.collider !== null) {
+            this.collider.destroy();
+        }
+
         this.fireRate -= dt;
         if (this.arrow !== null) {
             let angle = Phaser.Math.Angle.Between(this.enemy.x, this.enemy.y, this.arrow.x, this.arrow.y);
@@ -100,9 +111,9 @@ export default class TorreArqueros extends EdificioDefensivo {
             this.game.interfaz.actualizaInterfaz();
         })
     }
-    muestraOpciones(){
+    muestraOpciones() {
         return () => {
-            if(this.aldeanosAsignables){
+            if (this.aldeanosAsignables) {
                 this.marco.setVisible(!this.marco.visible);
                 this.done.setVisible(!this.done.visible);
                 this.texts[2].text = this.game.exploradores.length;

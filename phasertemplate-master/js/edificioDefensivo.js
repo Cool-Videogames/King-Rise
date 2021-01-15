@@ -13,6 +13,8 @@ export default class EdificioDefensivo extends Edificio {
     }
     atacar(objetivo, dmg) {
         objetivo.vida -= dmg;
+        console.log(objetivo.vida);
+        if(objetivo.vida <= 0)objetivo.destroy();
     }
     asignarTropas(aldeanos) {
         this.numAldeanos+=aldeanos;

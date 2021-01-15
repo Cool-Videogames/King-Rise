@@ -66,6 +66,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         if(this.key== 'trono') {this.game.scene.start('escenaInicio'); return;}
 
         if (this.destruible) {
+            this.game.audio.destruccion.play();
             this.marcoDestruir.destroy();
             this.devuelveCoste();
             let celdas = this.celdas(this.posicion);

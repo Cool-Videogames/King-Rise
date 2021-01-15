@@ -115,13 +115,15 @@ export default class Boot extends Phaser.Scene {
     //Choza Maestra
     this.load.image('chozaMaestra', "./phasertemplate-master/images/Estructuras/ChozaMaestra/ChozaMaestra.png");
     this.load.image('marco', "./phasertemplate-master/images/Estructuras/ChozaMaestra/marco.png");
-    this.load.image('granja', "./phasertemplate-master/images/Estructuras/Granja.png");
+    //this.load.image('granja', "./phasertemplate-master/images/Estructuras/Granja.png");
 
     //Edificios sociales
     this.load.image('taberna', "./phasertemplate-master/images/Estructuras/EdificiosFelicidad/Taberna.png");
 
     //Sonido
     this.load.audio('music', "./phasertemplate-master/sound/MainSound.wav");
+    this.load.audio('construccion',"phasertemplate-master/sound/SonidoConstruccion.mp3");
+    this.load.audio('destruccion',"phasertemplate-master/sound/SonidoDestruccion.mp3");
 
     //Escenas
     this.load.image('fondoInicio', "./phasertemplate-master/images/background.png");
