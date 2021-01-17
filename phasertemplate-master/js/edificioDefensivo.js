@@ -9,7 +9,6 @@ export default class EdificioDefensivo extends Edificio {
         this.especialidad = especialidad;
         this.variacionAldeanos = 0;
 
-        scene.edificiosDefensivos.push(this);
     }
     atacar(objetivo, dmg) {
         objetivo.vida -= dmg;
@@ -22,7 +21,5 @@ export default class EdificioDefensivo extends Edificio {
 
     destruir(){
         super.destruir();
-        let index = this.game.edificiosDefensivos.indexOf(this);
-        this.game.edificiosDefensivos.splice(index, 1);
     }
 }

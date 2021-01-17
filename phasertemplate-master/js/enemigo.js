@@ -46,7 +46,6 @@ export default class Enemigo extends Persona {
                 this.body.reset(this.x, this.y);
                 this.posAnterior = null;
             }
-
         }
     }
 
@@ -67,7 +66,6 @@ export default class Enemigo extends Persona {
         let value = Infinity;
         for (let i = 0; i < objectives.length; i++) {
             let distancia = this.distancia(objectives[i].posicion);
-
             if (distancia < value) {
                 index = i;
                 value = distancia;

@@ -27,7 +27,7 @@ export default class Acciones {
         //Se llamará a este método una vez empiece el ataque
         console.log("Ataque iniciado");
         this.ataqueEnCurso = true;
-        this.game.oleadasEnemigos.createWave(1, this.direccion);
+        this.game.oleadasEnemigos.createWave(10, this.direccion);
 
         this.nuevaOleada();
     }

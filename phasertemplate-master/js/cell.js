@@ -46,7 +46,7 @@ export default class Cell {
                         }
                         celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada = true; });
                         this.game.jug.isBuilding = false;
-                        this.game.edificios.push(this.game.jug.edificio);       
+                        this.game.jug.edificio.addToScene();
                     }
                 }
 

@@ -36,7 +36,6 @@ export default class Game extends Phaser.Scene {
     this.ySize = 720;
 
     this.edificios = [];
-    this.edificiosDefensivos = [];
 
     this.casillaPuntero = { x: 0, y: 0 };
     this.cierraMarcoAnterior = () => { };
@@ -105,7 +104,7 @@ export default class Game extends Phaser.Scene {
         this.mapa.mapa[i][j].ocupada = true;
       }
 
-    //this.edificios.push(this.trono);
+    this.trono.addToScene();
   }
 
   creaObstaculos() {

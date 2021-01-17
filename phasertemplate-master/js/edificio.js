@@ -34,7 +34,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.inputEdificio(this);
         this.creaMarcoDestruir();
 
-        scene.edificios.push(this);
+        console.log(scene.edificios.length);
     }
     estaEnRangoDeConstruccion() {
         let rango = config.rangoConstruccion * config.sizeCasilla;
@@ -64,7 +64,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.game.recursos.felicidad += (config.recuperacionRecursos / 100) * this.costeEdificio.felicidad;
     }
     destruir() {
-
         if(this.key== 'trono') {this.game.scene.start('escenaInicio'); return;}
 
         if (this.destruible) {
@@ -76,8 +75,11 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             functions.resetCells(celdas);
             this.destroy();
             this.game.interfaz.actualizaInterfaz();
+
             let index = this.game.edificios.indexOf(this);
             this.game.edificios.splice(index, 1);
+
+            console.log(this.game.edificios.length);
 
             if(this.aldeanosAsignables){
                 this.marco.destroy();
@@ -89,6 +91,11 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             }
         }
     }
+    addToScene(){
+        this.game.edificios.push(this);
+        console.log(this.game.edificios.length);
+    }
+
     inputEdificio(edificio) {
         edificio.on('pointerup', pointer => {
             if (!this.marcoDestruir.visible) {
@@ -165,7 +172,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     recibirAtaque(dmg) {
         this.vida -= dmg;
 
-        console.log(this.vida);
         if (this.vida <= 0) {
             this.destruir();
             return true;
