@@ -10,6 +10,7 @@ import EdificioCantera from "./edificioCantera.js";
 import PuestoVigilancia from "./puestoVigilancia.js";
 import CaballoTroya from "./caballoTroya.js";
 import EdificioTaberna from "./edificioTaberna.js";
+import Bunker from "./bunker.js";
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
     constructor(scene, casilla) {
@@ -102,7 +103,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
 
                 if (this.nodoDestino.siguiente !== null) {
                     this.game.acciones.movimiento();
-                    
+
                     this.movimientoPathFinding(this.nodoDestino.siguiente);
                 }
             }
@@ -142,8 +143,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         }
         else if (tipo === 'social') {
             //scene,vida,coste,posicion,felicidad, key
-            if(especialidad === 'taberna'){
-                edificio = new EdificioTaberna(this.game,0,{ oro: 20, materiales: 0, comida: 0, felicidad: 0 },pos,ancho,alto,0, 10)
+            if (especialidad === 'taberna') {
+                edificio = new EdificioTaberna(this.game, 0, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 10)
             }
         }
         else if (tipo === 'chozaMaestra') {
@@ -163,6 +164,9 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 edificio = new PuestoVigilancia(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 0, 3, especialidad);
             else if (especialidad === 'caballoTroya') {
                 edificio = new CaballoTroya(this.game, especialidad, 100, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 10, 0, especialidad);
+            }
+            else if (especialidad === "bunker") {
+                edificio = new Bunker(this.game, especialidad, 1000, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 10, 0,especialidad);
             }
         }
         return edificio;

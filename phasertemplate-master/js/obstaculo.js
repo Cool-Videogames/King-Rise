@@ -84,6 +84,7 @@ export default class Obstaculo extends Phaser.GameObjects.Sprite {
     }
 
     eliminar() {
+        this.game.audio.destruccion.play();
         this.posicion.sprite.clearTint();
         this.posicion.tint = this.posicion.sprite.tint;
         this.posicion.ocupada = false;

@@ -246,7 +246,7 @@ export default class Interfaz {
     edificio.on('pointerover', pointer => {
       marco.setPosition(edificio.x + 64, edificio.y - 64);
       text.setPosition(edificio.x + 78, edificio.y - 50);
-      textCoste.setPosition(marco.x + marco.width/2 +10 , marco.y + marco.height - 35);
+      textCoste.setPosition(marco.x + marco.width / 2 + 10, marco.y + marco.height - 35);
 
       marco.setVisible(true);
       text.setVisible(true);
@@ -345,6 +345,14 @@ export default class Interfaz {
     })
   }
 
+  clickEnBunker(bunker) {
+    this.marcoCoste(bunker, config.costeBunker.oro, config.textoBunker);
+    bunker.on('pointerup', pointer => {
+      this.game.jug.inputConstruir('defensivo', 'bunker', 4, 4);
+      this.ocultaDesplegable();
+    })
+  }
+
   //ACTUALIZAR TEXTOS
   actualizaInterfaz() {
     //Recursos y proximo ataque
@@ -381,6 +389,7 @@ export default class Interfaz {
     this.clickEnTrampaSuelo(this.sprites[this.names.trampaSuelo]);
     this.clickEnMuralla(this.sprites[this.names.muralla]);
     this.clickEnCantera(this.sprites[this.names.cantera]);
+    this.clickEnBunker(this.sprites[this.names.bunker]);
   }
 
   visibilidad() {

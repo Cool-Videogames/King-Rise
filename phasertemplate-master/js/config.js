@@ -89,6 +89,7 @@ export let textoTaberna = "La taberna: permite \na tus aldeanos \npasar un buen 
 export let textoTrampaSuelo = "La trampa en el suelo: \nelimina a los enemigos al \ninstante haciéndolos caer \nal profundo agujero."
 export let textoMuro = "El muro: bloquea el \npaso a los enemigos con \nesta resistente estructura."
 export let textoCantera = "La cantera: asigna \ncanteros para obtener \nmaterial de construcción. \nCuantos más canteros \ntrabajén más rendimiento \ntendrá la cantera.";
+export let textoBunker = "hey";
 
 //Fondo
 export let interseccionMontañaMar = 20; //Siempre menor o igual que el numero de columnas del mapa
