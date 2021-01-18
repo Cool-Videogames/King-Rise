@@ -1,37 +1,24 @@
 import * as functions from "./functions.js"
+import * as config from "./config.js"
 
-var fondo; 
 export default class EscenaInicio extends Phaser.Scene {
-    
     constructor(){
         super({key: 'escenaInicio'});
-        
-        
     }
 
     create(){
-        this.fondo = new Phaser.GameObjects.Sprite(this,0,0, 'fondoInicio');
-        this.fondo.setOrigin(0,0);
+        this.fondo = functions.creaSprite(0, 0, 'fondoInicio', this ,0);
         this.fondo.setScale(1.3, 1);
         
-        this.add.existing(this.fondo);
-        //fondo = functions.creaSprite(0, 0, 'fondoInicio', this);
-        
-        //this.fondo = functions.creaSprite(1024, 0, 'fondoInicio', this);
-        this.logo = new Phaser.GameObjects.Sprite(this,350,100, 'logoJuego');
-        this.logo.setOrigin(0,0);
+        this.logo = functions.creaSprite( 350, 100, 'logoJuego', this, 0);
         this.logo.setScale(0.5, 0.5);
-        this.add.existing(this.logo);
-        this.jugar = functions.creaSprite(350, 500, 'jugar', this);
+
+        this.jugar = functions.creaSprite(0, 0, 'jugar', this);
+        this.jugar.setPosition(config.winWidth/2-this.jugar.width/2,config.winHeight/2+this.jugar.height/2);
         
         this.comenzarJuego(this.jugar);
         this.changeColorJugar(this.jugar);
-        
     }
-    update(time, delta){
-        
-    }
-
     comenzarJuego(jugar){
         jugar.on('pointerup', pointer => {
             //var isActivee = scene.scene.isSleeping('game');
@@ -42,7 +29,6 @@ export default class EscenaInicio extends Phaser.Scene {
             this.scene.resume('game');*/
         })
     }
-
     changeColorJugar(botonJugar){
         botonJugar.on('pointerover', pointer => {
             botonJugar.tint = 0x41EE7B;
