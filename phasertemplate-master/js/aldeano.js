@@ -39,40 +39,40 @@ export default class Aldeano extends Persona {
         this.calculaDir();
     }
 
-    animation(){
-        if(this.chico === 'aldeano'){
-            if(this.dir === 'right'){
+    animation() {
+        if (this.chico === 'aldeano') {
+            if (this.dir === 'right') {
                 this.play('derechaAldeano');
                 this.flipX = true;
             }
-            else if(this.dir === 'left'){
+            else if (this.dir === 'left') {
                 this.play('izquierdaAldeano');
                 this.flipX = false;
             }
-            else if(this.dir === 'up') this.play('espaldasAldeano');
-            else if(this.dir === 'down') this.play('frenteAldeano');
+            else if (this.dir === 'up') this.play('espaldasAldeano');
+            else if (this.dir === 'down') this.play('frenteAldeano');
         }
         else {
-            if(this.dir === 'right'){
+            if (this.dir === 'right') {
                 this.play('derechaAldeana');
                 this.flipX = true;
             }
-            else if(this.dir === 'left'){
+            else if (this.dir === 'left') {
                 this.play('izquierdaAldeana');
                 this.flipX = false;
             }
-            else if(this.dir === 'up') this.play('espaldasAldeana');
-            else if(this.dir === 'down') this.play('frenteAldeana');
+            else if (this.dir === 'up') this.play('espaldasAldeana');
+            else if (this.dir === 'down') this.play('frenteAldeana');
         }
     }
-    calculaDir(){
+    calculaDir() {
         let iniDir = this.dir;
-        if(this.x < this.posDestino.x && this.dir !== 'right') this.dir = 'right';
-        else if(this.x > this.posDestino.x && this.dir !== 'left') this.dir = 'left';
-        else if(this.y < this.posDestino.y && this.dir !== 'down') this.dir = 'down';
-        else if(this.y > this.posDestino.y && this.dir !== 'up') this.dir = 'up';
+        if (this.x < this.posDestino.x && this.dir !== 'right') this.dir = 'right';
+        else if (this.x > this.posDestino.x && this.dir !== 'left') this.dir = 'left';
+        else if (this.y < this.posDestino.y && this.dir !== 'down') this.dir = 'down';
+        else if (this.y > this.posDestino.y && this.dir !== 'up') this.dir = 'up';
 
-        if(iniDir !== this.dir || this.esperando) this.animation();
+        if (iniDir !== this.dir || this.esperando) this.animation();
     }
 
     compruebaPosicion(dt) {
@@ -151,5 +151,11 @@ export default class Aldeano extends Persona {
             case "ganadero": { this.rendimientoGanadero = rendimiento; this.rendimientoGeneral = 0; }
                 break;
         }
+    }
+
+    morir() {
+        this.game.aldeanosBasicos;
+
+        this.destroy();
     }
 }

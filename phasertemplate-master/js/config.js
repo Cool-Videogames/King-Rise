@@ -57,8 +57,10 @@ export let costeBaseExploracion = 20;
 export let costePorExplorador = 5;
 export let probabilidadExitoBase = 0.20;
 export let probabilidadExitoPorExploradorAdicional = 0.05;
-export let maximoRecursosPorRonda = 10;
-
+export let probabilidadExitoPorAldeanoAdicional = 0.15;
+export let maximoRecursosPorRonda = {oro:10, materiales: 10, comida:5};
+export let duracionMaxima = 15;
+export let duracionMinima = 5;
 //Edificios
 export let costeMina = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; export let alMaxMina = 5; export let tamMina = { x: 5, y: 5};
 export let costeGranja = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; export let alMaxGranja = 5; export let tamGranja = { x: 7, y: 5};
