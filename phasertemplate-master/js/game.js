@@ -100,7 +100,7 @@ export default class Game extends Phaser.Scene {
     for (let i = 1; i < 3; ++i)
       for (let j = 1; j < 3; ++j) {
         this.mapa.mapa[i][j].tint = 0xE2A41F;
-        this.mapa.mapa[i][j].sprite.tint = 0xE2A41F; 7
+        this.mapa.mapa[i][j].sprite.tint = 0xE2A41F; 
         this.mapa.mapa[i][j].ocupada = true;
       }
 

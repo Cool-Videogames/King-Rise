@@ -10,9 +10,17 @@ export default class EdificioSocial extends Edificio {
         this.variacionAldeanos = 0;
         this.cantidad = felicidad;
         this.aldeanosMax = aldeanosMax;
-        this.posMarcoX = 4;
         this.numAldeanos = 0;
         this.timer = 5000;
+    }
+    preUpdate(t,dt){
+        super.preUpdate(t,dt);
+        this.timer -= dt;
+        if(this.timer <= 0){
+            this.generar();
+            this.game.interfaz.actualizaInterfaz();
+            this.timer = 5000;
+        }
     }
     initMarco() {
         let posicionMarco = new Vector2D(this.posicion.x + config.sizeCasilla * this.posMarcoX, this.posicion.y + config.sizeCasilla / 2);
@@ -82,10 +90,13 @@ export default class EdificioSocial extends Edificio {
 
     destruir() {
         super.destruir();
-        this.text.destroy();s
+        this.text.destroy();
     }
 
     asignarAldeanos(aldeanos) {
         this.numAldeanos += aldeanos;
+    }
+    generar(){
+        this.cantidad = config.cantidadRecursosPorDefecto*this.numAldeanos;
     }
 }
