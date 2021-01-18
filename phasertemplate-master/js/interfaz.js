@@ -35,7 +35,7 @@ export default class Interfaz {
     for (let i = 0; i < config.hudSprites; i++) {
       this.sprites[i] = functions.creaSprite(0, 0, this.nombres[i], this.game, config.hudDepth + 1);
       this.sprites[i].setScale(this.sprites[i].scaleX / config.hudScale, this.sprites[i].scaleY / config.hudScale);
-      this.sprites[i].setOrigin(0.5, 0.5); this.sprites[i].setScrollFactor(0); 
+      this.sprites[i].setOrigin(0.5, 0.5); this.sprites[i].setScrollFactor(0);
     }
     this.setPos(); this.creaTexts(); this.setTextsPos();
     this.visibilidad();
@@ -55,8 +55,8 @@ export default class Interfaz {
     this.nombres[this.names.cantera] = 'cantera'; this.nombres[this.names.trampaSuelo] = 'trampaSuelo';
     this.nombres[this.names.trampaOso] = 'trampaOsos'; this.nombres[this.names.puestoVigilancia] = 'puestoVigilancia';
     this.nombres[this.names.bunker] = 'bunker'; this.nombres[this.names.muralla] = 'muralla';
-    this.nombres[this.names.torreArqueros] = 'torreArqueros';  this.nombres[this.names.taberna] = 'taberna';
-    this.nombres[this.names.caballoTroya] = 'caballoTroya'; 
+    this.nombres[this.names.torreArqueros] = 'torreArqueros'; this.nombres[this.names.taberna] = 'taberna';
+    this.nombres[this.names.caballoTroya] = 'caballoTroya';
   }
 
   creaTexts() {
@@ -140,9 +140,9 @@ export default class Interfaz {
     this.sprites[nE.granja].setScale(0.4, 0.4);
     this.sprites[nE.torreArqueros].setScale(1, 1);
     this.sprites[nE.puestoVigilancia].setScale(1.2, 1.1);
-    this.sprites[nE.trampaSuelo].setScale(1.5,1.5);
-    this.sprites[nE.muralla].setScale(2,2);
-    this.sprites[nE.caballoTroya].setScale(1.0005,1.0005);
+    this.sprites[nE.trampaSuelo].setScale(1.5, 1.5);
+    this.sprites[nE.muralla].setScale(2, 2);
+    this.sprites[nE.caballoTroya].setScale(0.96, 0.96);
     this.sprites[nE.cantera].setScale(0.7, 0.7);
   }
 
@@ -231,7 +231,38 @@ export default class Interfaz {
       }
     })
   }
+
+  marcoCoste(edificio, coste, texto) {
+    let marco = functions.creaSprite(edificio.x, edificio.y, 'marcoCoste', this.game, config.hudDepth + 2); marco.setVisible(false); marco.setScrollFactor(0);
+    let text = functions.creaTexto(edificio.x, edificio.y, texto, this.game); text.setVisible(false); text.setScrollFactor(0); text.setOrigin(0, 0);
+    text.setDepth(marco.depth + 1);
+    text.setFontSize(19); text.setStroke(config.stroke, 3);
+
+    let textCoste = functions.creaTexto(edificio.x, edificio.y, coste, this.game); textCoste.setVisible(false); textCoste.setScrollFactor(0); textCoste.setOrigin(0, 0);
+    textCoste.setDepth(marco.depth + 1); textCoste.setFill('#DF9013');
+    textCoste.setFontSize(19); textCoste.setStroke(config.stroke, 3);
+
+
+    edificio.on('pointerover', pointer => {
+      marco.setPosition(edificio.x + 64, edificio.y - 64);
+      text.setPosition(edificio.x + 78, edificio.y - 50);
+      textCoste.setPosition(marco.x + marco.width/2 +10 , marco.y + marco.height - 35);
+
+      marco.setVisible(true);
+      text.setVisible(true);
+      textCoste.setVisible(true);
+    })
+
+    edificio.on('pointerout', pointer => {
+      marco.setVisible(false);
+      text.setVisible(false);
+      textCoste.setVisible(false);
+    })
+  }
+
   clickEnChoza(chozaMaestra) {
+    this.marcoCoste(chozaMaestra, config.costeChoza.oro, config.textoChoza);
+
     chozaMaestra.on('pointerup', pointer => {
       if (this.game.numChozas < 1) {
         this.game.jug.inputConstruir('chozaMaestra', '', 3, 3);
@@ -242,24 +273,28 @@ export default class Interfaz {
     })
   }
   clickEnMina(mina) {
+    this.marcoCoste(mina, config.costeMina.oro, config.textoMina);
     mina.on('pointerup', pointer => {
       this.game.jug.inputConstruir('recursos', 'mina', config.tamMina.x, config.tamMina.y);
       this.ocultaDesplegable();
     })
   }
   clickEnTrampaOso(trampaOso) {
+    this.marcoCoste(trampaOso, config.costeTrampaOso.oro, config.textoTrampaOso);
     trampaOso.on('pointerup', pointer => {
       this.game.jug.inputConstruir('defensivo', 'trampaOsos', 1, 1);
       this.ocultaDesplegable();
     })
   }
   clickEnTorreArqueros(torreArqueros) {
+    this.marcoCoste(torreArqueros, config.costeTorreArqueros.oro, config.textoTorreArqueros);
     torreArqueros.on('pointerup', pointer => {
       this.game.jug.inputConstruir('defensivo', 'torreArqueros', 2, 2);
       this.ocultaDesplegable();
     })
   }
   clickEnGranja(granja) {
+    this.marcoCoste(granja, config.costeGranja.oro, config.textoGranja);
     granja.on('pointerup', pointer => {
       this.game.jug.inputConstruir('recursos', 'granja', config.tamGranja.x, config.tamGranja.y);
       this.ocultaDesplegable();
@@ -267,6 +302,7 @@ export default class Interfaz {
   }
 
   clickEnPuestoVigilancia(puestoVigilancia) {
+    this.marcoCoste(puestoVigilancia, config.costePuestoVigilancia.oro, config.textoPuestoVigilancia);
     puestoVigilancia.on('pointerup', pointer => {
       this.game.jug.inputConstruir('defensivo', 'puestoVigilancia', 1, 2);
       this.ocultaDesplegable();
@@ -274,31 +310,36 @@ export default class Interfaz {
   }
 
   clickEnCaballoTroya(caballoTroya) {
+    this.marcoCoste(caballoTroya, config.costeCaballoTroya.oro, config.textoCaballoTroya);
     caballoTroya.on('pointerup', pointer => {
       this.game.jug.inputConstruir('defensivo', 'caballoTroya', 4, 4);
       this.ocultaDesplegable();
     })
   }
-  clickEnTaberna(taberna){
-    taberna.on('pointerup', pointer =>{
+  clickEnTaberna(taberna) {
+    this.marcoCoste(taberna, config.costeTaberna.oro, config.textoTaberna);
+    taberna.on('pointerup', pointer => {
       this.game.jug.inputConstruir('social', 'taberna', 5, 3);
       this.ocultaDesplegable();
     })
   }
-  clickEnTrampaSuelo(trampaSuelo){
-    trampaSuelo.on('pointerup', pointer=>{
-      this.game.jug.inputConstruir('defensivo', 'trampaSuelo',2,2);
+  clickEnTrampaSuelo(trampaSuelo) {
+    this.marcoCoste(trampaSuelo, config.costeTrampaSuelo.oro, config.textoTrampaSuelo);
+    trampaSuelo.on('pointerup', pointer => {
+      this.game.jug.inputConstruir('defensivo', 'trampaSuelo', 2, 2);
       this.ocultaDesplegable();
     })
   }
-  clickEnMuralla(muralla){
-    muralla.on('pointerup', pointer=>{
-      this.game.jug.inputConstruir('defensivo', 'muralla',1,1);
+  clickEnMuralla(muralla) {
+    this.marcoCoste(muralla, config.costeMuro.oro, config.textoMuro);
+    muralla.on('pointerup', pointer => {
+      this.game.jug.inputConstruir('defensivo', 'muralla', 1, 1);
       this.ocultaDesplegable();
     })
   }
-  clickEnCantera(cantera){
-    cantera.on('pointerup', pointer =>{
+  clickEnCantera(cantera) {
+    this.marcoCoste(cantera, config.costeCantera.oro, config.textoCantera);
+    cantera.on('pointerup', pointer => {
       this.game.jug.inputConstruir('recursos', 'cantera', 3, 3);
       this.ocultaDesplegable();
     })

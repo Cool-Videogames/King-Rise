@@ -18,7 +18,7 @@ export let rendimientoGeneral = 5;
 
 export let cameraSpeed = 10;
 export let cameraLimit = 200;
-export let cameraPos = {x: 400, y: 100};
+export let cameraPos = { x: 400, y: 100 };
 
 export let fontColor = 0xffff00;
 
@@ -42,7 +42,7 @@ export let numTexts = 10;
 export let mapDepth = 0;
 export let rangosVisionDepth = 1;
 export let edificiosDepth = 2;
-export let personasDepth = 3; 
+export let personasDepth = 3;
 export let hudDepth = 7;
 
 //Acciones
@@ -62,10 +62,33 @@ export let maximoRecursosPorRonda = {oro:10, materiales: 10, comida:5};
 export let duracionMaxima = 15;
 export let duracionMinima = 5;
 //Edificios
-export let costeMina = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; export let alMaxMina = 5; export let tamMina = { x: 5, y: 5};
-export let costeGranja = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; export let alMaxGranja = 5; export let tamGranja = { x: 7, y: 5};
-export let costeCantera = {oro: 20, materiales: 0, comida: 0, felicidad: 0}; export let alMaxCantera = 5; export let tamCantera = { x: 3, y: 3};
+export let costeChoza = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
+export let costeMina = { oro: 20, materiales: 0, comida: 0, felicidad: 0 }; export let alMaxMina = 5; export let tamMina = { x: 5, y: 5 };
+export let costeGranja = { oro: 20, materiales: 0, comida: 0, felicidad: 0 }; export let alMaxGranja = 5; export let tamGranja = { x: 7, y: 5 };
+export let costeCantera = { oro: 20, materiales: 0, comida: 0, felicidad: 0 }; export let alMaxCantera = 5; export let tamCantera = { x: 3, y: 3 };
+export let costeTrampaOso = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
+export let costeTrampaSuelo = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
+export let costeCaballoTroya = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
+export let costePuestoVigilancia = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
+export let costeBunker = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
+export let costeMuro = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
+export let costeTorreArqueros = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
+export let costeTaberna = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
 export let recuperacionRecursos = 75; //Porcentaje
+
+
+//Descripcion edificios
+export let textoChoza = "La choza maestra: es el \nedificio más  importante.\nEn él podrás crear  y\nespecializar a tus \nqueridísimos aldeanos.";
+export let textoMina = "La mina: asigna mineros \npara obtener oro. Cuantos \nmás mineros trabajen más\nrendimiento tendrá la \nmina.";
+export let textoGranja = "La granja: asigna \nganaderos para obtener \ncomida. Cuantos más \nganaderos trabajen más \nrendimiento tendrá la \ngranja.";
+export let textoTrampaOso = "La trampa para osos: \nes una poderosa \nherramienta que al ser \npisada dañará y \nanclará a los enemigos \nal suelo."
+export let textoTorreArqueros = "La torre de arqueros: \nasigna exploradores \npara defender la \naldea. Cuantos más \nexploradores más daño \ncausará.";
+export let textoPuestoVigilancia = "El puesto de vigilancia:\ncóntruyelo en los bordes \ndel mapa para ver \npor donde vendrán \nenemigos."
+export let textoCaballoTroya = "El caballo de troya: \npermite almacenar \naldeanos. Al ser destruido \nlos aldeanos atacarán \ny anclará a los \nenemigos al suelo."
+export let textoTaberna = "La taberna: permite \na tus aldeanos \npasar un buen rato, \naumentando lafelicidad."
+export let textoTrampaSuelo = "La trampa en el suelo: \nelimina a los enemigos al \ninstante haciéndolos caer \nal profundo agujero."
+export let textoMuro = "El muro: bloquea el \npaso a los enemigos con \nesta resistente estructura."
+export let textoCantera = "La cantera: asigna \ncanteros para obtener \nmaterial de construcción. \nCuantos más canteros \ntrabajén más rendimiento \ntendrá la cantera.";
 
 //Fondo
 export let interseccionMontañaMar = 20; //Siempre menor o igual que el numero de columnas del mapa
@@ -76,16 +99,16 @@ export let limiteIzq = 508;
 
 //Enemigo
 export let meleeEnemy = {
-    AtackDamage :  15,
-    Health : 50,
-    AtackDistance : 2,
-    MovementSpeed : 120,
-    AtackTime : 2
+    AtackDamage: 15,
+    Health: 50,
+    AtackDistance: 2,
+    MovementSpeed: 120,
+    AtackTime: 2
 }
 export let rangedEnemy = {
-    AtackDamage :  5,
-    Health : 20,
-    AtackDistance : 5,
-    MovementSpeed : 120,
-    AtackTime : 1
+    AtackDamage: 5,
+    Health: 20,
+    AtackDistance: 5,
+    MovementSpeed: 120,
+    AtackTime: 1
 }

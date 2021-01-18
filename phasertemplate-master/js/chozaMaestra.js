@@ -37,10 +37,7 @@ export default class ChozaMaestra extends Edificio {
         this.done = functions.creaSprite(this.marco.x + (this.marco.width / 2), this.marco.y + this.marco.height + 7, 'done', this.game, config.hudDepth);
         this.done.setOrigin(0.5, 0.5); this.done.setScale(1.5, 1.5); this.done.setVisible(false);
 
-        this.moneda = functions.creaSprite(this.marco.x + this.marco.width - 20, this.marco.y + this.marco.height - 18, 'moneda', this.game, config.hudDepth);
-        this.moneda.setScale(0.25, 0.25); this.moneda.setOrigin(0.5, 0.5); this.moneda.setVisible(false);
-
-        this.coste = functions.creaTexto(this.marco.x + this.marco.width / 2 + 60, this.moneda.y, this.costeTotal, this.game);
+        this.coste = functions.creaTexto(this.marco.x + this.marco.width / 2 + 60,  this.marco.y + this.marco.height - 18, this.costeTotal, this.game);
         this.coste.setScale(0.6, 0.6); this.coste.setVisible(false); this.coste.setFill('#DF9013');
     }
     createMasMenos() {
@@ -64,7 +61,6 @@ export default class ChozaMaestra extends Edificio {
         return () => {
             this.marco.setVisible(!this.marco.visible);
             this.done.setVisible(!this.done.visible);
-            this.moneda.setVisible(!this.moneda.visible);
             this.coste.setVisible(!this.coste.visible);
             this.costeTotal = 0;
             this.coste.text = this.costeTotal;
@@ -101,7 +97,6 @@ export default class ChozaMaestra extends Edificio {
     }
     destruir(){
         this.coste.destroy();
-        this.moneda.destroy();
         this.marco.destroy();
         this.done.destroy();
         for(let i of this.texts) i.destroy();

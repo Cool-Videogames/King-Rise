@@ -21,7 +21,7 @@ export default class TorreArqueros extends EdificioDefensivo {
 
         this.rangoSprite = null;
     }
-    
+
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
 
@@ -31,7 +31,7 @@ export default class TorreArqueros extends EdificioDefensivo {
                     this.fireRate = 2000;
                     this.enemy = enemy;
                     this.arrow = this.game.physics.add.sprite(this.x, this.y - this.height / 2, 'arrow');
-                    this.arrow.setDepth(config.hudDepth-1);
+                    this.arrow.setDepth(config.hudDepth - 1);
                     this.arrow.body.setSize(this.arrow.width / 1.5, this.arrow.height / 2.5);
 
                     this.game.physics.add.overlap(this.arrow, enemy, (arrow, enemy) => {

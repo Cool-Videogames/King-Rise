@@ -219,6 +219,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         }
         this.texts[1].setFontSize(45);
     }
+
+    
     asignaInput() {
         this.mas.on('pointerup', pointer => {
             if (this.variacionAldeanos + this.numAldeanos < this.aldeanosMax && this.variacionAldeanos + 1 <= this.tipoAldeano.length) {
