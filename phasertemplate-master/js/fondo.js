@@ -22,10 +22,10 @@ export default class Fondo{
                     this.mapa[c][j] = functions.creaSprite(x*config.sizeCasilla,y*config.sizeCasilla,'mar',this.game,-1);
                 }
                 else if(j === config.interseccionMontañaMar+this.fil/4 && c < this.col/2){
-                    this.mapa[c][j] = functions.creaSprite(x*config.sizeCasilla,y*config.sizeCasilla,'montañamarVer',this.game,-1);
+                    this.mapa[c][j] = functions.creaSprite(x*config.sizeCasilla,y*config.sizeCasilla,'montaniamarVer',this.game,-1);
                 }
                 else if(c === config.interseccionMontañaMar+this.col/4 && j < this.fil/2){
-                    this.mapa[c][j] = functions.creaSprite(x*config.sizeCasilla,y*config.sizeCasilla,'montañamarHor',this.game,-1);
+                    this.mapa[c][j] = functions.creaSprite(x*config.sizeCasilla,y*config.sizeCasilla,'montaniamarHor',this.game,-1);
                 }
                 else {
                     this.mapa[c][j] = functions.creaSprite(x*config.sizeCasilla,y*config.sizeCasilla,'mountain',this.game,-1);

@@ -33,8 +33,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.celdasAnteriores = [];
         this.inputEdificio(this);
         this.creaMarcoDestruir();
-
-        console.log(scene.edificios.length);
     }
     estaEnRangoDeConstruccion() {
         let rango = config.rangoConstruccion * config.sizeCasilla;
@@ -64,9 +62,10 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.game.recursos.felicidad += (config.recuperacionRecursos / 100) * this.costeEdificio.felicidad;
     }
     destruir() {
-        if(this.key== 'trono') {this.game.scene.start('escenaInicio'); return;}
+        if(this.key == 'trono') {this.game.scene.start('escenaInicio'); return;}
 
         if (this.destruible) {
+            console.log(this.numAldeanos);
             this.game.creaAldeanos(this.numAldeanos, this.tipoAldeano);
             this.game.audio.destruccion.play();
             this.marcoDestruir.destroy();

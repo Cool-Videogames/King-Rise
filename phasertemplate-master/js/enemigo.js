@@ -33,6 +33,7 @@ export default class Enemigo extends Persona {
                 if (this.ataque()) {
                     this.isInRange = false;
                     this.move();
+                    this.isInRange = false;
                 }
                 this.t = 0;
             }
@@ -106,7 +107,7 @@ export default class Enemigo extends Persona {
         if (this.objetivo !== null) {
             let obj = { x: 0, y: 0 };
             this.objetivo.getCenter(obj);
-            if (this.objetivo != null)
+            if (this.objetivo !== null)
                 this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
         }
     }

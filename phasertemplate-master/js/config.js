@@ -6,7 +6,7 @@ export let winWidth = 1280;
 export let winHeight = 720;
 export let playerSpeed = sizeCasilla * 2.5;
 export let margenPosicion = 3;
-export let rangoConstruccion = 3;
+export let rangoConstruccion = 20;
 export let numAldeanosIniciales = 5;
 
 export let numObstaculos = 16;
@@ -95,7 +95,7 @@ export let textoBunker = "hey";
 export let interseccionMontañaMar = 20; //Siempre menor o igual que el numero de columnas del mapa
 
 //Ajustes
-export let limiteDer = 769.1488893499442;
+export let limiteDer = 769;
 export let limiteIzq = 508;
 
 //Enemigo

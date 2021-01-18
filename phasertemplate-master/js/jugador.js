@@ -132,7 +132,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         if (tipo === 'recursos') {
             //scene,vida,coste,posicion,aldeanosMax,especialidad, key
             if (especialidad === 'mina') {
-                edificio = new EdificioMina(this.game, 0, config.costeMina, pos, ancho, alto, config.alMaxMina, especialidad);
+                edificio = new EdificioMina(this.game,100, config.costeMina, pos, ancho, alto, config.alMaxMina, especialidad);
             }
             else if (especialidad === 'granja') {
                 edificio = new EdificioGranja(this.game, 0, config.costeGranja, pos, ancho, alto, config.alMaxGranja, especialidad);
