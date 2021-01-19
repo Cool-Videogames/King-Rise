@@ -16,7 +16,6 @@ import Minero from "./minero.js";
 import Cantero from "./cantero.js";
 import Ganadero from "./ganadero.js";
 import Explorador from "./explorador.js";
-import Exploracion from "./exploracion.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -28,7 +27,7 @@ export default class Game extends Phaser.Scene {
     this.canteros = [];
     this.exploradores = [];
 
-    this.recursos = { oro: 100, comida: 100, materiales: 100, felicidad: 100 }
+    this.recursos = { oro: 500, comida: 100, materiales: 100, felicidad: 100 }
     this.proxAtaque = 20;
     this.numEdificios = 0;
     this.numChozas = 0;
@@ -56,12 +55,11 @@ export default class Game extends Phaser.Scene {
     this.creaAldeanos(config.numAldeanosIniciales, this.aldeanosBasicos);
     this.interfaz.actualizaInterfaz();
     this.oleadasEnemigos = new OleadasEnemigos(this);
-    this.exploracion = new Exploracion(this);
+
   }
   update(t, dt) {
     this.camera.comportamientoCamara();
     this.ajustes.comportamientoAjustes();
-    
   }
 
   pauseGame() {
@@ -98,7 +96,7 @@ export default class Game extends Phaser.Scene {
 
   creaTrono() {
     let coste = { oro: 0, materiales: 0, comida: 0, felicidad: 0 };
-    this.trono = new Edificio(this, config.vidaTrono, coste, new Vector2D(config.sizeCasilla * 2, config.sizeCasilla * 3), 2, 2, 'trono');
+    this.trono = new Edificio(this, 100, coste, new Vector2D(config.sizeCasilla * 2, config.sizeCasilla * 3), 2, 2, 'trono');
     this.trono.creaBarraVida();
     for (let i = 1; i < 3; ++i)
       for (let j = 1; j < 3; ++j) {

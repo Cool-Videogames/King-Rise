@@ -40,8 +40,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.celdasAnteriores = [];
         this.inputEdificio(this);
         this.creaMarcoDestruir();
-
-        this.destruido = false;
     }
     creaBarraVida() {
         this.barraVida = functions.creaSprite(this.x - this.width, this.y, 'barraVida', this.game, config.edificiosDepth + 1);
@@ -84,10 +82,10 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.game.recursos.felicidad += (config.recuperacionRecursos / 100) * this.costeEdificio.felicidad;
     }
     destruir() {
-        this.destruido = true;
-        console.log('destruir');
-        if (this.key == 'trono') {this.game.scene.restart('game');
-            this.game.scene.start('escenaInicio'); return; }
+        if (this.key == 'trono') {
+            this.game.scene.restart('game');
+            this.game.scene.start('escenaInicio'); return;
+        }
 
         if (this.destruible) {
             this.barraVida.destroy();
@@ -114,12 +112,13 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             }
             this.destroy();
         }
+        if(this.destruido)this.enemyDestruir();
     }
 
     //Cuando lo destruye el enemigo. Spawnear aldeanos almacenados
     enemyDestruir() {
-        let i;
-        for (i = 0; i < this.numAldeanos; ++i) {
+        let i = 0;
+        while (i < this.numAldeanos) {
             console.log(i);
             let rndX = Math.floor(Math.random() * this.ancho);
             let rndY = Math.floor(Math.random() * this.alto);
@@ -130,7 +129,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
                 else sexo = 'aldeana';
                 let aldeano = new Aldeano(this.game, nextCell, 0, 0, sexo);
                 this.game.aldeanosBasicos.push(aldeano);
-
             }
             else if (this.tipoAldeano === this.game.mineros) {
                 let aldeano = new Minero(this.game, nextCell, 0, 0);
@@ -148,9 +146,9 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
                 let aldeano = new Explorador(this.game, nextCell, 0, 0);
                 this.game.exploradores.push(aldeano);
             }
+            i++;
         }
-        console.log("a");
-        this.destruir();
+        this.game.interfaz.actualizaInterfaz();
     }
 
     addToScene() {
@@ -233,10 +231,9 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     recibirAtaque(dmg) {
         this.vida -= dmg
         this.actualizaBarraVida();
-        if (this.vida <= 20)
         if (this.vida <= 0) {
             this.destruido = true;
-            this.enemyDestruir();
+            this.destruir();
             return true;
         }
         return false;
@@ -298,7 +295,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.menos.on('pointerup', pointer => {
             if (this.variacionAldeanos + this.numAldeanos > 0) {
                 this.variacionAldeanos--;
-                console.log(this.numAldeanos);
                 this.texts[1].text = this.variacionAldeanos + this.numAldeanos;
                 this.texts[2].text++;
             }
@@ -307,7 +303,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.done.on('pointerup', pointer => {
             if (this.variacionAldeanos < 0) {
                 for (let i = 0; i < -this.variacionAldeanos; ++i) {
-                    this.tipoAldeano.push(this.game.creaAldeano());
+                    this.game.creaAldeanos(1, this.tipoAldeano);
                     this.numAldeanos--;
                 }
             }
