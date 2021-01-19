@@ -55,11 +55,13 @@ export default class Game extends Phaser.Scene {
     this.creaAldeanos(config.numAldeanosIniciales, this.aldeanosBasicos);
     this.interfaz.actualizaInterfaz();
     this.oleadasEnemigos = new OleadasEnemigos(this);
+    //console.log("");
 
   }
   update(t, dt) {
     this.camera.comportamientoCamara();
     this.ajustes.comportamientoAjustes();
+    
   }
 
   pauseGame() {
