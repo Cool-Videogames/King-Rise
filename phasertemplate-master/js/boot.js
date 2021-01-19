@@ -13,7 +13,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('sabanaEsquina', "./phasertemplate-master/images/fondoYMapa/sabanaEsquina.png");
     this.load.image('sabanaBordeHor', "./phasertemplate-master/images/fondoYMapa/sabanaBordeHor.png");
     this.load.image('sabanaBordeVer', "./phasertemplate-master/images/fondoYMapa/sabanaBordeVer.png");
-    this.load.image('esquinaMontaña', "./phasertemplate-master/images/fondoYMapa/esquinaMontania.png");
+    this.load.image('esquinaMontania', "./phasertemplate-master/images/fondoYMapa/esquinaMontania.png");
     this.load.image('montaniaBordeHor', "./phasertemplate-master/images/fondoYMapa/montaniaBordeHor.png");
     this.load.image('montaniaBordeVer', "./phasertemplate-master/images/fondoYMapa/montaniaBordeVer.png");
     this.load.image('sabanaInterseccionHor', "./phasertemplate-master/images/fondoYMapa/sabanaInterseccionHor.png");
