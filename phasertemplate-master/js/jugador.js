@@ -38,25 +38,56 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.nodoDestino = null;
         this.dir = 'none';
         this.stopBuild = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); //tecla para dejar de construir
+
+
+        this.caminoHastaTrono = false;
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
-        if (Phaser.Input.Keyboard.JustDown(this.stopBuild) && this.isBuilding) {
-            this.edificio.celdas(this.edificio.posicion).forEach(elem => elem.sprite.tint = elem.tint);
-            this.game.casillaPuntero.sprite.tint = 0x41EE7B;
-            this.isBuilding = false;
-            if (this.edificio.key === 'chozaMaestra') {
-                this.game.interfaz.sprites[this.game.interfaz.names.chozaMaestra].clearTint();
-                this.game.numChozas--;
+        if (!this.game.acciones.ataqueEnCurso || this.caminoHastaTrono) {
+            if (Phaser.Input.Keyboard.JustDown(this.stopBuild) && this.isBuilding) {
+                this.edificio.celdas(this.edificio.posicion).forEach(elem => elem.sprite.tint = elem.tint);
+                this.game.casillaPuntero.sprite.tint = 0x41EE7B;
+                this.isBuilding = false;
+                if (this.edificio.key === 'chozaMaestra') {
+                    this.game.interfaz.sprites[this.game.interfaz.names.chozaMaestra].clearTint();
+                    this.game.numChozas--;
+                }
+                this.edificio.destroy();
+                this.edificio = null;
             }
-            this.edificio.destroy();
-            this.edificio = null;
+            if(this.caminoHastaTrono) console.log("asd");
+            this.compruebaPosicion();
+            this.calculaDir();
+
+        } else {
+            if (this.x > this.posDestino.x - config.margenPosicion && this.x < this.posDestino.x + config.margenPosicion
+                && this.y > this.posDestino.y - config.margenPosicion && this.y < this.posDestino.y + config.margenPosicion) {
+                this.body.reset(this.game.trono.x, this.game.trono.y);
+                this.isMoving = false;
+                this.setVisible(false);
+                this.game.trono.setTexture('tronoRey');
+            }
         }
-        this.compruebaPosicion();
-        this.calculaDir();
     }
+
+    irAlTrono() {
+        let camino = this.game.mapa.pathFinding(this.casilla, this.game.mapa.mapa[3][3]);
+        if (camino != null) {
+            this.caminoHastaTrono = true;
+            this.movimientoPathFinding(camino);
+        } else {
+            console.log("Se supone que se para");
+            this.posDestino = this.game.trono;
+            this.isMoving = false;
+            this.body.reset(this.x, this.y);
+            this.game.physics.moveTo(this, this.posDestino.x, this.posDestino.y, this.speed);
+            this.setTexture('jugador');
+        }
+        //this.game.physics.moveTo(this, 0, 0, this.speed);
+    }
+
     calculaDir() {
         let iniDir = this.dir;
         if (this.x < this.posDestino.x && this.dir !== 'right') this.dir = 'right';
@@ -79,12 +110,14 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             else if (this.dir === 'up') this.play('espaldas');
             else if (this.dir === 'down') this.play('frente');
         }
-        else this.setTexture('jugador');
+        else {
+            this.setTexture('jugador');
+        }
     }
 
     inputConstruir(spritename, especialidad, ancho, alto) {
-            this.isBuilding = true;
-            this.edificio = this.construir(spritename, especialidad, this.game.casillaPuntero, ancho, alto);
+        this.isBuilding = true;
+        this.edificio = this.construir(spritename, especialidad, this.game.casillaPuntero, ancho, alto);
     }
 
     posicionaEdificio(edificio) {
@@ -105,6 +138,11 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                     this.game.acciones.movimiento();
 
                     this.movimientoPathFinding(this.nodoDestino.siguiente);
+                }else{
+                    if(this.caminoHastaTrono){
+                        this.setVisible(false);
+                        this.game.trono.setTexture('tronoRey');
+                    }
                 }
             }
         }
@@ -116,15 +154,17 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
     }
 
     movimientoPathFinding(camino) {
-        this.nodoDestino = camino;
-        this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
+        if (!this.game.acciones.ataqueEnCurso || this.caminoHastaTrono) {
+            this.nodoDestino = camino;
+            this.posDestino = this.posicionCentrada(this.nodoDestino.cell);
 
-        this.casilla.ocupada = false;
-        this.casilla = this.nodoDestino.cell;
-        this.casilla.ocupada = true;
+            this.casilla.ocupada = false;
+            this.casilla = this.nodoDestino.cell;
+            this.casilla.ocupada = true;
 
-        this.isMoving = true;
-        this.game.physics.moveTo(this, this.posDestino.x, this.posDestino.y, this.speed);
+            this.isMoving = true;
+            this.game.physics.moveTo(this, this.posDestino.x, this.posDestino.y, this.speed);
+        }
     }
 
     construir(tipo, especialidad, pos, ancho, alto) {

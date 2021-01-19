@@ -23,34 +23,35 @@ export default class Cell {
 
     onClick(nextCell) {
         nextCell.sprite.on('pointerup', () => {
-            if (!nextCell.ocupada) {
+            if (!this.game.acciones.ataqueEnCurso)
+                if (!nextCell.ocupada) {
 
-                if (!this.game.jug.isBuilding) {
-                    let camino = this.game.mapa.pathFinding(this.game.jug.casilla, nextCell);
-                    if (camino != null) {
-                        this.game.jug.movimientoPathFinding(camino);
-                    }
-                }
-                else {
-                    let celdas = this.game.jug.edificio.celdas(this.game.casillaPuntero);
-                    this.game.jug.edificio.posicion = this.game.casillaPuntero;
-
-                    if (!this.game.jug.edificio.celdasOcupadas() && this.game.jug.edificio.esPagable() && this.game.jug.edificio.estaEnRangoDeConstruccion()) {
-                        this.game.audio.construccion.play();
-                        this.game.jug.edificio.setInteractive();
-                        this.game.jug.edificio.cobraCoste();
-                        this.game.interfaz.actualizaInterfaz();
-                        this.game.jug.edificio.creaMarcoDestruir();
-                        if (this.game.jug.edificio.hasMenu) {
-                            this.game.jug.edificio.setMenu();
+                    if (!this.game.jug.isBuilding) {
+                        let camino = this.game.mapa.pathFinding(this.game.jug.casilla, nextCell);
+                        if (camino != null) {
+                            this.game.jug.movimientoPathFinding(camino);
                         }
-                        celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada = true; });
-                        this.game.jug.isBuilding = false;
-                        this.game.jug.edificio.addToScene();
                     }
-                }
+                    else {
+                        let celdas = this.game.jug.edificio.celdas(this.game.casillaPuntero);
+                        this.game.jug.edificio.posicion = this.game.casillaPuntero;
 
-            }
+                        if (!this.game.jug.edificio.celdasOcupadas() && this.game.jug.edificio.esPagable() && this.game.jug.edificio.estaEnRangoDeConstruccion()) {
+                            this.game.audio.construccion.play();
+                            this.game.jug.edificio.setInteractive();
+                            this.game.jug.edificio.cobraCoste();
+                            this.game.interfaz.actualizaInterfaz();
+                            this.game.jug.edificio.creaMarcoDestruir();
+                            if (this.game.jug.edificio.hasMenu) {
+                                this.game.jug.edificio.setMenu();
+                            }
+                            celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada = true; });
+                            this.game.jug.isBuilding = false;
+                            this.game.jug.edificio.addToScene();
+                        }
+                    }
+
+                }
 
         })
 
