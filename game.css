@@ -79,10 +79,11 @@ body {
 h1{
   font-family: 'PressStart2P';
   text-align: left;
+  line-height: 50px;
   margin: 20px 30px;
   font-size: 30px;
   text-decoration: underline;
-  background-color: teal;
+  background-color: rgba(167, 106, 37, 0.507);
 }
 p {
   text-align: left;

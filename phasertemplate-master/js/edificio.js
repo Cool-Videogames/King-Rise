@@ -42,7 +42,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.creaMarcoDestruir();
     }
     creaBarraVida() {
-        this.barraVida = functions.creaSprite(this.x - this.width, this.y, 'barraVida', this.game, config.edificiosDepth + 1);
+        this.barraVida = functions.creaSprite(this.x - this.width, this.y, 'barraVida', this.game, config.edificiosDepth);
         this.barraVida.setPosition(this.barraVida.x, this.barraVida.y + this.barraVida.height / 2);
         this.barraVida.setDisplaySize(this.ancho * config.sizeCasilla, this.barraVida.height);
         this.barraVida.setOrigin(0, 0.5)
