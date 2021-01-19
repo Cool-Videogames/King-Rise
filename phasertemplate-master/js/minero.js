@@ -1,9 +1,9 @@
 import Aldeano from "./aldeano.js";
+import * as config from "./config.js"
 
 export default class Minero extends Aldeano{
-    constructor(scene, casilla, vida, fuerza){
-        super(scene, casilla, vida, fuerza, 'minero');
-        this.rendimiento.renOro = 20;
+    constructor(scene, casilla){
+        super(scene, casilla, config.mineros.vida, config.mineros.dmg, 'minero');
     }
     
     animation(){

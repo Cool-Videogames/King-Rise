@@ -1,17 +1,17 @@
 import * as config from "./config.js"
 import * as functions from "./functions.js";
 
-export default class Persona extends Phaser.GameObjects.Sprite{
-    constructor(scene,pos,vida, fuerza,key){
-        super(scene,pos.x,pos.y,key);
+export default class Persona extends Phaser.GameObjects.Sprite {
+    constructor(scene, pos, vida, fuerza, key) {
+        super(scene, pos.x, pos.y, key);
         this.game = scene;
         this.vidaMaxima = vida;
         this.vida = this.vidaMaxima;
         this.speed = config.playerSpeed;
         this.damage = fuerza;
 
-        this.setOrigin(0.5,1);
-        this.setScale(1*config.sizeCasilla/32,1*config.sizeCasilla/32);
+        this.setOrigin(0.5, 1);
+        this.setScale(1 * config.sizeCasilla / 32, 1 * config.sizeCasilla / 32);
         this.setDepth(config.personasDepth);
         scene.add.existing(this);
         scene.physics.add.existing(this);
@@ -23,6 +23,7 @@ export default class Persona extends Phaser.GameObjects.Sprite{
         this.t = 0;
         this.isInRange = false;
     }
+
     creaBarraVida() {
         this.barraVida = functions.creaSprite(this.x - this.width, this.y, 'barraVida', this.game, config.edificiosDepth + 1);
         this.barraVida.setPosition(this.barraVida.x, this.barraVida.y + this.barraVida.height / 2);
@@ -31,21 +32,24 @@ export default class Persona extends Phaser.GameObjects.Sprite{
         this.barraATope = config.sizeCasilla;
         this.actualizaBarraVida();
     }
+
     actualizaBarraVida() {
         let ancho = (this.vida * this.barraATope) / this.vidaMaxima;
-        this.barraVida.setDisplaySize(ancho, this.barraVida.height-this.barraVida.height/2);
+        this.barraVida.setDisplaySize(ancho, this.barraVida.height - this.barraVida.height / 2);
     }
-    preUpdate(t,dt){
+
+    preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        this.barraVida.x = this.x-this.barraVida.width/4;
-        this.barraVida.y = this.y+this.barraVida.height/4;
+        this.barraVida.x = this.x - this.barraVida.width / 4;
+        this.barraVida.y = this.y + this.barraVida.height / 4;
     }
 
-    attack(objetivo, dmg){
-        objetivo.vida -= dmg;
+    morir() {
+        this.barraVida.destroy();
+        this.destroy();
     }
-    matar(dt){
 
+    matar(dt) {
         if (this.isInRange) {
             this.t += dt / 1000;
 
@@ -75,12 +79,13 @@ export default class Persona extends Phaser.GameObjects.Sprite{
             }
         }
     }
-    
+
     ataque() {
         return this.objetivo.recibirAtaque(this.damage);
     }
+
     move() {
-        this.objetivo = this.objetivoMasCercano(this.juntarTodo());
+        this.objetivo = this.objetivoMasCercano(this.juntarObjetivos());
         if (this.objetivo !== null) {
             let obj = { x: 0, y: 0 };
             this.objetivo.getCenter(obj);
@@ -104,14 +109,14 @@ export default class Persona extends Phaser.GameObjects.Sprite{
         let value = Infinity;
         for (let i = 0; i < objectives.length; i++) {
             if (objectives[i].key !== 'bunker' && objectives[i].key !== 'trampaSuelo' && objectives[i].key !== 'trampaOsos') {
-                let distancia = this.distancia({x: objectives[i].x, y: objectives[i].y});
+                let distancia = this.distancia({ x: objectives[i].x, y: objectives[i].y });
                 if (distancia < value) {
                     index = i;
                     value = distancia;
                 }
             }
         }
-        
+
         if (index >= 0) return objectives[index];
         return null;
     }
@@ -131,8 +136,5 @@ export default class Persona extends Phaser.GameObjects.Sprite{
             return true;
         }
         return false;
-    }
-    morir(){
-        this.destroy();
     }
 }

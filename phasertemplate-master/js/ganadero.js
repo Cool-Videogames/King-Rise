@@ -1,9 +1,9 @@
 import Aldeano from "./aldeano.js";
+import * as config from "./config.js"
 
 export default class Ganadero extends Aldeano{
-    constructor(scene, casilla, vida, fuerza){
-        super(scene, casilla, vida, fuerza, 'ganadero');
-        this.rendimiento.rendComida = 20;
+    constructor(scene, casilla){
+        super(scene, casilla, config.ganaderos.vida, config.ganaderos.dmg, 'ganadero');
     }
     animation(){
         if(this.dir === 'right'){
@@ -18,8 +18,8 @@ export default class Ganadero extends Aldeano{
         else if(this.dir === 'down') this.play('ganaderoFrente');
     }
     morir(){
+        super.morir();
         let index = this.game.ganaderos.indexOf(this);
         this.game.ganaderos.splice(index, 1);
-        this.destroy();
     }
 }

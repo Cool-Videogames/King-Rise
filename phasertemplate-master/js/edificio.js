@@ -96,9 +96,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             this.game.interfaz.actualizaInterfaz();
 
             let index = this.game.edificios.indexOf(this);
-            this.game.edificios.splice(index, 1);
-
-            console.log(this.game.edificios.length);
+            this.game.edificios.splice(index, 1);;
 
             if (this.aldeanosAsignables) {
                 this.marco.destroy();
