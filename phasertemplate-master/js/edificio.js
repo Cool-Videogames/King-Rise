@@ -230,12 +230,12 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.vida -= dmg
         this.actualizaBarraVida();
         if (this.vida <= 20)
-        if (!this.destruido && this.vida <= 0) {
+        if (this.vida <= 0) {
             this.destruido = true;
             this.enemyDestruir();
             return true;
         }
-        return this.destruido;
+        return false;
     }
 
     //MARCO PARA ASIGNAR ALDEANOS
