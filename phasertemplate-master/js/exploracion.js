@@ -1,25 +1,52 @@
 import * as config from "./config.js";
 
-export default class Exploracion{
+export default class Exploracion {
     constructor(scene) {
         this.game = scene;
         this.flecha = this.creaFlecha();
-        this.inputFlecha(this.flecha)
+        this.inputFlecha(this.flecha);
+        this.resultado = null;
+
+        this.aldeanos = 0;
+        this.exploradores = 1;
     }
 
-    creaFlecha(){
+    creaFlecha() {
         let x = config.columnas * config.sizeCasilla;
         let y = config.filas / 2 * config.sizeCasilla;
 
-        let flecha = this.game.add.sprite(x,y,'flechaExploracion');
+        let flecha = this.game.add.sprite(x, y, 'flechaExploracion');
         flecha.setDepth(config.hudDepth);
         flecha.setScale(.2);
         flecha.setInteractive();
         return flecha;
     }
-    inputFlecha(flecha){
+
+    inputFlecha(flecha) {
         flecha.on('pointerover', pointer => {
-            flecha.tint = 0x000000;
+            flecha.tint = 0x777777;
+        })
+
+        flecha.on('pointerup', pointer => {
+            if (this.game.exploradores.length <= 0) {
+                console.log("No hay exploradores disponibles");
+                return;
+            }
+            if (this.game.exploradores.length < this.exploradores ||
+                this.game.aldeanosBasicos.length < this.aldeanos) {
+                console.log("No tienes tantas cosas");
+                return;
+                }
+            this.resultado = this.explorar(this.aldeanos, this.exploradores);
+            for(let i = 0; i < this.aldeanos; i++){
+                let a = this.game.aldeanosBasicos.pop();
+                a.destroy();
+            }
+            for(let i = 0; i < this.exploradores; i++){
+                let a = this.game.exploradores.pop();
+                a.destroy();
+            }
+            this.game.interfaz.actualizaInterfaz();
         })
 
         flecha.on('pointerout', pointer => {
@@ -46,7 +73,7 @@ export default class Exploracion{
             supervivientes = this.metodoQueMasacraCruelmenteAldeanosEnElCasoDeQueSeTrateDeUnaDerrota(aldeanos, exploradores);
         }
 
-        let duracionExploracion = Math.max(config.duracionMinima,Math.floor(Math.random() * config.duracionMaxima));
+        let duracionExploracion = Math.max(config.duracionMinima, Math.floor(Math.random() * config.duracionMaxima));
 
         return {
             victoria: esVictoria,
