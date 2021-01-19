@@ -31,14 +31,29 @@ export default class Aldeano extends Persona {
         this.timer = 0;
         this.esperando = false;
         this.tiempoEspera = 1;
+
+        this.modoDiablo = false;
+
+        this.moveSpeed = 130;
+        this.range = 5;
+        this.damage = 100;
+        this.attackTime = 1;
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        this.compruebaPosicion(dt);
-        this.calculaDir();
+        if (!this.modoDiablo) {
+            this.compruebaPosicion(dt);
+            this.calculaDir();
+        }else{
+            this.matar(dt);
+        }
     }
-
+    
+   
+    juntarTodo(){
+        return this.game.oleadasEnemigos.currentWave;
+    }
     animation() {
         if (this.chico === 'aldeano') {
             if (this.dir === 'right') {
@@ -65,6 +80,17 @@ export default class Aldeano extends Persona {
             else if (this.dir === 'down') this.play('frenteAldeana');
         }
     }
+    
+    activarModoDiablo(bool = true) {
+        this.modoDiablo = bool;
+        if(bool)
+        this.move();
+        else{
+            this.body.reset(this.x, this.y);
+            this.movimientoPathFinding(this.nodoInicial);
+        }
+    }
+
     calculaDir() {
         let iniDir = this.dir;
         if (this.x < this.posDestino.x && this.dir !== 'right') this.dir = 'right';
@@ -153,8 +179,9 @@ export default class Aldeano extends Persona {
         }
     }
 
-    morir() {
-        this.game.aldeanosBasicos;
+    morir(){
+        let index = this.game.aldeanosBasicos.indexOf(this);
+        this.game.aldeanosBasicos.splice(index, 1);
 
         this.destroy();
     }

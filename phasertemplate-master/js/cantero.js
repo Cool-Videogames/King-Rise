@@ -17,4 +17,10 @@ export default class Cantero extends Aldeano{
         else if(this.dir === 'up') this.play('espaldasCantero');
         else if(this.dir === 'down') this.play('frenteCantero');
     }
+
+     morir(){
+        let index = this.game.canteros.indexOf(this);
+        this.game.canteros.splice(index, 1);
+        this.destroy();
+    }
 }

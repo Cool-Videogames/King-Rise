@@ -29,9 +29,10 @@ export default class Acciones {
     ataque() {
         //Se llamará a este método una vez empiece el ataque
         this.ataqueEnCurso = true;
-        this.game.oleadasEnemigos.createWave(10, this.direccion);
+        this.game.oleadasEnemigos.createWave(1, this.direccion);
         this.game.jug.irAlTrono();
         this.nuevaOleada();
+        this.activarModoDiablo();
     }
 
     nuevaOleada() {  //Cuando el ataque finalice y volvamos al modo aldea
@@ -47,6 +48,7 @@ export default class Acciones {
         this.game.interfaz.actualizaInterfaz();
         this.ataqueEnCurso = false;
         this.game.jug.bajarDelTrono();
+        this.activarModoDiablo(false);
     }
 
     actualizarIndice(aumento) {
@@ -70,6 +72,23 @@ export default class Acciones {
         if (this.casillasAvanzadas >= this.casillasParaTurno) {
             this.actualizarIndice(1);
             this.casillasAvanzadas = 0
+        }
+    }
+    activarModoDiablo(bool = true) {
+        for (let i of this.game.aldeanosBasicos) {
+            i.activarModoDiablo(bool);
+        }
+        for (let i of this.game.canteros) {
+            i.activarModoDiablo(bool);
+        } 
+        for (let i of this.game.mineros) {
+            i.activarModoDiablo(bool);
+        } 
+        for (let i of this.game.exploradores) {
+            i.activarModoDiablo(bool);
+        }
+        for (let i of this.game.ganaderos) {
+            i.activarModoDiablo(bool);
         }
     }
 }

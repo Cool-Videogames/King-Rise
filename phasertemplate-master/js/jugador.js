@@ -57,7 +57,6 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 this.edificio.destroy();
                 this.edificio = null;
             }
-            if (this.caminoHastaTrono) console.log("asd");
             this.compruebaPosicion();
             this.calculaDir();
 

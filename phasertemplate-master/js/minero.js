@@ -18,4 +18,8 @@ export default class Minero extends Aldeano{
         else if(this.dir === 'up') this.play('mineroEspaldas');
         else if(this.dir === 'down') this.play('mineroFrente');
     }
+    morir(){
+        let index = this.game.mineros.indexOf(this);
+        this.game.mineros.splice(index, 1);
+    }
 }

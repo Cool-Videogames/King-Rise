@@ -17,4 +17,10 @@ export default class Explorador extends Aldeano{
         else if(this.dir === 'up') this.play('espaldasExplorador');
         else if(this.dir === 'down') this.play('frenteExplorador');
     }
+
+    morir(){
+        let index = this.game.exploradores.indexOf(this);
+        this.game.exploradores.splice(index, 1);
+        this.destroy();
+    }
 }

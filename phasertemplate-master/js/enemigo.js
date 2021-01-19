@@ -15,112 +15,28 @@ export default class Enemigo extends Persona {
         this.body.setSize(this.width / 2, this.height / 4);
         this.body.setOffset(this.width / 4, this.height - this.body.height / 2);
 
-        this.esMelee = true;
-        this.t = 0;
-
-        this.isInRange = false;
         this.setOrigin(0.5, 0.5);
         this.setDepth(config.hudDepth - 1);
 
-        this.posAnterior = null;
     }
-
+    recibirAtaque(dmg) {
+        super.recibirAtaque(dmg);
+        console.log(this.vida);
+    }
     preUpdate(t, dt) {
-        this.barraVida.x = this.x-this.barraVida.width/4;
-        this.barraVida.y = this.y+this.height;
-        if (this.isInRange) {
-            this.t += dt / 1000;
-
-            if (this.objetivo.destruido) {
-                this.isInRange = false;
-                this.move()
-            } else
-                if (this.t > this.attackTime) {
-                    if (this.ataque()) {
-                        this.isInRange = false;
-                        this.move();
-                    }
-                    this.t = 0;
-                }
-        } else {
-            if (this.objetivo === null) return;
-
-            let distancia = this.distanciaObjetivo();
-            let rango = this.range + this.objetivo.ancho / 2 * config.sizeCasilla;
-            if (distancia <= rango) {
-                this.isInRange = true;
-                this.body.reset(this.x, this.y);
-                this.posAnterior = null;
-            }
-        }
+        super.preUpdate(t, dt);
+        this.matar(dt);
     }
 
-    ataque() {
-        return this.objetivo.recibirAtaque(this.damage);
-    }
-
-    objetivoMasCercano(defensivos) {
-        let objectives;
-        defensivos = false;
-        if (defensivos) {
-            objectives = this.game.edificiosDefensivos;
-        } else {
-            objectives = this.game.edificios;
-        }
-        let index = -1;
-        let value = Infinity;
-        for (let i = 0; i < objectives.length; i++) {
-            if (objectives[i].key !== 'bunker' && objectives[i].key !== 'trampaSuelo' && objectives[i].key !== 'trampaOsos') {
-                let distancia = this.distancia(objectives[i].posicion);
-                if (distancia < value) {
-                    index = i;
-                    value = distancia;
-                }
-            }
-        }
-        if (index >= 0) return objectives[index];
-        if (defensivos) return this.objetivoMasCercano(false);
-        return null;
-    }
-
-    distancia(destino) {
-        let x = this.x - destino.x;
-        let y = this.y - destino.y;
-        let result = Math.sqrt(x * x + y * y);
-        return result;
-    }
-    distanciaObjetivo() {
-        if (this.objetivo === null) return;
-        let obj = { x: 0, y: 0 };
-        this.objetivo.getCenter(obj);
-
-        let x = this.x - obj.x;
-        let y = this.y - obj.y;
-        let result = Math.sqrt(x * x + y * y);
-        return result;
-    }
-
-    distanciaPosAnterior(destino) {
-        let x = this.posAnterior.x - destino.x;
-        let y = this.posAnterior.y - destino.y;
-        let result = Math.sqrt(x * x + y * y);
-        return result;
-    }
-
-    move() {
-        this.objetivo = this.objetivoMasCercano(this.esMelee);
-        if (this.objetivo !== null) {
-            let obj = { x: 0, y: 0 };
-            this.objetivo.getCenter(obj);
-            if (this.objetivo !== null)
-                this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
-        }
+    juntarTodo() {
+        return this.game.edificios.concat(this.game.aldeanosBasicos, this.game.mineros, this.game.exploradores,
+            this.game.mineros, this.game.canteros);
     }
 
     morir() {
         let index = this.game.oleadasEnemigos.currentWave.indexOf(this);
         this.game.oleadasEnemigos.currentWave.splice(index, 1);
-        if (this.game.oleadasEnemigos.currentWave.length <= 0)this.game.acciones.nuevaRonda();
-            this.destroy();
+        if (this.game.oleadasEnemigos.currentWave.length <= 0) this.game.acciones.nuevaRonda();
+        this.destroy();
     }
 }
