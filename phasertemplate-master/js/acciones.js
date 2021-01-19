@@ -22,13 +22,15 @@ export default class Acciones {
         this.ataqueEnCurso = false;
     }
 
+    finTurno() {
+        while (this.numeroAccionesRestantes > 0 && !this.ataqueEnCurso) {this.actualizarIndice(1); this.casillasAvanzadas = 0;}
+    }
 
     ataque() {
         //Se llamará a este método una vez empiece el ataque
-        console.log("Ataque iniciado");
         this.ataqueEnCurso = true;
         this.game.oleadasEnemigos.createWave(10, this.direccion);
-
+        this.game.jug.irAlTrono();
         this.nuevaOleada();
     }
 
@@ -39,15 +41,14 @@ export default class Acciones {
         this.accionesSiguienteAtaque = Math.floor(this.accionesSiguienteAtaque * config.relacionAcciones);
         this.accionesSiguienteAtaque = Math.min(this.accionesSiguienteAtaque, config.numeroAccionesMinimo);
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque;
-
     }
 
 
     actualizarIndice(aumento) {
-        if(this.ataqueEnCurso) return;
+        if (this.ataqueEnCurso) return;
 
         this.nuevoAldeano++;
-        if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.aldeanosBasicos.push(this.game.creaAldeano()); this.nuevoAldeano = 0; }
+        if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.creaAldeanos(1,this.game.aldeanosBasicos); this.nuevoAldeano = 0; }
 
         this.index += aumento;
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque - this.index;

@@ -39,6 +39,7 @@ export default class Interfaz {
     }
     this.setPos(); this.creaTexts(); this.setTextsPos();
     this.visibilidad();
+    this.finalizarTurno();
     this.inputs();
   }
 
@@ -85,7 +86,7 @@ export default class Interfaz {
     let xOS = 20; let yOS = 10;
 
     //Recursos y proximo ataque
-    this.sp(this.texts[a.proxAtaque], this.game.xSize / 2 + xOS, pI.y + yOS);
+    this.sp(this.texts[a.proxAtaque], this.game.xSize / 2 + xOS + 10, pI.y + yOS - 13);
     this.sp(this.texts[a.oro], pI.x - pI.width / 4 + xOS, pI.y + pI.height / 5);
     this.sp(this.texts[a.comida], pI.x - pI.width / 6 + xOS, pI.y + pI.height / 5);
     this.sp(this.texts[a.materiales], pI.x - pI.width / 4 + xOS, pI.y - yOS);
@@ -146,6 +147,18 @@ export default class Interfaz {
     this.sprites[nE.cantera].setScale(0.7, 0.7);
   }
 
+  finalizarTurno() {
+    this.finTurno = functions.creaSprite(this.texts[this.tnames.proxAtaque].x + 25, this.texts[this.tnames.proxAtaque].y + 42, 'finTurno', this.game, config.hudDepth);
+    this.finTurno.setScrollFactor(0); this.finTurno.x -= this.finTurno.width / 2;
+    this.finTurno.setScale(0.7, 0.7);
+  }
+
+  clickEnFinTurno(finTurno) {
+    finTurno.on('pointerup', pointer => {
+      this.game.acciones.finTurno();
+    })
+  }
+
   //INPUT SOBRE LOS SPRITES (MIRAR CALLBACKS)
   clickEnAjustes(ajustesSprite) {
     ajustesSprite.on('pointerdown', pointer => {
@@ -156,7 +169,7 @@ export default class Interfaz {
   }
   clickEnDesplegable(desplegableSprite) {
     desplegableSprite.on('pointerdown', pointer => {
-      if (!this.sprites[this.names.menuDesp].visible) {
+      if (!this.sprites[this.names.menuDesp].visible && !this.game.jug.isBuilding) {
         this.sprites[this.names.menuDesp].setVisible(true);
         this.sprites[this.names.info].setVisible(true);
         this.sprites[this.names.botonConstruir].setVisible(true);
@@ -414,6 +427,7 @@ export default class Interfaz {
     this.clickEnMuralla(this.sprites[this.names.muralla]);
     this.clickEnCantera(this.sprites[this.names.cantera]);
     this.clickEnBunker(this.sprites[this.names.bunker]);
+    this.clickEnFinTurno(this.finTurno);
   }
 
   visibilidad() {

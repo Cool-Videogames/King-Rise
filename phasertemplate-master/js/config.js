@@ -58,12 +58,12 @@ export let costePorExplorador = 5;
 export let probabilidadExitoBase = 0.20;
 export let probabilidadExitoPorExploradorAdicional = 0.05;
 export let probabilidadExitoPorAldeanoAdicional = 0.15;
-export let maximoRecursosPorRonda = {oro:10, materiales: 10, comida:5};
+export let maximoRecursosPorRonda = { oro: 10, materiales: 10, comida: 5 };
 export let duracionMaxima = 15;
 export let duracionMinima = 5;
 
 //Edificios
-    //Coste
+//Coste
 export let costeChoza = { oro: 30, materiales: 0, comida: 0, felicidad: 0 };
 export let costeMina = { oro: 20, materiales: 0, comida: 0, felicidad: 0 }; export let alMaxMina = 5; export let tamMina = { x: 5, y: 5 };
 export let costeGranja = { oro: 20, materiales: 0, comida: 0, felicidad: 0 }; export let alMaxGranja = 5; export let tamGranja = { x: 7, y: 5 };
@@ -77,7 +77,7 @@ export let costeMuro = { oro: 20, materiales: 0, comida: 0, felicidad: 0 };
 export let costeTorreArqueros = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
 export let costeTaberna = { oro: 20, materiales: 0, comida: 0, felicidad: 0 };
 export let recuperacionRecursos = 75; //Porcentaje
-    //Vida
+//Vida
 export let vidaChoza = 50;
 export let vidaMina = 50;
 export let vidaGranja = 50;
@@ -90,8 +90,8 @@ export let vidaMuro = 50;
 export let vidaTorreArqueros = 500;
 export let vidaTaberna = 50;
 export let vidaTrono = 1000;
-    //Danio
-    export let danioTorreArqueros = 20;
+//Danio
+export let danioTorreArqueros = 20;
 
 //Descripcion edificios
 export let textoChoza = "La choza maestra: es el \nedificio más  importante.\nEn él podrás crear  y\nespecializar a tus \nqueridísimos aldeanos.";
