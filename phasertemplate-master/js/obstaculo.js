@@ -65,7 +65,7 @@ export default class Obstaculo extends Phaser.GameObjects.Sprite {
         obstaculoSprite.on('pointerup', pointer => {
             let posCentrada = { x: this.posicion.x + 1 / 2 * config.sizeCasilla, y: this.posicion.y + 1 / 2 * config.sizeCasilla };
             let distancia = Math.sqrt(((posCentrada.x - this.game.jug.x) * (posCentrada.x - this.game.jug.x)) + ((posCentrada.y - this.game.jug.y) * (posCentrada.y - this.game.jug.y)));
-            if (distancia < (config.rangoConstruccion + 1.5) * config.sizeCasilla) {
+            if (distancia < config.rangoInteraccion * config.sizeCasilla) {
                 if (!this.game.jug.isBuilding) {
                     if (!this.marco.visible) {
                         this.game.cierraMarcoAnterior();

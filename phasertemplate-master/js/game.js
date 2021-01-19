@@ -21,6 +21,9 @@ import Exploracion from "./exploracion.js";
 export default class Game extends Phaser.Scene {
   constructor() {
     super({ key: 'game' });
+  }
+
+  create() {
     //LISTAS DE ALDEANOS
     this.aldeanosBasicos = [];
     this.mineros = [];
@@ -40,9 +43,11 @@ export default class Game extends Phaser.Scene {
 
     this.casillaPuntero = { x: 0, y: 0 };
     this.cierraMarcoAnterior = () => { };
-  }
 
-  create() {
+    
+/////////////////////////////////////////////////////////////
+
+
     this.audio = new AudioManager(this);
     this.acciones = new Acciones(this, config.numeroAccionesIniciales);
     this.mapa = new Mapa(this, config.columnas, config.filas, config.sizeCasilla);
@@ -58,6 +63,7 @@ export default class Game extends Phaser.Scene {
     this.oleadasEnemigos = new OleadasEnemigos(this);
     this.exploracion = new Exploracion(this);
   }
+
   update(t, dt) {
     this.camera.comportamientoCamara();
     this.ajustes.comportamientoAjustes();
@@ -78,15 +84,15 @@ export default class Game extends Phaser.Scene {
     nextCell.ocupada = true;
 
     let aldeano;
-    if(tipo === this.aldeanosBasicos){
+    if (tipo === this.aldeanosBasicos) {
       let sexo = Math.round(Math.random(0, 1));
       if (sexo === 0) sexo = 'aldeano';
       else sexo = 'aldeana'
       aldeano = new Aldeano(this, nextCell, 0, 0, sexo);
     }
-    else if(tipo === this.mineros) aldeano = new Minero(this,nextCell,0,0);
-    else if(tipo == this.canteros) aldeano = new Cantero(this,nextCell,0,0);
-    else if(tipo === this.ganaderos) aldeano = new Ganadero(this,nextCell,0,0);
+    else if (tipo === this.mineros) aldeano = new Minero(this, nextCell, 0, 0);
+    else if (tipo == this.canteros) aldeano = new Cantero(this, nextCell, 0, 0);
+    else if (tipo === this.ganaderos) aldeano = new Ganadero(this, nextCell, 0, 0);
     else aldeano = new Explorador(this, nextCell, 0, 0);
 
     return aldeano;
@@ -102,7 +108,7 @@ export default class Game extends Phaser.Scene {
     for (let i = 1; i < 3; ++i)
       for (let j = 1; j < 3; ++j) {
         this.mapa.mapa[i][j].tint = 0xE2A41F;
-        this.mapa.mapa[i][j].sprite.tint = 0xE2A41F; 
+        this.mapa.mapa[i][j].sprite.tint = 0xE2A41F;
         this.mapa.mapa[i][j].ocupada = true;
       }
 

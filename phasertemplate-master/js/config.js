@@ -7,6 +7,7 @@ export let winHeight = 720;
 export let playerSpeed = sizeCasilla * 2.5;
 export let margenPosicion = 3;
 export let rangoConstruccion = 4;
+export let rangoInteraccion = 7;
 export let numAldeanosIniciales = 3;
 
 export let numObstaculos = 16;
