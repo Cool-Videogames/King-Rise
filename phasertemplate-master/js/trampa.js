@@ -13,9 +13,7 @@ export default class Trampa extends EdificioDefensivo {
     }
     preUpdate(){
         super.preUpdate();
-
         if(this.enemyStunned){
-            console.log("STUNEADO");
             this.timer--;
             if(this.timer <= 0) {
                 this.enemyStunned = false;
