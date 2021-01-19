@@ -41,6 +41,7 @@ export default class TorreArqueros extends EdificioDefensivo {
         }
         else if (!this.game.acciones.ataqueEnCurso && this.collider !== null) {
             this.collider.destroy();
+            this.collider = null;
         }
 
         this.fireRate -= dt;
