@@ -40,6 +40,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.celdasAnteriores = [];
         this.inputEdificio(this);
         this.creaMarcoDestruir();
+
+        this.destruido = false;
     }
     creaBarraVida() {
         this.barraVida = functions.creaSprite(this.x - this.width, this.y, 'barraVida', this.game, config.edificiosDepth + 1);
@@ -82,6 +84,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.game.recursos.felicidad += (config.recuperacionRecursos / 100) * this.costeEdificio.felicidad;
     }
     destruir() {
+        this.destruido = true;
         console.log('destruir');
         if (this.key == 'trono') {this.game.scene.restart('game');
             this.game.scene.start('escenaInicio'); return; }
@@ -146,6 +149,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
                 this.game.exploradores.push(aldeano);
             }
         }
+        console.log("a");
         this.destruir();
     }
 
