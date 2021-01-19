@@ -155,7 +155,8 @@ export default class Interfaz {
 
   clickEnFinTurno(finTurno) {
     finTurno.on('pointerup', pointer => {
-      this.game.acciones.finTurno();
+      if (!this.game.acciones.ataqueEnCurso)
+        this.game.acciones.finTurno();
     })
   }
 

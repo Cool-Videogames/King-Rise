@@ -57,7 +57,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 this.edificio.destroy();
                 this.edificio = null;
             }
-            if(this.caminoHastaTrono) console.log("asd");
+            if (this.caminoHastaTrono) console.log("asd");
             this.compruebaPosicion();
             this.calculaDir();
 
@@ -86,6 +86,12 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
             this.setTexture('jugador');
         }
         //this.game.physics.moveTo(this, 0, 0, this.speed);
+    }
+
+    bajarDelTrono() {
+        this.setVisible(true);
+        this.game.trono.setTexture('trono');
+        this.caminoHastaTrono = false;
     }
 
     calculaDir() {
@@ -138,8 +144,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                     this.game.acciones.movimiento();
 
                     this.movimientoPathFinding(this.nodoDestino.siguiente);
-                }else{
-                    if(this.caminoHastaTrono){
+                } else {
+                    if (this.caminoHastaTrono) {
                         this.setVisible(false);
                         this.game.trono.setTexture('tronoRey');
                     }

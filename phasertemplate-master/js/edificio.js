@@ -83,12 +83,11 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     }
     destruir() {
         if (this.key == 'trono') {
-            this.game.scene.restart('game');
             this.game.scene.start('escenaInicio'); return;
         }
 
         if (this.destruible) {
-            if(this.hasMenu)this.barraVida.destroy();
+            if (this.hasMenu) this.barraVida.destroy();
             if (!this.destruido) this.game.creaAldeanos(this.numAldeanos, this.tipoAldeano);
             this.game.audio.destruccion.play();
             this.marcoDestruir.destroy();
@@ -158,7 +157,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         edificio.on('pointerup', pointer => {
             let posCentrada = { x: this.posicion.x + this.ancho / 2 * config.sizeCasilla, y: this.posicion.y + this.alto / 2 * config.sizeCasilla };
             let distancia = Math.sqrt(((posCentrada.x - this.game.jug.x) * (posCentrada.x - this.game.jug.x)) + ((posCentrada.y - this.game.jug.y) * (posCentrada.y - this.game.jug.y)));
-            if (distancia < (config.rangoConstruccion + 1.5) * config.sizeCasilla) {
+            if (distancia < config.rangoInteraccion * config.sizeCasilla) {
                 if (!this.marcoDestruir.visible) {
                     this.game.cierraMarcoAnterior();
                     this.game.cierraMarcoAnterior = this.abreMarcos;

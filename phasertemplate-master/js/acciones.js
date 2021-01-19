@@ -23,7 +23,7 @@ export default class Acciones {
     }
 
     finTurno() {
-        while (this.numeroAccionesRestantes > 0 && !this.ataqueEnCurso) {this.actualizarIndice(1); this.casillasAvanzadas = 0;}
+        while (this.numeroAccionesRestantes > 0 && !this.ataqueEnCurso) { this.actualizarIndice(1); this.casillasAvanzadas = 0; }
     }
 
     ataque() {
@@ -43,12 +43,17 @@ export default class Acciones {
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque;
     }
 
+    nuevaRonda() {
+        this.game.interfaz.actualizaInterfaz();
+        this.ataqueEnCurso = false;
+        this.game.jug.bajarDelTrono();
+    }
 
     actualizarIndice(aumento) {
         if (this.ataqueEnCurso) return;
 
         this.nuevoAldeano++;
-        if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.creaAldeanos(1,this.game.aldeanosBasicos); this.nuevoAldeano = 0; }
+        if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.creaAldeanos(1, this.game.aldeanosBasicos); this.nuevoAldeano = 0; }
 
         this.index += aumento;
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque - this.index;
