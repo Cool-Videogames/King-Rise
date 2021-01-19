@@ -28,12 +28,12 @@ export default class Persona extends Phaser.GameObjects.Sprite{
     actualizaBarraVida() {
         console.log(this.vida);
         let ancho = (this.vida * this.barraATope) / this.vidaMaxima;
-        this.barraVida.setDisplaySize(ancho, this.barraVida.height);
+        this.barraVida.setDisplaySize(ancho, this.barraVida.height-this.barraVida.height/2);
     }
     preUpdate(){
         super.preUpdate();
         this.barraVida.x = this.x-this.barraVida.width/4;
-        this.barraVida.y = this.y+this.barraVida.height/2;
+        this.barraVida.y = this.y+this.barraVida.height/4;
     }
 
     attack(objetivo, dmg){
