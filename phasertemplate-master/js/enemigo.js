@@ -30,10 +30,15 @@ export default class Enemigo extends Persona {
             this.t += dt / 1000;
 
             if (this.t > this.attackTime) {
-                if (this.ataque()) {
+                if (this.objetivo.destruido) {
+                    console.log("Asdasdasdasd");
                     this.isInRange = false;
-                    this.move();
-                }
+                    this.move()
+                } else
+                    if (this.ataque()) {
+                        this.isInRange = false;
+                        this.move();
+                    }
                 this.t = 0;
             }
         } else {
