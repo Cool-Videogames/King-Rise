@@ -49,9 +49,12 @@ export default class Enemigo extends Persona {
         }
     }
 
-
     ataque() {
-        return this.objetivo.recibirAtaque(this.damage);
+        if (this.objetivo.vida > 0) {
+            this.objetivo.recibirAtaque(this.damage);
+            return false;
+        }
+        return true;
     }
 
     objetivoMasCercano(defensivos) {
