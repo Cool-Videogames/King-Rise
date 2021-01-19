@@ -26,6 +26,7 @@ export default class Aldeano extends Persona {
         this.tiempoEspera = 1;
 
         this.modoAtaque = false;
+        this.continuaAnimacion = false;
 
         this.moveSpeed = 130;
         this.range = 2;
@@ -36,7 +37,8 @@ export default class Aldeano extends Persona {
         super.preUpdate(t, dt);
         if (!this.modoAtaque) {
             this.compruebaPosicion(dt);
-            this.calculaDir();
+            if (this.continuaAnimacion)
+                this.calculaDir();
         } else {
             this.matar(dt);
         }
@@ -72,13 +74,20 @@ export default class Aldeano extends Persona {
             else if (this.dir === 'up') this.play('espaldasAldeana');
             else if (this.dir === 'down') this.play('frenteAldeana');
         }
+
     }
 
     activarModoAtaque(bool = true) {
         this.modoAtaque = bool;
-        if (bool)
+        if (bool) {
+            this.anims.stop();
+            this.continuaAnimacion = false;
+            this.setTexture('aldeano');
             this.move();
+        }
         else {
+            this.vida = this.vidaMaxima;
+            this.actualizaBarraVida();
             this.body.reset(this.x, this.y);
             this.isInRange = false;
             this.movimientoPathFinding(this.nodoInicial);
@@ -99,7 +108,7 @@ export default class Aldeano extends Persona {
         if (this.x > this.posDestino.x - config.margenPosicion && this.x < this.posDestino.x + config.margenPosicion &&
             this.y > this.posDestino.y - config.margenPosicion && this.y < this.posDestino.y + config.margenPosicion) {
             this.body.reset(this.posDestino.x, this.posDestino.y);
-
+            this.continuaAnimacion = true;
             if (this.nodoDestino.siguiente !== null) {
                 this.movimientoPathFinding(this.nodoDestino.siguiente);
             }

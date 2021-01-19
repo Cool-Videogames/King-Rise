@@ -29,7 +29,7 @@ export default class Acciones {
     ataque() {
         //Se llamará a este método una vez empiece el ataque
         this.ataqueEnCurso = true;
-        this.game.oleadasEnemigos.createWave(1, this.direccion);
+        this.game.oleadasEnemigos.createWave(10, this.direccion);
         this.game.jug.irAlTrono();
         this.nuevaOleada();
         this.activarModoAtaque();
@@ -45,6 +45,7 @@ export default class Acciones {
     }
 
     nuevaRonda() {
+        for (let i of this.game.edificios) i.vida = i.vidaMaxima;
         this.game.interfaz.actualizaInterfaz();
         this.ataqueEnCurso = false;
         this.game.jug.bajarDelTrono();
@@ -56,6 +57,14 @@ export default class Acciones {
 
         this.nuevoAldeano++;
         if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.creaAldeanos(1, this.game.aldeanosBasicos); this.nuevoAldeano = 0; }
+        this.generaRecursos++;
+
+        for (let i of this.game.edificios) {
+            if (i.recursos) {
+                i.generaRecursos++;
+                if (i.generaRecursos >= config.generaRecursos) { i.generar(); i.generaRecursos = 0; }
+            }
+        }
 
         this.index += aumento;
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque - this.index;
@@ -81,10 +90,10 @@ export default class Acciones {
         }
         for (let i of this.game.canteros) {
             i.activarModoAtaque(bool);
-        } 
+        }
         for (let i of this.game.mineros) {
             i.activarModoAtaque(bool);
-        } 
+        }
         for (let i of this.game.exploradores) {
             i.activarModoAtaque(bool);
         }

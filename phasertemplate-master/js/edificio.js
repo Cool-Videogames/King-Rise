@@ -29,6 +29,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.posMarcoX = 2;
         this.destruido = false;
 
+        this.recursos = false;
+
         this.ancho = ancho;
         this.alto = alto;
         this.setOrigin(this.scaleX / 2, this.scaleY);
