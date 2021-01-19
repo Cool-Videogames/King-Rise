@@ -65,18 +65,18 @@ export let duracionMinima = 5;
 
 //Edificios
 //Coste
-export let costeChoza = { oro: 30, materiales: 0, comida: 0, felicidad: 0 };
-export let costeMina = { oro: 20, materiales: 0, comida: 0, felicidad: 0 }; export let alMaxMina = 5; export let tamMina = { x: 5, y: 5 };
-export let costeGranja = { oro: 20, materiales: 0, comida: 0, felicidad: 0 }; export let alMaxGranja = 5; export let tamGranja = { x: 7, y: 5 };
-export let costeCantera = { oro: 20, materiales: 0, comida: 0, felicidad: 0 }; export let alMaxCantera = 5; export let tamCantera = { x: 3, y: 3 };
-export let costeTrampaOso = { oro: 10, materiales: 0, comida: 0, felicidad: 0 };
-export let costeTrampaSuelo = { oro: 10, materiales: 0, comida: 0, felicidad: 0 };
-export let costeCaballoTroya = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
-export let costePuestoVigilancia = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
-export let costeBunker = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
-export let costeMuro = { oro: 20, materiales: 0, comida: 0, felicidad: 0 };
-export let costeTorreArqueros = { oro: 50, materiales: 0, comida: 0, felicidad: 0 };
-export let costeTaberna = { oro: 20, materiales: 0, comida: 0, felicidad: 0 };
+export let costeChoza = { oro: 0, materiales: 50, comida: 0, felicidad: 0 };
+export let costeMina = { oro: 0, materiales: 30, comida: 0, felicidad: 0 }; export let alMaxMina = 5; export let tamMina = { x: 5, y: 5 };
+export let costeGranja = { oro: 0, materiales: 30, comida: 0, felicidad: 0 }; export let alMaxGranja = 5; export let tamGranja = { x: 7, y: 5 };
+export let costeCantera = { oro: 0, materiales: 30, comida: 0, felicidad: 0 }; export let alMaxCantera = 5; export let tamCantera = { x: 3, y: 3 };
+export let costeTrampaOso = { oro: 0, materiales: 10, comida: 0, felicidad: 0 };
+export let costeTrampaSuelo = { oro: 0, materiales: 10, comida: 0, felicidad: 0 };
+export let costeCaballoTroya = { oro: 0, materiales: 40, comida: 0, felicidad: 0 };
+export let costePuestoVigilancia = { oro: 0, materiales: 40, comida: 0, felicidad: 0 };
+export let costeBunker = { oro: 0, materiales: 40, comida: 0, felicidad: 0 };
+export let costeMuro = { oro: 0, materiales: 20, comida: 0, felicidad: 0 };
+export let costeTorreArqueros = { oro: 0, materiales: 40, comida: 0, felicidad: 0 };
+export let costeTaberna = { oro: 0, materiales: 20, comida: 0, felicidad: 0 };
 export let recuperacionRecursos = 75; //Porcentaje
 //Vida
 export let vidaChoza = 50;

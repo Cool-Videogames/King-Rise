@@ -212,7 +212,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 edificio = new CaballoTroya(this.game, especialidad, config.vidaCaballoTroya, config.costeCaballoTroya, pos, ancho, alto, 10, 0, especialidad);
             }
             else if (especialidad === "bunker") {
-                edificio = new Bunker(this.game, especialidad, 1000, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 10, 0, especialidad);
+                edificio = new Bunker(this.game, especialidad, 0, config.costeBunker, pos, ancho, alto, 10, 0, especialidad);
             }
         }
         return edificio;
