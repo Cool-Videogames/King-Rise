@@ -275,7 +275,7 @@ export default class Interfaz {
   }
 
   clickEnChoza(chozaMaestra) {
-    this.marcoCoste(chozaMaestra, config.costeChoza.oro, config.textoChoza);
+    this.marcoCoste(chozaMaestra, config.costeChoza.materiales, config.textoChoza);
 
     chozaMaestra.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
@@ -289,7 +289,7 @@ export default class Interfaz {
     })
   }
   clickEnMina(mina) {
-    this.marcoCoste(mina, config.costeMina.oro, config.textoMina);
+    this.marcoCoste(mina, config.costeMina.materiales, config.textoMina);
     mina.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('recursos', 'mina', config.tamMina.x, config.tamMina.y);
@@ -298,7 +298,7 @@ export default class Interfaz {
     })
   }
   clickEnTrampaOso(trampaOso) {
-    this.marcoCoste(trampaOso, config.costeTrampaOso.oro, config.textoTrampaOso);
+    this.marcoCoste(trampaOso, config.costeTrampaOso.materiales, config.textoTrampaOso);
     trampaOso.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('defensivo', 'trampaOsos', 1, 1);
@@ -307,7 +307,7 @@ export default class Interfaz {
     })
   }
   clickEnTorreArqueros(torreArqueros) {
-    this.marcoCoste(torreArqueros, config.costeTorreArqueros.oro, config.textoTorreArqueros);
+    this.marcoCoste(torreArqueros, config.costeTorreArqueros.materiales, config.textoTorreArqueros);
     torreArqueros.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('defensivo', 'torreArqueros', 2, 2);
@@ -316,7 +316,7 @@ export default class Interfaz {
     })
   }
   clickEnGranja(granja) {
-    this.marcoCoste(granja, config.costeGranja.oro, config.textoGranja);
+    this.marcoCoste(granja, config.costeGranja.materiales, config.textoGranja);
     granja.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('recursos', 'granja', config.tamGranja.x, config.tamGranja.y);
@@ -326,7 +326,7 @@ export default class Interfaz {
   }
 
   clickEnPuestoVigilancia(puestoVigilancia) {
-    this.marcoCoste(puestoVigilancia, config.costePuestoVigilancia.oro, config.textoPuestoVigilancia);
+    this.marcoCoste(puestoVigilancia, config.costePuestoVigilancia.materiales, config.textoPuestoVigilancia);
     puestoVigilancia.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('defensivo', 'puestoVigilancia', 1, 2);
@@ -336,7 +336,7 @@ export default class Interfaz {
   }
 
   clickEnCaballoTroya(caballoTroya) {
-    this.marcoCoste(caballoTroya, config.costeCaballoTroya.oro, config.textoCaballoTroya);
+    this.marcoCoste(caballoTroya, config.costeCaballoTroya.materiales, config.textoCaballoTroya);
     caballoTroya.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('defensivo', 'caballoTroya', 4, 4);
@@ -345,7 +345,7 @@ export default class Interfaz {
     })
   }
   clickEnTaberna(taberna) {
-    this.marcoCoste(taberna, config.costeTaberna.oro, config.textoTaberna);
+    this.marcoCoste(taberna, config.costeTaberna.materiales, config.textoTaberna);
     taberna.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('social', 'taberna', 5, 3);
@@ -354,7 +354,7 @@ export default class Interfaz {
     })
   }
   clickEnTrampaSuelo(trampaSuelo) {
-    this.marcoCoste(trampaSuelo, config.costeTrampaSuelo.oro, config.textoTrampaSuelo);
+    this.marcoCoste(trampaSuelo, config.costeTrampaSuelo.materiales, config.textoTrampaSuelo);
     trampaSuelo.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('defensivo', 'trampaSuelo', 2, 2);
@@ -363,7 +363,7 @@ export default class Interfaz {
     })
   }
   clickEnMuralla(muralla) {
-    this.marcoCoste(muralla, config.costeMuro.oro, config.textoMuro);
+    this.marcoCoste(muralla, config.costeMuro.materiales, config.textoMuro);
     muralla.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('defensivo', 'muralla', 1, 1);
@@ -372,7 +372,7 @@ export default class Interfaz {
     })
   }
   clickEnCantera(cantera) {
-    this.marcoCoste(cantera, config.costeCantera.oro, config.textoCantera);
+    this.marcoCoste(cantera, config.costeCantera.materiales, config.textoCantera);
     cantera.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('recursos', 'cantera', 3, 3);
@@ -382,7 +382,7 @@ export default class Interfaz {
   }
 
   clickEnBunker(bunker) {
-    this.marcoCoste(bunker, config.costeBunker.oro, config.textoBunker);
+    this.marcoCoste(bunker, config.costeBunker.materiales, config.textoBunker);
     bunker.on('pointerup', pointer => {
       if (!this.game.jug.isMoving) {
         this.game.jug.inputConstruir('defensivo', 'bunker', 4, 4);
