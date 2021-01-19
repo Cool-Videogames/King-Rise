@@ -1,9 +1,6 @@
 import EdificioDefensivo from "./edificioDefensivo.js";
 import * as config from "./config.js"
 import * as functions from "./functions.js";
-import Aldeano from "./aldeano.js";
-import Enemigo from "./enemigo.js";
-import EnemigoMele from "./enemigoMele.js";
 
 export default class TorreArqueros extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
@@ -37,7 +34,7 @@ export default class TorreArqueros extends EdificioDefensivo {
                     this.game.physics.add.overlap(this.arrow, enemy, (arrow, enemy) => {
                         arrow.destroy();
                         this.arrow = null;
-                        this.atacar(enemy, 2 * this.numAldeanos);
+                        this.atacar(enemy, config.danioTorreArqueros * this.numAldeanos);
                     })
                 }
             });
