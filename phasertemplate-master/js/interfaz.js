@@ -156,7 +156,7 @@ export default class Interfaz {
   }
   clickEnDesplegable(desplegableSprite) {
     desplegableSprite.on('pointerdown', pointer => {
-      if (!this.sprites[this.names.menuDesp].visible) {
+      if (!this.sprites[this.names.menuDesp].visible && !this.game.jug.isBuilding) {
         this.sprites[this.names.menuDesp].setVisible(true);
         this.sprites[this.names.info].setVisible(true);
         this.sprites[this.names.botonConstruir].setVisible(true);

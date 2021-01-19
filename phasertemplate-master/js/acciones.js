@@ -38,7 +38,6 @@ export default class Acciones {
         this.accionesSiguienteAtaque = Math.floor(this.accionesSiguienteAtaque * config.relacionAcciones);
         this.accionesSiguienteAtaque = Math.min(this.accionesSiguienteAtaque, config.numeroAccionesMinimo);
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque;
-
     }
 
 
