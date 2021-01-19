@@ -15,6 +15,8 @@ export default class Enemigo extends Persona {
         this.range = 5;
         this.damage = 10;
         this.attackTime = 1;
+        this.body.setSize(this.width/2, this.height/4);
+        this.body.setOffset(this.width/4,this.height-this.body.height/2);
 
         this.esMelee = true;
         this.t = 0;
@@ -116,7 +118,6 @@ export default class Enemigo extends Persona {
                 this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
         }
     }
-
 
     morir() {
         this.destroy();

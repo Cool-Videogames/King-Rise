@@ -11,7 +11,7 @@ export default class OleadasEnemigos {
     createWave(numberOfEnemies, dir) {
         this.currentWave = [];
 
-        for (let i = 0; i < numberOfEnemies; i++) {
+        for (let i = 0; i < 1; i++) {
             this.currentWave.push(this.createMeleeEnemy(dir));
         }
     }

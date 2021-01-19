@@ -3,17 +3,47 @@ import EdificioDefensivo from "./edificioDefensivo.js";
 export default class Trampa extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
         super(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key);
-        this.hasMenu = true;
+        this.especialidad = especialidad;
+        this.game = scene;
+        this.hasMenu = false;
         this.aldeanosAsignables = false;
-        
-        scene.physics.add.overlap(this, /*enemy*/ (trap, enemy) => {
-            if (especialidad === 'trampaSuelo')
-                enemy.destroy();
-            else{
-                 this.atacar(enemy, 50);
-                 //STUNEAR ENEMIGO
+        this.enemyStunned = false;
+        this.enemy = null;
+        this.timer = 0;
+        this.collider = null;
+    }
+    preUpdate() {
+        super.preUpdate();
+        if (this.enemyStunned) {
+            console.log("STUNEADO");
+            this.timer--;
+            if (this.timer <= 0) {
+                this.enemyStunned = false;
+                this.enemy.move();
+                this.destruir();
+            }
+        }
+        if (this.game.acciones.ataqueEnCurso && this.collider === null) {
+            this.collider = this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (trap, enemy) => {
+                this.enemy = enemy;
+                if (this.especialidad === 'trampaSuelo') {
+                    this.enemy.destroy();
+                    trap.destruir();
                 }
-            trap.destroy();
-        })
+                else if (!this.enemyStunned) {
+                    this.atacar(this.enemy, 15);
+                    this.stun();
+                }
+            })
+        }
+        else if (!this.game.acciones.ataqueEnCurso && this.collider !== null) {
+            this.collider.destroy();
+            this.collider = null;
+        }
+    }
+    stun() {
+        this.enemy.body.setVelocity(0);
+        this.enemyStunned = true;
+        this.timer = 100;
     }
 }

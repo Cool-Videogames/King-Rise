@@ -1,4 +1,5 @@
 import EdificioDefensivo from "./edificioDefensivo.js";
+import Aldeano from "./aldeano.js";
 
 export default class CaballoTroya extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
@@ -20,21 +21,5 @@ export default class CaballoTroya extends EdificioDefensivo {
             }
             this.marcoDestruir.setVisible(!this.marcoDestruir.visible);
         }
-    }
-    //Cuando lo destruye el enemigo. Spawnear aldeanos almacenados
-    enemyDestruir() {
-        for (let i = 0; i < this.numAldeanos; ++i) {
-            let sexo = Math.round(Math.random(0, 1));
-            if (sexo === 0) sexo = 'aldeano';
-            else sexo = 'aldeana';
-
-            let rndX = Math.floor(Math.random() * this.ancho);
-            let rndY = Math.floor(Math.random() * this.alto);
-            let nextCell = this.game.mapa.mapa[this.posicion.indiceX + rndX][this.posicion.indiceY + rndY];
-
-            let aldeano = new Aldeano(this.game, nextCell, 0, 0, sexo);
-            this.game.exploradores.push(aldeano);
-        }
-        this.destruir();
     }
 }
