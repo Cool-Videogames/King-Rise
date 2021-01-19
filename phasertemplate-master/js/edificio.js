@@ -82,7 +82,9 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.game.recursos.felicidad += (config.recuperacionRecursos / 100) * this.costeEdificio.felicidad;
     }
     destruir() {
-        if (this.key == 'trono') { this.game.scene.start('escenaInicio'); return; }
+        console.log('destruir');
+        if (this.key == 'trono') {this.game.scene.stop('game');
+            this.game.scene.start('escenaInicio'); return; }
 
         if (this.destruible) {
             this.barraVida.destroy();
@@ -113,33 +115,34 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
 
     //Cuando lo destruye el enemigo. Spawnear aldeanos almacenados
     enemyDestruir() {
-        for (let i = 0; i < this.numAldeanos; ++i) {
-            let sexo = Math.round(Math.random(0, 1));
-            if (sexo === 0) sexo = 'aldeano';
-            else sexo = 'aldeana';
-
+        let i;
+        for (i = 0; i < this.numAldeanos; ++i) {
+            console.log(i);
             let rndX = Math.floor(Math.random() * this.ancho);
             let rndY = Math.floor(Math.random() * this.alto);
             let nextCell = this.game.mapa.mapa[this.posicion.indiceX + rndX][this.posicion.indiceY + rndY];
-            let aldeano;
             if (this.tipoAldeano === this.game.aldeanosBasicos) {
-                aldeano = new Aldeano(this.game, nextCell, 0, 0, sexo);
+                let sexo = Math.round(Math.random(0, 1));
+                if (sexo === 0) sexo = 'aldeano';
+                else sexo = 'aldeana';
+                let aldeano = new Aldeano(this.game, nextCell, 0, 0, sexo);
                 this.game.aldeanosBasicos.push(aldeano);
+
             }
             else if (this.tipoAldeano === this.game.mineros) {
-                aldeano = new Minero(this.game, nextCell, 0, 0);
+                let aldeano = new Minero(this.game, nextCell, 0, 0);
                 this.game.mineros.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.canteros) {
-                aldeano = new Cantero(this.game, nextCell, 0, 0);
+                let aldeano = new Cantero(this.game, nextCell, 0, 0);
                 this.game.canteros.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.ganaderos) {
-                aldeano = new Ganadero(this.game, nextCell, 0, 0);
+                let aldeano = new Ganadero(this.game, nextCell, 0, 0);
                 this.game.ganaderos.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.exploradores) {
-                aldeano = new Explorador(this.game, nextCell, 0, 0);
+                let aldeano = new Explorador(this.game, nextCell, 0, 0);
                 this.game.exploradores.push(aldeano);
             }
         }
@@ -224,9 +227,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     }
 
     recibirAtaque(dmg) {
-        this.vida -= dmg;
+        this.vida -= dmg
         this.actualizaBarraVida();
-
         if (this.vida <= 0) {
             this.destruido = true;
             this.enemyDestruir();
