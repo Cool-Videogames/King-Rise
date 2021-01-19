@@ -42,7 +42,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.creaMarcoDestruir();
     }
     creaBarraVida() {
-        this.barraVida = functions.creaSprite(this.x - this.width, this.y, 'barraVida', this.game, config.edificiosDepth);
+        this.barraVida = functions.creaSprite(this.x - this.width, this.y, 'barraVida', this.game, config.edificiosDepth + 1);
         this.barraVida.setPosition(this.barraVida.x, this.barraVida.y + this.barraVida.height / 2);
         this.barraVida.setDisplaySize(this.ancho * config.sizeCasilla, this.barraVida.height);
         this.barraVida.setOrigin(0, 0.5)
@@ -83,8 +83,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     }
     destruir() {
         console.log('destruir');
-        if (this.key == 'trono') {this.game.scene.stop('game');
-            this.game.scene.start('escenaInicio'); return; }
+        if (this.key == 'trono') { this.game.scene.start('escenaInicio'); return; }
 
         if (this.destruible) {
             this.barraVida.destroy();
@@ -94,7 +93,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             this.devuelveCoste();
             let celdas = this.celdas(this.posicion);
             functions.resetCells(celdas);
-            this.destroy();
             this.game.interfaz.actualizaInterfaz();
 
             let index = this.game.edificios.indexOf(this);
@@ -110,6 +108,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
                 for (let i of this.texts) i.destroy();
                 this.game.cierraMarcoAnterior = () => { };
             }
+            this.destroy();
         }
     }
 
@@ -229,12 +228,13 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     recibirAtaque(dmg) {
         this.vida -= dmg
         this.actualizaBarraVida();
-        if (this.vida <= 0) {
+        if (this.vida <= 20)
+        if (!this.destruido && this.vida <= 0) {
             this.destruido = true;
             this.enemyDestruir();
             return true;
         }
-        return false;
+        return this.destruido;
     }
 
     //MARCO PARA ASIGNAR ALDEANOS
