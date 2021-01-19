@@ -52,6 +52,11 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     actualizaBarraVida() {
         let ancho = (this.vida * this.barraATope) / this.vidaMaxima;
         this.barraVida.setDisplaySize(ancho, this.barraVida.height);
+
+        let porcentajeVida = (this.vida*100)/this.vidaMaxima;
+        if(porcentajeVida> 60) this.barraVida.setTexture('barraVida');
+        else if(porcentajeVida > 30) this.barraVida.setTexture('barraVidaNaranja');
+        else this.barraVida.setTexture('barraVidaRoja');
     }
 
     estaEnRangoDeConstruccion() {

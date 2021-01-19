@@ -29,7 +29,7 @@ export default class Acciones {
     ataque() {
         //Se llamará a este método una vez empiece el ataque
         this.ataqueEnCurso = true;
-        this.game.oleadasEnemigos.createWave(1, this.direccion);
+        this.game.oleadasEnemigos.createWave(10, this.direccion);
         this.game.jug.irAlTrono();
         this.nuevaOleada();
         this.activarModoDiablo();

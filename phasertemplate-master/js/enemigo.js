@@ -24,7 +24,9 @@ export default class Enemigo extends Persona {
         console.log(this.vida);
     }
     preUpdate(t, dt) {
-        super.preUpdate(t, dt);
+        super.preUpdate();
+        this.barraVida.x = this.x-this.barraVida.width/4;
+        this.barraVida.y = this.y+this.height;
         this.matar(dt);
     }
 
