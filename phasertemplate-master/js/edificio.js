@@ -1,5 +1,10 @@
+import Aldeano from "./aldeano.js";
+import Cantero from "./cantero.js";
 import * as config from "./config.js"
+import Explorador from "./explorador.js";
 import * as functions from "./functions.js";
+import Ganadero from "./ganadero.js";
+import Minero from "./minero.js";
 import Vector2D from "./vector2D.js";
 
 export default class Edificio extends Phaser.GameObjects.Sprite {
@@ -22,6 +27,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.tipoAldeano = this.game.exploradores;
         this.numAldeanos = 0;
         this.posMarcoX = 2;
+        this.destruido = false;
 
         this.ancho = ancho;
         this.alto = alto;
@@ -35,19 +41,19 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.inputEdificio(this);
         this.creaMarcoDestruir();
     }
-    creaBarraVida(){
-        this.barraVida = functions.creaSprite(this.x-this.width, this.y, 'barraVida', this.game,config.edificiosDepth+1);
-        this.barraVida.setPosition(this.barraVida.x, this.barraVida.y+this.barraVida.height/2);
-        this.barraVida.setDisplaySize(this.ancho*config.sizeCasilla, this.barraVida.height);
+    creaBarraVida() {
+        this.barraVida = functions.creaSprite(this.x - this.width, this.y, 'barraVida', this.game, config.edificiosDepth + 1);
+        this.barraVida.setPosition(this.barraVida.x, this.barraVida.y + this.barraVida.height / 2);
+        this.barraVida.setDisplaySize(this.ancho * config.sizeCasilla, this.barraVida.height);
         this.barraVida.setOrigin(0, 0.5)
-        this.barraATope = this.ancho*config.sizeCasilla;
+        this.barraATope = this.ancho * config.sizeCasilla;
         this.actualizaBarraVida();
     }
-    actualizaBarraVida(){
-        let ancho = (this.vida*this.barraATope)/this.vidaMaxima;
+    actualizaBarraVida() {
+        let ancho = (this.vida * this.barraATope) / this.vidaMaxima;
         this.barraVida.setDisplaySize(ancho, this.barraVida.height);
     }
-    
+
     estaEnRangoDeConstruccion() {
         let rango = config.rangoConstruccion * config.sizeCasilla;
         let pos = this.posicion;
@@ -76,11 +82,11 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.game.recursos.felicidad += (config.recuperacionRecursos / 100) * this.costeEdificio.felicidad;
     }
     destruir() {
-        if(this.key == 'trono') {this.game.scene.start('escenaInicio'); return;}
+        if (this.key == 'trono') { this.game.scene.start('escenaInicio'); return; }
 
         if (this.destruible) {
             this.barraVida.destroy();
-            this.game.creaAldeanos(this.numAldeanos, this.tipoAldeano);
+            if (!this.destruido) this.game.creaAldeanos(this.numAldeanos, this.tipoAldeano);
             this.game.audio.destruccion.play();
             this.marcoDestruir.destroy();
             this.devuelveCoste();
@@ -94,7 +100,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
 
             console.log(this.game.edificios.length);
 
-            if(this.aldeanosAsignables){
+            if (this.aldeanosAsignables) {
                 this.marco.destroy();
                 this.mas.destroy();
                 this.menos.destroy();
@@ -104,7 +110,43 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             }
         }
     }
-    addToScene(){
+
+    //Cuando lo destruye el enemigo. Spawnear aldeanos almacenados
+    enemyDestruir() {
+        for (let i = 0; i < this.numAldeanos; ++i) {
+            let sexo = Math.round(Math.random(0, 1));
+            if (sexo === 0) sexo = 'aldeano';
+            else sexo = 'aldeana';
+
+            let rndX = Math.floor(Math.random() * this.ancho);
+            let rndY = Math.floor(Math.random() * this.alto);
+            let nextCell = this.game.mapa.mapa[this.posicion.indiceX + rndX][this.posicion.indiceY + rndY];
+            let aldeano;
+            if (this.tipoAldeano === this.game.aldeanosBasicos) {
+                aldeano = new Aldeano(this.game, nextCell, 0, 0, sexo);
+                this.game.aldeanosBasicos.push(aldeano);
+            }
+            else if (this.tipoAldeano === this.game.mineros) {
+                aldeano = new Minero(this.game, nextCell, 0, 0);
+                this.game.mineros.push(aldeano);
+            }
+            else if (this.tipoAldeano === this.game.canteros) {
+                aldeano = new Cantero(this.game, nextCell, 0, 0);
+                this.game.canteros.push(aldeano);
+            }
+            else if (this.tipoAldeano === this.game.ganaderos) {
+                aldeano = new Ganadero(this.game, nextCell, 0, 0);
+                this.game.ganaderos.push(aldeano);
+            }
+            else if (this.tipoAldeano === this.game.exploradores) {
+                aldeano = new Explorador(this.game, nextCell, 0, 0);
+                this.game.exploradores.push(aldeano);
+            }
+        }
+        this.destruir();
+    }
+
+    addToScene() {
         this.game.edificios.push(this);
     }
 
@@ -186,15 +228,16 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.actualizaBarraVida();
 
         if (this.vida <= 0) {
-            this.destruir();
+            this.destruido = true;
+            this.enemyDestruir();
             return true;
         }
         return false;
     }
 
     //MARCO PARA ASIGNAR ALDEANOS
-    setMenu(){
-        if(this.aldeanosAsignables){
+    setMenu() {
+        if (this.aldeanosAsignables) {
             this.initMarco();
             this.createMasMenos();
             this.creaText();
@@ -221,7 +264,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.menos.setPosition(this.marco.x + this.marco.width * offSet, this.marco.y + this.marco.height / 2 * (1 + offSet));
     }
 
-    creaText(){ //CAMBIAR PARA ADAPTARLO AL MENU DEL CABALLO DE TROYA (SI LO TIENE)
+    creaText() { //CAMBIAR PARA ADAPTARLO AL MENU DEL CABALLO DE TROYA (SI LO TIENE)
         this.texts = [];
         this.texts[0] = functions.creaTexto(this.marco.x + this.marco.width * 0.5, this.marco.y + this.marco.height * 0.29, this.aldeanosMax, this.game);
         this.texts[1] = functions.creaTexto(this.marco.x + this.marco.width * 0.58, this.marco.y + this.marco.height * 0.57, this.variacionAldeanos, this.game);
@@ -234,7 +277,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.texts[1].setFontSize(45);
     }
 
-    
+
     asignaInput() {
         this.mas.on('pointerup', pointer => {
             if (this.variacionAldeanos + this.numAldeanos < this.aldeanosMax && this.variacionAldeanos + 1 <= this.tipoAldeano.length) {

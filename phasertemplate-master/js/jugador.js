@@ -83,8 +83,8 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
     }
 
     inputConstruir(spritename, especialidad, ancho, alto) {
-        this.isBuilding = true;
-        this.edificio = this.construir(spritename, especialidad, this.game.casillaPuntero, ancho, alto);
+            this.isBuilding = true;
+            this.edificio = this.construir(spritename, especialidad, this.game.casillaPuntero, ancho, alto);
     }
 
     posicionaEdificio(edificio) {
@@ -132,7 +132,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         if (tipo === 'recursos') {
             //scene,vida,coste,posicion,aldeanosMax,especialidad, key
             if (especialidad === 'mina') {
-                edificio = new EdificioMina(this.game,config.vidaMina, config.costeMina, pos, ancho, alto, config.alMaxMina, especialidad);
+                edificio = new EdificioMina(this.game, config.vidaMina, config.costeMina, pos, ancho, alto, config.alMaxMina, especialidad);
             }
             else if (especialidad === 'granja') {
                 edificio = new EdificioGranja(this.game, config.vidaGranja, config.costeGranja, pos, ancho, alto, config.alMaxGranja, especialidad);
@@ -144,7 +144,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         else if (tipo === 'social') {
             //scene,vida,coste,posicion,felicidad, key
             if (especialidad === 'taberna') {
-                edificio = new EdificioTaberna(this.game, config.vidaTaberna,config.costeCantera, pos, ancho, alto, 0, 10);
+                edificio = new EdificioTaberna(this.game, config.vidaTaberna, config.costeCantera, pos, ancho, alto, 0, 10);
             }
         }
         else if (tipo === 'chozaMaestra') {
@@ -166,7 +166,7 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
                 edificio = new CaballoTroya(this.game, especialidad, config.vidaCaballoTroya, config.costeCaballoTroya, pos, ancho, alto, 10, 0, especialidad);
             }
             else if (especialidad === "bunker") {
-                edificio = new Bunker(this.game, especialidad, 1000, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 10, 0,especialidad);
+                edificio = new Bunker(this.game, especialidad, 1000, { oro: 20, materiales: 0, comida: 0, felicidad: 0 }, pos, ancho, alto, 10, 0, especialidad);
             }
         }
         return edificio;

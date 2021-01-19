@@ -264,92 +264,116 @@ export default class Interfaz {
     this.marcoCoste(chozaMaestra, config.costeChoza.oro, config.textoChoza);
 
     chozaMaestra.on('pointerup', pointer => {
-      if (this.game.numChozas < 1) {
-        this.game.jug.inputConstruir('chozaMaestra', '', 3, 3);
-        this.ocultaDesplegable();
-        this.sprites[this.names.chozaMaestra].tint = 0x6C6A6B;
-        this.game.numChozas++;
+      if (!this.game.jug.isMoving) {
+        if (this.game.numChozas < 1) {
+          this.game.jug.inputConstruir('chozaMaestra', '', 3, 3);
+          this.ocultaDesplegable();
+          this.sprites[this.names.chozaMaestra].tint = 0x6C6A6B;
+          this.game.numChozas++;
+        }
       }
     })
   }
   clickEnMina(mina) {
     this.marcoCoste(mina, config.costeMina.oro, config.textoMina);
     mina.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('recursos', 'mina', config.tamMina.x, config.tamMina.y);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('recursos', 'mina', config.tamMina.x, config.tamMina.y);
+        this.ocultaDesplegable();
+      }
     })
   }
   clickEnTrampaOso(trampaOso) {
     this.marcoCoste(trampaOso, config.costeTrampaOso.oro, config.textoTrampaOso);
     trampaOso.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('defensivo', 'trampaOsos', 1, 1);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('defensivo', 'trampaOsos', 1, 1);
+        this.ocultaDesplegable();
+      }
     })
   }
   clickEnTorreArqueros(torreArqueros) {
     this.marcoCoste(torreArqueros, config.costeTorreArqueros.oro, config.textoTorreArqueros);
     torreArqueros.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('defensivo', 'torreArqueros', 2, 2);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('defensivo', 'torreArqueros', 2, 2);
+        this.ocultaDesplegable();
+      }
     })
   }
   clickEnGranja(granja) {
     this.marcoCoste(granja, config.costeGranja.oro, config.textoGranja);
     granja.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('recursos', 'granja', config.tamGranja.x, config.tamGranja.y);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('recursos', 'granja', config.tamGranja.x, config.tamGranja.y);
+        this.ocultaDesplegable();
+      }
     })
   }
 
   clickEnPuestoVigilancia(puestoVigilancia) {
     this.marcoCoste(puestoVigilancia, config.costePuestoVigilancia.oro, config.textoPuestoVigilancia);
     puestoVigilancia.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('defensivo', 'puestoVigilancia', 1, 2);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('defensivo', 'puestoVigilancia', 1, 2);
+        this.ocultaDesplegable();
+      }
     })
   }
 
   clickEnCaballoTroya(caballoTroya) {
     this.marcoCoste(caballoTroya, config.costeCaballoTroya.oro, config.textoCaballoTroya);
     caballoTroya.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('defensivo', 'caballoTroya', 4, 4);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('defensivo', 'caballoTroya', 4, 4);
+        this.ocultaDesplegable();
+      }
     })
   }
   clickEnTaberna(taberna) {
     this.marcoCoste(taberna, config.costeTaberna.oro, config.textoTaberna);
     taberna.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('social', 'taberna', 5, 3);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('social', 'taberna', 5, 3);
+        this.ocultaDesplegable();
+      }
     })
   }
   clickEnTrampaSuelo(trampaSuelo) {
     this.marcoCoste(trampaSuelo, config.costeTrampaSuelo.oro, config.textoTrampaSuelo);
     trampaSuelo.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('defensivo', 'trampaSuelo', 2, 2);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('defensivo', 'trampaSuelo', 2, 2);
+        this.ocultaDesplegable();
+      }
     })
   }
   clickEnMuralla(muralla) {
     this.marcoCoste(muralla, config.costeMuro.oro, config.textoMuro);
     muralla.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('defensivo', 'muralla', 1, 1);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('defensivo', 'muralla', 1, 1);
+        this.ocultaDesplegable();
+      }
     })
   }
   clickEnCantera(cantera) {
     this.marcoCoste(cantera, config.costeCantera.oro, config.textoCantera);
     cantera.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('recursos', 'cantera', 3, 3);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('recursos', 'cantera', 3, 3);
+        this.ocultaDesplegable();
+      }
     })
   }
 
   clickEnBunker(bunker) {
     this.marcoCoste(bunker, config.costeBunker.oro, config.textoBunker);
     bunker.on('pointerup', pointer => {
-      this.game.jug.inputConstruir('defensivo', 'bunker', 4, 4);
-      this.ocultaDesplegable();
+      if (!this.game.jug.isMoving) {
+        this.game.jug.inputConstruir('defensivo', 'bunker', 4, 4);
+        this.ocultaDesplegable();
+      }
     })
   }
 

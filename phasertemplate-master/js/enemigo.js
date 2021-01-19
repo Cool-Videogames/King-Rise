@@ -19,7 +19,7 @@ export default class Enemigo extends Persona {
 
         this.isInRange = false;
         this.setOrigin(0.5, 0.5);
-        this.setDepth(config.hudDepth-1);
+        this.setDepth(config.hudDepth - 1);
 
 
         this.posAnterior = null;

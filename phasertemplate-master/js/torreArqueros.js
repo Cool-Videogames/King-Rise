@@ -145,23 +145,6 @@ export default class TorreArqueros extends EdificioDefensivo {
         if (this.arrow !== null) this.arrow.destroy();
     }
 
-    //Cuando lo destruye el enemigo. Spawnear aldeanos almacenados
-    enemyDestruir() {
-        for (let i = 0; i < this.numAldeanos; ++i) {
-            let sexo = Math.round(Math.random(0, 1));
-            if (sexo === 0) sexo = 'aldeano';
-            else sexo = 'aldeana';
-
-            let rndX = Math.floor(Math.random() * this.ancho);
-            let rndY = Math.floor(Math.random() * this.alto);
-            let nextCell = this.game.mapa.mapa[this.posicion.indiceX + rndX][this.posicion.indiceY + rndY];
-
-            let aldeano = new Aldeano(this.game, nextCell, 0, 0, sexo);
-            this.game.exploradores.push(aldeano);
-        }
-        this.destruir();
-    }
-
     recuperaAldeanos() {
         //CUANDO TERMINE EL ATAQUE SE LLAMARÁ A ESTE MÉTODO
         for (let i = 0; i < this.numAldeanos; i++) this.game.exploradores.push(this.game.creaAldeano());
