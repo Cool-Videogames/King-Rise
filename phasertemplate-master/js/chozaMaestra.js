@@ -29,17 +29,24 @@ export default class ChozaMaestra extends Edificio {
         this.initMarco(); this.createMasMenos();
         this.creaText(); this.setMasMenosPos();
         this.clickEnDone(this.done);
+        this.clickEnMasCrear(this.masCrear);
     }
     initMarco() {
         //MARCO DEL MENU
-        this.posicionMarco = new Vector2D(this.posicion.x + config.sizeCasilla * 1.5, this.posicion.y + config.sizeCasilla / 2);
+        this.posicionMarco = new Vector2D(this.posicion.x + config.sizeCasilla * 2.5, this.posicion.y + config.sizeCasilla / 2);
         this.marco = functions.creaSprite(this.posicionMarco.x, this.posicionMarco.y, 'marco', this.game, config.hudDepth);
         this.marco.setVisible(false);
+
+        this.marcoCrear = functions.creaSprite(this.posicionMarco.x, this.posicionMarco.y - this.marco.height, 'marcoCrear', this.game, config.hudDepth);
+        this.marcoCrear.setVisible(false);
+
+        this.masCrear = functions.creaSprite(this.marcoCrear.x + this.marcoCrear.width * 0.45, this.marcoCrear.y + 32, 'masCrear', this.game, config.hudDepth);
+        this.masCrear.setVisible(false);
 
         this.done = functions.creaSprite(this.marco.x + (this.marco.width / 2), this.marco.y + this.marco.height + 7, 'done', this.game, config.hudDepth);
         this.done.setOrigin(0.5, 0.5); this.done.setScale(1.5, 1.5); this.done.setVisible(false);
 
-        this.coste = functions.creaTexto(this.marco.x + this.marco.width / 2 + 60,  this.marco.y + this.marco.height - 18, this.costeTotal, this.game);
+        this.coste = functions.creaTexto(this.marco.x + this.marco.width / 2 + 60, this.marco.y + this.marco.height - 18, this.costeTotal, this.game);
         this.coste.setScale(0.6, 0.6); this.coste.setVisible(false); this.coste.setFill('#DF9013');
     }
     createMasMenos() {
@@ -62,6 +69,8 @@ export default class ChozaMaestra extends Edificio {
     muestraOpciones() {
         return () => {
             this.marco.setVisible(!this.marco.visible);
+            this.marcoCrear.setVisible(!this.marcoCrear.visible);
+            this.masCrear.setVisible(!this.masCrear.visible);
             this.done.setVisible(!this.done.visible);
             this.coste.setVisible(!this.coste.visible);
             this.costeTotal = 0;
@@ -91,20 +100,22 @@ export default class ChozaMaestra extends Edificio {
     actualizaCosteTotal() {
         this.costeTotal = this.nMin * this.costeMin + this.nCant * this.costeCant + this.nGan * this.costeGan + this.nExp * this.costeGan;
         this.coste.text = this.costeTotal;
-        this.numTotal = this.nMin+ this.nCant+ this.nGan+ this.nExp;
+        this.numTotal = this.nMin + this.nCant + this.nGan + this.nExp;
     }
     asignaInput() {
         this.inputMineros(this.ops[0], this.ops[1]); this.inputCanteros(this.ops[2], this.ops[3]);
         this.inputGanaderos(this.ops[4], this.ops[5]); this.inputExploradores(this.ops[6], this.ops[7]);
     }
-    destruir(){
+    destruir() {
         this.coste.destroy();
         this.marco.destroy();
+        this.marcoCrear.destroy();
+        this.masCrear.destroy();
         this.done.destroy();
-        for(let i of this.texts) i.destroy();
-        for(let i of this.ops) i.destroy();
-        this.game.cierraMarcoAnterior = () => {};
-        
+        for (let i of this.texts) i.destroy();
+        for (let i of this.ops) i.destroy();
+        this.game.cierraMarcoAnterior = () => { };
+
         this.game.numChozas--;
         this.game.interfaz.sprites[this.game.interfaz.names.chozaMaestra].clearTint();
         this.game.interfaz.actualizaInterfaz();
@@ -124,9 +135,19 @@ export default class ChozaMaestra extends Edificio {
             }
         })
     }
+
+    clickEnMasCrear(masCrear) {
+        masCrear.on('pointerup', pointer => {
+            this.game.creaAldeanos(1, this.game.aldeanosBasicos);
+            this.game.recursos.comida -= 20;
+            this.game.interfaz.actualizaInterfaz();
+
+        })
+    }
+
     inputMineros(masmineros, menosmineros) {
         masmineros.on('pointerdown', pointer => {
-            if(this.game.aldeanosBasicos.length > this.numTotal){
+            if (this.game.aldeanosBasicos.length > this.numTotal) {
                 this.nMin++;
                 this.texts[this.opEnum.mineros].text = this.nMin;
                 this.actualizaCosteTotal();
@@ -141,7 +162,7 @@ export default class ChozaMaestra extends Edificio {
     }
     inputCanteros(mascanteros, menoscanteros) {
         mascanteros.on('pointerdown', pointer => {
-            if(this.game.aldeanosBasicos.length > this.numTotal){
+            if (this.game.aldeanosBasicos.length > this.numTotal) {
                 this.nCant++;
                 this.texts[this.opEnum.canteros].text = this.nCant;
                 this.actualizaCosteTotal();
@@ -156,7 +177,7 @@ export default class ChozaMaestra extends Edificio {
     }
     inputGanaderos(masganaderos, menosganaderos) {
         masganaderos.on('pointerdown', pointer => {
-            if(this.game.aldeanosBasicos.length > this.numTotal){
+            if (this.game.aldeanosBasicos.length > this.numTotal) {
                 this.nGan++;
                 this.texts[this.opEnum.ganaderos].text = this.nGan;
                 this.actualizaCosteTotal();
@@ -171,7 +192,7 @@ export default class ChozaMaestra extends Edificio {
     }
     inputExploradores(masexploradores, menosexploradores) {
         masexploradores.on('pointerdown', pointer => {
-            if(this.game.aldeanosBasicos.length > this.numTotal){
+            if (this.game.aldeanosBasicos.length > this.numTotal) {
                 this.nExp++;
                 this.texts[this.opEnum.exploradores].text = this.nExp;
                 this.actualizaCosteTotal();
@@ -187,31 +208,31 @@ export default class ChozaMaestra extends Edificio {
 
     especializa(aldeanos, mineros, canteros, ganaderos, exploradores) {
         for (let i = 0; i < aldeanos; i++) this.game.aldeanosBasicos.push(this.game.creaAldeano());
-        
-        for(let i = 0;i< mineros;i++){
+
+        for (let i = 0; i < mineros; i++) {
             let aldeano = this.borraAldeano();
             let minero = new Minero(this.game, aldeano.casilla, 0, 0);
             this.game.mineros.push(minero);
         }
-        for(let i = 0;i< canteros;i++){
+        for (let i = 0; i < canteros; i++) {
             let aldeano = this.borraAldeano();
-            let cantero = new Cantero(this.game,aldeano.casilla,0,0);
+            let cantero = new Cantero(this.game, aldeano.casilla, 0, 0);
             this.game.canteros.push(cantero);
         }
-        for(let i = 0;i< ganaderos;i++){
+        for (let i = 0; i < ganaderos; i++) {
             let aldeano = this.borraAldeano();
-            let ganadero = new Ganadero(this.game, aldeano.casilla,0,0);
+            let ganadero = new Ganadero(this.game, aldeano.casilla, 0, 0);
             this.game.ganaderos.push(ganadero);
         }
-        for(let i = 0;i< exploradores;i++){
+        for (let i = 0; i < exploradores; i++) {
             let aldeano = this.borraAldeano();
-            let explorador = new Explorador(this.game, aldeano.casilla, 0,0);
+            let explorador = new Explorador(this.game, aldeano.casilla, 0, 0);
             this.game.exploradores.push(explorador);
         }
     }
-    borraAldeano(){
-        let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1];
-        this.game.aldeanosBasicos[this.game.aldeanosBasicos.length-1].destroy();
+    borraAldeano() {
+        let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1];
+        this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1].destroy();
         this.game.aldeanosBasicos.pop();
         return aldeano;
     }

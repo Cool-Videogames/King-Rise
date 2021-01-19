@@ -1,6 +1,8 @@
 import Persona from "./persona.js";
 import Vector2D from "./vector2D.js";
 import * as config from "./config.js";
+import Bunker from "./bunker.js";
+import Trampa from "./trampa.js";
 
 export default class Enemigo extends Persona {
     constructor(scene, pos, vida, fuerza, key) {
@@ -68,14 +70,15 @@ export default class Enemigo extends Persona {
         let index = -1;
         let value = Infinity;
         for (let i = 0; i < objectives.length; i++) {
-            let distancia = this.distancia(objectives[i].posicion);
-            if (distancia < value) {
-                index = i;
-                value = distancia;
+            if (objectives[i].key !== 'bunker' && objectives[i].key !== 'trampaSuelo' && objectives[i].key !== 'trampaOsos') {
+                let distancia = this.distancia(objectives[i].posicion);
+                if (distancia < value) {
+                    index = i;
+                    value = distancia;
+                }
             }
         }
         if (index >= 0) return objectives[index];
-
         if (defensivos) return this.objetivoMasCercano(false);
         return null;
     }
