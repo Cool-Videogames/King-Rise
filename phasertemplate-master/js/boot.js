@@ -4,7 +4,6 @@ export default class Boot extends Phaser.Scene {
   }
   preload() {
     //Juego
-
     this.load.image('barraVida',"./phasertemplate-master/images/estructuras/barraVida.png" )
     this.load.image('mar', "./phasertemplate-master/images/fondoYMapa/mar.png");
     this.load.image('mountain', "./phasertemplate-master/images/fondoYMapa/mountain.png");
@@ -70,7 +69,8 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('francesFrente', "./phasertemplate-master/images/franceses/francesFrente.png", { frameWidth: 32, frameHeight: 38 });
     this.load.spritesheet('francesLado', "./phasertemplate-master/images/franceses/francesLado.png", { frameWidth: 32, frameHeight: 38 });
     this.load.spritesheet('francesEspaldas', "./phasertemplate-master/images/franceses/francesEspaldas.png", { frameWidth: 32, frameHeight: 38 });
-    this.load.image('marcadorFrances', "./phasertemplate-master/images/estructuras/marcadorFrances.png")
+    this.load.image('marcadorFrances', "./phasertemplate-master/images/estructuras/marcadorFrances.png");
+    this.load.image('francesStun', "./phasertemplate-master/images/franceses/francesStun.png");
 
     //Edificios defensivos
     this.load.image('trampaOsos', "./phasertemplate-master/images/estructuras/trampaOsos.png");

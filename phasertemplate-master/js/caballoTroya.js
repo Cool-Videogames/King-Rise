@@ -1,5 +1,4 @@
 import EdificioDefensivo from "./edificioDefensivo.js";
-import Aldeano from "./aldeano.js";
 
 export default class CaballoTroya extends EdificioDefensivo {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
