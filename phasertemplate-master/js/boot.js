@@ -8,14 +8,14 @@ export default class Boot extends Phaser.Scene {
     this.load.image('barraVida',"./phasertemplate-master/images/estructuras/barraVida.png" )
     this.load.image('mar', "./phasertemplate-master/images/fondoYMapa/mar.png");
     this.load.image('mountain', "./phasertemplate-master/images/fondoYMapa/mountain.png");
-    this.load.image('montañamarVer', "./phasertemplate-master/images/fondoYMapa/montaniaMarVer.png");
-    this.load.image('montañamarHor', "./phasertemplate-master/images/fondoYMapa/montaniaMarHor.png");
+    this.load.image('montaniamarVer', "./phasertemplate-master/images/fondoYMapa/montaniaMarVer.png");
+    this.load.image('montaniamarHor', "./phasertemplate-master/images/fondoYMapa/montaniaMarHor.png");
     this.load.image('sabanaEsquina', "./phasertemplate-master/images/fondoYMapa/sabanaEsquina.png");
     this.load.image('sabanaBordeHor', "./phasertemplate-master/images/fondoYMapa/sabanaBordeHor.png");
     this.load.image('sabanaBordeVer', "./phasertemplate-master/images/fondoYMapa/sabanaBordeVer.png");
     this.load.image('esquinaMontaña', "./phasertemplate-master/images/fondoYMapa/esquinaMontania.png");
-    this.load.image('montañaBordeHor', "./phasertemplate-master/images/fondoYMapa/montaniaBordeHor.png");
-    this.load.image('montañaBordeVer', "./phasertemplate-master/images/fondoYMapa/montaniaBordeVer.png");
+    this.load.image('montaniaBordeHor', "./phasertemplate-master/images/fondoYMapa/montaniaBordeHor.png");
+    this.load.image('montaniaBordeVer', "./phasertemplate-master/images/fondoYMapa/montaniaBordeVer.png");
     this.load.image('sabanaInterseccionHor', "./phasertemplate-master/images/fondoYMapa/sabanaInterseccionHor.png");
     this.load.image('sabanaInterseccionVer', "./phasertemplate-master/images/fondoYMapa/sabanaInterseccionVer.png");
     this.load.image('sabana', "./phasertemplate-master/images/fondoYMapa/sabana.png");
