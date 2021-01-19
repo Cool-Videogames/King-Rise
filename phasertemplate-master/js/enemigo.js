@@ -1,8 +1,5 @@
 import Persona from "./persona.js";
-import Vector2D from "./vector2D.js";
 import * as config from "./config.js";
-import Bunker from "./bunker.js";
-import Trampa from "./trampa.js";
 
 export default class Enemigo extends Persona {
     constructor(scene, pos, vida, fuerza, key) {
@@ -25,11 +22,12 @@ export default class Enemigo extends Persona {
         this.setOrigin(0.5, 0.5);
         this.setDepth(config.hudDepth - 1);
 
-
         this.posAnterior = null;
     }
 
     preUpdate(t, dt) {
+        this.barraVida.x = this.x-this.barraVida.width/4;
+        this.barraVida.y = this.y+this.height;
         if (this.isInRange) {
             this.t += dt / 1000;
 
