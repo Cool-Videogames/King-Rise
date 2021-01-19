@@ -46,9 +46,9 @@ export default class TorreArqueros extends EdificioDefensivo {
 
         this.fireRate -= dt;
         if (this.arrow !== null) {
-            let angle = Phaser.Math.Angle.Between(this.enemy.x, this.enemy.y, this.arrow.x, this.arrow.y);
+            let angle = Phaser.Math.Angle.Between(this.enemy.body.center.x, this.enemy.body.center.y, this.arrow.x, this.arrow.y);
             this.arrow.setRotation(angle);
-            this.game.physics.moveTo(this.arrow, this.enemy.x, this.enemy.y, 200);
+            this.game.physics.moveTo(this.arrow, this.enemy.body.center.x, this.enemy.body.center.y, 200);
         }
     }
     setMenu() {
