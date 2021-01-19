@@ -138,10 +138,11 @@ export default class ChozaMaestra extends Edificio {
 
     clickEnMasCrear(masCrear) {
         masCrear.on('pointerup', pointer => {
-            this.game.creaAldeanos(1, this.game.aldeanosBasicos);
-            this.game.recursos.comida -= 20;
-            this.game.interfaz.actualizaInterfaz();
-
+            if (this.game.recursos.comida - 20 >= 0) {
+                this.game.creaAldeanos(1, this.game.aldeanosBasicos);
+                this.game.recursos.comida -= 20;
+                this.game.interfaz.actualizaInterfaz();
+            }
         })
     }
 
