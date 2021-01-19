@@ -10,30 +10,38 @@ export default class Trampa extends EdificioDefensivo {
         this.enemyStunned = false;
         this.enemy = null;
         this.timer = 0;
+        this.collider = null;
     }
-    preUpdate(){
+    preUpdate() {
         super.preUpdate();
-        if(this.enemyStunned){
+        if (this.enemyStunned) {
+            console.log("STUNEADO");
             this.timer--;
-            if(this.timer <= 0) {
+            if (this.timer <= 0) {
                 this.enemyStunned = false;
                 this.enemy.move();
                 this.destruir();
             }
         }
-        this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (trap, enemy) => {
-            this.enemy = enemy;
-            if (this.especialidad === 'trampaSuelo'){
-                this.enemy.destroy();
-                trap.destruir();
-            }
-            else if(!this.enemyStunned){
-                 this.atacar(this.enemy, 15);
-                 this.stun();
-            }
-        })
+        if (this.game.acciones.ataqueEnCurso && this.collider === null) {
+            this.collider = this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (trap, enemy) => {
+                this.enemy = enemy;
+                if (this.especialidad === 'trampaSuelo') {
+                    this.enemy.destroy();
+                    trap.destruir();
+                }
+                else if (!this.enemyStunned) {
+                    this.atacar(this.enemy, 15);
+                    this.stun();
+                }
+            })
+        }
+        else if (!this.game.acciones.ataqueEnCurso && this.collider !== null) {
+            this.collider.destroy();
+            this.collider = null;
+        }
     }
-    stun(){
+    stun() {
         this.enemy.body.setVelocity(0);
         this.enemyStunned = true;
         this.timer = 100;
