@@ -112,7 +112,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             }
             this.destroy();
         }
-        if(this.destruido)this.enemyDestruir();
+        if (this.destruido) this.enemyDestruir();
     }
 
     //Cuando lo destruye el enemigo. Spawnear aldeanos almacenados
@@ -157,14 +157,19 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
 
     inputEdificio(edificio) {
         edificio.on('pointerup', pointer => {
-            if (!this.marcoDestruir.visible) {
-                this.game.cierraMarcoAnterior();
-                this.game.cierraMarcoAnterior = this.abreMarcos;
+            let posCentrada = { x: this.posicion.x + this.ancho / 2 * config.sizeCasilla, y: this.posicion.y + this.alto / 2 * config.sizeCasilla };
+            let distancia = Math.sqrt(((posCentrada.x - this.game.jug.x) * (posCentrada.x - this.game.jug.x)) + ((posCentrada.y - this.game.jug.y) * (posCentrada.y - this.game.jug.y)));
+            console.log(distancia, (config.rangoConstruccion + 2) * config.sizeCasilla);
+            if (distancia < (config.rangoConstruccion + 2)  * config.sizeCasilla) {
+                if (!this.marcoDestruir.visible) {
+                    this.game.cierraMarcoAnterior();
+                    this.game.cierraMarcoAnterior = this.abreMarcos;
+                }
+                else {
+                    this.game.cierraMarcoAnterior = () => { };
+                }
+                this.abreMarcos();
             }
-            else {
-                this.game.cierraMarcoAnterior = () => { };
-            }
-            this.abreMarcos();
         })
     }
     muestraOpciones() {
