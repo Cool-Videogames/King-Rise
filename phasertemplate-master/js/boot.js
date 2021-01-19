@@ -6,21 +6,21 @@ export default class Boot extends Phaser.Scene {
     //Juego
 
     this.load.image('barraVida',"./phasertemplate-master/images/estructuras/barraVida.png" )
-    this.load.image('mar', "./phasertemplate-master/images/FondoYMapa/mar.png");
-    this.load.image('mountain', "./phasertemplate-master/images/FondoYMapa/mountain.png");
-    this.load.image('montañamarVer', "./phasertemplate-master/images/FondoYMapa/MontañaMarVer.png");
-    this.load.image('montañamarHor', "./phasertemplate-master/images/FondoYMapa/MontañaMarHor.png");
-    this.load.image('sabanaEsquina', "./phasertemplate-master/images/FondoYMapa/SabanaEsquina.png");
-    this.load.image('sabanaBordeHor', "./phasertemplate-master/images/FondoYMapa/SabanaBordeHor.png");
-    this.load.image('sabanaBordeVer', "./phasertemplate-master/images/FondoYMapa/SabanaBordeVer.png");
-    this.load.image('esquinaMontaña', "./phasertemplate-master/images/FondoYMapa/EsquinaMontaña.png");
-    this.load.image('montañaBordeHor', "./phasertemplate-master/images/FondoYMapa/MontañaBordeHor.png");
-    this.load.image('montañaBordeVer', "./phasertemplate-master/images/FondoYMapa/MontañaBordeVer.png");
-    this.load.image('sabanaInterseccionHor', "./phasertemplate-master/images/FondoYMapa/SabanaInterseccionHor.png");
-    this.load.image('sabanaInterseccionVer', "./phasertemplate-master/images/FondoYMapa/SabanaInterseccionVer.png");
-    this.load.image('sabana', "./phasertemplate-master/images/FondoYMapa/Sabana.png");
-    this.load.image('trono', "./phasertemplate-master/images/Estructuras/Trono.png");
-    this.load.image('obstaculo', "./phasertemplate-master/images/Estructuras/Obstaculo.png");
+    this.load.image('mar', "./phasertemplate-master/images/fondoYMapa/mar.png");
+    this.load.image('mountain', "./phasertemplate-master/images/fondoYMapa/mountain.png");
+    this.load.image('montañamarVer', "./phasertemplate-master/images/fondoYMapa/montañaMarVer.png");
+    this.load.image('montañamarHor', "./phasertemplate-master/images/fondoYMapa/montañaMarHor.png");
+    this.load.image('sabanaEsquina', "./phasertemplate-master/images/fondoYMapa/sabanaEsquina.png");
+    this.load.image('sabanaBordeHor', "./phasertemplate-master/images/fondoYMapa/sabanaBordeHor.png");
+    this.load.image('sabanaBordeVer', "./phasertemplate-master/images/fondoYMapa/sabanaBordeVer.png");
+    this.load.image('esquinaMontaña', "./phasertemplate-master/images/fondoYMapa/esquinaMontaña.png");
+    this.load.image('montañaBordeHor', "./phasertemplate-master/images/fondoYMapa/montañaBordeHor.png");
+    this.load.image('montañaBordeVer', "./phasertemplate-master/images/fondoYMapa/montañaBordeVer.png");
+    this.load.image('sabanaInterseccionHor', "./phasertemplate-master/images/fondoYMapa/sabanaInterseccionHor.png");
+    this.load.image('sabanaInterseccionVer', "./phasertemplate-master/images/fondoYMapa/sabanaInterseccionVer.png");
+    this.load.image('sabana', "./phasertemplate-master/images/fondoYMapa/sabana.png");
+    this.load.image('trono', "./phasertemplate-master/images/Estructuras/trono.png");
+    this.load.image('obstaculo', "./phasertemplate-master/images/Estructuras/obstaculo.png");
     this.load.image('flechaExploracion', "./phasertemplate-master/images/flecha.png");
 
     //Jugador
