@@ -22,6 +22,9 @@ export default class Acciones {
         this.ataqueEnCurso = false;
     }
 
+    finTurno() {
+        while (this.numeroAccionesRestantes > 0 && !this.ataqueEnCurso) {this.actualizarIndice(1); this.casillasAvanzadas = 0;}
+    }
 
     ataque() {
         //Se llamará a este método una vez empiece el ataque
@@ -42,10 +45,10 @@ export default class Acciones {
 
 
     actualizarIndice(aumento) {
-        if(this.ataqueEnCurso) return;
+        if (this.ataqueEnCurso) return;
 
         this.nuevoAldeano++;
-        if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.aldeanosBasicos.push(this.game.creaAldeano()); this.nuevoAldeano = 0; }
+        if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.creaAldeanos(1,this.game.aldeanosBasicos); this.nuevoAldeano = 0; }
 
         this.index += aumento;
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque - this.index;
