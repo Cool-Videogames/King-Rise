@@ -8,7 +8,10 @@ export default class Exploracion{
     }
 
     creaFlecha(){
-        let flecha = this.game.add.sprite(200,200,'flechaExploracion');
+        let x = config.columnas * config.sizeCasilla;
+        let y = config.filas / 2 * config.sizeCasilla;
+
+        let flecha = this.game.add.sprite(x,y,'flechaExploracion');
         flecha.setDepth(config.hudDepth);
         flecha.setScale(.2);
         flecha.setInteractive();
