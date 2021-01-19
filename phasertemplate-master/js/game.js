@@ -16,6 +16,7 @@ import Minero from "./minero.js";
 import Cantero from "./cantero.js";
 import Ganadero from "./ganadero.js";
 import Explorador from "./explorador.js";
+import Exploracion from "./exploracion.js";
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -55,11 +56,12 @@ export default class Game extends Phaser.Scene {
     this.creaAldeanos(config.numAldeanosIniciales, this.aldeanosBasicos);
     this.interfaz.actualizaInterfaz();
     this.oleadasEnemigos = new OleadasEnemigos(this);
-
+    this.exploracion = new Exploracion(this);
   }
   update(t, dt) {
     this.camera.comportamientoCamara();
     this.ajustes.comportamientoAjustes();
+    
   }
 
   pauseGame() {

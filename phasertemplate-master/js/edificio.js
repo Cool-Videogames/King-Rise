@@ -83,7 +83,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     }
     destruir() {
         console.log('destruir');
-        if (this.key == 'trono') { this.game.scene.start('escenaInicio'); return; }
+        if (this.key == 'trono') {this.game.scene.restart('game');
+            this.game.scene.start('escenaInicio'); return; }
 
         if (this.destruible) {
             this.barraVida.destroy();

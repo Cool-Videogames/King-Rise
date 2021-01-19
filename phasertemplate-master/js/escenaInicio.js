@@ -11,6 +11,12 @@ export default class EscenaInicio extends Phaser.Scene {
         this.fondo.setScale(1.3, 1);
         
         this.logo = functions.creaSprite( 350, 100, 'logoJuego', this, 0);
+        this.add.existing(this.fondo);
+        //fondo = functions.creaSprite(0, 0, 'fondoInicio', this);
+        
+        //this.fondo = functions.creaSprite(1024, 0, 'fondoInicio', this);
+        //this.logo = new Phaser.GameObjects.Sprite(this,350,100, 'logoJuego');
+        this.logo.setOrigin(0,0);
         this.logo.setScale(0.5, 0.5);
 
         this.jugar = functions.creaSprite(0, 0, 'jugar', this);
