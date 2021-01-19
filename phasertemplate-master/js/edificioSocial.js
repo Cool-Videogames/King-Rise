@@ -6,6 +6,7 @@ import * as functions from "./functions.js";
 export default class EdificioSocial extends Edificio {
     constructor(scene, vida, coste, posicion, ancho, alto, felicidad, aldeanosMax, key) {
         super(scene, vida, coste, posicion, ancho, alto, key);
+        this.ancho = ancho; this.alto = alto;
         this.tipoAldeano = scene.aldeanosBasicos;
         this.variacionAldeanos = 0;
         this.cantidad = felicidad;

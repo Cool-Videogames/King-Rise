@@ -5,6 +5,7 @@ export default class EdificioRecursos extends Edificio{
     constructor(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key){
     super(scene, vida, coste, posicion, ancho, alto, key);
 
+    this.ancho = ancho; this.alto = alto;
     this.aldeanosMax = aldeanosMax;
     this.numAldeanos = 0;
     this.rendimientoAldeanos = 0;

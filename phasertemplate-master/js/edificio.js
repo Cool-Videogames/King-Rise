@@ -11,7 +11,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.x = posicion.x;
         this.y = posicion.y;
         this.game = scene;
-        this.vida = vida;
+        this.vidaMaxima = vida;
+        this.vida = this.vidaMaxima;
         this.costeEdificio = coste;
         this.posicion = posicion;
         this.destruible = true;
@@ -34,6 +35,19 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.inputEdificio(this);
         this.creaMarcoDestruir();
     }
+    creaBarraVida(){
+        this.barraVida = functions.creaSprite(this.x-this.width, this.y, 'barraVida', this.game,config.edificiosDepth+1);
+        this.barraVida.setPosition(this.barraVida.x, this.barraVida.y+this.barraVida.height/2);
+        this.barraVida.setDisplaySize(this.ancho*config.sizeCasilla, this.barraVida.height);
+        this.barraVida.setOrigin(0, 0.5)
+        this.barraATope = this.ancho*config.sizeCasilla;
+        this.actualizaBarraVida();
+    }
+    actualizaBarraVida(){
+        let ancho = (this.vida*this.barraATope)/this.vidaMaxima;
+        this.barraVida.setDisplaySize(ancho, this.barraVida.height);
+    }
+    
     estaEnRangoDeConstruccion() {
         let rango = config.rangoConstruccion * config.sizeCasilla;
         let pos = this.posicion;
@@ -65,7 +79,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         if(this.key == 'trono') {this.game.scene.start('escenaInicio'); return;}
 
         if (this.destruible) {
-            console.log(this.numAldeanos);
+            this.barraVida.destroy();
             this.game.creaAldeanos(this.numAldeanos, this.tipoAldeano);
             this.game.audio.destruccion.play();
             this.marcoDestruir.destroy();
@@ -92,7 +106,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     }
     addToScene(){
         this.game.edificios.push(this);
-        console.log(this.game.edificios.length);
     }
 
     inputEdificio(edificio) {
@@ -170,6 +183,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
 
     recibirAtaque(dmg) {
         this.vida -= dmg;
+        this.actualizaBarraVida();
 
         if (this.vida <= 0) {
             this.destruir();
@@ -186,6 +200,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             this.creaText();
             this.asignaInput();
         }
+        this.creaBarraVida();
     }
     initMarco() {
         let posicionMarco = new Vector2D(this.posicion.x + config.sizeCasilla * this.posMarcoX, this.posicion.y + config.sizeCasilla / 2);

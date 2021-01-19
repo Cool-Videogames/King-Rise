@@ -4,6 +4,7 @@ export default class Boot extends Phaser.Scene {
   }
   preload() {
     //Juego
+    this.load.image('barraVida',"./phasertemplate-master/images/estructuras/barraVida.png" )
     this.load.image('mar', "./phasertemplate-master/images/fondoYMapa/mar.png");
     this.load.image('mountain', "./phasertemplate-master/images/fondoYMapa/mountain.png");
     this.load.image('montaniamarVer', "./phasertemplate-master/images/fondoYMapa/montaniaMarVer.png");

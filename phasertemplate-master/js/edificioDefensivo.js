@@ -3,6 +3,7 @@ import Edificio from "./edificio.js";
 export default class EdificioDefensivo extends Edificio {
     constructor(scene, especialidad, vida, coste, posicion, ancho, alto, aldeanosMax, rango, key) {
         super(scene, vida, coste, posicion, ancho, alto, key);
+        this.ancho = ancho; this.alto = alto;
         this.rango = rango;
         this.aldeanosMax = aldeanosMax;
         this.numAldeanos = 0;
@@ -17,9 +18,5 @@ export default class EdificioDefensivo extends Edificio {
     }
     asignarTropas(aldeanos) {
         this.numAldeanos+=aldeanos;
-    }
-
-    destruir(){
-        super.destruir();
     }
 }

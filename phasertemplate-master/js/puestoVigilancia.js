@@ -14,6 +14,7 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         this.rangoSprite = null;
     }
     setMenu() {
+        this.creaBarraVida();
         this.initFlechas();
         this.asignaInput();
     }
