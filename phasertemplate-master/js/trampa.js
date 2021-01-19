@@ -19,7 +19,7 @@ export default class Trampa extends EdificioDefensivo {
             this.timer--;
             if(this.timer <= 0) {
                 this.enemyStunned = false;
-                this.enemy.moveSpeed = 5;
+                this.enemy.move();
                 this.destruir();
             }
         }
@@ -36,8 +36,8 @@ export default class Trampa extends EdificioDefensivo {
         })
     }
     stun(){
-        this.enemy.moveSpeed = 0;
+        this.enemy.body.setVelocity(0);
         this.enemyStunned = true;
-        this.timer = 1000;
+        this.timer = 100;
     }
 }
