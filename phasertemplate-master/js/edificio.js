@@ -90,11 +90,10 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             this.game.scene.start('escenaInicio'); return; }
 
         if (this.destruible) {
-            this.barraVida.destroy();
+            if(this.hasMenu)this.barraVida.destroy();
             if (!this.destruido) this.game.creaAldeanos(this.numAldeanos, this.tipoAldeano);
             this.game.audio.destruccion.play();
             this.marcoDestruir.destroy();
-            this.devuelveCoste();
             let celdas = this.celdas(this.posicion);
             functions.resetCells(celdas);
             this.game.interfaz.actualizaInterfaz();
@@ -176,6 +175,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     }
     inputMarcoDestruir(marco) {
         marco.on('pointerup', pointer => {
+            this.devuelveCoste();
             this.destruir();
         })
     }

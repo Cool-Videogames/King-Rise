@@ -19,7 +19,7 @@ export default class Exploracion{
     }
     inputFlecha(flecha){
         flecha.on('pointerover', pointer => {
-            flecha.tint = 0x000000;
+            flecha.tint = 0xD87655;
         })
 
         flecha.on('pointerout', pointer => {

@@ -28,7 +28,7 @@ export default class Game extends Phaser.Scene {
     this.canteros = [];
     this.exploradores = [];
 
-    this.recursos = { oro: 100, comida: 100, materiales: 100, felicidad: 100 }
+    this.recursos = { oro: 500, comida: 100, materiales: 100, felicidad: 100 }
     this.proxAtaque = 20;
     this.numEdificios = 0;
     this.numChozas = 0;
@@ -61,7 +61,6 @@ export default class Game extends Phaser.Scene {
   update(t, dt) {
     this.camera.comportamientoCamara();
     this.ajustes.comportamientoAjustes();
-    
   }
 
   pauseGame() {
