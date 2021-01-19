@@ -10,13 +10,6 @@ export default class Aldeano extends Persona {
         this.x = pos.x;
         this.y = pos.y;
 
-        this.rendimiento = {
-            rendGeneral: config.rendimientoGeneral,
-            rendMateriales: 0,
-            rendComida: 0,
-            renOro: 0,
-        }
-
         this.casilla = casilla
         this.casilla.ocupada = true;
 
@@ -32,28 +25,30 @@ export default class Aldeano extends Persona {
         this.esperando = false;
         this.tiempoEspera = 1;
 
-        this.modoDiablo = false;
+        this.modoAtaque = false;
+        this.continuaAnimacion = false;
 
         this.moveSpeed = 130;
-        this.range = 5;
-        this.damage = 100;
-        this.attackTime = 1;
+        this.range = 2;
+        this.attackTime = config.enemigo.cadencia - 1;
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        if (!this.modoDiablo) {
+        if (!this.modoAtaque) {
             this.compruebaPosicion(dt);
-            this.calculaDir();
-        }else{
+            if (this.continuaAnimacion)
+                this.calculaDir();
+        } else {
             this.matar(dt);
         }
     }
-    
-   
-    juntarTodo(){
+
+
+    juntarObjetivos() {
         return this.game.oleadasEnemigos.currentWave;
     }
+
     animation() {
         if (this.chico === 'aldeano') {
             if (this.dir === 'right') {
@@ -79,14 +74,22 @@ export default class Aldeano extends Persona {
             else if (this.dir === 'up') this.play('espaldasAldeana');
             else if (this.dir === 'down') this.play('frenteAldeana');
         }
+
     }
-    
-    activarModoDiablo(bool = true) {
-        this.modoDiablo = bool;
-        if(bool)
-        this.move();
-        else{
+
+    activarModoAtaque(bool = true) {
+        this.modoAtaque = bool;
+        if (bool) {
+            this.anims.stop();
+            this.continuaAnimacion = false;
+            this.setTexture('aldeano');
+            this.move();
+        }
+        else {
+            this.vida = this.vidaMaxima;
+            this.actualizaBarraVida();
             this.body.reset(this.x, this.y);
+            this.isInRange = false;
             this.movimientoPathFinding(this.nodoInicial);
         }
     }
@@ -105,7 +108,7 @@ export default class Aldeano extends Persona {
         if (this.x > this.posDestino.x - config.margenPosicion && this.x < this.posDestino.x + config.margenPosicion &&
             this.y > this.posDestino.y - config.margenPosicion && this.y < this.posDestino.y + config.margenPosicion) {
             this.body.reset(this.posDestino.x, this.posDestino.y);
-
+            this.continuaAnimacion = true;
             if (this.nodoDestino.siguiente !== null) {
                 this.movimientoPathFinding(this.nodoDestino.siguiente);
             }
@@ -156,33 +159,9 @@ export default class Aldeano extends Persona {
             cell.y + config.sizeCasilla / 1.25);
     }
 
-    work() {
-        this.ocupado = true;
-    }
-
-    stopWorking() {
-        this.ocupado = false;
-    }
-
-    explore() {
-
-    }
-
-    especialice(espec, rendimiento) {
-        switch (espec) {
-            case "minero": { this.rendimientoMinero = rendimiento; this.rendimientoGeneral = 0; }
-                break;
-            case "cantero": { this.rendimientoCantero = rendimiento; this.rendimientoGeneral = 0; }
-                break;
-            case "ganadero": { this.rendimientoGanadero = rendimiento; this.rendimientoGeneral = 0; }
-                break;
-        }
-    }
-
-    morir(){
+    morir() {
+        super.morir();
         let index = this.game.aldeanosBasicos.indexOf(this);
         this.game.aldeanosBasicos.splice(index, 1);
-
-        this.destroy();
     }
 }

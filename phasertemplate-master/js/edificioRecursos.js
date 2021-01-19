@@ -1,34 +1,29 @@
 import Edificio from "./edificio.js";
 import * as config from "./config.js"
 
-export default class EdificioRecursos extends Edificio{
-    constructor(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key){
-    super(scene, vida, coste, posicion, ancho, alto, key);
+export default class EdificioRecursos extends Edificio {
+    constructor(scene, vida, coste, posicion, ancho, alto, aldeanosMax, key) {
+        super(scene, vida, coste, posicion, ancho, alto, key);
 
-    this.ancho = ancho; this.alto = alto;
-    this.aldeanosMax = aldeanosMax;
-    this.numAldeanos = 0;
-    this.rendimientoAldeanos = 0;
-    this.cantidad = config.cantidadRecursosPorDefecto*this.numAldeanos;
-    this.posMarcoX = 4;
-    this.game = scene;
+        this.ancho = ancho; this.alto = alto;
+        this.aldeanosMax = aldeanosMax;
+        this.numAldeanos = 0;
+        this.rendimientoAldeanos = 0;
+        this.cantidad = config.cantidadRecursosPorDefecto * this.numAldeanos;
+        this.posMarcoX = 4;
+        this.game = scene;
 
-    this.variacionAldeanos = 0;
-    this.isBuilt = false;
-    this.timer = 5000;
+        this.recursos = true;
+        this.generaRecursos = 0;
+
+        this.variacionAldeanos = 0;
+        this.isBuilt = false;
+        this.timer = 5000;
     }
-    preUpdate(t,dt){
-        super.preUpdate(t,dt);
-        this.timer -= dt;
-        if(this.timer <= 0){
-            this.generar();
-            this.game.interfaz.actualizaInterfaz();
-            this.timer = 5000;
-        }
-    }
+
     muestraOpciones() {
         return () => {
-            if(this.aldeanosAsignables){
+            if (this.aldeanosAsignables) {
                 this.marco.setVisible(!this.marco.visible);
                 this.done.setVisible(!this.done.visible);
                 this.texts[2].text = this.tipoAldeano.length;
@@ -41,7 +36,8 @@ export default class EdificioRecursos extends Edificio{
             this.marcoDestruir.setVisible(!this.marcoDestruir.visible);
         }
     }
-    generar(){
-        this.cantidad = config.cantidadRecursosPorDefecto*this.numAldeanos;
+    generar() {
+        this.cantidad = config.cantidadRecursosPorDefecto * this.numAldeanos;
+        this.game.interfaz.actualizaInterfaz();
     }
 }

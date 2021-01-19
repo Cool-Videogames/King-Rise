@@ -126,7 +126,7 @@ export default class ChozaMaestra extends Edificio {
             if (this.costeTotal <= this.game.recursos.oro) {
                 this.game.recursos.oro -= this.costeTotal;
                 this.game.interfaz.actualizaInterfaz();
-                this.especializa(0, this.nMin, this.nCant, this.nGan, this.nExp);
+                this.especializa(this.nMin, this.nCant, this.nGan, this.nExp);
                 this.game.interfaz.actualizaInterfaz();
                 this.abreMarcos();
                 this.game.cierraMarcoAnterior = () => { };
@@ -207,34 +207,33 @@ export default class ChozaMaestra extends Edificio {
         })
     }
 
-    especializa(aldeanos, mineros, canteros, ganaderos, exploradores) {
-        for (let i = 0; i < aldeanos; i++) this.game.aldeanosBasicos.push(this.game.creaAldeano());
+    especializa(mineros, canteros, ganaderos, exploradores) {
 
         for (let i = 0; i < mineros; i++) {
             let aldeano = this.borraAldeano();
-            let minero = new Minero(this.game, aldeano.casilla, 0, 0);
+            let minero = new Minero(this.game, aldeano.casilla);
             this.game.mineros.push(minero);
         }
         for (let i = 0; i < canteros; i++) {
             let aldeano = this.borraAldeano();
-            let cantero = new Cantero(this.game, aldeano.casilla, 0, 0);
+            let cantero = new Cantero(this.game, aldeano.casilla);
             this.game.canteros.push(cantero);
         }
         for (let i = 0; i < ganaderos; i++) {
             let aldeano = this.borraAldeano();
-            let ganadero = new Ganadero(this.game, aldeano.casilla, 0, 0);
+            let ganadero = new Ganadero(this.game, aldeano.casilla);
             this.game.ganaderos.push(ganadero);
         }
         for (let i = 0; i < exploradores; i++) {
             let aldeano = this.borraAldeano();
-            let explorador = new Explorador(this.game, aldeano.casilla, 0, 0);
+            let explorador = new Explorador(this.game, aldeano.casilla);
             this.game.exploradores.push(explorador);
         }
     }
     borraAldeano() {
-        let aldeano = this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1];
-        this.game.aldeanosBasicos[this.game.aldeanosBasicos.length - 1].destroy();
-        this.game.aldeanosBasicos.pop();
+        let aldeano = this.game.aldeanosBasicos.pop();
+        aldeano.barraVida.destroy();
+        aldeano.destroy();
         return aldeano;
     }
 }

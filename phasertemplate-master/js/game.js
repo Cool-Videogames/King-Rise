@@ -88,12 +88,12 @@ export default class Game extends Phaser.Scene {
       let sexo = Math.round(Math.random(0, 1));
       if (sexo === 0) sexo = 'aldeano';
       else sexo = 'aldeana'
-      aldeano = new Aldeano(this, nextCell, 30, 0, sexo);
+      aldeano = new Aldeano(this, nextCell, config.aldeanosBasicos.vida, config.aldeanosBasicos.dmg, sexo);
     }
-    else if (tipo === this.mineros) aldeano = new Minero(this, nextCell, 0, 0);
-    else if (tipo == this.canteros) aldeano = new Cantero(this, nextCell, 0, 0);
-    else if (tipo === this.ganaderos) aldeano = new Ganadero(this, nextCell, 0, 0);
-    else aldeano = new Explorador(this, nextCell, 0, 0);
+    else if (tipo === this.mineros) aldeano = new Minero(this, nextCell);
+    else if (tipo == this.canteros) aldeano = new Cantero(this, nextCell);
+    else if (tipo === this.ganaderos) aldeano = new Ganadero(this, nextCell);
+    else aldeano = new Explorador(this, nextCell);
 
     return aldeano;
   }

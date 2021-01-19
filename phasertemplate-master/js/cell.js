@@ -45,6 +45,7 @@ export default class Cell {
                             if (this.game.jug.edificio.hasMenu) {
                                 this.game.jug.edificio.setMenu();
                             }
+                            this.game.acciones.actualizarIndice(config.turnosPorConstruccion)
                             celdas.forEach(elem => { elem.sprite.tint = 0xE2A41F; elem.tint = 0xE2A41F; elem.ocupada = true; });
                             this.game.jug.isBuilding = false;
                             this.game.jug.edificio.addToScene();

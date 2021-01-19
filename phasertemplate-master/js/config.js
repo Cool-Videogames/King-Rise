@@ -48,6 +48,8 @@ export let hudDepth = 7;
 
 //Acciones
 export let nuevoAldeano = 15;
+export let generaRecursos = 4;
+export let turnosPorConstruccion = 4;
 export let numeroAccionesIniciales = 20;
 export let relacionAcciones = 0.8; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
 export let numeroAccionesMinimo = 5;
@@ -115,18 +117,36 @@ export let interseccionMontañaMar = 20; //Siempre menor o igual que el numero d
 export let limiteDer = 769;
 export let limiteIzq = 508;
 
-//Enemigo
-export let meleeEnemy = {
-    AtackDamage: 15,
-    Health: 50,
-    AtackDistance: 2,
-    MovementSpeed: 120,
-    AtackTime: 2
+export let aldeanosBasicos = {
+    vida: 40,
+    dmg: 8,
 }
-export let rangedEnemy = {
-    AtackDamage: 5,
-    Health: 20,
-    AtackDistance: 5,
-    MovementSpeed: 120,
-    AtackTime: 1
+
+export let mineros = {
+    vida: 70,
+    dmg: 12,
+}
+
+export let exploradores = {
+    vida: 25,
+    dmg: 10,
+}
+
+export let ganaderos = {
+    vida: 20,
+    dmg: 5,
+}
+
+export let canteros = {
+    vida: 60,
+    dmg: 10,
+}
+
+//Enemigo
+export let enemigo = {
+    dmg: 8,
+    vida: 50,
+    rango: 2,
+    speed: 120,
+    cadencia: 2
 }

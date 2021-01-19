@@ -32,7 +32,7 @@ export default class Acciones {
         this.game.oleadasEnemigos.createWave(10, this.direccion);
         this.game.jug.irAlTrono();
         this.nuevaOleada();
-        this.activarModoDiablo();
+        this.activarModoAtaque();
     }
 
     nuevaOleada() {  //Cuando el ataque finalice y volvamos al modo aldea
@@ -45,10 +45,11 @@ export default class Acciones {
     }
 
     nuevaRonda() {
+        for (let i of this.game.edificios) i.vida = i.vidaMaxima;
         this.game.interfaz.actualizaInterfaz();
         this.ataqueEnCurso = false;
         this.game.jug.bajarDelTrono();
-        this.activarModoDiablo(false);
+        this.activarModoAtaque(false);
     }
 
     actualizarIndice(aumento) {
@@ -56,6 +57,14 @@ export default class Acciones {
 
         this.nuevoAldeano++;
         if (this.nuevoAldeano >= config.nuevoAldeano) { this.game.creaAldeanos(1, this.game.aldeanosBasicos); this.nuevoAldeano = 0; }
+        this.generaRecursos++;
+
+        for (let i of this.game.edificios) {
+            if (i.recursos) {
+                i.generaRecursos++;
+                if (i.generaRecursos >= config.generaRecursos) { i.generar(); i.generaRecursos = 0; }
+            }
+        }
 
         this.index += aumento;
         this.numeroAccionesRestantes = this.accionesSiguienteAtaque - this.index;
@@ -74,21 +83,22 @@ export default class Acciones {
             this.casillasAvanzadas = 0
         }
     }
-    activarModoDiablo(bool = true) {
+
+    activarModoAtaque(bool = true) {
         for (let i of this.game.aldeanosBasicos) {
-            i.activarModoDiablo(bool);
+            i.activarModoAtaque(bool);
         }
         for (let i of this.game.canteros) {
-            i.activarModoDiablo(bool);
-        } 
+            i.activarModoAtaque(bool);
+        }
         for (let i of this.game.mineros) {
-            i.activarModoDiablo(bool);
-        } 
+            i.activarModoAtaque(bool);
+        }
         for (let i of this.game.exploradores) {
-            i.activarModoDiablo(bool);
+            i.activarModoAtaque(bool);
         }
         for (let i of this.game.ganaderos) {
-            i.activarModoDiablo(bool);
+            i.activarModoAtaque(bool);
         }
     }
 }
