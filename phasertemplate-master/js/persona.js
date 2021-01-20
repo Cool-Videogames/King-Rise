@@ -20,7 +20,7 @@ export default class Persona extends Phaser.GameObjects.Sprite {
         this.alto = 1;
 
         this.destruido = false;
-        this.stuneado =false;
+        this.stuneado = false;
         this.t = 0;
         this.isInRange = false;
     }
@@ -56,7 +56,7 @@ export default class Persona extends Phaser.GameObjects.Sprite {
     }
 
     matar(dt) {
-        if (this.objetivo.destruido || this.objetivo === null) {
+        if (this.objetivo === null || this.objetivo.destruido) {
             this.isInRange = false;
             this.move()
         }
@@ -80,7 +80,7 @@ export default class Persona extends Phaser.GameObjects.Sprite {
 
             let obj = { x: 0, y: 0 };
             this.objetivo.getCenter(obj);
-            if(!this.stuneado)this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
+            if (!this.stuneado) this.game.physics.moveTo(this, obj.x, obj.y, this.moveSpeed);
 
             let distancia = this.distanciaObjetivo();
             let rango = this.range + this.objetivo.ancho / 2 * config.sizeCasilla;

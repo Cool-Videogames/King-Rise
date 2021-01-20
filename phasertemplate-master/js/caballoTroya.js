@@ -8,21 +8,20 @@ export default class CaballoTroya extends EdificioDefensivo {
         this.posMarcoX = 3;
         this.setScale(2.2, 2.2);
         this.body.setSize(this.width * 1.35, this.height * 1.35, this.getCenter());
-        this.collider = null
+        this.collider = null;
+        this.auxDestruye = false;
     }
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-
+        if (this.auxDestruye) super.destruir();
     }
 
     destruir() {
-        console.log('hey')
-        this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (turret, enemy) => {
-            this.stun(enemy);
-            
+        this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (trap, enemy) => {
+            this.stun(enemy, this);
         });
-        super.destruir();
+        this.auxDestruye = true;
     }
 
     muestraOpciones() { //CAMBIAR PARA ADAPTARLO AL MENU DEL CABALLO DE TROYA (SI LO TIENE)

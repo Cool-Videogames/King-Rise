@@ -20,7 +20,7 @@ export default class EdificioDefensivo extends Edificio {
     stun(enemy, trampa) {
         enemy.stuneado = true;
         enemy.trampa = trampa;
-        enemy.timer = 100;
+        enemy.timer = 135;
         enemy.setTexture('francesStun');
     }
 }
