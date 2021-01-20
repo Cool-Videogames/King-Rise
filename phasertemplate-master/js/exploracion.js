@@ -38,14 +38,24 @@ export default class Exploracion {
                 return;
                 }
             this.resultado = this.explorar(this.aldeanos, this.exploradores);
-            for(let i = 0; i < this.aldeanos; i++){
-                let a = this.game.aldeanosBasicos.pop();
-                a.destroy();
+
+            if(this.resultado.victoria){
+                this.game.exploradores.pop().destroy();
+                //a.destroy();
             }
-            for(let i = 0; i < this.exploradores; i++){
-                let a = this.game.exploradores.pop();
-                a.destroy();
-            }
+            let recursos = this.game.recursos;
+            recursos.oro += this.resultado.recursos.oro;
+            recursos.comida += this.resultado.recursos.comida;
+            recursos.materiales += this.resultado.recursos.materiales;
+
+            // for(let i = 0; i < this.aldeanos; i++){
+            //     let a = this.game.aldeanosBasicos.pop();
+            //     a.destroy();
+            // }
+            // for(let i = 0; i < this.exploradores; i++){
+            //     let a = this.game.exploradores.pop();
+            //     a.destroy();
+            // }
             this.game.interfaz.actualizaInterfaz();
         })
 
@@ -72,7 +82,6 @@ export default class Exploracion {
             recursosObtenidos = this.recursosDerrota();
             supervivientes = this.metodoQueMasacraCruelmenteAldeanosEnElCasoDeQueSeTrateDeUnaDerrota(aldeanos, exploradores);
         }
-
         let duracionExploracion = Math.max(config.duracionMinima, Math.floor(Math.random() * config.duracionMaxima));
 
         return {
@@ -91,10 +100,9 @@ export default class Exploracion {
     }
 
     recursosDerrota() {
-        let oro = Math.max(0, Math.floor(-30 + Math.random() * 50));
-        let materiales = Math.max(0, Math.floor(-30 + Math.random() * 50));
-        let comida = Math.max(0, Math.floor(-30 + Math.random() * 50));
-
+        let oro = Math.floor(Math.random() * 50);
+        let materiales = Math.floor(Math.random() * 50);
+        let comida =Math.floor(Math.random() * 50);
         return { oro: oro, materiales: materiales, comida: comida };
     }
 
