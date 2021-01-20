@@ -50,7 +50,7 @@ export default class Acciones {
 
     nuevaRonda() {
         this.game.input.enabled = true;
-        for (let i of this.game.edificios) i.vida = i.vidaMaxima;
+        for (let i of this.game.edificios) { i.vida = i.vidaMaxima; i.actualizaBarraVida(); }
         this.game.interfaz.actualizaInterfaz();
         this.ataqueEnCurso = false;
         this.game.jug.bajarDelTrono();
