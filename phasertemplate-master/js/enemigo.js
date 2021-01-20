@@ -6,22 +6,36 @@ export default class Enemigo extends Persona {
         super(scene, pos, vida, fuerza, key);
         scene.add.existing(this);
         scene.physics.add.existing(this)
-        
+
         this.objetivo = null;
         this.game = scene;
- ;
+        ;
         this.body.setSize(this.width / 2, this.height / 4);
         this.body.setOffset(this.width / 4, this.height - this.body.height / 2);
 
         this.setOrigin(0.5, 0.5);
         this.setDepth(config.hudDepth - 1);
 
+        this.timer = 0;
+        this.trampa = null;
     }
 
     preUpdate(t, dt) {
         super.preUpdate();
-        this.barraVida.x = this.x-this.barraVida.width/4;
-        this.barraVida.y = this.y+this.height;
+        if (this.stuneado) {
+            this.body.setVelocity(0);
+            console.log("STUNEADO");
+            this.timer--;
+            if (this.timer <= 0) {
+                this.stuneado = false;
+                this.move();
+                this.setTexture('frances');
+                this.trampa.destruir();
+                this.trampa = null;
+            }
+        }
+        this.barraVida.x = this.x - this.barraVida.width / 4;
+        this.barraVida.y = this.y + this.height;
         this.matar(dt);
     }
 

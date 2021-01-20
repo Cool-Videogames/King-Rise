@@ -13,16 +13,14 @@ export default class EdificioDefensivo extends Edificio {
     }
     atacar(objetivo, dmg) {
         objetivo.vida -= dmg;
-        if (objetivo.vida <= 0) objetivo.morir(); 
+        if (objetivo.vida <= 0) objetivo.morir();
     }
 
 
-    stun(enemy) {
-        this.collider = null;
-        enemy.body.setVelocity(0);
+    stun(enemy, trampa) {
         enemy.stuneado = true;
-        this.enemyStunned = true;
-        this.timer = 100;
+        enemy.trampa = trampa;
+        enemy.timer = 100;
         enemy.setTexture('francesStun');
     }
 }

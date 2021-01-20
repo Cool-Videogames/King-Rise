@@ -18,6 +18,8 @@ export default class Aldeano extends Persona {
         this.ocupado = false;
         this.dir = 'none';
 
+        this.especialidad = 'basico';
+
         this.casillaRandom();
         this.movimientoPathFinding(this.nodoInicial);
 
@@ -82,11 +84,10 @@ export default class Aldeano extends Persona {
         if (bool) {
             this.anims.stop();
             this.continuaAnimacion = false;
-            console.log(this.especialidad);
-            if (this.especialidad = 'explorador') this.setTexture('explorador');
-            else if (this.especialidad = 'ganadero') this.setTexture('ganadero');
-            else if (this.especialidad = 'minero') this.setTexture('minero');
-            else if (this.especialidad = 'cantero') this.setTexture('cantero');
+            if (this.especialidad === 'explorador') this.setTexture('explorador');
+            else if (this.especialidad === 'ganadero') this.setTexture('ganadero');
+            else if (this.especialidad === 'minero') this.setTexture('minero');
+            else if (this.especialidad === 'cantero') this.setTexture('cantero');
             else this.setTexture('aldeano');
             this.move();
         }

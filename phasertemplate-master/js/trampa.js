@@ -9,22 +9,12 @@ export default class Trampa extends EdificioDefensivo {
         this.aldeanosAsignables = false;
         this.enemyStunned = false;
         this.enemy = null;
-        this.timer = 0;
         this.collider = null;
+        this.timer = 0;
     }
     preUpdate() {
         super.preUpdate();
-        if (this.enemyStunned) {
-            console.log("STUNEADO");
-            this.timer--;
-            if (this.timer <= 0) {
-                this.enemyStunned = false
-                this.enemy.stuneado = false;
-                this.enemy.move();
-                this.enemy.setTexture('frances');
-                this.destruir();
-            }
-        }
+
         if (this.game.acciones.ataqueEnCurso && this.collider === null && this.enemyStunned === false) {
             this.collider = this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (trap, enemy) => {
                 this.enemy = enemy;
@@ -34,7 +24,9 @@ export default class Trampa extends EdificioDefensivo {
                 }
                 else if (!this.enemyStunned) {
                     this.atacar(this.enemy, 15);
-                    this.stun(this.enemy);
+                    this.stun(this.enemy, this);
+                    this.enemyStunned = true;
+                    this.timer = 100;
                 }
             })
         }
