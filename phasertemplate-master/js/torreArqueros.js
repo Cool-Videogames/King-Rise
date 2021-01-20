@@ -99,7 +99,9 @@ export default class TorreArqueros extends EdificioDefensivo {
             }
             else if (this.variacionAldeanos > 0) {
                 for (let i = 0; i < this.variacionAldeanos; ++i) {
-                    this.tipoAldeano.pop().destroy();
+                    let aldeano  = this.tipoAldeano.pop();
+                    aldeano.barraVida.destroy();
+                    aldeano.destroy();
                     this.numAldeanos++;
                 }
             }

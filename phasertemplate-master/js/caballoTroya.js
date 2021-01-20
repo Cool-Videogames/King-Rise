@@ -7,8 +7,11 @@ export default class CaballoTroya extends EdificioDefensivo {
         this.game = scene;
         this.posMarcoX = 3;
         this.setScale(2.2, 2.2);
+        this.body.setSize(this.width * 1.35, this.height * 1.35, this.getCenter());
+        this.collider = null
     }
-    muestraOpciones(){ //CAMBIAR PARA ADAPTARLO AL MENU DEL CABALLO DE TROYA (SI LO TIENE)
+
+    muestraOpciones() { //CAMBIAR PARA ADAPTARLO AL MENU DEL CABALLO DE TROYA (SI LO TIENE)
         return () => {
             this.marco.setVisible(!this.marco.visible);
             this.done.setVisible(!this.done.visible);

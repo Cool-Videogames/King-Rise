@@ -103,7 +103,7 @@ export let textoGranja = "La granja: asigna \nganaderos para obtener \ncomida. C
 export let textoTrampaOso = "La trampa para osos: \nes una poderosa \nherramienta que al ser \npisada dañará y \nanclará a los enemigos \nal suelo."
 export let textoTorreArqueros = "La torre de arqueros: \nasigna exploradores \npara defender la \naldea. Cuantos más \nexploradores más daño \ncausará.";
 export let textoPuestoVigilancia = "El puesto de vigilancia:\ncóntruyelo en los bordes \ndel mapa para ver \npor donde vendrán \nenemigos."
-export let textoCaballoTroya = "El caballo de troya: \npermite almacenar \naldeanos. Al ser destruido \nlos aldeanos atacarán \ny anclará a los \nenemigos al suelo."
+export let textoCaballoTroya = "El caballo de troya: \npermite almacenar \nexploradores. Al ser \ndestruido los exploradores \natacarán y anclará a \nlos enemigos al suelo."
 export let textoTaberna = "La taberna: permite \na tus aldeanos \npasar un buen rato, \naumentando lafelicidad."
 export let textoTrampaSuelo = "La trampa en el suelo: \nelimina a los enemigos al \ninstante haciéndolos caer \nal profundo agujero."
 export let textoMuro = "El muro: bloquea el \npaso a los enemigos con \nesta resistente estructura."
@@ -144,7 +144,7 @@ export let canteros = {
 
 //Enemigo
 export let enemigo = {
-    dmg: 8,
+    dmg: 3,
     vida: 50,
     rango: 2,
     speed: 120,

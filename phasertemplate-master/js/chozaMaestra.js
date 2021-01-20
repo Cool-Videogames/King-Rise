@@ -68,6 +68,7 @@ export default class ChozaMaestra extends Edificio {
     }
     muestraOpciones() {
         return () => {
+            this.actualizaCosteTotal();
             this.marco.setVisible(!this.marco.visible);
             this.marcoCrear.setVisible(!this.marcoCrear.visible);
             this.masCrear.setVisible(!this.masCrear.visible);

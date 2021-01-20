@@ -24,5 +24,13 @@ export default class AudioManager {
     }
     setVolumen(vol){
         this.mainSound.setVolume(vol);
+        this.construccion.setVolume(vol);
+        this.destruccion.setVolume(vol);
+    }
+
+    stopAll(){
+        this.mainSound.pause();
+        this.construccion.pause();
+        this.destruccion.pause();
     }
 }

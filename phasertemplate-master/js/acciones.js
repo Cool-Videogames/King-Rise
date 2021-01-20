@@ -28,6 +28,9 @@ export default class Acciones {
 
     ataque() {
         //Se llamará a este método una vez empiece el ataque
+        this.game.input.enabled = false;
+        this.game.cierraMarcoAnterior();
+        this.game.cierraMarcoAnterior = () => { };
         this.ataqueEnCurso = true;
         this.game.oleadasEnemigos.createWave(10, this.direccion);
         this.game.jug.irAlTrono();
@@ -45,6 +48,7 @@ export default class Acciones {
     }
 
     nuevaRonda() {
+        this.game.input.enabled = true;
         for (let i of this.game.edificios) i.vida = i.vidaMaxima;
         this.game.interfaz.actualizaInterfaz();
         this.ataqueEnCurso = false;

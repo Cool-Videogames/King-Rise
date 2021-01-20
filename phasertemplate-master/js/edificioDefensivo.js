@@ -13,10 +13,16 @@ export default class EdificioDefensivo extends Edificio {
     }
     atacar(objetivo, dmg) {
         objetivo.vida -= dmg;
-        console.log(objetivo.vida);
         if (objetivo.vida <= 0) objetivo.morir(); 
     }
-    asignarTropas(aldeanos) {
-        this.numAldeanos += aldeanos;
+
+
+    stun(enemy) {
+        this.collider = null;
+        enemy.body.setVelocity(0);
+        enemy.stuneado = true;
+        this.enemyStunned = true;
+        this.timer = 100;
+        enemy.setTexture('francesStun');
     }
 }

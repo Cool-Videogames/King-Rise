@@ -18,13 +18,14 @@ export default class Trampa extends EdificioDefensivo {
             console.log("STUNEADO");
             this.timer--;
             if (this.timer <= 0) {
-                this.enemyStunned = false;
+                this.enemyStunned = false
+                this.enemy.stuneado = false;
                 this.enemy.move();
                 this.enemy.setTexture('frances');
                 this.destruir();
             }
         }
-        if (this.game.acciones.ataqueEnCurso && this.collider === null) {
+        if (this.game.acciones.ataqueEnCurso && this.collider === null && this.enemyStunned === false) {
             this.collider = this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (trap, enemy) => {
                 this.enemy = enemy;
                 if (this.especialidad === 'trampaSuelo') {
@@ -33,7 +34,7 @@ export default class Trampa extends EdificioDefensivo {
                 }
                 else if (!this.enemyStunned) {
                     this.atacar(this.enemy, 15);
-                    this.stun();
+                    this.stun(this.enemy);
                 }
             })
         }
@@ -41,11 +42,5 @@ export default class Trampa extends EdificioDefensivo {
             this.collider.destroy();
             this.collider = null;
         }
-    }
-    stun() {
-        this.enemy.body.setVelocity(0);
-        this.enemyStunned = true;
-        this.timer = 100;
-        this.enemy.setTexture('francesStun');
     }
 }
