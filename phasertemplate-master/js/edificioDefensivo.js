@@ -11,11 +11,6 @@ export default class EdificioDefensivo extends Edificio {
         this.variacionAldeanos = 0;
 
     }
-    atacar(objetivo, dmg) {
-        objetivo.vida -= dmg;
-        if (objetivo.vida <= 0) objetivo.morir();
-    }
-
 
     stun(enemy, trampa) {
         enemy.stuneado = true;

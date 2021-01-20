@@ -34,7 +34,7 @@ export default class TorreArqueros extends EdificioDefensivo {
                     this.game.physics.add.overlap(this.arrow, enemy, (arrow, enemy) => {
                         arrow.destroy();
                         this.arrow = null;
-                        this.atacar(enemy, config.danioTorreArqueros * this.numAldeanos);
+                        this.enemy.recibirAtaque(config.danioTorreArqueros * this.numAldeanos);
                     })
                 }
             });
