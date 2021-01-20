@@ -27,7 +27,7 @@ export default class Bunker extends EdificioDefensivo {
         let posicionMarco = new Vector2D(this.posicion.x + config.sizeCasilla * this.posMarcoX, this.posicion.y + config.sizeCasilla / 2);
         this.marco = functions.creaSprite(posicionMarco.x, posicionMarco.y, 'asignar', this.game, config.hudDepth);
         this.marco.setVisible(false);
-        this.text = functions.creaTexto(this.x + 2, this.y - this.width *0.65, this.numAldeanos, this.game);
+        this.text = functions.creaTexto(this.x + 2, this.y - this.width * 0.65, this.numAldeanos, this.game);
         this.text.setFontSize(config.fontSize - 5);
         this.done = functions.creaSprite(this.marco.x + (this.marco.width / 2), this.marco.y + this.marco.height + 7, 'done', this.game, config.hudDepth);
         this.done.setOrigin(0.5, 0.5); this.done.setScale(1.5, 1.5); this.done.setVisible(false);
@@ -43,6 +43,9 @@ export default class Bunker extends EdificioDefensivo {
                 for (let i of this.texts) {
                     i.setVisible(!i.visible);
                 }
+                this.texts[1].text = 0;
+                this.text.text = this.numAldeanos;
+                this.variacionAldeanos = 0;
             }
             this.marcoDestruir.setVisible(!this.marcoDestruir.visible);
         }
@@ -78,7 +81,7 @@ export default class Bunker extends EdificioDefensivo {
             }
             else if (this.variacionAldeanos > 0) {
                 for (let i = 0; i < this.variacionAldeanos; ++i) {
-                    let aldeano  = this.tipoAldeano.pop();
+                    let aldeano = this.tipoAldeano.pop();
                     aldeano.barraVida.destroy();
                     aldeano.destroy();
                     this.numAldeanos++;

@@ -32,6 +32,8 @@ export default class EdificioRecursos extends Edificio {
                 for (let i of this.texts) {
                     i.setVisible(!i.visible);
                 }
+                this.texts[1].text = 0;
+                this.variacionAldeanos = 0;
             }
             this.marcoDestruir.setVisible(!this.marcoDestruir.visible);
         }

@@ -14,10 +14,10 @@ export default class EdificioSocial extends Edificio {
         this.numAldeanos = 0;
         this.timer = 5000;
     }
-    preUpdate(t,dt){
-        super.preUpdate(t,dt);
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt);
         this.timer -= dt;
-        if(this.timer <= 0){
+        if (this.timer <= 0) {
             this.generar();
             this.game.interfaz.actualizaInterfaz();
             this.timer = 5000;
@@ -43,6 +43,9 @@ export default class EdificioSocial extends Edificio {
                 for (let i of this.texts) {
                     i.setVisible(!i.visible);
                 }
+                this.texts[1].text = 0;
+                this.text.text = this.numAldeanos;
+                this.variacionAldeanos = 0;
             }
             this.marcoDestruir.setVisible(!this.marcoDestruir.visible);
         }
@@ -78,7 +81,7 @@ export default class EdificioSocial extends Edificio {
             }
             else if (this.variacionAldeanos > 0) {
                 for (let i = 0; i < this.variacionAldeanos; ++i) {
-                    let aldeano  = this.tipoAldeano.pop();
+                    let aldeano = this.tipoAldeano.pop();
                     aldeano.barraVida.destroy();
                     aldeano.destroy();
                     this.numAldeanos++;
@@ -99,7 +102,7 @@ export default class EdificioSocial extends Edificio {
     asignarAldeanos(aldeanos) {
         this.numAldeanos += aldeanos;
     }
-    generar(){
-        this.cantidad = config.cantidadRecursosPorDefecto*this.numAldeanos;
+    generar() {
+        this.cantidad = config.cantidadRecursosPorDefecto * this.numAldeanos;
     }
 }
