@@ -26,11 +26,16 @@
   src:url(./phasertemplate-master/fuentes/PressStart2P-Regular.ttf)
 }
 
-#pageLogo img{
+#cabecera{
+  align-items: center;
+
+}
+div .logo{
   /*background: rgb(61, 31, 84);*/
-  margin-left: 38%;
+  margin-left: 17%;
   width: 330px; 
  height: 200px;
+ align-items: center;
 }
 
 nav .menu{
