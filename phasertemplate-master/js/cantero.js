@@ -4,6 +4,7 @@ import * as config from "./config.js"
 export default class Cantero extends Aldeano {
     constructor(scene, casilla) {
         super(scene, casilla, config.canteros.vida, config.canteros.dmg, 'cantero');
+        this.especialidad = 'cantero';
     }
 
     animation() {

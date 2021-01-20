@@ -131,27 +131,27 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
                 let sexo = Math.round(Math.random(0, 1));
                 if (sexo === 0) sexo = 'aldeano';
                 else sexo = 'aldeana';
-                let aldeano = new Aldeano(this.game, nextCell, 0, 0, sexo);
+                let aldeano = new Aldeano(this.game, nextCell, config.aldeanosBasicos.vida, config.aldeanosBasicos.dmg, sexo);
                 aldeano.activarModoAtaque();
                 this.game.aldeanosBasicos.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.mineros) {
-                let aldeano = new Minero(this.game, nextCell, 0, 0);
+                let aldeano = new Minero(this.game, nextCell);
                 aldeano.activarModoAtaque();
                 this.game.mineros.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.canteros) {
-                let aldeano = new Cantero(this.game, nextCell, 0, 0);
+                let aldeano = new Cantero(this.game, nextCell);
                 aldeano.activarModoAtaque();
                 this.game.canteros.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.ganaderos) {
-                let aldeano = new Ganadero(this.game, nextCell, 0, 0);
+                let aldeano = new Ganadero(this.game, nextCell);
                 aldeano.activarModoAtaque();
                 this.game.ganaderos.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.exploradores) {
-                let aldeano = new Explorador(this.game, nextCell, 0, 0);
+                let aldeano = new Explorador(this.game, nextCell);
                 aldeano.activarModoAtaque();
                 this.game.exploradores.push(aldeano);
             }

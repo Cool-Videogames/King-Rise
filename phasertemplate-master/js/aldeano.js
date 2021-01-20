@@ -82,7 +82,12 @@ export default class Aldeano extends Persona {
         if (bool) {
             this.anims.stop();
             this.continuaAnimacion = false;
-            this.setTexture('aldeano');
+            console.log(this.especialidad);
+            if (this.especialidad = 'explorador') this.setTexture('explorador');
+            else if (this.especialidad = 'ganadero') this.setTexture('ganadero');
+            else if (this.especialidad = 'minero') this.setTexture('minero');
+            else if (this.especialidad = 'cantero') this.setTexture('cantero');
+            else this.setTexture('aldeano');
             this.move();
         }
         else {

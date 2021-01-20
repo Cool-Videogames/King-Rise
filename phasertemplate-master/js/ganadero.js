@@ -4,6 +4,7 @@ import * as config from "./config.js"
 export default class Ganadero extends Aldeano{
     constructor(scene, casilla){
         super(scene, casilla, config.ganaderos.vida, config.ganaderos.dmg, 'ganadero');
+        this.especialidad = 'ganadero';
     }
     animation(){
         if(this.dir === 'right'){

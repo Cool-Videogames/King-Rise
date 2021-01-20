@@ -11,6 +11,20 @@ export default class CaballoTroya extends EdificioDefensivo {
         this.collider = null
     }
 
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt);
+
+    }
+
+    destruir() {
+        console.log('hey')
+        this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (turret, enemy) => {
+            this.stun(enemy);
+            
+        });
+        super.destruir();
+    }
+
     muestraOpciones() { //CAMBIAR PARA ADAPTARLO AL MENU DEL CABALLO DE TROYA (SI LO TIENE)
         return () => {
             this.marco.setVisible(!this.marco.visible);

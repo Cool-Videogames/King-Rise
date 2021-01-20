@@ -4,6 +4,7 @@ import * as config from "./config.js"
 export default class Explorador extends Aldeano {
     constructor(scene, casilla) {
         super(scene, casilla, config.exploradores.vida, config.exploradores.dmg, 'explorador');
+        this.especialidad = 'explorador';
     }
 
     animation() {

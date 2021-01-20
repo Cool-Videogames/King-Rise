@@ -4,6 +4,7 @@ import * as config from "./config.js"
 export default class Minero extends Aldeano{
     constructor(scene, casilla){
         super(scene, casilla, config.mineros.vida, config.mineros.dmg, 'minero');
+        this.especialidad = 'minero';
     }
     
     animation(){

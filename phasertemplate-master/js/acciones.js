@@ -31,6 +31,7 @@ export default class Acciones {
         this.game.input.enabled = false;
         this.game.cierraMarcoAnterior();
         this.game.cierraMarcoAnterior = () => { };
+        this.game.interfaz.ocultaDesplegable();
         this.ataqueEnCurso = true;
         this.game.oleadasEnemigos.createWave(10, this.direccion);
         this.game.jug.irAlTrono();
