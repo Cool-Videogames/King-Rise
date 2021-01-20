@@ -55,9 +55,9 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         let ancho = (this.vida * this.barraATope) / this.vidaMaxima;
         this.barraVida.setDisplaySize(ancho, this.barraVida.height);
 
-        let porcentajeVida = (this.vida*100)/this.vidaMaxima;
-        if(porcentajeVida> 60) this.barraVida.setTexture('barraVida');
-        else if(porcentajeVida > 30) this.barraVida.setTexture('barraVidaNaranja');
+        let porcentajeVida = (this.vida * 100) / this.vidaMaxima;
+        if (porcentajeVida > 60) this.barraVida.setTexture('barraVida');
+        else if (porcentajeVida > 30) this.barraVida.setTexture('barraVidaNaranja');
         else this.barraVida.setTexture('barraVidaRoja');
     }
 
@@ -131,22 +131,27 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
                 if (sexo === 0) sexo = 'aldeano';
                 else sexo = 'aldeana';
                 let aldeano = new Aldeano(this.game, nextCell, 0, 0, sexo);
+                aldeano.modoAtaque = true;
                 this.game.aldeanosBasicos.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.mineros) {
                 let aldeano = new Minero(this.game, nextCell, 0, 0);
+                aldeano.modoAtaque = true;
                 this.game.mineros.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.canteros) {
                 let aldeano = new Cantero(this.game, nextCell, 0, 0);
+                aldeano.modoAtaque = true;
                 this.game.canteros.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.ganaderos) {
                 let aldeano = new Ganadero(this.game, nextCell, 0, 0);
+                aldeano.modoAtaque = true;
                 this.game.ganaderos.push(aldeano);
             }
             else if (this.tipoAldeano === this.game.exploradores) {
                 let aldeano = new Explorador(this.game, nextCell, 0, 0);
+                aldeano.modoAtaque = true;
                 this.game.exploradores.push(aldeano);
             }
             i++;
