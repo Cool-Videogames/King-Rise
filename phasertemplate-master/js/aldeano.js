@@ -166,8 +166,9 @@ export default class Aldeano extends Persona {
     }
 
     morir() {
-        super.morir();
         let index = this.game.aldeanosBasicos.indexOf(this);
         this.game.aldeanosBasicos.splice(index, 1);
+        this.barraVida.destroy();
+        this.destroy();
     }
 }

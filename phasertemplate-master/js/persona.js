@@ -50,11 +50,6 @@ export default class Persona extends Phaser.GameObjects.Sprite {
         this.barraVida.y = this.y + this.barraVida.height / 4;
     }
 
-    morir() {
-        this.barraVida.destroy();
-        this.destroy();
-    }
-
     matar(dt) {
         if (this.objetivo === null || this.objetivo.destruido) {
             this.isInRange = false;

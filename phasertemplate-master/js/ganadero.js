@@ -19,8 +19,9 @@ export default class Ganadero extends Aldeano{
         else if(this.dir === 'down') this.play('ganaderoFrente');
     }
     morir(){
-        super.morir();
         let index = this.game.ganaderos.indexOf(this);
         this.game.ganaderos.splice(index, 1);
+        this.barraVida.destroy();
+        this.destroy();
     }
 }

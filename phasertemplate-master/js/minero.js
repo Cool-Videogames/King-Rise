@@ -22,5 +22,7 @@ export default class Minero extends Aldeano{
     morir(){
         let index = this.game.mineros.indexOf(this);
         this.game.mineros.splice(index, 1);
+        this.barraVida.destroy();
+        this.destroy();
     }
 }

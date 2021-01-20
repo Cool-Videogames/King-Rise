@@ -21,8 +21,9 @@ export default class Explorador extends Aldeano {
     }
 
     morir() {
-        super.morir();
         let index = this.game.exploradores.indexOf(this);
         this.game.exploradores.splice(index, 1);
+        this.barraVida.destroy();
+        this.destroy();
     }
 }
