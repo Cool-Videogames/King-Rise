@@ -41,7 +41,7 @@ export default class Enemigo extends Persona {
 
     juntarObjetivos() {
         return this.game.edificios.concat(this.game.aldeanosBasicos, this.game.mineros, this.game.exploradores,
-            this.game.mineros, this.game.canteros);
+            this.game.ganaderos, this.game.canteros);
     }
 
     morir() {

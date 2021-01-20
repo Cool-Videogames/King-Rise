@@ -27,14 +27,14 @@ export default class TorreArqueros extends EdificioDefensivo {
                 if (this.arrow === null && this.fireRate <= 0 && this.numAldeanos > 0) {
                     this.fireRate = 2000;
                     this.enemy = enemy;
-                    this.arrow = this.game.physics.add.sprite(this.x, this.y - this.height / 2, 'arrow');
+                    this.arrow = this.game.physics.add.sprite(this.x, this.y - this.height, 'arrow');
                     this.arrow.setDepth(config.hudDepth - 1);
                     this.arrow.body.setSize(this.arrow.width / 1.5, this.arrow.height / 2.5);
 
                     this.game.physics.add.overlap(this.arrow, enemy, (arrow, enemy) => {
                         arrow.destroy();
                         this.arrow = null;
-                        this.enemy.recibirAtaque(config.danioTorreArqueros * this.numAldeanos);
+                        enemy.recibirAtaque(config.danioTorreArqueros * this.numAldeanos);
                     })
                 }
             });
@@ -99,7 +99,7 @@ export default class TorreArqueros extends EdificioDefensivo {
             }
             else if (this.variacionAldeanos > 0) {
                 for (let i = 0; i < this.variacionAldeanos; ++i) {
-                    let aldeano  = this.tipoAldeano.pop();
+                    let aldeano = this.tipoAldeano.pop();
                     aldeano.barraVida.destroy();
                     aldeano.destroy();
                     this.numAldeanos++;
