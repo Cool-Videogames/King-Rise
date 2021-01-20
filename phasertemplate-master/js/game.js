@@ -47,15 +47,14 @@ export default class Game extends Phaser.Scene {
     
 /////////////////////////////////////////////////////////////
 
-
     this.audio = new AudioManager(this);
     this.acciones = new Acciones(this, config.numeroAccionesIniciales);
+    this.ajustes = new Ajustes(this);
+    this.interfaz = new Interfaz(this);
     this.mapa = new Mapa(this, config.columnas, config.filas, config.sizeCasilla);
     this.fondo = new Fondo(this, this.mapa);
     this.jug = new Jugador(this, this.mapa.mapa[0][0]);
     this.creaTrono();
-    this.ajustes = new Ajustes(this);
-    this.interfaz = new Interfaz(this);
     this.camera = new Camera(this, this.cameras.main);
     this.creaObstaculos();
     this.creaAldeanos(config.numAldeanosIniciales, this.aldeanosBasicos);
