@@ -58,7 +58,7 @@ export let numeroCasillasRecorridasParaConsumirUnaAccion = 3;
 //Exploracion
 export let costeBaseExploracion = 20;
 export let costePorExplorador = 5;
-export let probabilidadExitoBase = 0.20;
+export let probabilidadExitoBase = 0.50;
 export let probabilidadExitoPorExploradorAdicional = 0.05;
 export let probabilidadExitoPorAldeanoAdicional = 0.15;
 export let maximoRecursosPorRonda = { oro: 10, materiales: 10, comida: 5 };

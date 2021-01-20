@@ -93,16 +93,16 @@ export default class Exploracion {
     }
 
     recursosVictoria(numAldeanos) {
-        let oro = Math.floor(this.game.acciones.numeroAtaque * config.maximoRecursosPorRonda.oro * Math.random()) * numAldeanos;
-        let materiales = Math.floor(this.game.acciones.numeroAtaque * config.maximoRecursosPorRonda.oro * Math.random()) * numAldeanos;
-        let comida = Math.floor(this.game.acciones.numeroAtaque * config.maximoRecursosPorRonda.oro * Math.random()) * numAldeanos;
+        let oro = Math.floor(Math.random() * 50);
+        let materiales = Math.floor(Math.random() * 50);
+        let comida =Math.floor(Math.random() * 50);
         return { oro: oro, materiales: materiales, comida: comida };
     }
 
     recursosDerrota() {
-        let oro = Math.floor(Math.random() * 50);
-        let materiales = Math.floor(Math.random() * 50);
-        let comida =Math.floor(Math.random() * 50);
+        let oro = Math.floor(Math.random() * 10);
+        let materiales = Math.floor(Math.random() * 10);
+        let comida =Math.floor(Math.random() * 5);
         return { oro: oro, materiales: materiales, comida: comida };
     }
 
