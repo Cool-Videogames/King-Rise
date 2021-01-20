@@ -86,7 +86,7 @@ export default class Interfaz {
     let xOS = 20; let yOS = 10;
 
     //Recursos y proximo ataque
-    this.sp(this.texts[a.proxAtaque], this.game.xSize / 2 + xOS + 10, pI.y + yOS - 13);
+    this.sp(this.texts[a.proxAtaque], this.game.xSize / 2 + xOS + 5, pI.y + yOS - 13);
     this.sp(this.texts[a.oro], pI.x - pI.width / 4 + xOS, pI.y + pI.height / 5);
     this.sp(this.texts[a.comida], pI.x - pI.width / 6 + xOS, pI.y + pI.height / 5);
     this.sp(this.texts[a.materiales], pI.x - pI.width / 4 + xOS, pI.y - yOS);
@@ -398,7 +398,6 @@ export default class Interfaz {
     this.texts[this.tnames.comida].text = this.game.recursos.comida;
     this.texts[this.tnames.materiales].text = this.game.recursos.materiales;
     this.texts[this.tnames.felicidad].text = this.game.recursos.felicidad;
-    this.texts[this.tnames.proxAtaque].text = this.game.acciones.numeroAccionesRestantes;
 
     //Informacion de aldeanos
     this.texts[this.tnames.aldeanoBText].text = this.game.aldeanosBasicos.length;
@@ -406,6 +405,17 @@ export default class Interfaz {
     this.texts[this.tnames.canteroText].text = this.game.canteros.length;
     this.texts[this.tnames.ganaderoText].text = this.game.ganaderos.length;
     this.texts[this.tnames.exploradorText].text = this.game.exploradores.length;
+    this.textoAtaque();
+  }
+  textoAtaque(){
+    if(this.game.acciones.ataqueEnCurso){
+      this.texts[this.tnames.proxAtaque].text = "!ATAQUE!";
+      this.texts[this.tnames.proxAtaque].setScale(0.4,0.4);
+    }
+    else {
+      this.texts[this.tnames.proxAtaque].text = this.game.acciones.numeroAccionesRestantes;
+      this.texts[this.tnames.proxAtaque].setScale(1,1);
+    }
   }
 
   inputs() {

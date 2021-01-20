@@ -37,10 +37,10 @@ export default class Acciones {
         this.game.jug.irAlTrono();
         this.nuevaOleada();
         this.activarModoAtaque();
+        this.game.interfaz.actualizaInterfaz();
     }
 
     nuevaOleada() {  //Cuando el ataque finalice y volvamos al modo aldea
-
         this.index = 0;
         this.numeroAtaque++;
         this.accionesSiguienteAtaque = Math.floor(this.accionesSiguienteAtaque * config.relacionAcciones);
@@ -51,8 +51,8 @@ export default class Acciones {
     nuevaRonda() {
         this.game.input.enabled = true;
         for (let i of this.game.edificios) { i.vida = i.vidaMaxima; i.actualizaBarraVida(); }
-        this.game.interfaz.actualizaInterfaz();
         this.ataqueEnCurso = false;
+        this.game.interfaz.actualizaInterfaz();
         this.game.jug.bajarDelTrono();
         this.activarModoAtaque(false);
     }
