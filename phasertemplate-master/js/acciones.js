@@ -22,6 +22,8 @@ export default class Acciones {
 
         this.numEnemigos = 10;
         this.rondas = config.oleadasParaMasEnemigos;
+
+        this.edificioVigilancia !== null
     }
 
     finTurno() {

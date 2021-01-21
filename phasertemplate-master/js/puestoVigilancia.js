@@ -20,10 +20,10 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         this.asignaInput();
     }
     initRangoSprite(dir) {
-        
+
         let pos = new Vector2D(this.posicion.x + this.ancho * config.sizeCasilla / 2, this.posicion.y + config.sizeCasilla * this.alto / 2);
         let sprite = new Phaser.GameObjects.Sprite(this.game, pos.x + 3, pos.y, 'rangoCono');
-        sprite.setDepth(config.rangosVisionDepth+1);
+        sprite.setDepth(config.rangosVisionDepth + 1);
         this.game.add.existing(sprite);
         sprite.setScale(2, 2);
         sprite.setOrigin(0.5, 1);
@@ -54,13 +54,13 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         }
         this.rangoSprite = sprite;
     }
-    actualizaRangoSprite(){
-        if(this.direction === this.dir) {
+    actualizaRangoSprite() {
+        if (this.direction === this.dir) {
             this.rangoSprite.setTexture('rangoConoRojo');
-            this.rangoSprite.alpha = 0.8;
+            this.rangoSprite.alpha = 0.5;
         }
     }
-    reseteaRangoSprite(){
+    reseteaRangoSprite() {
         this.rangoSprite.setTexture('rangoCono');
         this.rangoSprite.alpha = 0.25;
     }
