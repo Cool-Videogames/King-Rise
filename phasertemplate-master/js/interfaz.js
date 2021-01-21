@@ -407,14 +407,14 @@ export default class Interfaz {
     this.texts[this.tnames.exploradorText].text = this.game.exploradores.length;
     this.textoAtaque();
   }
-  textoAtaque(){
-    if(this.game.acciones.ataqueEnCurso){
+  textoAtaque() {
+    if (this.game.acciones.ataqueEnCurso) {
       this.texts[this.tnames.proxAtaque].text = "!ATAQUE!";
-      this.texts[this.tnames.proxAtaque].setScale(0.4,0.4);
+      this.texts[this.tnames.proxAtaque].setScale(0.4, 0.4);
     }
     else {
-      this.texts[this.tnames.proxAtaque].text = this.game.acciones.numeroAccionesRestantes;
-      this.texts[this.tnames.proxAtaque].setScale(1,1);
+      this.texts[this.tnames.proxAtaque].text = Math.floor(this.game.acciones.numeroAccionesRestantes);
+      this.texts[this.tnames.proxAtaque].setScale(1, 1);
     }
   }
 

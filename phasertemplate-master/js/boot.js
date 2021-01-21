@@ -35,6 +35,7 @@ export default class Boot extends Phaser.Scene {
         this.load.spritesheet('jugadorFrente', "./phasertemplate-master/images/rey/reyFrente.png", { frameWidth: 32, frameHeight: 38 });
         this.load.spritesheet('jugadorLado', "./phasertemplate-master/images/rey/reyLado.png", { frameWidth: 32, frameHeight: 38 });
         this.load.spritesheet('jugadorEspaldas', "./phasertemplate-master/images/rey/reyEspaldas.png", { frameWidth: 32, frameHeight: 38 });
+        this.load.image('rangoInteraccion', "./phasertemplate-master/images/rey/rangoInteraccion.png")
 
         //Aldeano
         this.load.image('aldeano', "./phasertemplate-master/images/aldeano/aldeano.png");

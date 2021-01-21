@@ -47,11 +47,12 @@ export let personasDepth = 3;
 export let hudDepth = 7;
 
 //Acciones
+export let oleadasParaMasEnemigos = 3;
 export let nuevoAldeano = 15;
 export let generaRecursos = 4;
 export let turnosPorConstruccion = 4;
 export let numeroAccionesIniciales = 20;
-export let relacionAcciones = 0.8; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
+export let relacionAcciones = 0.87; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
 export let numeroAccionesMinimo = 5;
 export let numeroCasillasRecorridasParaConsumirUnaAccion = 3;
 
@@ -90,11 +91,11 @@ export let vidaTrampaSuelo = 50;
 export let vidaCaballoTroya = 50;
 export let vidaPuestoVigilancia = 50;
 export let vidaMuro = 50;
-export let vidaTorreArqueros = 500;
+export let vidaTorreArqueros = 300;
 export let vidaTaberna = 50;
 export let vidaTrono = 1000;
 //Danio
-export let danioTorreArqueros = 20;
+export let danioTorreArqueros = 9;
 
 //Descripcion edificios
 export let textoChoza = "La choza maestra: es el \nedificio más  importante.\nEn él podrás crear  y\nespecializar a tus \nqueridísimos aldeanos.";
@@ -119,17 +120,17 @@ export let limiteIzq = 508;
 
 export let aldeanosBasicos = {
     vida: 40,
-    dmg: 8,
+    dmg: 2,
 }
 
 export let mineros = {
     vida: 70,
-    dmg: 12,
+    dmg: 4,
 }
 
 export let exploradores = {
     vida: 25,
-    dmg: 10,
+    dmg: 8,
 }
 
 export let ganaderos = {
@@ -139,7 +140,7 @@ export let ganaderos = {
 
 export let canteros = {
     vida: 60,
-    dmg: 10,
+    dmg: 6,
 }
 
 //Enemigo
