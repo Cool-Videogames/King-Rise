@@ -19,7 +19,7 @@ export default class Trampa extends EdificioDefensivo {
             this.collider = this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (trap, enemy) => {
                 this.enemy = enemy;
                 if (this.especialidad === 'trampaSuelo') {
-                    this.enemy.destroy();
+                    this.enemy.morir();
                     trap.destruir();
                 }
                 else if (!this.enemyStunned) {
