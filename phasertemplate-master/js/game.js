@@ -31,7 +31,7 @@ export default class Game extends Phaser.Scene {
     this.canteros = [];
     this.exploradores = [];
 
-    this.recursos = { oro: 500, comida: 300, materiales: 300, felicidad: 300 }
+    this.recursos = { oro: 500, comida: 100, materiales: 100, felicidad: 100 }
     this.proxAtaque = 20;
     this.numEdificios = 0;
     this.numChozas = 0;
@@ -44,8 +44,8 @@ export default class Game extends Phaser.Scene {
     this.casillaPuntero = { x: 0, y: 0 };
     this.cierraMarcoAnterior = () => { };
 
-
-    /////////////////////////////////////////////////////////////
+    
+/////////////////////////////////////////////////////////////
 
     this.audio = new AudioManager(this);
     this.acciones = new Acciones(this, config.numeroAccionesIniciales);
