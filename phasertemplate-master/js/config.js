@@ -91,11 +91,11 @@ export let vidaTrampaSuelo = 50;
 export let vidaCaballoTroya = 50;
 export let vidaPuestoVigilancia = 50;
 export let vidaMuro = 50;
-export let vidaTorreArqueros = 500;
+export let vidaTorreArqueros = 300;
 export let vidaTaberna = 50;
 export let vidaTrono = 1000;
 //Danio
-export let danioTorreArqueros = 20;
+export let danioTorreArqueros = 9;
 
 //Descripcion edificios
 export let textoChoza = "La choza maestra: es el \nedificio más  importante.\nEn él podrás crear  y\nespecializar a tus \nqueridísimos aldeanos.";

@@ -83,10 +83,10 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     }
 
     devuelveCoste() {
-        this.game.recursos.oro += (config.recuperacionRecursos / 100) * this.costeEdificio.oro;
-        this.game.recursos.comida += (config.recuperacionRecursos / 100) * this.costeEdificio.comida;
-        this.game.recursos.materiales += (config.recuperacionRecursos / 100) * this.costeEdificio.materiales;
-        this.game.recursos.felicidad += (config.recuperacionRecursos / 100) * this.costeEdificio.felicidad;
+        this.game.recursos.oro += Math.floor((config.recuperacionRecursos / 100) * this.costeEdificio.oro);
+        this.game.recursos.comida += Math.floor((config.recuperacionRecursos / 100) * this.costeEdificio.comida);
+        this.game.recursos.materiales += Math.floor((config.recuperacionRecursos / 100) * this.costeEdificio.materiales);
+        this.game.recursos.felicidad += Math.floor((config.recuperacionRecursos / 100) * this.costeEdificio.felicidad);
     }
     destruir() {
         if (this.key == 'trono') {
