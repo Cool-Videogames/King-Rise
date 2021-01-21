@@ -20,6 +20,9 @@ export default class Acciones {
 
         this.direccion = Math.random() < 0.5;
         this.ataqueEnCurso = false;
+
+        this.numEnemigos = 10;
+        this.rondas = config.oleadasParaMasEnemigos;
     }
 
     finTurno() {
@@ -33,7 +36,7 @@ export default class Acciones {
         this.game.cierraMarcoAnterior = () => { };
         this.game.interfaz.ocultaDesplegable();
         this.ataqueEnCurso = true;
-        this.game.oleadasEnemigos.createWave(10, this.direccion);
+        this.game.oleadasEnemigos.createWave(this.numEnemigos, this.direccion);
         this.game.jug.irAlTrono();
         this.nuevaOleada();
         this.activarModoAtaque();
@@ -42,10 +45,12 @@ export default class Acciones {
 
     nuevaOleada() {  //Cuando el ataque finalice y volvamos al modo aldea
         this.index = 0;
+        this.rondas--;
+        if (this.rondas <= 0) { this.numEnemigos++; this.rondas = config.oleadasParaMasEnemigos; }
         this.numeroAtaque++;
-        this.accionesSiguienteAtaque = Math.floor(this.accionesSiguienteAtaque * config.relacionAcciones);
-        this.accionesSiguienteAtaque = Math.min(this.accionesSiguienteAtaque, config.numeroAccionesMinimo);
-        this.numeroAccionesRestantes = this.accionesSiguienteAtaque;
+        this.accionesSiguienteAtaque = this.accionesSiguienteAtaque * config.relacionAcciones;
+        this.accionesSiguienteAtaque = Math.max(this.accionesSiguienteAtaque, config.numeroAccionesMinimo);
+        this.numeroAccionesRestantes = Math.floor(this.accionesSiguienteAtaque);
     }
 
     nuevaRonda() {

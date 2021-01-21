@@ -47,11 +47,12 @@ export let personasDepth = 3;
 export let hudDepth = 7;
 
 //Acciones
+export let oleadasParaMasEnemigos = 3;
 export let nuevoAldeano = 15;
 export let generaRecursos = 4;
 export let turnosPorConstruccion = 4;
 export let numeroAccionesIniciales = 20;
-export let relacionAcciones = 0.8; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
+export let relacionAcciones = 0.87; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
 export let numeroAccionesMinimo = 5;
 export let numeroCasillasRecorridasParaConsumirUnaAccion = 3;
 
@@ -119,17 +120,17 @@ export let limiteIzq = 508;
 
 export let aldeanosBasicos = {
     vida: 40,
-    dmg: 8,
+    dmg: 2,
 }
 
 export let mineros = {
     vida: 70,
-    dmg: 12,
+    dmg: 4,
 }
 
 export let exploradores = {
     vida: 25,
-    dmg: 10,
+    dmg: 8,
 }
 
 export let ganaderos = {
@@ -139,7 +140,7 @@ export let ganaderos = {
 
 export let canteros = {
     vida: 60,
-    dmg: 10,
+    dmg: 6,
 }
 
 //Enemigo

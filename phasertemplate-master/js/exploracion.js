@@ -36,12 +36,11 @@ export default class Exploracion {
                 this.game.aldeanosBasicos.length < this.aldeanos) {
                 console.log("No tienes tantas cosas");
                 return;
-                }
+            }
             this.resultado = this.explorar(this.aldeanos, this.exploradores);
 
-            if(this.resultado.victoria){
-                this.game.exploradores.pop().destroy();
-                //a.destroy();
+            if (this.resultado.victoria) {
+                this.game.exploradores[0].morir();
             }
             let recursos = this.game.recursos;
             recursos.oro += this.resultado.recursos.oro;
@@ -95,14 +94,14 @@ export default class Exploracion {
     recursosVictoria(numAldeanos) {
         let oro = Math.floor(Math.random() * 50);
         let materiales = Math.floor(Math.random() * 50);
-        let comida =Math.floor(Math.random() * 50);
+        let comida = Math.floor(Math.random() * 50);
         return { oro: oro, materiales: materiales, comida: comida };
     }
 
     recursosDerrota() {
         let oro = Math.floor(Math.random() * 10);
         let materiales = Math.floor(Math.random() * 10);
-        let comida =Math.floor(Math.random() * 5);
+        let comida = Math.floor(Math.random() * 5);
         return { oro: oro, materiales: materiales, comida: comida };
     }
 
