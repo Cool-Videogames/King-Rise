@@ -52,7 +52,7 @@ Existen 4 recursos, cada uno tendrá sus utilidades:
 
 -Oro: sirve para construir edificios, especializar tropas y destruir obstáculos.
 
--Comida: sirve para especializar aldeanos en diferentes tipos de trabajos.
+-Comida: sirve para crear aldeanos en la choza.
 
 -Materiales: sirve para construir edificios.
 
