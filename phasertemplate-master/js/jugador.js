@@ -11,6 +11,7 @@ import PuestoVigilancia from "./puestoVigilancia.js";
 import CaballoTroya from "./caballoTroya.js";
 import EdificioTaberna from "./edificioTaberna.js";
 import Bunker from "./bunker.js";
+import * as functions from "./functions.js"
 
 export default class Jugador extends Phaser.GameObjects.Sprite {
     constructor(scene, casilla) {
@@ -39,12 +40,29 @@ export default class Jugador extends Phaser.GameObjects.Sprite {
         this.dir = 'none';
         this.stopBuild = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); //tecla para dejar de construir
 
+        this.rangoInteraccion = this.initRangoSprite();
 
         this.caminoHastaTrono = false;
     }
 
+    initRangoSprite() {
+        let sprite = new Phaser.GameObjects.Sprite(this.game, this.x, this.y - config.sizeCasilla / 2, 'rangoInteraccion');
+        sprite.setDepth(config.rangosVisionDepth);
+        this.game.add.existing(sprite);
+        sprite.setOrigin(0.5, 0.5);
+        sprite.setScale(config.rangoInteraccion * 0.48, config.rangoInteraccion * 0.48)
+        sprite.alpha = 0.35;
+        return sprite;
+    }
+
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
+        this.rangoInteraccion.x = this.x;
+        this.rangoInteraccion.y = this.y - config.sizeCasilla / 2;
+
+        if (this.isBuilding && this.rangoInteraccion.scaleX !== config.rangoInteraccion * 0.54) this.rangoInteraccion.setScale(config.rangoInteraccion * 0.54, config.rangoInteraccion * 0.54);
+        else if (!this.isBuilding && this.rangoInteraccion.scaleX !== config.rangoInteraccion * 0.48) this.rangoInteraccion.setScale(config.rangoInteraccion * 0.48, config.rangoInteraccion * 0.48)
+
         if (!this.game.acciones.ataqueEnCurso || this.caminoHastaTrono) {
             if (Phaser.Input.Keyboard.JustDown(this.stopBuild) && this.isBuilding) {
                 this.edificio.celdas(this.edificio.posicion).forEach(elem => elem.sprite.tint = elem.tint);
