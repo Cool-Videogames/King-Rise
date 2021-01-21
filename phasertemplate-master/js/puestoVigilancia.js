@@ -12,6 +12,7 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         this.aldeanosAsignables = false;
         this.rango = rango;
         this.rangoSprite = null;
+        this.direction = this.game.acciones.direccion;
     }
     setMenu() {
         this.creaBarraVida();
@@ -19,22 +20,24 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         this.asignaInput();
     }
     initRangoSprite(dir) {
+        
         let pos = new Vector2D(this.posicion.x + this.ancho * config.sizeCasilla / 2, this.posicion.y + config.sizeCasilla * this.alto / 2);
         let sprite = new Phaser.GameObjects.Sprite(this.game, pos.x + 3, pos.y, 'rangoCono');
-        sprite.setDepth(config.rangosVisionDepth);
+        sprite.setDepth(config.rangosVisionDepth+1);
         this.game.add.existing(sprite);
         sprite.setScale(2, 2);
         sprite.setOrigin(0.5, 1);
         sprite.alpha = 0.25;
 
-
         if (dir === 'sur') {
+            this.dir = false;
             sprite.setRotation(Phaser.Math.DegToRad(180));
             sprite.y += config.sizeCasilla / 2;
             this.body.setSize(sprite.width, sprite.height);
             this.body.setOffset(-config.sizeCasilla / 2, config.sizeCasilla);
         }
         else if (dir === 'este') {
+            this.dir = true;
             sprite.setRotation(Phaser.Math.DegToRad(90));
             this.body.setSize(sprite.height, sprite.width);
             this.body.setOffset(config.sizeCasilla / 4 + 1, 0);
@@ -49,16 +52,17 @@ export default class PuestoVigilancia extends EdificioDefensivo {
             this.body.setSize(sprite.width, sprite.height);
             this.body.setOffset(-config.sizeCasilla / 2, -2 * config.sizeCasilla);
         }
-
         this.rangoSprite = sprite;
-
-        //PENDIENTE, ESPERAR A TENER LOS ENEMIGOS
-        /*this.game.physics.add.overlap(this, this.game.jug, (turret, enemy) => {
-            let marcador = new Phaser.GameObjects.Sprite(this.game, enemy.x, enemy.y, 'marcadorFrances');
-            marcador.setDepth(config.rangosVisionDepth);
-            marcador.setOrigin(0.5, 0.5);
-            this.game.add.existing(marcador);
-        });*/
+    }
+    actualizaRangoSprite(){
+        if(this.direction === this.dir) {
+            this.rangoSprite.setTexture('rangoConoRojo');
+            this.rangoSprite.alpha = 0.8;
+        }
+    }
+    reseteaRangoSprite(){
+        this.rangoSprite.setTexture('rangoCono');
+        this.rangoSprite.alpha = 0.25;
     }
 
     initFlechas() {
@@ -106,10 +110,5 @@ export default class PuestoVigilancia extends EdificioDefensivo {
         super.destruir();
         this.destroyFlechas();
         if (this.rangoSprite !== null) this.rangoSprite.destroy();
-    }
-    recuperaAldeanos() {
-        //CUANDO TERMINE EL ATAQUE SE LLAMARÁ A ESTE MÉTODO
-        for (let i = 0; i < this.numAldeanos; i++)this.game.exploradores.push(this.game.creaAldeano());
-        this.numAldeanos = 0;
     }
 }
