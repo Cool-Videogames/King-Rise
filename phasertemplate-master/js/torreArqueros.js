@@ -129,7 +129,7 @@ export default class TorreArqueros extends EdificioDefensivo {
                     i.setVisible(!i.visible);
                 }
                 this.texts[3].setVisible(true);
-                this.texts[1].text = 0;
+                this.texts[1].text = this.numAldeanos;
                 this.texts[3].text = this.numAldeanos;
                 this.variacionAldeanos = 0;
             }

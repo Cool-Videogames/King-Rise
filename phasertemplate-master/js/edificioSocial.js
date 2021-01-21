@@ -43,7 +43,7 @@ export default class EdificioSocial extends Edificio {
                 for (let i of this.texts) {
                     i.setVisible(!i.visible);
                 }
-                this.texts[1].text = 0;
+                this.texts[1].text = this.numAldeanos;
                 this.text.text = this.numAldeanos;
                 this.variacionAldeanos = 0;
             }

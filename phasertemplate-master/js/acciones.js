@@ -23,7 +23,7 @@ export default class Acciones {
         this.numEnemigos = 10;
         this.rondas = config.oleadasParaMasEnemigos;
 
-        this.edificioVigilancia !== null
+        this.edificioVigilancia = null
     }
 
     finTurno() {
@@ -58,7 +58,7 @@ export default class Acciones {
         this.game.input.enabled = true;
         for (let i of this.game.edificios) { i.vida = i.vidaMaxima; i.actualizaBarraVida(); }
         this.ataqueEnCurso = false;
-        if(this.edificioVigilancia !== null) this.edificioVigilancia.reseteaRangoSprite();
+        if (this.edificioVigilancia !== null) this.edificioVigilancia.reseteaRangoSprite();
         this.game.interfaz.actualizaInterfaz();
         this.game.jug.bajarDelTrono();
         this.activarModoAtaque(false);
@@ -88,16 +88,16 @@ export default class Acciones {
             this.ataque();
         }
     }
-    actualizaPuestoVigilancia(){
-        if(this.index === config.numeroAccionesIniciales-5){
+    actualizaPuestoVigilancia() {
+        if (this.numeroAccionesRestantes <= 5) {
             this.edificioVigilancia = this.encuentraEdificio('puestoVigilancia');
-            if(this.edificioVigilancia !== null) this.edificioVigilancia.actualizaRangoSprite();
+            if (this.edificioVigilancia !== null) this.edificioVigilancia.actualizaRangoSprite();
         }
     }
-    encuentraEdificio(key){
-        for(let i of this.game.edificios){
-            if(i.key === key){
-               return i;
+    encuentraEdificio(key) {
+        for (let i of this.game.edificios) {
+            if (i.key === key) {
+                return i;
             }
         }
         return null;

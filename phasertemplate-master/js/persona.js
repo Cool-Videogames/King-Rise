@@ -56,7 +56,7 @@ export default class Persona extends Phaser.GameObjects.Sprite {
             this.move()
         }
 
-        if (this.isInRange) {
+        if (this.isInRange && !this.stuneado) {
             this.t += dt / 1000;
 
             if (this.objetivo.destruido) {
