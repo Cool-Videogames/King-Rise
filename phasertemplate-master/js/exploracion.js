@@ -40,12 +40,12 @@ export default class Exploracion {
             this.resultado = this.explorar(this.aldeanos, this.exploradores);
 
             if (this.resultado.victoria) {
-                this.game.exploradores[0].morir();
+                let recursos = this.game.recursos;
+                recursos.oro += this.resultado.recursos.oro;
+                recursos.comida += this.resultado.recursos.comida;
+                recursos.materiales += this.resultado.recursos.materiales;
             }
-            let recursos = this.game.recursos;
-            recursos.oro += this.resultado.recursos.oro;
-            recursos.comida += this.resultado.recursos.comida;
-            recursos.materiales += this.resultado.recursos.materiales;
+            else this.game.exploradores[0].morir();
 
             // for(let i = 0; i < this.aldeanos; i++){
             //     let a = this.game.aldeanosBasicos.pop();
