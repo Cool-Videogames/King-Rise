@@ -22,6 +22,11 @@ export default class TorreArqueros extends EdificioDefensivo {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
 
+        if (this.enemy !== null && this.enemy.destruido && this.arrow !== null) {
+            this.arrow.destroy();
+            this.arrow = null;
+        }
+
         if (this.game.acciones.ataqueEnCurso && this.collider === null) {
             this.collider = this.game.physics.add.overlap(this, this.game.oleadasEnemigos.currentWave, (turret, enemy) => {
                 if (this.arrow === null && this.fireRate <= 0 && this.numAldeanos > 0) {
@@ -47,15 +52,9 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.fireRate -= dt;
 
         if (this.arrow !== null) {
-            if (this.enemy !== null) {
-                let angle = Phaser.Math.Angle.Between(this.enemy.body.center.x, this.enemy.body.center.y, this.arrow.x, this.arrow.y);
-                this.arrow.setRotation(angle);
-                this.game.physics.moveTo(this.arrow, this.enemy.body.center.x, this.enemy.body.center.y, 200);
-            }
-            else {
-                this.arrow.destroy();
-                this.arrow = null;
-            }
+            let angle = Phaser.Math.Angle.Between(this.enemy.body.center.x, this.enemy.body.center.y, this.arrow.x, this.arrow.y);
+            this.arrow.setRotation(angle);
+            this.game.physics.moveTo(this.arrow, this.enemy.body.center.x, this.enemy.body.center.y, 200);
         }
     }
     setMenu() {
