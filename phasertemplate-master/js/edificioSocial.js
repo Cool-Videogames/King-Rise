@@ -99,9 +99,6 @@ export default class EdificioSocial extends Edificio {
         this.text.destroy();
     }
 
-    asignarAldeanos(aldeanos) {
-        this.numAldeanos += aldeanos;
-    }
     generar() {
         this.cantidad = config.cantidadRecursosPorDefecto * this.numAldeanos;
     }
