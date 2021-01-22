@@ -150,6 +150,9 @@ export default class Boot extends Phaser.Scene {
         //Escenas
         this.load.image('fondoInicio', "./phasertemplate-master/images/background.png");
         this.load.image('logoJuego', "./phasertemplate-master/images/imagen logo.png");
+        this.load.image('finJuego', "./phasertemplate-master/images/fin.png");
+        this.load.image('salirFin', "./phasertemplate-master/images/salir.png");
+        this.load.image('reintentarFin', "./phasertemplate-master/images/reintentar.png")
     }
 
     create() {

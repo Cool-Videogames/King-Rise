@@ -92,7 +92,13 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         if (this.key == 'trono') {
             this.game.input.enabled = true;
             this.game.audio.stopAll();
-            this.game.scene.start('escenaInicio'); return;
+            //Mostramos GAMEOVER
+            this.game.cartelFin.setVisible(true);
+            this.game.scoreText.setVisible(true);
+            this.game.reintentarFin.setVisible(true);
+            this.game.salirFin.setVisible(true);
+            return;
+            //this.game.scene.start('escenaInicio'); return;
         }
 
         if (this.destruible) {

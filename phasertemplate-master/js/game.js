@@ -1,4 +1,5 @@
 import * as config from "./config.js";
+import * as functions from "./functions.js";
 import Interfaz from "./interfaz.js";
 import Jugador from "./jugador.js";
 import Mapa from "./mapa.js";
@@ -61,6 +62,34 @@ export default class Game extends Phaser.Scene {
     this.interfaz.actualizaInterfaz();
     this.oleadasEnemigos = new OleadasEnemigos(this);
     this.exploracion = new Exploracion(this);
+
+
+    //CartelFinJuego
+    this.cartelFin = functions.creaSprite(640, 360, 'finJuego', this, config.hudDepth + 1);
+    this.cartelFin.setScale(this.cartelFin.scaleX / 2.5, this.cartelFin.scaleY / 2.5);
+    this.cartelFin.setOrigin(0.5, 0.5);
+    this.cartelFin.setScrollFactor(0);
+    this.cartelFin.setVisible(false);
+
+    this.scoreText = this.add.text(890, 303, this.acciones.rondasSuperadas, { fontSize: '40px', fill: '#000' });
+    this.scoreText.setDepth(config.hudDepth + 1);
+    this.scoreText.setScrollFactor(0);
+    this.scoreText.setVisible(false);
+
+    this.reintentarFin = functions.creaSprite(640, 380, 'reintentarFin', this, config.hudDepth + 1);
+    this.reintentarFin.setScale(this.reintentarFin.scaleX * 2, this.reintentarFin.scaleY * 2);
+    this.reintentarFin.setOrigin(0.5, 0.5);
+    this.reintentarFin.setScrollFactor(0);
+    this.reintentarFin.setVisible(false);
+
+    this.salirFin = functions.creaSprite(640, 430, 'salirFin', this, config.hudDepth + 1);
+    this.salirFin.setScale(this.salirFin.scaleX * 2, this.salirFin.scaleY * 2);
+    this.salirFin.setOrigin(0.5, 0.5);
+    this.salirFin.setScrollFactor(0);
+    this.salirFin.setVisible(false);
+    
+    this.reintentarJuego(this.reintentarFin);
+    this.salirJuego(this.salirFin);
   }
 
   update(t, dt) {
@@ -145,5 +174,17 @@ export default class Game extends Phaser.Scene {
       this.mapa.mapa[columna][fila].ocupada = true;
       visitadas.push(zona);
     }
+  }
+
+  reintentarJuego(reintentar){
+    reintentar.on('pointerup', pointer => {
+      this.scene.start('game');
+  })
+  }
+
+  salirJuego(salir){
+    salir.on('pointerup', pointer => {
+      this.scene.start('escenaInicio');
+  })
   }
 }

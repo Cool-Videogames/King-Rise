@@ -22,7 +22,7 @@ export default class Acciones {
 
         this.numEnemigos = 10;
         this.rondas = config.oleadasParaMasEnemigos;
-
+        this.rondasSuperadas = 0;
         this.edificioVigilancia = null
     }
 
@@ -52,6 +52,8 @@ export default class Acciones {
         this.accionesSiguienteAtaque = this.accionesSiguienteAtaque * config.relacionAcciones;
         this.accionesSiguienteAtaque = Math.max(this.accionesSiguienteAtaque, config.numeroAccionesMinimo);
         this.numeroAccionesRestantes = Math.floor(this.accionesSiguienteAtaque);
+        this.rondasSuperadas = this.rondasSuperadas + 1;
+        this.game.scoreText.setText(this.rondasSuperadas);
     }
 
     nuevaRonda() {
