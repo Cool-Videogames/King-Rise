@@ -49,6 +49,8 @@ export default class Game extends Phaser.Scene {
 /////////////////////////////////////////////////////////////
 
     this.audio = new AudioManager(this);
+    this.audio.menuInicio.pause(this.musicConfig);
+    this.audio.mainSound.play(this.musicConfig);
     this.acciones = new Acciones(this, config.numeroAccionesIniciales);
     this.ajustes = new Ajustes(this);
     this.interfaz = new Interfaz(this);

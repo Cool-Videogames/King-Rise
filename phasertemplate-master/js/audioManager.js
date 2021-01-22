@@ -5,6 +5,7 @@ export default class AudioManager {
         this.mainSound = this.game.sound.add('music');
         this.construccion = this.game.sound.add("construccion",{volume:0.7});
         this.destruccion =  this.game.sound.add("destruccion",{volume:0.5});
+        this.menuInicio = this.game.sound.add("menuInicio", {volume: 0.3});
         this.startMusic();
     }
     startMusic(){
@@ -20,7 +21,7 @@ export default class AudioManager {
         /*this.game.sound.on('decoded', 'music', () =>{
             this.mainSound.play(this.musicConfig);
         });*/
-        this.mainSound.play(this.musicConfig);
+        //this.mainSound.play(this.musicConfig);
     }
     setVolumen(vol){
         this.mainSound.setVolume(vol);

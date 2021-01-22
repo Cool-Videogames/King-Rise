@@ -1,5 +1,6 @@
 import * as functions from "./functions.js"
 import * as config from "./config.js"
+import AudioManager from "./audioManager.js";
 
 export default class EscenaInicio extends Phaser.Scene {
     constructor(){
@@ -7,6 +8,8 @@ export default class EscenaInicio extends Phaser.Scene {
     }
 
     create(){
+        this.audio = new AudioManager(this);
+        this.audio.menuInicio.play();
         this.fondo = functions.creaSprite(0, 0, 'fondoInicio', this ,0);
         this.fondo.setScale(1.3, 1);
         
@@ -28,6 +31,7 @@ export default class EscenaInicio extends Phaser.Scene {
     comenzarJuego(jugar){
         jugar.on('pointerup', pointer => {
             //var isActivee = scene.scene.isSleeping('game');
+            this.audio.menuInicio.stop();
             this.scene.start('game');
             /*if(!isActivee)
             this.scene.start('game');
