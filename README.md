@@ -1,4 +1,5 @@
 # Nombre de proyecto: King Rise
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/images/captura.png "Captura")
 # Cool-Videogames
 # https://cool-videogames.github.io/Paradox-Invasion/
 # Pivotal
