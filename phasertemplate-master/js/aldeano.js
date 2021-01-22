@@ -18,7 +18,7 @@ export default class Aldeano extends Persona {
         this.ocupado = false;
         this.dir = 'none';
 
-        this.especialidad = 'basico';
+        this.especialidad = 'aldeano';
 
         this.casillaRandom();
         this.movimientoPathFinding(this.nodoInicial);
