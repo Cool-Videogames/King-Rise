@@ -10,6 +10,7 @@ export default class EscenaInicio extends Phaser.Scene {
     create(){
         this.audio = new AudioManager(this);
         this.audio.menuInicio.play();
+        this.audio.menuInicio.loop = true;
         this.fondo = functions.creaSprite(0, 0, 'fondoInicio', this ,0);
         this.fondo.setScale(1.3, 1);
         

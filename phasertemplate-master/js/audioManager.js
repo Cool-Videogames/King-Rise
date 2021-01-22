@@ -6,6 +6,7 @@ export default class AudioManager {
         this.construccion = this.game.sound.add("construccion",{volume:0.7});
         this.destruccion =  this.game.sound.add("destruccion",{volume:0.5});
         this.menuInicio = this.game.sound.add("menuInicio", {volume: 0.3});
+        this.musicCombate = this.game.sound.add("cancionCombate", {volumen: 0.3});
         this.startMusic();
     }
     startMusic(){
