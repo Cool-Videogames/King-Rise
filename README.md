@@ -53,7 +53,7 @@
 
 ### **1.-Descripción:**
 
-King Rise es un videojuego de estrategia y gestión de recursos por turnos con vista isométrica que narra la historia de nuestro protagonista Paradox, que tras ser secuestrado por una tribu africana, se convierte en su rey. Así el jugador a través de Paradox deberá mantener su pequeña civilización y hacerla crecer luchando contra las invasiones francesas y demás problemas que puedan aparecer durante la partida. Para ello el jugador tendrá a su alcance una gran variedad de recursos que podrá obtener explorando y explotando sus tierras y con los que hará crecer su poblado.
+King Rise es un videojuego de estrategia y gestión de recursos por turnos con vista isométrica, pensado para cualquier público, que narra la historia de nuestro protagonista Paradox, que tras ser secuestrado por una tribu africana, se convierte en su rey. Así el jugador a través de Paradox deberá mantener su pequeña civilización y hacerla crecer luchando contra las invasiones francesas y demás problemas que puedan aparecer durante la partida. Para ello el jugador tendrá a su alcance una gran variedad de recursos que podrá obtener explorando y explotando sus tierras y con los que hará crecer su poblado.
 
 El juego está basado en la novela Paradox Rey de Pio Baroja, en la que el protagonista es accidentalmente nombrado rey de una tribu durante un viaje de ocio a África.
 En nuestro juego encarnamos a Paradox, y debemos gestionar a los aldeanos y recursos de la aldea para poder prosperar y defendernos de los ataques franceses durante el mayor número de rondas posibles, ya que la historia del libro tiene lugar durante el colonialismo francés.

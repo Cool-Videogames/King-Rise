@@ -28,6 +28,7 @@ export default class AudioManager {
         this.mainSound.setVolume(vol);
         this.construccion.setVolume(vol);
         this.destruccion.setVolume(vol);
+        this.musicCombate.setVolume(vol);
     }
 
     stopAll(){
