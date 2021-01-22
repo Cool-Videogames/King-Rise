@@ -53,7 +53,7 @@ export default class Acciones {
         this.accionesSiguienteAtaque = Math.max(this.accionesSiguienteAtaque, config.numeroAccionesMinimo);
         this.numeroAccionesRestantes = Math.floor(this.accionesSiguienteAtaque);
         this.rondasSuperadas = this.rondasSuperadas + 1;
-        this.game.scoreText.setText(this.rondasSuperadas);
+        
     }
 
     nuevaRonda() {

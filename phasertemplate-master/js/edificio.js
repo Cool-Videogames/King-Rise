@@ -93,6 +93,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             this.game.input.enabled = true;
             this.game.audio.stopAll();
             //Mostramos GAMEOVER
+            this.game.acciones.rondasSuperadas = this.game.acciones.rondasSuperadas - 1;
+            this.game.scoreText.setText(this.game.acciones.rondasSuperadas);
             this.game.cartelFin.setVisible(true);
             this.game.scoreText.setVisible(true);
             this.game.reintentarFin.setVisible(true);

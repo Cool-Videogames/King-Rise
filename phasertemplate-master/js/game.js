@@ -68,31 +68,17 @@ export default class Game extends Phaser.Scene {
 
     //CartelFinJuego
     this.cartelFin = functions.creaSprite(640, 360, 'finJuego', this, config.hudDepth + 1);
-    this.cartelFin.setScale(this.cartelFin.scaleX / 2.5, this.cartelFin.scaleY / 2.5);
-    this.cartelFin.setOrigin(0.5, 0.5);
-    this.cartelFin.setScrollFactor(0);
-    this.cartelFin.setVisible(false);
-
-    this.scoreText = this.add.text(890, 303, this.acciones.rondasSuperadas, { fontSize: '40px', fill: '#000' });
-    this.scoreText.setDepth(config.hudDepth + 1);
-    this.scoreText.setScrollFactor(0);
-    this.scoreText.setVisible(false);
-
+    this.scoreText = this.add.text(890, 295, this.acciones.rondasSuperadas, { fill: '#000' });
     this.reintentarFin = functions.creaSprite(640, 380, 'reintentarFin', this, config.hudDepth + 1);
-    this.reintentarFin.setScale(this.reintentarFin.scaleX * 2, this.reintentarFin.scaleY * 2);
-    this.reintentarFin.setOrigin(0.5, 0.5);
-    this.reintentarFin.setScrollFactor(0);
-    this.reintentarFin.setVisible(false);
-
     this.salirFin = functions.creaSprite(640, 430, 'salirFin', this, config.hudDepth + 1);
-    this.salirFin.setScale(this.salirFin.scaleX * 2, this.salirFin.scaleY * 2);
-    this.salirFin.setOrigin(0.5, 0.5);
-    this.salirFin.setScrollFactor(0);
-    this.salirFin.setVisible(false);
     
+    this.menuFin(this.cartelFin, this.scoreText, this.reintentarFin, this.salirFin);
+
     this.reintentarJuego(this.reintentarFin);
     this.salirJuego(this.salirFin);
   }
+
+  
 
   update(t, dt) {
     this.camera.comportamientoCamara();
@@ -101,6 +87,30 @@ export default class Game extends Phaser.Scene {
 
   pauseGame() {
     this.scene.pause();
+  }
+
+  menuFin(cartelFin, scoreText, reintentar, salir){
+
+    cartelFin.setScale(cartelFin.scaleX / 2.5, cartelFin.scaleY / 2.5);
+    cartelFin.setOrigin(0.5, 0.5);
+    cartelFin.setScrollFactor(0);
+    cartelFin.setVisible(false);
+
+    scoreText.setFont(config.font);
+    scoreText.setFontSize(50);
+    scoreText.setDepth(config.hudDepth + 1);
+    scoreText.setScrollFactor(0);
+    scoreText.setVisible(false);
+
+    reintentar.setScale(reintentar.scaleX * 2, reintentar.scaleY * 2);
+    reintentar.setOrigin(0.5, 0.5);
+    reintentar.setScrollFactor(0);
+    reintentar.setVisible(false);
+
+    salir.setScale(salir.scaleX * 2, salir.scaleY * 2);
+    salir.setOrigin(0.5, 0.5);
+    salir.setScrollFactor(0);
+    salir.setVisible(false);
   }
 
   creaAldeano(tipo) {
