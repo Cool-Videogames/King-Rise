@@ -67,6 +67,10 @@ export default class Game extends Phaser.Scene {
 
 
     //CartelFinJuego
+    this.creaCartelFinal();
+  }
+
+  creaCartelFinal(){
     this.cartelFin = functions.creaSprite(640, 360, 'finJuego', this, config.hudDepth + 1);
     this.cartelFin.setScale(this.cartelFin.scaleX / 2.5, this.cartelFin.scaleY / 2.5);
     this.cartelFin.setOrigin(0.5, 0.5);
