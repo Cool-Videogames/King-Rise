@@ -67,6 +67,10 @@ export default class Game extends Phaser.Scene {
 
 
     //CartelFinJuego
+    this.creaCartelFinal();
+  }
+
+  creaCartelFinal(){
     this.cartelFin = functions.creaSprite(640, 360, 'finJuego', this, config.hudDepth + 1);
     this.scoreText = this.add.text(890, 295, this.acciones.rondasSuperadas, { fill: '#000' });
     this.reintentarFin = functions.creaSprite(640, 380, 'reintentarFin', this, config.hudDepth + 1);

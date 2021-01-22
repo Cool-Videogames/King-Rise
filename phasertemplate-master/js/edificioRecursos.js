@@ -18,7 +18,6 @@ export default class EdificioRecursos extends Edificio {
 
         this.variacionAldeanos = 0;
         this.isBuilt = false;
-        this.timer = 5000;
     }
 
     muestraOpciones() {

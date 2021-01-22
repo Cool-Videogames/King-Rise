@@ -147,16 +147,19 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.rangoSprite = sprite;
     }
 
-    //Cuando lo destruimos nosotros
-    destruir() {
-        super.destruir();
-        this.rangoSprite.destroy();
-        if (this.arrow !== null) this.arrow.destroy();
-    }
-
-    recuperaAldeanos() {
-        //CUANDO TERMINE EL ATAQUE SE LLAMARÁ A ESTE MÉTODO
-        for (let i = 0; i < this.numAldeanos; i++) this.game.exploradores.push(this.game.creaAldeano());
-        this.numAldeanos = 0;
+    recibirAtaque(dmg) {
+        this.vida -= dmg
+        this.actualizaBarraVida();
+        if (this.vida <= 0) {
+            if (this.arrow !== null) {
+                if (this.enemy !== null) this.enemy.recibirAtaque(config.danioTorreArqueros * this.numAldeanos);
+                this.arrow.destroy();
+                this.arrow = null;
+            }
+            this.destruido = true;
+            this.destruir();
+            return true;
+        }
+        return false;
     }
 }

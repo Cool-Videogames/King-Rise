@@ -9,7 +9,6 @@ export default class Enemigo extends Persona {
 
         this.objetivo = null;
         this.game = scene;
-        ;
         this.body.setSize(this.width / 2, this.height / 4);
         this.body.setOffset(this.width / 4, this.height - this.body.height / 2);
 
