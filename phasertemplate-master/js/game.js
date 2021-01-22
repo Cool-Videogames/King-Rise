@@ -65,7 +65,6 @@ export default class Game extends Phaser.Scene {
     this.oleadasEnemigos = new OleadasEnemigos(this);
     this.exploracion = new Exploracion(this);
 
-
     //CartelFinJuego
     this.creaCartelFinal();
   }
@@ -81,8 +80,6 @@ export default class Game extends Phaser.Scene {
     this.reintentarJuego(this.reintentarFin);
     this.salirJuego(this.salirFin);
   }
-
-  
 
   update(t, dt) {
     this.camera.comportamientoCamara();
