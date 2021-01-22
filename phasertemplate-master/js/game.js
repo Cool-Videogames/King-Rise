@@ -192,12 +192,14 @@ export default class Game extends Phaser.Scene {
   reintentarJuego(reintentar){
     reintentar.on('pointerup', pointer => {
       this.scene.start('game');
+      this.audio.musicCombate.pause(this.musicConfig);
   })
   }
 
   salirJuego(salir){
     salir.on('pointerup', pointer => {
       this.scene.start('escenaInicio');
+      this.audio.musicCombate.pause(this.musicConfig);
   })
   }
 }

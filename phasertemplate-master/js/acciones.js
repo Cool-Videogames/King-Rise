@@ -32,6 +32,7 @@ export default class Acciones {
 
     ataque() {
         //Se llamará a este método una vez empiece el ataque
+        
         this.game.input.enabled = false;
         this.game.cierraMarcoAnterior();
         this.game.cierraMarcoAnterior = () => { };
@@ -42,6 +43,9 @@ export default class Acciones {
         this.nuevaOleada();
         this.activarModoAtaque();
         this.game.interfaz.actualizaInterfaz();
+        this.game.audio.musicCombate.play(this.musicConfig);
+        this.game.audio.musicCombate.loop = true;
+        this.game.audio.mainSound.pause(this.musicConfig);
     }
 
     nuevaOleada() {  //Cuando el ataque finalice y volvamos al modo aldea
@@ -54,6 +58,7 @@ export default class Acciones {
         this.numeroAccionesRestantes = Math.floor(this.accionesSiguienteAtaque);
         this.rondasSuperadas = this.rondasSuperadas + 1;
         
+        
     }
 
     nuevaRonda() {
@@ -63,6 +68,8 @@ export default class Acciones {
         if (this.edificioVigilancia !== null) this.edificioVigilancia.reseteaRangoSprite();
         this.game.interfaz.actualizaInterfaz();
         this.game.jug.bajarDelTrono();
+        this.game.audio.musicCombate.pause(this.musicConfig);
+        this.game.audio.mainSound.play(this.musicConfig);
         this.activarModoAtaque(false);
     }
 
