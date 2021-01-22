@@ -193,3 +193,7 @@ Años 40 en África, en un poblado de indígenas que son atacados por los france
 Hemos utilizado la herramienta Pivotal Tracker, para así poder organizar el trabajo en historias de usuario y estimar el coste de estas. La estimación la distribuimos de esta manera:
 
 ![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/images/estimacion.png "estimacion")
+
+**6.2- Comunicación:**
+
+La comunicación la hemos llevado a cabo a través de un canal propio de Discord para reuniones y cosas importantes, y a través de Telegram para cosas puntuales y para avisar de futuras reuniones.
