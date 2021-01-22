@@ -67,6 +67,7 @@ export default class Game extends Phaser.Scene {
 
     //CartelFinJuego
     this.creaCartelFinal();
+    
   }
 
   creaCartelFinal(){
@@ -77,6 +78,8 @@ export default class Game extends Phaser.Scene {
     
     this.menuFin(this.cartelFin, this.scoreText, this.reintentarFin, this.salirFin);
 
+    this.changeColorBoton(this.reintentarFin);
+    this.changeColorBoton(this.salirFin);
     this.reintentarJuego(this.reintentarFin);
     this.salirJuego(this.salirFin);
   }
@@ -202,4 +205,15 @@ export default class Game extends Phaser.Scene {
       this.audio.musicCombate.pause(this.musicConfig);
   })
   }
+
+  changeColorBoton(boton){
+    boton.on('pointerover', pointer => {
+      boton.setScale(boton.scaleX * 1.5, boton.scaleY * 1.5);
+    })
+
+    boton.on('pointerout', pointer => {
+        boton.setScale(boton.scaleX / 1.5, boton.scaleY / 1.5);
+    })
+
+}
 }
