@@ -45,6 +45,12 @@
 
 ### 5.-Arquitectura
 
+### 6.-Plataformas de gestión y comunicación
+
+#### 1. Gestión
+
+#### 2. Comunicación
+
 ### **1.-Descripción:**
 
 King Rise es un videojuego de estrategia y gestión de recursos por turnos con vista isométrica que narra la historia de nuestro protagonista Paradox, que tras ser secuestrado por una tribu africana, se convierte en su rey. Así el jugador a través de Paradox deberá mantener su pequeña civilización y hacerla crecer luchando contra las invasiones francesas y demás problemas que puedan aparecer durante la partida. Para ello el jugador tendrá a su alcance una gran variedad de recursos que podrá obtener explorando y explotando sus tierras y con los que hará crecer su poblado.
@@ -179,3 +185,11 @@ Años 40 en África, en un poblado de indígenas que son atacados por los france
 ![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/images/UML2.png "UML2")
 
 ![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/images/UML3.png "UML3")
+
+### **6.-PLATAFORMAS DE GESTIÓN Y COMUNICACIÓN**
+
+**6.1- Gestión:**
+
+Hemos utilizado la herramienta Pivotal Tracker, para así poder organizar el trabajo en historias de usuario y estimar el coste de estas. La estimación la distribuimos de esta manera:
+
+![alt text](https://github.com/Cool-Videogames/Paradox-Invasion/blob/main/phasertemplate-master/images/estimacion.png "estimacion")
