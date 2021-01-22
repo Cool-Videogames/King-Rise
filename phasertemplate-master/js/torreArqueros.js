@@ -162,10 +162,4 @@ export default class TorreArqueros extends EdificioDefensivo {
         }
         return false;
     }
-
-    recuperaAldeanos() {
-        //CUANDO TERMINE EL ATAQUE SE LLAMARÁ A ESTE MÉTODO
-        for (let i = 0; i < this.numAldeanos; i++) this.game.exploradores.push(this.game.creaAldeano());
-        this.numAldeanos = 0;
-    }
 }
