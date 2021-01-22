@@ -12,17 +12,8 @@ export default class EdificioSocial extends Edificio {
         this.cantidad = felicidad;
         this.aldeanosMax = aldeanosMax;
         this.numAldeanos = 0;
-        this.timer = 5000;
     }
-    preUpdate(t, dt) {
-        super.preUpdate(t, dt);
-        this.timer -= dt;
-        if (this.timer <= 0) {
-            this.generar();
-            this.game.interfaz.actualizaInterfaz();
-            this.timer = 5000;
-        }
-    }
+
     initMarco() {
         let posicionMarco = new Vector2D(this.posicion.x + config.sizeCasilla * this.posMarcoX, this.posicion.y + config.sizeCasilla / 2);
         this.marco = functions.creaSprite(posicionMarco.x, posicionMarco.y, 'asignar', this.game, config.hudDepth);
