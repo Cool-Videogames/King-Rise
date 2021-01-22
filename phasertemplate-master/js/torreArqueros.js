@@ -156,6 +156,7 @@ export default class TorreArqueros extends EdificioDefensivo {
                 this.arrow.destroy();
                 this.arrow = null;
             }
+            this.rangoSprite.destroy();
             this.destruido = true;
             this.destruir();
             return true;
