@@ -208,11 +208,11 @@ export default class Game extends Phaser.Scene {
 
   changeColorBoton(boton){
     boton.on('pointerover', pointer => {
-      boton.setScale(boton.scaleX * 1.5, boton.scaleY * 1.5);
+      boton.setScale(boton.scaleX * 1.2, boton.scaleY * 1.2);
     })
 
     boton.on('pointerout', pointer => {
-        boton.setScale(boton.scaleX / 1.5, boton.scaleY / 1.5);
+        boton.setScale(boton.scaleX / 1.2, boton.scaleY / 1.2);
     })
 
 }
