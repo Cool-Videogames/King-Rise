@@ -78,8 +78,6 @@ export default class Game extends Phaser.Scene {
     
     this.menuFin(this.cartelFin, this.scoreText, this.reintentarFin, this.salirFin);
 
-    this.changeColorBoton(this.reintentarFin);
-    this.changeColorBoton(this.salirFin);
     this.reintentarJuego(this.reintentarFin);
     this.salirJuego(this.salirFin);
   }
@@ -206,7 +204,7 @@ export default class Game extends Phaser.Scene {
   })
   }
 
-  changeColorBoton(boton){
+  changeScaleBoton(boton){
     boton.on('pointerover', pointer => {
       boton.setScale(boton.scaleX * 1.2, boton.scaleY * 1.2);
     })

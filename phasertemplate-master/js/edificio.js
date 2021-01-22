@@ -99,8 +99,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             this.game.scoreText.setVisible(true);
             this.game.reintentarFin.setVisible(true);
             this.game.salirFin.setVisible(true);
-            this.game.changeColorBoton(this.game.reintentarFin);
-            this.game.changeColorBoton(this.game.salirFin);
+            this.game.changeScaleBoton(this.game.reintentarFin);
+            this.game.changeScaleBoton(this.game.salirFin);
             return;
             //this.game.scene.start('escenaInicio'); return;
         }

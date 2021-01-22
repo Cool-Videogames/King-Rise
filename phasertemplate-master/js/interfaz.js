@@ -148,7 +148,8 @@ export default class Interfaz {
   }
 
   finalizarTurno() {
-    this.finTurno = functions.creaSprite(this.texts[this.tnames.proxAtaque].x + 25, this.texts[this.tnames.proxAtaque].y + 42, 'finTurno', this.game, config.hudDepth);
+    this.finTurno = functions.creaSprite(this.texts[this.tnames.proxAtaque].x + 70, this.texts[this.tnames.proxAtaque].y + 45, 'finTurno', this.game, config.hudDepth);
+    this.finTurno.setOrigin(0.5, 0.5);
     this.finTurno.setScrollFactor(0); this.finTurno.x -= this.finTurno.width / 2;
     this.finTurno.setScale(0.7, 0.7);
   }
@@ -438,6 +439,7 @@ export default class Interfaz {
     this.clickEnMuralla(this.sprites[this.names.muralla]);
     this.clickEnCantera(this.sprites[this.names.cantera]);
     this.clickEnBunker(this.sprites[this.names.bunker]);
+    this.game.changeScaleBoton(this.finTurno);
     this.clickEnFinTurno(this.finTurno);
   }
 

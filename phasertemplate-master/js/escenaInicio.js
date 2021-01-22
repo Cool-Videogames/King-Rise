@@ -16,37 +16,31 @@ export default class EscenaInicio extends Phaser.Scene {
         
         this.logo = functions.creaSprite( 350, 100, 'logoJuego', this, 0);
         this.add.existing(this.fondo);
-        //fondo = functions.creaSprite(0, 0, 'fondoInicio', this);
-        
-        //this.fondo = functions.creaSprite(1024, 0, 'fondoInicio', this);
-        //this.logo = new Phaser.GameObjects.Sprite(this,350,100, 'logoJuego');
         this.logo.setOrigin(0,0);
         this.logo.setScale(0.5, 0.5);
 
         this.jugar = functions.creaSprite(0, 0, 'jugar', this);
-        this.jugar.setPosition(config.winWidth/2-this.jugar.width/2,config.winHeight/2+this.jugar.height/2);
+        this.jugar.setOrigin(0.5, 0.5);
+        this.jugar.setPosition(config.winWidth-this.jugar.width - 140,config.winHeight/2+this.jugar.height/2);
         
         this.comenzarJuego(this.jugar);
         this.changeColorJugar(this.jugar);
     }
     comenzarJuego(jugar){
         jugar.on('pointerup', pointer => {
-            //var isActivee = scene.scene.isSleeping('game');
             this.audio.menuInicio.stop();
             this.scene.start('game');
-            /*if(!isActivee)
-            this.scene.start('game');
-            else
-            this.scene.resume('game');*/
         })
     }
     changeColorJugar(botonJugar){
         botonJugar.on('pointerover', pointer => {
             botonJugar.tint = 0x41EE7B;
+            botonJugar.setScale(botonJugar.scaleX * 1.2, botonJugar.scaleY * 1.2);
         })
 
         botonJugar.on('pointerout', pointer => {
             botonJugar.tint = botonJugar.tint;
+            botonJugar.setScale(botonJugar.scaleX / 1.2, botonJugar.scaleY / 1.2);
         })
 
     }

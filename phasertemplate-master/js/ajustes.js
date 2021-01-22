@@ -53,6 +53,7 @@ export default class Ajustes extends Phaser.GameObjects.Sprite{
         this.volver.setOrigin(0.5,0.5);
         this.volver.setScale(2,2);
         this.clickEnVolver(this.volver);
+        this.game.changeScaleBoton(this.volver);
     }
     creaBackground(){
         this.background = functions.creaSprite( config.winWidth/2, config.winHeight/2.5, 'settingsBackground',this.game, config.hudDepth);
