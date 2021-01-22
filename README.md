@@ -135,9 +135,21 @@ La defensa de la aldea será pasiva, el jugador no interacciona. Lo que sí podr
 
 **2.9- Controles:**
 
-El jugador podrá mover su avatar, el rey de la tribu, por todo el mapa mediante el ratón clicando en las casillas del mapa o en edificios para ir e interactuar con ellos.
+Para el desarrollo de este juego hemos querido simplificar el esquema de controle lo máximo posible, intentando todo reducirlo a una interfaz gráfica y que se maneje todo a base de clicks. Aunque pese a ello, hay cierta acciones, principalmente las que tienen que ver con la cámara, para las que sí que es necesario el teclado.
 
-EL ratón también valdrá para moverse por los diferentes menús del juego y por la HUD.
+   Movimiento del jugador: click izquierdo sobre una casilla vacía
+   Interactuar con un edificio: click izquierdo sobre el edificio con el que se desee interactuar (si se encuentra dentro del rango del mismo)
+
+   Movimiento de la cámara: 
+       Movimiento hacia arriba: W
+       Movimiento hacia la izquierda: A
+       Movimiento hacia la derecha: D
+       Movimiento hacia abajo: S
+       Centrar la cámara en el jugador: Barra espaciadora
+
+   Cerrar menú actual: Escape
+
+   El resto de las acciones que puede realizar el jugador se realiazan mediante clicks en elementos de la interfaz
 
 ### **3.-DINÁMICAS:**
 
