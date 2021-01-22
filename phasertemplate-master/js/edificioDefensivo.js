@@ -6,7 +6,6 @@ export default class EdificioDefensivo extends Edificio {
         this.ancho = ancho; this.alto = alto;
         this.rango = rango;
         this.aldeanosMax = aldeanosMax;
-        this.numAldeanos = 0;
         this.especialidad = especialidad;
         this.variacionAldeanos = 0;
 
