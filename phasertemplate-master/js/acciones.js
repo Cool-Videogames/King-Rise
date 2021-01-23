@@ -63,7 +63,7 @@ export default class Acciones {
 
     nuevaRonda() {
         this.game.input.enabled = true;
-        for (let i of this.game.edificios) { i.vida = i.vidaMaxima; i.actualizaBarraVida(); }
+        for (let i of this.game.edificios) { i.vida = i.vidaMaxima; i.actualizaBarraVida();console.log(i); }
         this.ataqueEnCurso = false;
         if (this.edificioVigilancia !== null) this.edificioVigilancia.reseteaRangoSprite();
         this.game.interfaz.actualizaInterfaz();

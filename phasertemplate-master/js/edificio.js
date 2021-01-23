@@ -53,6 +53,7 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     }
     actualizaBarraVida() {
         let ancho = (this.vida * this.barraATope) / this.vidaMaxima;
+
         this.barraVida.setDisplaySize(ancho, this.barraVida.height);
 
         let porcentajeVida = (this.vida * 100) / this.vidaMaxima;
@@ -314,7 +315,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
         this.mas.on('pointerup', pointer => {
             if (this.variacionAldeanos + this.numAldeanos < this.aldeanosMax && this.variacionAldeanos + 1 <= this.tipoAldeano.length) {
                 this.variacionAldeanos++;
-                console.log(this.numAldeanos);
                 this.texts[1].text = this.variacionAldeanos + this.numAldeanos;
                 this.texts[2].text--;
             }
@@ -347,7 +347,6 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             this.game.cierraMarcoAnterior = () => { };
             this.abreMarcos();
             this.game.interfaz.actualizaInterfaz();
-            console.log(this.numAldeanos);
         })
     }
 }
