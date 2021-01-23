@@ -258,6 +258,14 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
     }
 
     recibirAtaque(dmg) {
+        let rnd = Math.floor(Math.random() * 101);
+
+        if(rnd >90){
+            rnd = Math.floor(Math.random() * 2);
+            if (rnd === 0) this.game.audio.ataque1.play();
+            else this.game.audio.ataque2.play();
+        }
+
         this.vida -= dmg
         this.actualizaBarraVida();
         if (this.vida <= 0) {

@@ -44,6 +44,7 @@ export default class Enemigo extends Persona {
     }
 
     morir() {
+        this.barraVida.destroy();
         let index = this.game.oleadasEnemigos.currentWave.indexOf(this);
         this.game.oleadasEnemigos.currentWave.splice(index, 1);
         if (this.game.oleadasEnemigos.currentWave.length <= 0) this.game.acciones.nuevaRonda();
