@@ -48,10 +48,10 @@ export let hudDepth = 7;
 
 //Acciones
 export let oleadasParaMasEnemigos = 3;
-export let nuevoAldeano = 15;
+export let nuevoAldeano = 13;
 export let generaRecursos = 4;
-export let turnosPorConstruccion = 4;
-export let numeroAccionesIniciales = 20;
+export let turnosPorConstruccion = 3;
+export let numeroAccionesIniciales = 30;
 export let relacionAcciones = 0.87; //Razón por la cual se multiplica para obtener el número de movimientos para el siguiente ataque
 export let numeroAccionesMinimo = 5;
 export let numeroCasillasRecorridasParaConsumirUnaAccion = 3;
