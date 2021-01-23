@@ -93,7 +93,7 @@ export let vidaPuestoVigilancia = 50;
 export let vidaMuro = 50;
 export let vidaTorreArqueros = 300;
 export let vidaTaberna = 50;
-export let vidaTrono = 400;
+export let vidaTrono = 300;
 //Danio
 export let danioTorreArqueros = 9;
 
