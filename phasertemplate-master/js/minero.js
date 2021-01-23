@@ -20,9 +20,10 @@ export default class Minero extends Aldeano{
         else if(this.dir === 'down') this.play('mineroFrente');
     }
     morir(){
+        this.barraVida.destroy();
         let index = this.game.mineros.indexOf(this);
-        this.casilla.ocupada = false;
         this.game.mineros.splice(index, 1);
+        this.casilla.ocupada = false;
         this.destroy();
     }
 }

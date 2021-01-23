@@ -232,9 +232,8 @@ export default class ChozaMaestra extends Edificio {
         }
     }
     borraAldeano() {
-        let aldeano = this.game.aldeanosBasicos.pop();
-        aldeano.barraVida.destroy();
-        aldeano.destroy();
+        let aldeano = this.game.aldeanosBasicos[0];
+        aldeano.morir();
         return aldeano;
     }
 }

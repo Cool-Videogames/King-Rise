@@ -55,7 +55,6 @@ export default class Bunker extends EdificioDefensivo {
         this.mas.on('pointerup', pointer => {
             if (this.variacionAldeanos + this.numAldeanos < this.aldeanosMax && this.variacionAldeanos + 1 <= this.tipoAldeano.length) {
                 this.variacionAldeanos++;
-                console.log(this.numAldeanos);
                 this.texts[1].text = this.variacionAldeanos + this.numAldeanos;
                 this.texts[2].text--;
                 this.text.text = this.variacionAldeanos + this.numAldeanos;
@@ -65,7 +64,6 @@ export default class Bunker extends EdificioDefensivo {
         this.menos.on('pointerup', pointer => {
             if (this.variacionAldeanos + this.numAldeanos > 0) {
                 this.variacionAldeanos--;
-                console.log(this.numAldeanos);
                 this.texts[1].text = this.variacionAldeanos + this.numAldeanos;
                 this.texts[2].text++;
                 this.text.text = this.variacionAldeanos + this.numAldeanos;
@@ -81,9 +79,8 @@ export default class Bunker extends EdificioDefensivo {
             }
             else if (this.variacionAldeanos > 0) {
                 for (let i = 0; i < this.variacionAldeanos; ++i) {
-                    let aldeano = this.tipoAldeano.pop();
-                    aldeano.barraVida.destroy();
-                    aldeano.destroy();
+                    let aldeano = this.tipoAldeano[0];
+                    aldeano.morir();
                     this.numAldeanos++;
                 }
             }

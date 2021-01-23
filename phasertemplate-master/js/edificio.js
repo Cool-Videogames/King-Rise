@@ -337,9 +337,8 @@ export default class Edificio extends Phaser.GameObjects.Sprite {
             }
             else if (this.variacionAldeanos > 0) {
                 for (let i = 0; i < this.variacionAldeanos; ++i) {
-                    let aldeano = this.tipoAldeano.pop();
-                    aldeano.barraVida.destroy();
-                    aldeano.destroy();
+                    let aldeano = this.tipoAldeano[0];
+                    aldeano.morir();
                     this.numAldeanos++;
                 }
             }

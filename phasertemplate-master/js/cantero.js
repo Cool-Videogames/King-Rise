@@ -21,9 +21,10 @@ export default class Cantero extends Aldeano {
     }
 
     morir() {
+        this.barraVida.destroy();
         let index = this.game.canteros.indexOf(this);
-        this.casilla.ocupada = false;
         this.game.canteros.splice(index, 1);
+        this.casilla.ocupada = false;
         this.destroy();
     }
 }

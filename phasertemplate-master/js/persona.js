@@ -141,7 +141,6 @@ export default class Persona extends Phaser.GameObjects.Sprite {
         this.vida -= dmg
         this.actualizaBarraVida();
         if (this.vida <= 0) {
-            this.barraVida.destroy();
             this.destruido = true;
             this.morir();
             return true;
