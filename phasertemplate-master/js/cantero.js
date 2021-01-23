@@ -24,7 +24,6 @@ export default class Cantero extends Aldeano {
         let index = this.game.canteros.indexOf(this);
         this.casilla.ocupada = false;
         this.game.canteros.splice(index, 1);
-        this.barraVida.destroy();
         this.destroy();
     }
 }

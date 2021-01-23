@@ -23,7 +23,6 @@ export default class Minero extends Aldeano{
         let index = this.game.mineros.indexOf(this);
         this.casilla.ocupada = false;
         this.game.mineros.splice(index, 1);
-        this.barraVida.destroy();
         this.destroy();
     }
 }

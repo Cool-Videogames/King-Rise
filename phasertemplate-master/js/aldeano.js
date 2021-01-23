@@ -165,7 +165,6 @@ export default class Aldeano extends Persona {
         let index = this.game.aldeanosBasicos.indexOf(this);
         this.casilla.ocupada = false;
         this.game.aldeanosBasicos.splice(index, 1);
-        this.barraVida.destroy();
         this.destroy();
     }
 }

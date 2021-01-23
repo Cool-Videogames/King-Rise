@@ -24,7 +24,6 @@ export default class Explorador extends Aldeano {
         let index = this.game.exploradores.indexOf(this);
         this.casilla.ocupada = false;
         this.game.exploradores.splice(index, 1);
-        this.barraVida.destroy();
         this.destroy();
     }
 }
