@@ -147,7 +147,10 @@ export default class Boot extends Phaser.Scene {
         this.load.audio('construccion', "phasertemplate-master/sound/sonidoConstruccion.mp3");
         this.load.audio('destruccion', "phasertemplate-master/sound/sonidoDestruccion.mp3");
         this.load.audio('menuInicio', "phasertemplate-master/sound/menuInicio.mp3");
-        this.load.audio('cancionCombate', "phasertemplate-master/sound/cancionCombate.wav")
+        this.load.audio('cancionCombate', "phasertemplate-master/sound/cancionCombate.wav");
+        this.load.audio('ataque1', "phasertemplate-master/sound/ataque1.mp3");
+        this.load.audio('ataque2', "phasertemplate-master/sound/ataque2.mp3");
+        this.load.audio('matar', "phasertemplate-master/sound/matar.mp3")
 
         //Escenas
         this.load.image('fondoInicio', "./phasertemplate-master/images/background.png");

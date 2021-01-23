@@ -65,6 +65,10 @@ export default class Persona extends Phaser.GameObjects.Sprite {
             } else
                 if (this.t > this.attackTime) {
                     if (this.ataque()) {
+                        let rnd = Math.floor(Math.random() * 2);
+                        if (rnd === 0) this.game.audio.ataque1.play();
+                        else this.game.audio.ataque2.play();
+                        this.game.audio.matar.play();
                         this.isInRange = false;
                         this.move();
                     }
