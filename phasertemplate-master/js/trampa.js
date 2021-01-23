@@ -23,7 +23,7 @@ export default class Trampa extends EdificioDefensivo {
                     trap.destruir();
                 }
                 else if (!this.enemyStunned) {
-                    this.atacar(this.enemy, 15);
+                    this.enemy.recibirAtaque(15);
                     this.stun(this.enemy, this);
                     this.enemyStunned = true;
                     this.timer = 100;
