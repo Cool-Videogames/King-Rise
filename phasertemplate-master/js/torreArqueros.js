@@ -88,7 +88,6 @@ export default class TorreArqueros extends EdificioDefensivo {
         this.menos.on('pointerup', pointer => {
             if (this.variacionAldeanos + this.numAldeanos > 0) {
                 this.variacionAldeanos--;
-                console.log(this.numAldeanos);
                 this.texts[1].text = this.variacionAldeanos + this.numAldeanos;
                 this.texts[2].text++;
                 this.texts[3].text = this.variacionAldeanos + this.numAldeanos;
